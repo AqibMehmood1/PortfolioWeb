@@ -1,0 +1,30 @@
+/* .typed-text {
+    font-size: 24px;
+    color: #333;
+  } */
+
+  .typed-text {
+    display: inline; /* Ensure it does not cause layout shifts */
+    font-size: 24px; /* Adjust as needed */
+    color: #333; /* Adjust color as needed */
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Hides overflow */
+  }
+
+  .wfull{
+    width: 100%;
+  }
+
+ 
+  .btn-whatsapp {
+    background-color: #25D366; 
+    color: white;
+    border: none;
+  }
+  .btn-insta {
+    background-color: red;
+    color: white;
+    border: none;
+  }
+
+  
