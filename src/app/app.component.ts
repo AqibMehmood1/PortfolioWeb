@@ -1,29 +1,121 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import Typed from 'typed.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements AfterViewInit {
+  readonly SECTION_IDS: string[] = ['home', 'about', 'skill', 'service', 'project', 'team', 'contact'];
   title = 'PortfolioWeb';
-  gmail='bilalsoftengr@gmail.com'
-  ngOnInit(): void {
-    const options = {
-      strings: ['Entrepreneur', 'Software Engineer', 'C#/Dot Net Developer','Full Stack Developer','Mean Stack Developer', 'Web Developer', 'Front End Developer', 'Back End Developer', 'Angular | React | JavaScript | SQL Server | Bootstrap ', ' AWS | Azure | Kentico',],
-      typeSpeed: 30, // Speed in milliseconds
-      backSpeed: 25,  // Speed in milliseconds
-      backDelay: 1000, // Delay before starting to backspace
-      startDelay: 500, // Delay before starting typing
-      loop: true, // Loop the animation
-      showCursor: true, // Show blinking cursor
-    };
+  gmail = 'bilalsoftengr@gmail.com';
+  navVisible = false;
+  activeSection: string = 'home';
+  private typedInstance: Typed | null = null;
 
-    const typed = new Typed('.typed-text', options);
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit(): void {
+    this.initTyped();
+    this.initScrollReveal();
+    this.initNavbarScroll();
+    this.initBackToTop();
+  }
+
+  private initNavbarScroll(): void {
+    const onScroll = (): void => {
+      const scrollY = window.scrollY;
+      const visible = scrollY > 300;
+      if (visible !== this.navVisible) {
+        this.navVisible = visible;
+      }
+      const sectionId = this.getActiveSection(scrollY);
+      if (sectionId !== this.activeSection) {
+        this.activeSection = sectionId;
+      }
+      this.cdr.detectChanges();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  private getActiveSection(_scrollY: number): string {
+    const viewportMid = window.innerHeight * 0.5;
+    let current = this.SECTION_IDS[0];
+    for (const id of this.SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= viewportMid && rect.bottom >= viewportMid) {
+        return id;
+      }
+      if (rect.top <= viewportMid) {
+        current = id;
+      }
+    }
+    return current;
+  }
+
+  private initTyped(): void {
+    const el = document.querySelector('.typed-text');
+    if (el) {
+      this.typedInstance = new Typed('.typed-text', {
+        strings: [
+          'Entrepreneur',
+          'Software Engineer',
+          'C#/Dot Net Developer',
+          'Full Stack Developer',
+          'Mean Stack Developer',
+          'Web Developer',
+          'Front End Developer',
+          'Back End Developer',
+          'Angular | React | JavaScript | SQL Server | Bootstrap',
+          'AWS | Azure | Kentico'
+        ],
+        typeSpeed: 30,
+        backSpeed: 25,
+        backDelay: 1000,
+        startDelay: 500,
+        loop: true,
+        showCursor: true
+      });
+    }
+  }
+
+  private initScrollReveal(): void {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  }
+
+  private initBackToTop(): void {
+    const btn = document.querySelector('.back-to-top');
+    if (!btn) return;
+    const onScroll = (): void => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  scrollTo(id: string): void {
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   downloadCV(): void {

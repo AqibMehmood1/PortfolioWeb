@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Enforce no white background - dark theme everywhere */
+:root {
+  --portfolio-bg: #0f0f0f;
+  --portfolio-card: #1a1a1a;
+}
+html, body {
+  background-color: var(--portfolio-bg) !important;
+}
+.bg-white { background-color: var(--portfolio-card) !important; }
+.bg-light { background-color: var(--portfolio-card) !important; }
