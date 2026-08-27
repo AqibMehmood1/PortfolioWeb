@@ -1,10 +1,11 @@
 import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import Typed from 'typed.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -23,7 +24,21 @@ export class AppComponent implements AfterViewInit {
   activeSection: string = 'home';
   private typedInstance: Typed | null = null;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  // Interactive consultation topic selector
+  selectedTopic: string = 'SaaS Architecture & Scale';
+  topics: string[] = [
+    'SaaS Architecture & Scale',
+    'AI Agents & Workflow Automation',
+    'Cloud Migration & Cost Optimization',
+    'Legacy .NET/Web Modernization',
+    'Fractional Solutions Architect'
+  ];
+
+  // Toast notification system
+  toastMessage: string | null = null;
+  private toastTimeout: any = null;
+
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {
     this.initTyped();
@@ -32,10 +47,42 @@ export class AppComponent implements AfterViewInit {
     this.initBackToTop();
   }
 
+  selectTopic(topic: string): void {
+    this.selectedTopic = topic;
+  }
+
+  showToast(message: string): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+    }
+    this.toastMessage = message;
+    this.cdr.detectChanges();
+    this.toastTimeout = setTimeout(() => {
+      this.toastMessage = null;
+      this.cdr.detectChanges();
+    }, 3500);
+  }
+
+  copyText(text: string, label: string): void {
+    navigator.clipboard.writeText(text).then(() => {
+      this.showToast(`${label} copied to clipboard! ✨`);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
+
+  copyEmail(): void {
+    this.copyText(this.gmail, 'Email address');
+  }
+
+  copyPhone(): void {
+    this.copyText(this.displayPhone, 'Phone number');
+  }
+
   private initNavbarScroll(): void {
     const onScroll = (): void => {
       const scrollY = window.scrollY;
-      const visible = scrollY > 300;
+      const visible = scrollY > 250;
       if (visible !== this.navVisible) {
         this.navVisible = visible;
       }
@@ -50,7 +97,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   private getActiveSection(_scrollY: number): string {
-    const viewportMid = window.innerHeight * 0.5;
+    const viewportMid = window.innerHeight * 0.45;
     let current = this.SECTION_IDS[0];
     for (const id of this.SECTION_IDS) {
       const el = document.getElementById(id);
@@ -72,13 +119,13 @@ export class AppComponent implements AfterViewInit {
       this.typedInstance = new Typed('.typed-text', {
         strings: [
           'Solutions Architect',
-          'SaaS & Cloud Architect',
-          'AI Agents & GenAI Specialist',
+          'SaaS | Cloud Architect',
+          'AI Agents | GenAI Specialist',
           'Full Stack Engineer (9+ Years)',
-          '.NET Core & C# Architect',
-          'Angular & React Developer',
-          'Azure & AWS Cloud Optimization',
-          'Microservices & High Scale Systems',
+          '.NET Core | C# Architect',
+          'Angular | React Developer',
+          'Azure | AWS Cloud Optimization',
+          'Microservices | High Scale Systems',
           'Trusted Technology Partner'
         ],
         typeSpeed: 30,
@@ -100,7 +147,7 @@ export class AppComponent implements AfterViewInit {
           }
         });
       },
-      { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+      { rootMargin: '0px 0px -50px 0px', threshold: 0.08 }
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   }
@@ -126,9 +173,10 @@ export class AppComponent implements AfterViewInit {
 
   downloadCV(): void {
     const link = document.createElement('a');
-    link.href = '/assets/Bilal_CV.pdf';  // Path to the PDF file
-    link.download = 'Bilal_CV.pdf';     // Default name of the file to be downloaded
+    link.href = '/assets/Bilal_CV.pdf';
+    link.download = 'Bilal_Ahmad_Solutions_Architect_CV.pdf';
     link.click();
+    this.showToast('Downloading Bilal Ahmad CV... 📄');
   }
 
   scrole: string = 'https://scrole.com';
@@ -139,60 +187,27 @@ export class AppComponent implements AfterViewInit {
   Medikea: string = 'https://www.medikea.co.tz/';
 
   copyscrole(): void {
-    navigator.clipboard.writeText(this.scrole).then(() => {
-      // Optional: Display a message or toast notification
-      alert('scrole Website link copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    this.copyText(this.scrole, 'Scrole link');
   }
   copyODTool(): void {
-    navigator.clipboard.writeText(this.ODTool).then(() => {
-      // Optional: Display a message or toast notification
-      alert('ODTool Website link copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    this.copyText(this.ODTool, 'ODTool link');
   }
   copyLinkcenter(): void {
-    navigator.clipboard.writeText(this.Linkcenter).then(() => {
-      // Optional: Display a message or toast notification
-      alert('Linkcenter Website link copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    this.copyText(this.Linkcenter, 'Linkcenter link');
   }
   copyEurobank(): void {
-    navigator.clipboard.writeText(this.Eurobank).then(() => {
-      // Optional: Display a message or toast notification
-      alert('Eurobank Website link copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    this.copyText(this.Eurobank, 'Eurobank link');
   }
   copyCloudoor(): void {
-    navigator.clipboard.writeText(this.Cloudoor).then(() => {
-      // Optional: Display a message or toast notification
-      alert('Cloudoor Website link copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    this.copyText(this.Cloudoor, 'Cloudoor link');
   }
   copyMedikea(): void {
-    navigator.clipboard.writeText(this.Medikea).then(() => {
-      // Optional: Display a message or toast notification
-      alert('Medikea Website link copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    this.copyText(this.Medikea, 'Medikea link');
   }
 
-
-  openWhatsApp() {
-    // Construct the URL to open WhatsApp with a pre-filled message
-    const url = `https://wa.me/${this.phoneNumber}`;
+  openWhatsApp(): void {
+    const message = encodeURIComponent(`Hi Bilal, I visited your Solutions Architect portfolio and would like to discuss a project.`);
+    const url = `https://wa.me/${this.phoneNumber}?text=${message}`;
     window.open(url, '_blank');
   }
-
-  
 }

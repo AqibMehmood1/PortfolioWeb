@@ -1,25 +1,56 @@
-/* .typed-text {
-    font-size: 24px;
-    color: #333;
-  } */
+/* Component-specific overrides for high contrast and smooth visuals */
+:host {
+  display: block;
+}
 
-  .typed-text {
-    display: inline; /* Ensure it does not cause layout shifts */
-    font-size: 24px; /* Adjust as needed */
-    color: #333; /* Adjust color as needed */
-    white-space: nowrap; /* Prevents text wrapping */
-    overflow: hidden; /* Hides overflow */
-  }
+.typed-wrap {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  max-height: 52px !important;
+  background: rgba(14, 22, 40, 0.95) !important;
+  border: 1.5px solid #00f298 !important;
+  border-radius: 12px !important;
+  padding: 0 1.15rem !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 4px 20px rgba(0, 242, 152, 0.25) !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
 
-  .wfull{
-    width: 100%;
-  }
+.typed-prompt {
+  color: #00f298 !important;
+  font-weight: 800 !important;
+  margin-right: 0.6rem !important;
+  font-family: monospace !important;
+  font-size: 1.15rem !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+}
 
- 
-  .btn-whatsapp {
-    background-color: #25D366; 
-    color: white;
-    border: none;
-  }
+.typed-text {
+  display: inline-block !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important; /* Pure white high contrast */
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
 
-  
+/* Typed cursor styling */
+::ng-deep .typed-cursor {
+  color: #00f298 !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
