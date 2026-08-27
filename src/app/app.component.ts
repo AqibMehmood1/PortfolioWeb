@@ -12,6 +12,13 @@ export class AppComponent implements AfterViewInit {
   readonly SECTION_IDS: string[] = ['home', 'about', 'skill', 'service', 'project', 'team', 'contact'];
   title = 'PortfolioWeb';
   gmail = 'bilalsoftengr@gmail.com';
+  phoneNumber = '+923456466188';
+  displayPhone = '+92 345 6466188';
+  location = 'Lahore, Punjab, Pakistan';
+  linkedinUrl = 'https://www.linkedin.com/in/bilalsoftengr/';
+  upworkUrl = 'https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1';
+  fiverrUrl = 'https://www.fiverr.com/bilalsoftengr';
+
   navVisible = false;
   activeSection: string = 'home';
   private typedInstance: Typed | null = null;
@@ -64,16 +71,15 @@ export class AppComponent implements AfterViewInit {
     if (el) {
       this.typedInstance = new Typed('.typed-text', {
         strings: [
-          'Entrepreneur',
-          'Software Engineer',
-          'C#/Dot Net Developer',
-          'Full Stack Developer',
-          'Mean Stack Developer',
-          'Web Developer',
-          'Front End Developer',
-          'Back End Developer',
-          'Angular | React | JavaScript | SQL Server | Bootstrap',
-          'AWS | Azure | Kentico'
+          'Solutions Architect',
+          'SaaS & Cloud Architect',
+          'AI Agents & GenAI Specialist',
+          'Full Stack Engineer (9+ Years)',
+          '.NET Core & C# Architect',
+          'Angular & React Developer',
+          'Azure & AWS Cloud Optimization',
+          'Microservices & High Scale Systems',
+          'Trusted Technology Partner'
         ],
         typeSpeed: 30,
         backSpeed: 25,
@@ -181,8 +187,6 @@ export class AppComponent implements AfterViewInit {
     });
   }
 
-
-  phoneNumber = '+923456466188';  // Replace with the desired phone number
 
   openWhatsApp() {
     // Construct the URL to open WhatsApp with a pre-filled message

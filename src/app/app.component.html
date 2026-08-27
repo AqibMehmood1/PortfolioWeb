@@ -4,7 +4,7 @@
     <a class="nav-brand" href="#home">
       <span class="brand-dot"></span>
       Bilal Ahmad
-      <span class="brand-sub d-none d-md-inline">SOFTWARE ENGINEER</span>
+      <span class="brand-sub d-none d-md-inline">SOLUTIONS ARCHITECT</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
@@ -13,7 +13,7 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 flex-wrap nav-links">
         <li><a href="#home" [class.active]="activeSection === 'home'">Home</a></li>
         <li><a href="#about" [class.active]="activeSection === 'about'">About</a></li>
-        <li><a href="#skill" [class.active]="activeSection === 'skill'">Skills</a></li>
+        <li><a href="#skill" [class.active]="activeSection === 'skill'">Skills & Experience</a></li>
         <li><a href="#service" [class.active]="activeSection === 'service'">Services</a></li>
         <li><a href="#project" [class.active]="activeSection === 'project'">Projects</a></li>
         <li><a href="#team" [class.active]="activeSection === 'team'">Team</a></li>
@@ -34,21 +34,25 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <p class="hero-badge">Hello, I'm</p>
+        <p class="hero-badge">Solutions Architect & Technology Partner</p>
         <h1 style="color: aliceblue;">Bilal Ahmad</h1>
-        <p class="hero-subtitle">Software Engineer</p>
+        <p class="hero-subtitle">Helping Startups & SMBs Build Scalable SaaS, AI Agents & Cloud Applications</p>
+        <div class="hero-location">
+          <i class="fas fa-globe-americas"></i> Partnered across US, Canada, Europe & Globally
+        </div>
         <div class="typed-wrap">
           <span class="typed-text"></span>
         </div>
         <p class="hero-desc">
-          I'm a passionate Full and Mean Stack Developer with 8+ years of experience in crafting innovative web applications. Expertise in Angular, React, .NET Core, and RESTful APIs.
+          Technology should help businesses grow, not hold them back. I design secure, scalable, and high-performance software, modernizing legacy systems and integrating practical AI solutions that accelerate revenue and operational efficiency.
         </p>
         <div class="hero-buttons gap-2">
+          <a href="#contact" class="btn-talk btn-talk-cta">Discuss Your Project</a>
           <a href="#" class="btn-talk btn-talk-secondary" (click)="downloadCV(); $event.preventDefault()">Download CV</a>
         </div>
-        <p class="follow-me">Follow me on:</p>
+        <p class="follow-me">Connect with me on:</p>
         <div class="social-row">
-          <a href="https://www.linkedin.com/in/bilal-ahmad-935561193/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/in/bilalsoftengr/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1" target="_blank" rel="noopener" aria-label="Upwork"><img height="20" src="assets/img/upwork.png" alt="Upwork"></a>
           <a href="https://www.fiverr.com/bilalsoftengr" target="_blank" rel="noopener" aria-label="Fiverr"><img height="18" src="assets/img/fiverr.png" alt="Fiverr"></a>
           <a href="#" (click)="openWhatsApp(); $event.preventDefault()" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -57,7 +61,7 @@
       <div class="col-lg-6">
         <div class="hero-hex-wrap">
           <div class="hex-frame">
-            <img src="assets/img/profile.png" alt="Bilal Ahmad">
+            <img src="assets/img/profile.png" alt="Bilal Ahmad - Solutions Architect">
           </div>
         </div>
       </div>
@@ -69,56 +73,85 @@
 <section class="portfolio-section who-section" id="about">
   <div class="container">
     <div class="row g-5 align-items-center">
-      <div class="col-lg-6 reveal" id="about-reveal">
-        <p class="section-label">Who I'm</p>
-        <h2 class="section-title">About Me</h2>
+      <div class="col-lg-7 reveal" id="about-reveal">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Trusted Technology Partner</h2>
         <div class="d-flex align-items-center mb-4">
           <div class="years flex-shrink-0 text-center me-4">
-            <h1 class="display-4 mb-0" style="color: var(--accent);">8+</h1>
+            <h1 class="display-4 mb-0" style="color: var(--accent);">9+</h1>
             <h6 class="mb-0 text-light">Years</h6>
           </div>
-          <h5 class="mb-0 fw-normal text-light">of working experience as a web application development</h5>
+          <h5 class="mb-0 fw-normal text-light">of proven experience designing secure, scalable & high-performance software</h5>
         </div>
-        <p class="section-desc mb-4">
-          I'm Bilal Ahmad, a passionate and seasoned Full and Mean Stack Developer with 8 years of hands-on experience in crafting innovative and high-performing web applications. My expertise lies in both front-end and back-end development, enabling me to deliver end-to-end solutions that meet and exceed client expectations.
+        <p class="section-desc mb-3">
+          <strong>Technology should help businesses grow, not hold them back.</strong>
+        </p>
+        <p class="section-desc mb-3">
+          I help startups and SMBs build scalable SaaS products, modernize legacy applications, and integrate practical AI solutions that improve operations, enhance customer experience, and support long-term business growth.
         </p>
         <p class="section-desc mb-4">
-          I am an experienced software engineer with over 8 years of hands-on expertise in C# | ASP.NET MVC | ASP.NET CORE MVC | ASP.NET Core | .NET Core | React js | Angular | SQL | RESTful APIs. My specialized skills encompass Angular, TypeScript, JavaScript, Web design, Dotnet Core, and building robust RESTful APIs.
+          As a Solutions Architect with 9+ years of experience, I've partnered with businesses across the <strong>US, Canada, and Europe</strong> to design secure, scalable, and high-performance software. I work closely with founders, CEOs, CTOs, and leadership teams to align technology decisions with business goals, turning ideas into reliable products that are built to scale.
         </p>
-        <ul class="check-list">
-          <li>Available Now</li>
-          <li>Software Development Expert</li>
-          <li>Computer Science background (Strong in Programming Skills)</li>
-          <li>Affordable Prices</li>
-          <li>High Quality Product</li>
-          <li>On Time Project Delivery</li>
-        </ul>
-        <a href="#contact" class="btn-talk btn-talk-cta mt-3">Let's Talk Now</a>
+        
+        <div class="about-highlight-box mb-4">
+          <h6 class="text-light mb-2"><i class="fas fa-check-circle text-accent me-2"></i>I typically work with businesses that need to:</h6>
+          <ul class="check-list mb-0">
+            <li>Modernize legacy applications that have become difficult to maintain or scale</li>
+            <li>Design and build scalable SaaS platforms with the right architecture from day one</li>
+            <li>Integrate practical AI solutions that automate workflows, improve decision-making, and increase efficiency</li>
+            <li>Improve application performance, security, reliability, and user experience</li>
+            <li>Optimize Azure and AWS cloud infrastructure while reducing operational costs</li>
+            <li>Partner with a trusted technical leader providing architecture guidance from strategy through delivery</li>
+          </ul>
+        </div>
+
+        <p class="section-desc mb-4">
+          I believe successful software starts with understanding business goals before making technology decisions. The right architecture should simplify operations, support future growth, and deliver measurable business value.
+        </p>
+        <a href="#contact" class="btn-talk btn-talk-cta">Let's Discuss Your Goals</a>
       </div>
-      <div class="col-lg-6 reveal delay-1">
+      
+      <div class="col-lg-5 reveal delay-1">
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div class="about-image">
+              <img src="assets/img/about-1.jpg" alt="Solutions Architect Bilal Ahmad">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-image">
+              <img src="assets/img/about-2.jpg" alt="Architecture & Cloud Consulting">
+            </div>
+          </div>
+        </div>
+
+        <!-- Measurable Results Grid -->
+        <h5 class="text-light mb-3"><i class="fas fa-chart-line text-accent me-2"></i>Measurable Client Results</h5>
         <div class="row g-3">
           <div class="col-6">
-            <div class="about-image">
-              <img src="assets/img/about-1.jpg" alt="About">
+            <div class="result-card">
+              <div class="result-num">+30%</div>
+              <p class="result-desc">Revenue increase for e-commerce via platform optimization</p>
             </div>
           </div>
           <div class="col-6">
-            <div class="about-image">
-              <img src="assets/img/about-2.jpg" alt="About">
+            <div class="result-card">
+              <div class="result-num">-40%</div>
+              <p class="result-desc">Page load times reduced, improving customer retention</p>
             </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <h5 class="text-light mb-2">Happy Clients</h5>
-          <h2 class="mb-3" style="color: var(--accent);">230</h2>
-          <p class="section-desc mb-4">
-            With a track record of successfully partnering with over 230 clients, I take pride in consistently delivering exceptional web development solutions. From increasing sales and enhancing user engagement to streamlining processes, the positive feedback I've received underscores my ability to create impactful solutions.
-          </p>
-          <h5 class="text-light mb-2">Projects Completed</h5>
-          <h2 class="mb-3" style="color: var(--accent);">250</h2>
-          <p class="section-desc mb-0">
-            With nearly 250 projects successfully completed, I have honed my skills in delivering diverse and innovative web development solutions—e-commerce platforms, responsive websites, custom web applications, and content management systems.
-          </p>
+          <div class="col-6">
+            <div class="result-card">
+              <div class="result-num">-25%</div>
+              <p class="result-desc">Azure/AWS cloud infrastructure cost reduction</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="result-card">
+              <div class="result-num">10 Min</div>
+              <p class="result-desc">Automated a 3-hour daily process into 10 min workflow</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -130,91 +163,157 @@
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-6 reveal">
-        <h2 class="section-title">Skills & Experience</h2>
+        <h2 class="section-title">Technical Expertise & Skills</h2>
         <p class="section-desc mb-4">
-          If you're seeking expertise in Angular, React, and Dot net Core project development, you've come to the right place. With over 8 years of professional experience in web application development and a Bachelor's degree in Software Engineering.
+          Comprehensive architecture, engineering, and artificial intelligence skills developed across 9+ years of international client delivery.
         </p>
-        <h5 class="mb-3" style="color: aliceblue;">My Skills</h5>
+        <h5 class="mb-3" style="color: aliceblue;">Core Architectural Disciplines</h5>
         <div class="row">
           <div class="col-md-6">
             <div class="skill-item">
-              <div class="skill-header"><span>.Net Framework</span><span>95%</span></div>
+              <div class="skill-header"><span>Solution Architecture & SaaS</span><span>96%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="width: 96%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>AI Agents & GenAI Integration</span><span>92%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="width: 92%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>.NET / ASP.NET Core / C#</span><span>95%</span></div>
               <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-header"><span>MEAN Stack</span><span>85%</span></div>
-              <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>HTML/CSS/Tailwind/Bootstrap</span><span>95%</span></div>
-              <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>React js</span><span>88%</span></div>
-              <div class="skill-bar"><div class="skill-bar-fill" style="width: 88%"></div></div>
+              <div class="skill-header"><span>Microservices & REST APIs</span><span>94%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="width: 94%"></div></div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="skill-item">
-              <div class="skill-header"><span>Angular</span><span>90%</span></div>
+              <div class="skill-header"><span>Cloud (Azure & AWS)</span><span>92%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="width: 92%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Frontend (Angular & React)</span><span>90%</span></div>
               <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-header"><span>TypeScript/JavaScript</span><span>95%</span></div>
+              <div class="skill-header"><span>Microsoft SQL Server</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Technical Leadership & Scrum</span><span>95%</span></div>
               <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>Wordpress</span><span>78%</span></div>
-              <div class="skill-bar"><div class="skill-bar-fill" style="width: 78%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>MS SQL</span><span>85%</span></div>
-              <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%"></div></div>
             </div>
           </div>
         </div>
       </div>
+      
       <div class="col-lg-6 reveal delay-1">
         <div class="nav skills-tabs" role="tablist">
           <button class="active" data-bs-toggle="tab" data-bs-target="#tab-exp" type="button" role="tab">Experience</button>
           <button data-bs-toggle="tab" data-bs-target="#tab-edu" type="button" role="tab">Education</button>
+          <button data-bs-toggle="tab" data-bs-target="#tab-cert" type="button" role="tab">Certifications</button>
         </div>
         <div class="tab-content">
+          <!-- Experience Tab -->
           <div class="tab-pane fade show active" id="tab-exp" role="tabpanel">
             <div class="exp-list">
-                <div class="exp-item">
-                  <h5 style="color: aliceblue;">Dot Net Developer</h5>
-                <p class="exp-meta">2017 - 2018</p>
-                <p class="exp-company">System Nexgen</p>
-              </div>
               <div class="exp-item">
-                <h5 style="color: aliceblue;">Dot Net Core and Angular Developer</h5>
-                <p class="exp-meta">2019 - 2023</p>
-                <p class="exp-company">Polaris IT Services Ltd</p>
+                <h5 style="color: aliceblue;">Founder & Solutions Architect</h5>
+                <p class="exp-meta">Feb 2024 - Present · 2 yrs 7 mos</p>
+                <p class="exp-company">SoftEngr Labs · Self-employed · Remote</p>
+                <p class="exp-desc">I help startups and SMBs transform ideas into scalable SaaS products, AI Agents, and cloud applications that accelerate business growth.</p>
+                <div class="exp-skills-badge">
+                  <i class="fas fa-gem"></i> Solution Architecture, Artificial Intelligence (AI), AI Agents, Cloud Applications, SaaS
+                </div>
               </div>
+              
               <div class="exp-item">
-                <h5 style="color: aliceblue;">Asp.net Developer</h5>
-                <p class="exp-meta">2018 - 2019</p>
-                <p class="exp-company">Tech InSource</p>
+                <h5 style="color: aliceblue;">Solutions Architect</h5>
+                <p class="exp-meta">Jan 2024 - Present · 2 yrs 8 mos</p>
+                <p class="exp-company">Pulstech · Contract · Paris, Île-de-France, France · Remote</p>
+                <p class="exp-desc">Solutions Architect (Contract - Remote) for Pulstech, a French technology company based in Paris, France. Designing scalable cloud architecture and AI workflow systems.</p>
+                <div class="exp-skills-badge">
+                  <i class="fas fa-gem"></i> AI/GenAI Workflow Integration, Cloud Architecture, Scalable SaaS
+                </div>
               </div>
+              
               <div class="exp-item">
-                <h5 style="color: aliceblue;">Dotnet, React js, Angular, MEAN, Sql server</h5>
-                <p class="exp-meta">2023 - present</p>
-                <p class="exp-company">Upwork/Fiverr</p>
+                <h5 style="color: aliceblue;">Solutions Architect</h5>
+                <p class="exp-meta">Jan 2021 - Dec 2023 · 3 yrs</p>
+                <p class="exp-company">Odyssey Design San Antonio · Contract · San Antonio, TX, USA · Remote</p>
+                <p class="exp-desc">Long-term remote contract engagement with Odyssey Design San Antonio (USA), delivering scalable web solutions, custom quotation tools, and cloud platforms for American clients.</p>
+                <div class="exp-skills-badge">
+                  <i class="fas fa-gem"></i> AI/GenAI Workflow Integration, Web Architecture, Cloud Solutions
+                </div>
+              </div>
+              
+              <div class="exp-item">
+                <h5 style="color: aliceblue;">Senior Full Stack Developer (.NET & Angular)</h5>
+                <p class="exp-meta">Apr 2018 - Dec 2020 · 2 yrs 9 mos</p>
+                <p class="exp-company">Cloudoor · Contract · San Francisco, California, United States · Remote</p>
+                <p class="exp-desc">Long-term remote contract engagement with Cloudoor (USA), building and scaling production web applications and cloud services for US clients.</p>
+                <div class="exp-skills-badge">
+                  <i class="fas fa-gem"></i> Databases, OOP, .NET Core, Angular, Microservices
+                </div>
+              </div>
+              
+              <div class="exp-item">
+                <h5 style="color: aliceblue;">Dot Net Developer</h5>
+                <p class="exp-meta">Jan 2017 - Mar 2018 · 1 yr 3 mos</p>
+                <p class="exp-company">System Nexgen · Lahore District, Punjab, Pakistan</p>
+                <p class="exp-desc">Worked as a full-time .NET Developer at System Nexgen, contributing to web application development and backend systems for client projects.</p>
+                <div class="exp-skills-badge">
+                  <i class="fas fa-gem"></i> Databases, Object-Oriented Programming (OOP), C#, ASP.NET, SQL Server
+                </div>
               </div>
             </div>
           </div>
+          
+          <!-- Education Tab -->
           <div class="tab-pane fade" id="tab-edu" role="tabpanel">
             <div class="exp-list">
               <div class="exp-item">
-                <h5 style="color: aliceblue;">BS Software Engineering</h5>
+                <h5 style="color: aliceblue;">Bachelor's Degree, Computer Software Engineering</h5>
                 <p class="exp-meta">2014 - 2018</p>
-                <p class="exp-company">Superior University</p>
+                <p class="exp-company">Superior University / Superior College · Lahore, Pakistan</p>
+                <p class="exp-desc">Comprehensive curriculum covering Software Engineering principles, Object-Oriented Programming, Data Structures, Database Systems, Software Architecture, and Distributed Computing.</p>
               </div>
               <div class="exp-item">
-                <h5 style="color: aliceblue;">Intermediate (FSc)</h5>
+                <h5 style="color: aliceblue;">Intermediate (FSc Pre-Engineering)</h5>
                 <p class="exp-meta">2012 - 2014</p>
                 <p class="exp-company">Nibs College</p>
+                <p class="exp-desc">Higher secondary education with core concentrations in Mathematics, Physics, and analytical logic.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Certifications Tab -->
+          <div class="tab-pane fade" id="tab-cert" role="tabpanel">
+            <div class="exp-list">
+              <div class="exp-item">
+                <h5 style="color: aliceblue;"><i class="fas fa-certificate text-accent me-2"></i>Solution Architecture & AI/GenAI Integration</h5>
+                <p class="exp-meta">Architectural Competency</p>
+                <p class="exp-company">SaaS & Cloud Platforms</p>
+                <p class="exp-desc">Designing multi-tenant SaaS architectures, LLM & AI agent integrations, workflow automation, and scalable cloud microservices.</p>
+              </div>
+              <div class="exp-item">
+                <h5 style="color: aliceblue;"><i class="fas fa-certificate text-accent me-2"></i>C# and .NET</h5>
+                <p class="exp-meta">Professional Certification</p>
+                <p class="exp-company">Microsoft Technologies</p>
+                <p class="exp-desc">Deep mastery in C# language fundamentals, object-oriented design patterns, asynchronous programming (async/await), and .NET runtime optimization.</p>
+              </div>
+              <div class="exp-item">
+                <h5 style="color: aliceblue;"><i class="fas fa-certificate text-accent me-2"></i>ASP.NET CORE MVC</h5>
+                <p class="exp-meta">Professional Certification</p>
+                <p class="exp-company">Enterprise Web Development</p>
+                <p class="exp-desc">Enterprise web architecture, Dependency Injection, RESTful API design, Entity Framework Core, and secure web application development.</p>
+              </div>
+              <div class="exp-item">
+                <h5 style="color: aliceblue;"><i class="fas fa-award text-accent me-2"></i>Scrum & Business Agility</h5>
+                <p class="exp-meta">SDLC Leadership</p>
+                <p class="exp-company">Agile Software Development</p>
+                <p class="exp-desc">Technical leadership, sprint execution, backlog refinement, stakeholder alignment, and continuous delivery pipelines.</p>
               </div>
             </div>
           </div>
@@ -227,28 +326,28 @@
 <!-- What I Do / Services -->
 <section class="portfolio-section" id="service" style="background: var(--bg-card);">
   <div class="container">
-    <p class="section-label reveal">What I Do</p>
-    <h2 class="section-title reveal">My Services</h2>
+    <p class="section-label reveal">Services & Capabilities</p>
+    <h2 class="section-title reveal">How I Help Startups & SMBs</h2>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-icon"><i class="fa fa-code"></i></div>
-        <h3 style="color: aliceblue;">Web Development</h3>
-        <p>If you're seeking expertise in Angular, Javascript, Typescript, Asp.net, and Dotnet Core project development, you've come to the right place. With over 8 years of professional experience in web application development.</p>
+        <div class="service-icon"><i class="fa fa-cubes"></i></div>
+        <h3 style="color: aliceblue;">SaaS Architecture & Development</h3>
+        <p>Designing and building scalable multi-tenant SaaS platforms with the right architecture from day one, ensuring performance, maintainability, and rapid time-to-market.</p>
       </div>
       <div class="service-card reveal delay-1">
-        <div class="service-icon"><i class="fa fa-paint-brush"></i></div>
-        <h3 style="color: aliceblue;">Graphic Design</h3>
-        <p>Designed and developed visually compelling graphics, including logos, icons, and illustrations, enhancing brand identity and visual storytelling.</p>
+        <div class="service-icon"><i class="fa fa-robot"></i></div>
+        <h3 style="color: aliceblue;">AI Agents & GenAI Integration</h3>
+        <p>Integrating practical AI solutions and autonomous agents that automate complex workflows, enhance customer experience, and empower data-driven decision making.</p>
       </div>
       <div class="service-card reveal delay-2">
         <div class="service-icon"><i class="fa fa-cloud"></i></div>
-        <h3 style="color: aliceblue;">Cloud Application Development</h3>
-        <p>Developed and deployed scalable cloud-based applications using platforms such as AWS, Azure, or Google Cloud, optimizing performance and ensuring high availability.</p>
+        <h3 style="color: aliceblue;">Cloud Architecture & Cost Optimization</h3>
+        <p>Architecting secure Azure and AWS cloud environments, executing seamless cloud migrations, and optimizing infrastructure to cut operational costs by up to 25%.</p>
       </div>
       <div class="service-card reveal delay-3">
-        <div class="service-icon"><i class="fa fa-database"></i></div>
-        <h3 style="color: aliceblue;">Database Development</h3>
-        <p>Designed and implemented robust database solutions using SQL technologies, ensuring efficient data storage, retrieval, and management.</p>
+        <div class="service-icon"><i class="fa fa-sync-alt"></i></div>
+        <h3 style="color: aliceblue;">Legacy Modernization & Microservices</h3>
+        <p>Refactoring and upgrading monolithic applications into robust .NET Core & Angular/React microservices, improving reliability, speed, and developer velocity.</p>
       </div>
     </div>
   </div>
@@ -258,8 +357,8 @@
 <section class="portfolio-section" id="project">
   <div class="container">
     <p class="section-label reveal">Portfolio</p>
-    <h2 class="section-title reveal">Projects I Have Done</h2>
-    <p class="section-desc mb-5 reveal">A selection of web applications and platforms I've built for clients across industries.</p>
+    <h2 class="section-title reveal">Projects & Architectures Delivered</h2>
+    <p class="section-desc mb-5 reveal">A selection of web applications, enterprise platforms, and tools built for clients across the US, Europe, and globally.</p>
     <div class="projects-grid">
       <div class="project-card reveal">
         <div class="project-img-wrap">
@@ -391,46 +490,51 @@
         <div class="team-info">
           <div>
             <h5 style="color: aliceblue;">Imtiaz Ahmad</h5>
-            <span>Tester</span>
+            <span>QA & Tester</span>
           </div>
           <i class="fa fa-arrow-right arrow"></i>
         </div>
       </div>
     </div>
-    <!-- <div class="text-center mt-4 reveal">
-      <a href="#contact" class="btn-talk">Contact Us</a>
-    </div> -->
   </div>
 </section>
 
 <!-- Contact -->
 <section class="portfolio-section contact-section" id="contact">
   <div class="container">
-    <h2 class="section-title reveal">Let's Work Together</h2>
+    <h2 class="section-title reveal">Let's Build Something Great</h2>
     <div class="row g-5">
       <div class="col-lg-5 reveal">
         <div class="contact-item">
-          <p class="label">Call me</p>
-          <p class="value">+92 3456466188</p>
+          <p class="label">Role</p>
+          <p class="value" style="font-size: 1.05rem;">Solutions Architect & Technology Partner</p>
         </div>
         <div class="contact-item">
-          <p class="label">Mail me</p>
-          <p class="value">{{ gmail }}</p>
+          <p class="label">Location</p>
+          <p class="value" style="font-size: 1rem;"><i class="fas fa-map-marker-alt me-2"></i>{{ location }}</p>
         </div>
         <div class="contact-item">
-          <p class="label">Follow me</p>
+          <p class="label">Direct Call / WhatsApp</p>
+          <p class="value"><a href="tel:+923456466188" style="color: inherit; text-decoration: none;">{{ displayPhone }}</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="label">Direct Email</p>
+          <p class="value"><a [href]="'mailto:' + gmail" style="color: inherit; text-decoration: none;">{{ gmail }}</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="label">Connect on Professional Networks</p>
           <div class="contact-social">
+            <a href="https://www.linkedin.com/in/bilalsoftengr/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1" target="_blank" rel="noopener" aria-label="Upwork"><img height="22" src="assets/img/upwork.png" alt="Upwork"></a>
             <a href="https://www.fiverr.com/bilalsoftengr" target="_blank" rel="noopener" aria-label="Fiverr"><img height="20" src="assets/img/fiverr.png" alt="Fiverr"></a>
             <a href="#" (click)="openWhatsApp(); $event.preventDefault()" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.linkedin.com/in/bilal-ahmad-935561193/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
       <div class="col-lg-7 reveal delay-1">
-        <p class="mb-2" style="color: #00ff90;">Get In Touch With Us</p>
-        <h5 class="mb-2" style="color: aliceblue;">We can't wait to meet you.</h5>
-        <p class="section-desc mb-4">Please fill in the details below so that we can get in contact with you.</p>
+        <p class="mb-2" style="color: var(--accent);">Get In Touch</p>
+        <h5 class="mb-2" style="color: aliceblue;">Planning to build a SaaS product, modernize software, or explore AI?</h5>
+        <p class="section-desc mb-4">I'd be happy to learn about your goals and discuss how I can help. Fill in the details below:</p>
         <form class="form-dark" (submit)="$event.preventDefault()">
           <div class="row g-3">
             <div class="col-md-6">
@@ -440,10 +544,10 @@
               <input type="email" class="form-control" id="email" placeholder="Your Email">
             </div>
             <div class="col-12">
-              <input type="text" class="form-control" id="subject" placeholder="Subject">
+              <input type="text" class="form-control" id="subject" placeholder="Subject (e.g. SaaS Architecture / AI Integration / Cloud Migration)">
             </div>
             <div class="col-12">
-              <textarea class="form-control" id="message" rows="4" placeholder="Message"></textarea>
+              <textarea class="form-control" id="message" rows="4" placeholder="Tell me about your product or architecture requirements..."></textarea>
             </div>
             <div class="col-12">
               <button type="submit" class="btn-submit">Send Message</button>
@@ -458,7 +562,7 @@
 <!-- Footer -->
 <footer class="portfolio-footer">
   <div class="container">
-    &copy; All Right Reserved. Bilal Ahmad
+    &copy; All Rights Reserved. Bilal Ahmad | Solutions Architect & Trusted Technology Partner
   </div>
 </footer>
 
