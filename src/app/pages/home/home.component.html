@@ -13,41 +13,44 @@
           <span class="gradient-text">Bilal Ahmad</span>
         </h1>
 
-        <p class="hero-tagline">
-          Enterprise Solutions Architect & Cloud/AI Specialist
-        </p>
+        <div class="hero-role-headline">
+          <span class="text-white fw-bold">Enterprise Solutions Architect</span>
+          <span class="role-sep">•</span>
+          <span class="text-accent">SaaS, AI Agents & Cloud Platforms</span>
+        </div>
 
-        <!-- Modern Typewriter Terminal Bar -->
-        <div class="hero-type-bar">
-          <span class="type-prompt">&gt;</span>
+        <!-- Sleek Dynamic Specialization Strip -->
+        <div class="hero-specialty-strip">
+          <span class="spec-label">Core Focus:</span>
           <span class="typed-text"></span>
         </div>
 
         <p class="hero-description">
-          Helping Startups & SMBs build scalable SaaS products, AI Agents, and high-performance cloud applications. 
-          With <strong>9+ years of international delivery</strong> across US, Canada, and Europe, I turn complex business goals 
+          Helping Startups & SMBs architect scalable SaaS products, autonomous AI agents, and high-performance cloud
+          applications.
+          With <strong>9+ years of international delivery</strong> across US, Canada, and Europe, I turn complex
+          business goals
           into resilient, revenue-driving software architectures.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="hero-cta-group">
+        <!-- Balanced CTA Action Buttons -->
+        <div class="hero-cta-actions">
           <a routerLink="/contact" class="btn-glow-primary">
-            <i class="fas fa-comments"></i> Discuss Your Architecture
+            <i class="fas fa-paper-plane"></i> Discuss Your Project
           </a>
           <a routerLink="/projects" class="btn-glass-secondary">
             <i class="fas fa-layer-group"></i> Explore Case Studies
           </a>
-          <a routerLink="/services" class="btn-glass-secondary">
-            <i class="fas fa-cubes"></i> Architecture Services
-          </a>
         </div>
 
-        <!-- Verified Networks -->
+        <!-- Verified Professional Networks -->
         <div class="hero-trust-box">
-          <span class="trust-title"><i class="fas fa-shield-alt text-accent me-1"></i> Verified Professional Networks</span>
+          <span class="trust-title"><i class="fas fa-shield-alt text-accent me-1"></i> Verified Professional
+            Networks</span>
           <div class="social-pills-row">
-            <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="social-pill linkedin-pill">
-              <i class="fab fa-linkedin text-primary"></i> LinkedIn Profile
+            <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener"
+              class="social-pill linkedin-pill">
+              <i class="fab fa-linkedin text-primary"></i> LinkedIn
             </a>
             <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="social-pill">
               <img src="assets/img/upwork.png" alt="Upwork"> Upwork Verified
@@ -55,20 +58,39 @@
             <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="social-pill">
               <img src="assets/img/fiverr.png" alt="Fiverr"> Fiverr Pro
             </a>
-            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="social-pill whatsapp-pill">
-              <i class="fab fa-whatsapp text-emerald"></i> Direct WhatsApp
+            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"
+              class="social-pill whatsapp-pill">
+              <i class="fab fa-whatsapp text-emerald"></i> WhatsApp
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Right Column: Clean Executive Portrait -->
+      <!-- Right Column: Executive Showcase Spotlight Card -->
       <div class="col-lg-5">
         <div class="hero-visual-stage">
           <div class="visual-aura-backdrop"></div>
 
-          <div class="portrait-card-frame">
-            <img src="assets/img/profile.png" alt="Bilal Ahmad - Enterprise Solutions Architect">
+          <div class="executive-spotlight-card">
+            <!-- Portrait Container -->
+            <div class="portrait-image-wrapper">
+              <img src="assets/img/profile.png" alt="Bilal Ahmad - Enterprise Solutions Architect">
+            </div>
+
+            <!-- Integrated Glass Footer Badge -->
+            <div class="spotlight-card-footer">
+              <div class="spotlight-badge-header">
+                <span class="spotlight-dot"></span>
+                <span class="spotlight-role-title">Enterprise Solutions & Cloud Architecture</span>
+              </div>
+              <div class="spotlight-tech-chips">
+                <span class="spotlight-chip">.NET 9</span>
+                <span class="spotlight-chip">Azure & AWS</span>
+                <span class="spotlight-chip">AI Agents</span>
+                <span class="spotlight-chip">Angular</span>
+                <span class="spotlight-chip">Microservices</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -114,14 +136,17 @@
       <div class="col-lg-6">
         <div class="section-tag"><i class="fas fa-compass"></i> Strategic Value</div>
         <h2 class="section-title">Architecture Should Drive Revenue, Not Bottlenecks</h2>
-        
+
         <p class="lead text-light mb-3">
-          I partner with founders, CTOs, and leadership teams to turn ambitious software visions into scalable, resilient digital products.
+          I partner with founders, CTOs, and leadership teams to turn ambitious software visions into scalable,
+          resilient digital products.
         </p>
 
         <p class="mb-4">
-          Over 9+ years of engineering leadership, I've seen startups struggle with slow development cycles, high cloud bills, 
-          and technical debt. My architectural approach focuses on <strong>business outcomes first</strong>—ensuring every technical decision 
+          Over 9+ years of engineering leadership, I've seen startups struggle with slow development cycles, high cloud
+          bills,
+          and technical debt. My architectural approach focuses on <strong>business outcomes first</strong>—ensuring
+          every technical decision
           directly supports revenue, reliability, and velocity.
         </p>
 
@@ -138,7 +163,7 @@
       <div class="col-lg-6">
         <div class="about-bento-card">
           <h4 class="text-white mb-4"><i class="fas fa-shield-alt text-accent me-2"></i>Execution Principles</h4>
-          
+
           <div class="strategic-framework-grid">
             <div class="framework-card">
               <div class="framework-icon-wrap"><i class="fas fa-lightbulb"></i></div>
@@ -177,7 +202,8 @@
       <div>
         <div class="section-tag"><i class="fas fa-laptop-code"></i> Proven Systems</div>
         <h2 class="section-title mb-1">Featured Case Studies</h2>
-        <p class="section-subtitle mb-0">Production web platforms and dynamic calculation engines delivered for global clients.</p>
+        <p class="section-subtitle mb-0">Production web platforms and dynamic calculation engines delivered for global
+          clients.</p>
       </div>
       <a routerLink="/projects" class="btn-glass-secondary">
         View All Case Studies <i class="fas fa-arrow-right ms-2"></i>
@@ -203,7 +229,8 @@
             <a [href]="project.liveUrl" target="_blank" rel="noopener" class="btn-project-action btn-preview">
               <i class="fas fa-external-link-alt"></i> Live Site
             </a>
-            <button type="button" class="btn-project-action" (click)="openProjectModal(project)" title="Inspect Demo Media">
+            <button type="button" class="btn-project-action" (click)="openProjectModal(project)"
+              title="Inspect Demo Media">
               <i class="fas fa-eye"></i> Demo Media
             </button>
             <button type="button" class="btn-project-action" (click)="copyProjectLink(project)" title="Copy Link">
@@ -224,13 +251,15 @@
         <div class="section-tag mb-3"><i class="fas fa-calendar-check"></i> Let's Talk Strategy</div>
         <h2 class="section-title mb-3">Ready to Build, Modernize, or Scale?</h2>
         <p class="section-subtitle mx-auto mb-4">
-          Book a 30-minute architectural consultation to review your requirements, tech stack options, and execution roadmap.
+          Book a 30-minute architectural consultation to review your requirements, tech stack options, and execution
+          roadmap.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
           <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
             <i class="fas fa-comments"></i> Request Architecture Consultation
           </a>
-          <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="btn-glass-secondary py-3 px-4">
+          <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"
+            class="btn-glass-secondary py-3 px-4">
             <i class="fab fa-whatsapp text-emerald"></i> Quick Chat on WhatsApp
           </a>
         </div>
