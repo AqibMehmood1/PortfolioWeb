@@ -1,851 +1,136 @@
-<!-- Modern Floating Glass Navbar (reveals on scroll) -->
-<nav class="portfolio-nav navbar navbar-expand-lg" [class.nav-visible]="navVisible">
-  <div class="container">
-    <a class="nav-brand" href="#home">
-      <span class="brand-dot"></span>
-      Bilal Ahmad
-      <span class="brand-sub d-none d-sm-inline">SOLUTIONS ARCHITECT</span>
+<!-- ==================== FLOATING ISLAND GLASS NAVBAR ==================== -->
+<header class="floating-navbar">
+  <div class="navbar-island">
+    <a routerLink="/" class="brand-wrapper" (click)="closeMobileMenu()">
+      <div class="brand-avatar-mini">
+        <img src="assets/img/profile.png" alt="Bilal Ahmad">
+      </div>
+      <div class="brand-meta">
+        <span class="brand-name">Bilal Ahmad</span>
+        <span class="brand-role">SOLUTIONS ARCHITECT</span>
+      </div>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse"
-      aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navCollapse">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 nav-links">
-        <li><a href="#home" [class.active]="activeSection === 'home'">Home</a></li>
-        <li><a href="#about" [class.active]="activeSection === 'about'">About</a></li>
-        <li><a href="#skill" [class.active]="activeSection === 'skill'">Skills & Track Record</a></li>
-        <li><a href="#service" [class.active]="activeSection === 'service'">Services</a></li>
-        <li><a href="#project" [class.active]="activeSection === 'project'">Case Studies</a></li>
-        <li><a href="#team" [class.active]="activeSection === 'team'">Team</a></li>
-        <li><a href="#contact" [class.active]="activeSection === 'contact'">Contact</a></li>
-        <li class="ms-lg-2">
-          <a href="#contact" class="btn-cta">
-            <i class="fas fa-calendar-alt"></i> Let's Talk
-          </a>
-        </li>
-      </ul>
+
+    <!-- Desktop Navigation Links (Multi-Page Routing) -->
+    <ul class="nav-menu-desktop">
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      </li>
+      <li>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+      <li>
+        <a routerLink="/expertise" routerLinkActive="active">Technical Radar</a>
+      </li>
+      <li>
+        <a routerLink="/services" routerLinkActive="active">Services</a>
+      </li>
+      <li>
+        <a routerLink="/projects" routerLinkActive="active">Case Studies</a>
+      </li>
+      <li>
+        <a routerLink="/contact" routerLinkActive="active">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Action Button -->
+    <div class="d-flex align-items-center gap-2">
+      <a routerLink="/contact" class="nav-cta-btn d-none d-sm-inline-flex">
+        <i class="fas fa-paper-plane"></i> Let's Talk
+      </a>
+      <button type="button" class="mobile-nav-toggle" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+        <i class="fas" [ngClass]="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+      </button>
     </div>
   </div>
-</nav>
 
-<!-- Hero Section -->
-<section class="hero-section" id="home">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        <div class="status-badge">
-          <span class="live-dot"></span>
-          <span>Available for Advisory & Fractional Architecture</span>
-        </div>
-
-        <h1 class="hero-title">
-          <span class="gradient-text">Bilal Ahmad</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          Helping Startups & SMBs Build Scalable SaaS, AI Agents & Cloud Applications
-        </p>
-
-        <div class="hero-location">
-          <i class="fas fa-globe-americas"></i> Partnered with clients across US, Canada, Europe & Globally
-        </div>
-
-        <div class="typed-wrap">
-          <span class="typed-prompt">&gt;</span>
-          <span class="typed-text"></span>
-        </div>
-
-        <p class="hero-desc">
-          Technology should help businesses grow, not hold them back. I design secure, scalable, and high-performance
-          software, modernizing legacy systems and integrating practical AI solutions that accelerate revenue and
-          operational efficiency.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#contact" class="btn-primary-glow">
-            <i class="fas fa-paper-plane"></i> Discuss Your Project
-          </a>
-          <a href="#" class="btn-secondary-glass" (click)="downloadCV(); $event.preventDefault()">
-            <i class="fas fa-file-download"></i> Download CV
-          </a>
-        </div>
-
-        <p class="follow-me">Connect on Professional Networks</p>
-        <div class="social-row">
-          <a href="https://www.linkedin.com/in/bilalsoftengr/" target="_blank" rel="noopener" class="social-btn"
-            aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1" target="_blank" rel="noopener"
-            class="social-btn" aria-label="Upwork">
-            <img height="18" src="assets/img/upwork.png" alt="Upwork">
-          </a>
-          <a href="https://www.fiverr.com/bilalsoftengr" target="_blank" rel="noopener" class="social-btn"
-            aria-label="Fiverr">
-            <img height="16" src="assets/img/fiverr.png" alt="Fiverr">
-          </a>
-          <a href="#" (click)="openWhatsApp(); $event.preventDefault()" class="social-btn" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp text-success"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="hero-visual-wrap">
-          <div class="avatar-backdrop-glow"></div>
-
-          <div class="avatar-frame">
-            <img src="assets/img/profile.png" alt="Bilal Ahmad - Solutions Architect">
-          </div>
-
-          <!-- Modern Floating Badges -->
-          <div class="floating-pill pill-1">
-            <span class="icon"><i class="fas fa-cloud"></i></span>
-            <span>AWS & Azure Cloud</span>
-          </div>
-
-          <div class="floating-pill pill-2">
-            <span class="icon"><i class="fas fa-robot"></i></span>
-            <span>AI Agents & GenAI</span>
-          </div>
-
-          <div class="floating-pill pill-3">
-            <span class="icon"><i class="fas fa-bolt"></i></span>
-            <span>.NET Core & C#</span>
-          </div>
-
-          <div class="floating-pill pill-4">
-            <span class="icon"><i class="fas fa-cubes"></i></span>
-            <span>Scalable SaaS</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" [class.open]="mobileMenuOpen">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
+      <i class="fas fa-home me-2 text-accent"></i> Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-user-shield me-2 text-accent"></i> About & Strategy
+    </a>
+    <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-layer-group me-2 text-accent"></i> Technical Radar
+    </a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-cubes me-2 text-accent"></i> Services & Solutions
+    </a>
+    <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-laptop-code me-2 text-accent"></i> Case Studies
+    </a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-envelope me-2 text-accent"></i> Schedule Consultation
+    </a>
   </div>
-</section>
+</header>
 
-<!-- Metrics & Proven Results Ribbon -->
-<section class="metrics-ribbon-section">
-  <div class="container">
-    <div class="metrics-ribbon-grid">
-      <div class="metric-strip-card">
-        <div class="metric-strip-num">9+</div>
-        <div class="metric-strip-title">Years Experience</div>
-        <p class="metric-strip-desc">Designing scalable software architectures</p>
-      </div>
+<!-- ==================== MAIN ROUTED PAGE CONTENT ==================== -->
+<main class="main-content-wrapper">
+  <router-outlet></router-outlet>
+</main>
 
-      <div class="metric-strip-card">
-        <div class="metric-strip-num">+30%</div>
-        <div class="metric-strip-title">Revenue Increase</div>
-        <p class="metric-strip-desc">For e-commerce via platform optimization</p>
+<!-- ==================== PROJECT MEDIA INSPECTION MODAL ==================== -->
+<div class="modal-backdrop-custom" *ngIf="selectedProject" (click)="closeProjectModal()">
+  <div class="modal-dialog-custom" (click)="$event.stopPropagation()">
+    <div class="modal-header-custom">
+      <div>
+        <h4>{{ selectedProject.title }}</h4>
+        <span class="text-accent small">{{ selectedProject.category }}</span>
       </div>
-
-      <div class="metric-strip-card">
-        <div class="metric-strip-num">-40%</div>
-        <div class="metric-strip-title">Page Load Time</div>
-        <p class="metric-strip-desc">Boosting customer retention & engagement</p>
-      </div>
-
-      <div class="metric-strip-card">
-        <div class="metric-strip-num">-25%</div>
-        <div class="metric-strip-title">Cloud Infrastructure Costs</div>
-        <p class="metric-strip-desc">Saved via Azure/AWS architecture tuning</p>
-      </div>
-
-      <div class="metric-strip-card">
-        <div class="metric-strip-num">10 Min</div>
-        <div class="metric-strip-title">Workflow Automation</div>
-        <p class="metric-strip-desc">Automating 3-hour daily manual workflows</p>
-      </div>
+      <button type="button" class="modal-close-btn" (click)="closeProjectModal()" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
-  </div>
-</section>
 
-<!-- About Section (Bento Grid) -->
-<section class="portfolio-section" id="about">
-  <div class="container">
-    <div class="row g-5 align-items-center">
-      <div class="col-lg-7 reveal">
-        <p class="section-label"><i class="fas fa-shield-alt"></i> Strategic Partner</p>
-        <h2 class="section-title">Technology That Drives Measurable Growth</h2>
+    <div class="modal-body-custom">
+      <div class="modal-preview-media">
+        <img [src]="selectedProject.gif" [alt]="selectedProject.title">
+      </div>
 
-        <p class="section-desc mb-3">
-          <strong>Technology should help businesses grow, not hold them back.</strong>
-        </p>
+      <h5 class="text-white mb-2">Architecture & Highlights:</h5>
+      <p class="text-muted mb-3">{{ selectedProject.description }}</p>
 
-        <p class="section-desc mb-3">
-          I help startups and SMBs build scalable SaaS products, modernize legacy applications, and integrate practical
-          AI solutions that improve operations, enhance customer experience, and support long-term business growth.
-        </p>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <span class="tech-chip" *ngFor="let h of selectedProject.highlights">
+          <i class="fas fa-check text-accent me-1"></i> {{ h }}
+        </span>
+      </div>
 
-        <p class="section-desc mb-4">
-          As a Solutions Architect with 9+ years of experience, I've partnered with businesses across the <strong>US,
-            Canada, and Europe</strong> to design secure, scalable, and high-performance software. I work closely with
-          founders, CEOs, CTOs, and leadership teams to align technology decisions with business goals, turning ideas
-          into reliable products that are built to scale.
-        </p>
-
-        <div class="about-highlight-box mb-4">
-          <h6 class="text-light mb-3"><i class="fas fa-check-circle text-accent me-2"></i>I typically work with
-            businesses that need to:</h6>
-          <ul class="check-list mb-0">
-            <li>Modernize legacy applications that have become difficult to maintain or scale</li>
-            <li>Design and build scalable SaaS platforms with the right architecture from day one</li>
-            <li>Integrate practical AI solutions that automate workflows, improve decision-making, and increase
-              operational efficiency</li>
-            <li>Improve application performance, security, reliability, and user experience</li>
-            <li>Optimize Azure and AWS cloud infrastructure while reducing operational costs</li>
-            <li>Work with a trusted technology partner providing architecture guidance and leadership from strategy
-              through delivery</li>
-          </ul>
+      <div class="d-flex justify-content-between align-items-center pt-3 border-top border-secondary">
+        <div class="d-flex gap-2">
+          <span class="tech-chip" *ngFor="let t of selectedProject.tech">{{ t }}</span>
         </div>
-
-        <p class="section-desc mb-4">
-          I believe successful software starts with understanding business goals before making technology decisions. The
-          right architecture should simplify operations, support future growth, and deliver measurable business value.
-        </p>
-
-        <a href="#contact" class="btn-primary-glow">
-          <i class="fas fa-comments"></i> Let's Discuss Your Goals
+        <a [href]="selectedProject.liveUrl" target="_blank" rel="noopener" class="btn-glow-primary py-2 px-3 small">
+          <i class="fas fa-external-link-alt"></i> Visit Live Platform
         </a>
       </div>
-
-      <div class="col-lg-5 reveal delay-1">
-        <div class="row g-3 mb-4">
-          <div class="col-6">
-            <div class="bento-card text-center p-3">
-              <div class="bento-img-box">
-                <img src="assets/img/about-1.jpg" alt="Solutions Architecture">
-              </div>
-              <h6 class="text-light mb-0">Proven Strategy</h6>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="bento-card text-center p-3">
-              <div class="bento-img-box">
-                <img src="assets/img/about-2.jpg" alt="Cloud Systems">
-              </div>
-              <h6 class="text-light mb-0">Cloud Execution</h6>
-            </div>
-          </div>
-        </div>
-
-        <!-- Results 2x2 grid -->
-        <h5 class="text-light mb-3"><i class="fas fa-chart-pie text-accent me-2"></i>Recent Track Record</h5>
-        <div class="results-grid">
-          <div class="result-card">
-            <div class="result-num">+30%</div>
-            <p class="result-desc">Revenue increase for e-commerce via platform optimization</p>
-          </div>
-
-          <div class="result-card">
-            <div class="result-num">-40%</div>
-            <p class="result-desc">Page load times reduced, improving customer retention</p>
-          </div>
-
-          <div class="result-card">
-            <div class="result-num">-25%</div>
-            <p class="result-desc">Lowered Azure/AWS cloud infrastructure costs</p>
-          </div>
-
-          <div class="result-card">
-            <div class="result-num">10 Min</div>
-            <p class="result-desc">Automated a 3-hour daily manual process into 10 min</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- Skills & Career Track Record -->
-<section class="portfolio-section" id="skill" style="background: rgba(10, 15, 28, 0.7);">
-  <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-6 reveal">
-        <p class="section-label"><i class="fas fa-code"></i> Technical Stack</p>
-        <h2 class="section-title">Core Skills & Architectural Disciplines</h2>
-        <p class="section-desc mb-4">
-          Comprehensive architecture, engineering, and artificial intelligence skills developed across 9+ years of
-          international client delivery.
-        </p>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="skill-item">
-              <div class="skill-header"><span>SaaS & Solution Architecture</span><span>96%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 96%"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-header"><span>AI Agents & GenAI Integration</span><span>92%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 92%"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-header"><span>.NET Core / ASP.NET / C#</span><span>95%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 95%"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-header"><span>Microservices & REST APIs</span><span>94%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 94%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="skill-item">
-              <div class="skill-header"><span>Cloud (Azure & AWS)</span><span>92%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 92%"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-header"><span>Frontend (Angular & React)</span><span>90%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 90%"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-header"><span>Microsoft SQL Server</span><span>90%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 90%"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-header"><span>Technical Leadership & Scrum</span><span>95%</span></div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 95%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 reveal delay-1">
-        <div class="nav skills-tabs" role="tablist">
-          <button class="active" data-bs-toggle="tab" data-bs-target="#tab-exp" type="button"
-            role="tab">Experience</button>
-          <button data-bs-toggle="tab" data-bs-target="#tab-edu" type="button" role="tab">Education</button>
-          <button data-bs-toggle="tab" data-bs-target="#tab-cert" type="button" role="tab">Certifications</button>
-        </div>
-
-        <div class="tab-content">
-          <!-- Experience Tab -->
-          <div class="tab-pane fade show active" id="tab-exp" role="tabpanel">
-            <div class="exp-list">
-              <div class="exp-item">
-                <h5>Founder & Solutions Architect</h5>
-                <p class="exp-meta">Feb 2024 - Present · 2 yrs 7 mos</p>
-                <p class="exp-company">SoftEngr Labs · Self-employed · Remote</p>
-                <p class="exp-desc">I help startups and SMBs transform ideas into scalable SaaS products, AI Agents, and
-                  cloud applications that accelerate business growth.</p>
-                <div class="exp-skills-badge">
-                  <i class="fas fa-gem"></i> Solution Architecture, Artificial Intelligence (AI), AI Agents, Cloud
-                  Applications, SaaS
-                </div>
-              </div>
-
-              <div class="exp-item">
-                <h5>Solutions Architect</h5>
-                <p class="exp-meta">Jan 2024 - Present · 2 yrs 8 mos</p>
-                <p class="exp-company">Pulstech · Contract · Paris, Île-de-France, France · Remote</p>
-                <p class="exp-desc">Solutions Architect (Contract - Remote) for Pulstech, a French technology company
-                  based in Paris, France. Designing scalable cloud platforms and AI/GenAI workflow integrations.</p>
-                <div class="exp-skills-badge">
-                  <i class="fas fa-gem"></i> AI/GenAI Workflow Integration, Cloud Architecture, Scalable SaaS
-                </div>
-              </div>
-
-              <div class="exp-item">
-                <h5>Solutions Architect</h5>
-                <p class="exp-meta">Jan 2021 - Dec 2023 · 3 yrs</p>
-                <p class="exp-company">Odyssey Design San Antonio · Contract · San Antonio, TX, USA · Remote</p>
-                <p class="exp-desc">Long-term remote contract engagement with Odyssey Design San Antonio (USA),
-                  delivering scalable web solutions, custom quotation tools, and cloud infrastructure for American
-                  clients.</p>
-                <div class="exp-skills-badge">
-                  <i class="fas fa-gem"></i> AI/GenAI Workflow Integration, Web Architecture, Cloud Solutions
-                </div>
-              </div>
-
-              <div class="exp-item">
-                <h5>Senior Full Stack Developer (.NET & Angular)</h5>
-                <p class="exp-meta">Apr 2018 - Dec 2020 · 2 yrs 9 mos</p>
-                <p class="exp-company">Cloudoor · Contract · San Francisco, California, United States · Remote</p>
-                <p class="exp-desc">Long-term remote contract engagement with Cloudoor (USA), building and scaling
-                  production web applications, microservices, and cloud architectures for US clients.</p>
-                <div class="exp-skills-badge">
-                  <i class="fas fa-gem"></i> Databases, OOP, .NET Core, Angular, Microservices
-                </div>
-              </div>
-
-              <div class="exp-item">
-                <h5>Dot Net Developer</h5>
-                <p class="exp-meta">Jan 2017 - Mar 2018 · 1 yr 3 mos</p>
-                <p class="exp-company">System Nexgen · Lahore District, Punjab, Pakistan</p>
-                <p class="exp-desc">Worked as a full-time .NET Developer at System Nexgen, contributing to web
-                  application development, testing, and backend systems for client projects.</p>
-                <div class="exp-skills-badge">
-                  <i class="fas fa-gem"></i> Databases, Object-Oriented Programming (OOP), C#, ASP.NET, SQL Server
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Education Tab -->
-          <div class="tab-pane fade" id="tab-edu" role="tabpanel">
-            <div class="exp-list">
-              <div class="exp-item">
-                <h5>Bachelor's Degree, Computer Software Engineering</h5>
-                <p class="exp-meta">2014 - 2018</p>
-                <p class="exp-company">Superior University / Superior College · Lahore, Pakistan</p>
-                <p class="exp-desc">Comprehensive curriculum covering Software Engineering principles, Object-Oriented
-                  Programming, Data Structures, Database Systems, Software Architecture, and Distributed Computing.</p>
-              </div>
-              <div class="exp-item">
-                <h5>Intermediate (FSc Pre-Engineering)</h5>
-                <p class="exp-meta">2012 - 2014</p>
-                <p class="exp-company">Nibs College</p>
-                <p class="exp-desc">Higher secondary education with core concentrations in Mathematics, Physics, and
-                  analytical logic.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Certifications Tab -->
-          <div class="tab-pane fade" id="tab-cert" role="tabpanel">
-            <div class="exp-list">
-              <div class="exp-item">
-                <h5><i class="fas fa-certificate text-accent me-2"></i>Solution Architecture & AI/GenAI Integration</h5>
-                <p class="exp-meta">Architectural Competency</p>
-                <p class="exp-company">SaaS & Cloud Platforms</p>
-                <p class="exp-desc">Designing multi-tenant SaaS architectures, LLM & AI agent integrations, workflow
-                  automation, and scalable cloud microservices.</p>
-              </div>
-              <div class="exp-item">
-                <h5><i class="fas fa-certificate text-accent me-2"></i>C# and .NET</h5>
-                <p class="exp-meta">Professional Certification</p>
-                <p class="exp-company">Microsoft Technologies</p>
-                <p class="exp-desc">Deep mastery in C# language fundamentals, object-oriented design patterns,
-                  asynchronous programming (async/await), and .NET runtime optimization.</p>
-              </div>
-              <div class="exp-item">
-                <h5><i class="fas fa-certificate text-accent me-2"></i>ASP.NET CORE MVC</h5>
-                <p class="exp-meta">Professional Certification</p>
-                <p class="exp-company">Enterprise Web Development</p>
-                <p class="exp-desc">Enterprise web architecture, Dependency Injection, RESTful API design, Entity
-                  Framework Core, and secure web application development.</p>
-              </div>
-              <div class="exp-item">
-                <h5><i class="fas fa-award text-accent me-2"></i>Scrum & Business Agility</h5>
-                <p class="exp-meta">SDLC Leadership</p>
-                <p class="exp-company">Agile Software Development</p>
-                <p class="exp-desc">Technical leadership, sprint execution, backlog refinement, stakeholder alignment,
-                  and continuous delivery pipelines.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Services & Capabilities Section -->
-<section class="portfolio-section" id="service">
-  <div class="container">
-    <div class="text-center max-w-700 mx-auto mb-5 reveal">
-      <p class="section-label"><i class="fas fa-cubes"></i> Capabilities</p>
-      <h2 class="section-title">How I Help Startups & SMBs</h2>
-      <p class="section-desc">
-        End-to-end technical leadership and architectural expertise to turn ambitious ideas into robust, scalable
-        software assets.
-      </p>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon-box"><i class="fas fa-cubes"></i></div>
-        <h3>SaaS Architecture & Scale</h3>
-        <p>Design and build scalable multi-tenant SaaS platforms with the right architecture from day one, ensuring peak
-          performance, maintainability, and rapid time-to-market.</p>
-        <div class="service-tags">
-          <span class="service-tag">Multi-Tenancy</span>
-          <span class="service-tag">High Availability</span>
-          <span class="service-tag">Subscription Billing</span>
-        </div>
-      </div>
-
-      <div class="service-card reveal delay-1">
-        <div class="service-icon-box"><i class="fas fa-robot"></i></div>
-        <h3>AI Agents & GenAI Integration</h3>
-        <p>Integrate practical AI solutions and autonomous agents that automate complex workflows, enhance customer
-          experience, and empower data-driven business decisions.</p>
-        <div class="service-tags">
-          <span class="service-tag">Autonomous Agents</span>
-          <span class="service-tag">RAG / LLMs</span>
-          <span class="service-tag">Workflow Automation</span>
-        </div>
-      </div>
-
-      <div class="service-card reveal delay-2">
-        <div class="service-icon-box"><i class="fas fa-cloud"></i></div>
-        <h3>Cloud Architecture & Cost Optimization</h3>
-        <p>Architect secure Azure and AWS cloud environments, execute zero-downtime migrations, and optimize
-          infrastructure to cut operational cloud costs by up to 25%.</p>
-        <div class="service-tags">
-          <span class="service-tag">Microsoft Azure</span>
-          <span class="service-tag">AWS Cloud</span>
-          <span class="service-tag">Cost Reduction</span>
-        </div>
-      </div>
-
-      <div class="service-card reveal delay-3">
-        <div class="service-icon-box"><i class="fas fa-sync-alt"></i></div>
-        <h3>Legacy Modernization & Microservices</h3>
-        <p>Refactor and modernize legacy monoliths into high-performance .NET Core and Angular/React microservices,
-          boosting reliability, security, and developer speed.</p>
-        <div class="service-tags">
-          <span class="service-tag">.NET Core / C#</span>
-          <span class="service-tag">Angular & React</span>
-          <span class="service-tag">Microservices</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Featured Projects / Case Studies -->
-<section class="portfolio-section" id="project" style="background: rgba(10, 15, 28, 0.7);">
-  <div class="container">
-    <div class="text-center max-w-700 mx-auto mb-5 reveal">
-      <p class="section-label"><i class="fas fa-layer-group"></i> Portfolio</p>
-      <h2 class="section-title">Projects & Systems Delivered</h2>
-      <p class="section-desc">
-        A selection of web applications, platforms, and quotation systems designed and delivered for international
-        clients.
-      </p>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-img-wrap">
-          <img src="assets/img/scrole.png" alt="Scrole">
-          <div class="project-overlay">
-            <div>
-              <div class="project-title">Scrole Web Platform</div>
-              <div class="project-actions">
-                <a target="_blank" href="https://scrole.com" aria-label="Visit Live Site"><i
-                    class="fas fa-external-link-alt"></i></a>
-                <a href="assets/img/Scrole.gif" data-lightbox="portfolio" aria-label="Preview GIF"><i
-                    class="fas fa-eye"></i></a>
-                <button type="button" (click)="copyscrole()" aria-label="Copy link"><i class="fas fa-link"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal delay-1">
-        <div class="project-img-wrap">
-          <img src="assets/img/ODTool.png" alt="ODTool">
-          <div class="project-overlay">
-            <div>
-              <div class="project-title">ODTool Quotation System</div>
-              <div class="project-actions">
-                <a target="_blank" href="https://quote.odysseydesignco.com/home" aria-label="Visit Live Site"><i
-                    class="fas fa-external-link-alt"></i></a>
-                <a href="assets/img/OdooTools.gif" data-lightbox="portfolio" aria-label="Preview GIF"><i
-                    class="fas fa-eye"></i></a>
-                <button type="button" (click)="copyODTool()" aria-label="Copy link"><i class="fas fa-link"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal delay-2">
-        <div class="project-img-wrap">
-          <img src="assets/img/Eurobank.png" alt="Eurobank">
-          <div class="project-overlay">
-            <div>
-              <div class="project-title">Eurobank Banking Portal</div>
-              <div class="project-actions">
-                <a target="_blank" href="https://ssp.eurobank.com.cy/account/login" aria-label="Visit Live Site"><i
-                    class="fas fa-external-link-alt"></i></a>
-                <a href="assets/img/EUROBank.gif" data-lightbox="portfolio" aria-label="Preview GIF"><i
-                    class="fas fa-eye"></i></a>
-                <button type="button" (click)="copyEurobank()" aria-label="Copy link"><i
-                    class="fas fa-link"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-img-wrap">
-          <img src="assets/img/linkcenter2.png" alt="Linkcenter">
-          <div class="project-overlay">
-            <div>
-              <div class="project-title">Linkcenter Portal</div>
-              <div class="project-actions">
-                <a target="_blank" href="http://www.links.center" aria-label="Visit Live Site"><i
-                    class="fas fa-external-link-alt"></i></a>
-                <a href="assets/img/LinksWeb.gif" data-lightbox="portfolio" aria-label="Preview GIF"><i
-                    class="fas fa-eye"></i></a>
-                <button type="button" (click)="copyLinkcenter()" aria-label="Copy link"><i
-                    class="fas fa-link"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal delay-1">
-        <div class="project-img-wrap">
-          <img src="assets/img/Cloudoor.png" alt="Cloudoor">
-          <div class="project-overlay">
-            <div>
-              <div class="project-title">Cloudoor Cloud SaaS</div>
-              <div class="project-actions">
-                <a target="_blank" href="https://cloudoor.com" aria-label="Visit Live Site"><i
-                    class="fas fa-external-link-alt"></i></a>
-                <a href="assets/img/CloudoorG.gif" data-lightbox="portfolio" aria-label="Preview GIF"><i
-                    class="fas fa-eye"></i></a>
-                <button type="button" (click)="copyCloudoor()" aria-label="Copy link"><i
-                    class="fas fa-link"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal delay-2">
-        <div class="project-img-wrap">
-          <img src="assets/img/Medikea.png" alt="Medikea">
-          <div class="project-overlay">
-            <div>
-              <div class="project-title">Medikea Healthcare Platform</div>
-              <div class="project-actions">
-                <a target="_blank" href="https://www.medikea.co.tz" aria-label="Visit Live Site"><i
-                    class="fas fa-external-link-alt"></i></a>
-                <a href="assets/img/Medikea.gif" data-lightbox="portfolio" aria-label="Preview GIF"><i
-                    class="fas fa-eye"></i></a>
-                <button type="button" (click)="copyMedikea()" aria-label="Copy link"><i
-                    class="fas fa-link"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Team Section -->
-<section class="portfolio-section" id="team">
-  <div class="container">
-    <div class="text-center max-w-700 mx-auto mb-5 reveal">
-      <p class="section-label"><i class="fas fa-users"></i> Network & Collaborators</p>
-      <h2 class="section-title">Core Team & Specialists</h2>
-      <p class="section-desc">Collaborating with multidisciplinary specialists to deliver full-cycle software
-        excellence.</p>
-    </div>
-
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-img">
-          <img src="assets/img/team-1.png" alt="Yahya Hanif">
-        </div>
-        <div class="team-info">
-          <div>
-            <h5>Yahya Hanif</h5>
-            <span>UI/UX & Graphic Designer</span>
-          </div>
-          <i class="fas fa-arrow-right text-accent"></i>
-        </div>
-      </div>
-
-      <div class="team-card reveal delay-1">
-        <div class="team-img">
-          <img src="assets/img/team-2.jpg" alt="Aqib Mehmood">
-        </div>
-        <div class="team-info">
-          <div>
-            <h5>Aqib Mehmood</h5>
-            <span>Full Stack Developer</span>
-          </div>
-          <i class="fas fa-arrow-right text-accent"></i>
-        </div>
-      </div>
-
-      <div class="team-card reveal delay-2">
-        <div class="team-img">
-          <img src="assets/img/team-3.png" alt="Imtiaz Ahmad">
-        </div>
-        <div class="team-info">
-          <div>
-            <h5>Imtiaz Ahmad</h5>
-            <span>QA & Test Automation</span>
-          </div>
-          <i class="fas fa-arrow-right text-accent"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- High-Converting Consultation / Contact Section -->
-<section class="portfolio-section contact-section" id="contact">
-  <div class="container">
-    <div class="row g-5 align-items-center">
-      <div class="col-lg-5 reveal">
-        <p class="section-label"><i class="fas fa-handshake"></i> Let's Collaborate</p>
-        <h2 class="section-title">Ready to Build or Scale Your Software?</h2>
-        <p class="section-desc mb-4">
-          Whether you're looking to build a new SaaS product, integrate autonomous AI agents, or modernize existing
-          architecture, let's connect and map out the right strategy.
-        </p>
-
-        <div class="contact-channel-item">
-          <div class="contact-channel-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="contact-channel-info">
-            <p class="label">Location & Global Reach</p>
-            <p class="value">{{ location }} · Worldwide Remote</p>
-          </div>
-        </div>
-
-        <div class="contact-channel-item">
-          <div class="contact-channel-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contact-channel-info">
-            <p class="label">Direct Email</p>
-            <p class="value">
-              <a [href]="'mailto:' + gmail" style="color: inherit; text-decoration: none;">{{ gmail }}</a>
-              <button type="button" class="btn btn-sm text-accent p-0 ms-2" (click)="copyEmail()" title="Copy email">
-                <i class="fas fa-copy"></i>
-              </button>
-            </p>
-          </div>
-        </div>
-
-        <div class="contact-channel-item">
-          <div class="contact-channel-icon"><i class="fas fa-phone-alt"></i></div>
-          <div class="contact-channel-info">
-            <p class="label">Direct Phone & WhatsApp</p>
-            <p class="value">
-              <a [href]="'tel:' + phoneNumber" style="color: inherit; text-decoration: none;">{{ displayPhone }}</a>
-              <button type="button" class="btn btn-sm text-accent p-0 ms-2" (click)="copyPhone()" title="Copy phone">
-                <i class="fas fa-copy"></i>
-              </button>
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <p class="follow-me">Verified Freelance & Professional Profiles</p>
-          <div class="social-row">
-            <a href="https://www.linkedin.com/in/bilalsoftengr/" target="_blank" rel="noopener" class="social-btn"
-              aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1" target="_blank" rel="noopener"
-              class="social-btn" aria-label="Upwork">
-              <img height="18" src="assets/img/upwork.png" alt="Upwork">
-            </a>
-            <a href="https://www.fiverr.com/bilalsoftengr" target="_blank" rel="noopener" class="social-btn"
-              aria-label="Fiverr">
-              <img height="16" src="assets/img/fiverr.png" alt="Fiverr">
-            </a>
-            <a href="#" (click)="openWhatsApp(); $event.preventDefault()" class="social-btn" aria-label="WhatsApp">
-              <i class="fab fa-whatsapp text-success"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-7 reveal delay-1">
-        <div class="contact-card-glass">
-          <h4 class="text-light mb-1">Schedule a Consultation</h4>
-          <p class="section-desc mb-4" style="font-size: 0.92rem;">
-            Select your primary objective to help me tailor our conversation:
-          </p>
-
-          <!-- Interactive Topic Selector -->
-          <div class="topic-selector-wrap">
-            <div class="topic-pills">
-              <button type="button" *ngFor="let topic of topics" class="topic-pill"
-                [class.active]="selectedTopic === topic" (click)="selectTopic(topic)">
-                {{ topic }}
-              </button>
-            </div>
-          </div>
-
-          <form class="form-dark"
-            (submit)="$event.preventDefault(); showToast('Thank you! Your message has been received. 🚀')">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <input type="text" class="form-control" id="name" placeholder="Your Name *" required>
-              </div>
-              <div class="col-md-6">
-                <input type="email" class="form-control" id="email" placeholder="Your Work Email *" required>
-              </div>
-              <div class="col-12">
-                <input type="text" class="form-control" id="subject" [value]="'Topic: ' + selectedTopic"
-                  placeholder="Subject">
-              </div>
-              <div class="col-12">
-                <textarea class="form-control" id="message" rows="4"
-                  placeholder="Tell me about your product, architecture requirements, or project timeline..."
-                  required></textarea>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn-submit-glow">
-                  <i class="fas fa-paper-plane me-2"></i> Send Message & Request Consultation
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Modern Footer -->
-<footer class="portfolio-footer text-center">
+<!-- ==================== MODERN FOOTER ==================== -->
+<footer class="portfolio-footer">
   <div class="container">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
       <div>
-        &copy; All Rights Reserved. <strong>Bilal Ahmad</strong> · Solutions Architect & Technology Partner
+        &copy; 2026 <strong>Bilal Ahmad</strong> · Enterprise Solutions Architect & Technology Partner.
       </div>
-      <div class="d-flex gap-3 align-items-center">
-        <a href="#home" class="text-muted">Home</a>
-        <span class="text-dim">·</span>
-        <a href="#about" class="text-muted">About</a>
-        <span class="text-dim">·</span>
-        <a href="#service" class="text-muted">Services</a>
-        <span class="text-dim">·</span>
-        <a href="#contact" class="text-muted">Contact</a>
-      </div>
+      <ul class="footer-nav-links">
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/expertise">Technical Radar</a></li>
+        <li><a routerLink="/services">Services</a></li>
+        <li><a routerLink="/projects">Case Studies</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+      </ul>
     </div>
   </div>
 </footer>
 
-<!-- Toast Notification Container -->
+<!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
 <div class="toast-container-custom" *ngIf="toastMessage">
   <div class="custom-toast">
     <i class="fas fa-check-circle text-accent"></i>
@@ -853,7 +138,7 @@
   </div>
 </div>
 
-<!-- Back to Top Button -->
-<button type="button" class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+<!-- ==================== BACK TO TOP TRIGGER ==================== -->
+<button type="button" class="back-to-top" (click)="scrollToTop()" aria-label="Scroll back to top">
   <i class="fas fa-arrow-up"></i>
 </button>

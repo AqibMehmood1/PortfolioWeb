@@ -1,0 +1,164 @@
+<!-- ==================== ABOUT PAGE HEADER ==================== -->
+<section class="about-page-header">
+  <div class="container">
+    <div class="section-tag"><i class="fas fa-user-shield"></i> About & Strategy</div>
+    <h1 class="section-title">Bilal Ahmad</h1>
+    <p class="section-subtitle">
+      Enterprise Solutions Architect & Technology Partner helping Startups & SMBs build scalable SaaS, AI Agents & Cloud Platforms.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== EXECUTIVE PROFILE & PHILOSOPHY ==================== -->
+<section class="portfolio-section pt-0">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <h2 class="h1 text-white mb-4">Technology Should Drive Measurable Growth</h2>
+        
+        <p class="lead text-light mb-3">
+          With <strong>9+ years of international software delivery</strong> across the US, Canada, and Europe, 
+          I partner with founders, CEOs, and CTOs to design secure, scalable, and high-performance software.
+        </p>
+
+        <p class="mb-4">
+          I believe successful software starts with understanding business goals before making technology decisions. 
+          The right architecture should simplify operations, reduce unnecessary cloud overhead, and support massive future growth 
+          without painful rewrites.
+        </p>
+
+        <div class="about-highlight-box p-4 rounded-3 border border-secondary mb-4" style="background: rgba(14, 21, 38, 0.7);">
+          <h5 class="text-white mb-3"><i class="fas fa-check-circle text-accent me-2"></i>Core Client Engagements:</h5>
+          <ul class="strategic-checklist mb-0">
+            <li><i class="fas fa-check-circle"></i> <span>Designing multi-tenant SaaS platforms with the right architecture from day one.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Refactoring and modernizing difficult-to-maintain legacy .NET monoliths into high-velocity microservices.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Integrating autonomous AI agents and RAG pipelines that automate complex manual workflows.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Auditing and optimizing Azure/AWS cloud infrastructures to cut operational bills by up to 25%.</span></li>
+          </ul>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a routerLink="/contact" class="btn-glow-primary">
+            <i class="fas fa-paper-plane"></i> Discuss Your Project
+          </a>
+          <a routerLink="/expertise" class="btn-glass-secondary">
+            <i class="fas fa-layer-group"></i> Technical Radar
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="about-bento-card">
+          <h4 class="text-white mb-4"><i class="fas fa-shield-alt text-accent me-2"></i>Architectural Execution Framework</h4>
+          
+          <div class="strategic-framework-grid">
+            <div class="framework-card">
+              <div class="framework-icon-wrap"><i class="fas fa-lightbulb"></i></div>
+              <h5>1. Business Discovery</h5>
+              <p>Aligning KPIs, user concurrency demands, and unit economics before coding.</p>
+            </div>
+
+            <div class="framework-card">
+              <div class="framework-icon-wrap"><i class="fas fa-project-diagram"></i></div>
+              <h5>2. System Blueprint</h5>
+              <p>Designing modular domain models, API boundaries, and elastic databases.</p>
+            </div>
+
+            <div class="framework-card">
+              <div class="framework-icon-wrap"><i class="fas fa-code-branch"></i></div>
+              <h5>3. Rapid Scalable Build</h5>
+              <p>Developing microservices with .NET 9, Angular/React, and CI/CD pipelines.</p>
+            </div>
+
+            <div class="framework-card">
+              <div class="framework-icon-wrap"><i class="fas fa-chart-line"></i></div>
+              <h5>4. Performance Scale</h5>
+              <p>Real-time telemetry, Redis distributed caching, and cost governance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CAREER TRACK RECORD TIMELINE ==================== -->
+<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-tag"><i class="fas fa-history"></i> Career Journey</div>
+      <h2 class="section-title">Verified Track Record</h2>
+      <p class="section-subtitle">
+        Over 9 years of dedicated software engineering and solutions architecture across international technology companies.
+      </p>
+    </div>
+
+    <div class="row g-5">
+      <!-- Experience Column -->
+      <div class="col-lg-7">
+        <h4 class="text-white mb-4"><i class="fas fa-briefcase text-accent me-2"></i>Professional Experience</h4>
+        <div class="timeline-flow">
+          <div class="timeline-item" *ngFor="let exp of portfolioService.experiences">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title-row">
+              <h5>{{ exp.title }}</h5>
+              <span class="timeline-period">{{ exp.period }}</span>
+            </div>
+            <div class="timeline-company">{{ exp.company }} · {{ exp.location }}</div>
+            <p class="timeline-desc">{{ exp.description }}</p>
+            <div class="timeline-skills-badge">
+              <i class="fas fa-gem"></i> {{ exp.tags.join(' · ') }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education & Certifications Column -->
+      <div class="col-lg-5">
+        <h4 class="text-white mb-4"><i class="fas fa-graduation-cap text-accent me-2"></i>Education</h4>
+        <div class="timeline-flow mb-5">
+          <div class="timeline-item" *ngFor="let edu of portfolioService.educations">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title-row">
+              <h5>{{ edu.degree }}</h5>
+              <span class="timeline-period">{{ edu.period }}</span>
+            </div>
+            <div class="timeline-company">{{ edu.institution }}</div>
+            <p class="timeline-desc">{{ edu.description }}</p>
+          </div>
+        </div>
+
+        <h4 class="text-white mb-4"><i class="fas fa-certificate text-accent me-2"></i>Certifications</h4>
+        <div class="timeline-flow">
+          <div class="timeline-item" *ngFor="let cert of portfolioService.certifications">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title-row">
+              <h5>{{ cert.title }}</h5>
+              <span class="timeline-period">{{ cert.level }}</span>
+            </div>
+            <div class="timeline-company">{{ cert.issuer }}</div>
+            <p class="timeline-desc">{{ cert.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CALL TO ACTION ==================== -->
+<section class="portfolio-section">
+  <div class="container">
+    <div class="contact-hub-card text-center p-5">
+      <div class="max-w-700 mx-auto">
+        <div class="section-tag mb-3"><i class="fas fa-handshake"></i> Let's Collaborate</div>
+        <h2 class="section-title mb-3">Looking for Architecture Leadership?</h2>
+        <p class="section-subtitle mx-auto mb-4">
+          Whether you need a full architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session.
+        </p>
+        <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
+          <i class="fas fa-comments"></i> Schedule Strategy Session
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

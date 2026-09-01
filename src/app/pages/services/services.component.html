@@ -1,0 +1,115 @@
+<!-- ==================== SERVICES PAGE HEADER ==================== -->
+<section class="services-page-header">
+  <div class="container">
+    <div class="section-tag"><i class="fas fa-cubes"></i> Architectural Capabilities</div>
+    <h1 class="section-title">Services & Technical Solutions</h1>
+    <p class="section-subtitle">
+      Tailored architectural advisory, hands-on software engineering, and technical leadership designed to minimize risk, reduce costs, and accelerate time-to-market.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== 5 ARCHITECTURAL SERVICE PILLARS ==================== -->
+<section class="portfolio-section pt-0">
+  <div class="container">
+    <div class="services-grid">
+      <div class="service-card-modern" *ngFor="let service of portfolioService.services">
+        <div class="service-icon-box"><i [class]="service.icon"></i></div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.fullDesc }}</p>
+        
+        <h6 class="text-white small text-uppercase fw-bold mb-2">Key Deliverables:</h6>
+        <ul class="service-deliverables mb-4">
+          <li *ngFor="let del of service.deliverables">
+            <i class="fas fa-check-circle text-accent"></i> {{ del }}
+          </li>
+        </ul>
+
+        <button type="button" class="btn-project-action py-2 px-3 w-100 justify-content-between" (click)="selectService(service)">
+          <span>Discuss {{ service.title }}</span>
+          <i class="fas fa-arrow-right text-accent"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ENGAGEMENT MODELS ==================== -->
+<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-tag"><i class="fas fa-handshake"></i> Partnership Options</div>
+      <h2 class="section-title">Flexible Engagement Models</h2>
+      <p class="section-subtitle">Choose the structure that matches your team stage, roadmap urgency, and project scope.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="contact-hub-card h-100 d-flex flex-column justify-content-between p-4">
+          <div>
+            <div class="section-tag mb-3"><i class="fas fa-search"></i> Advisory & Audit</div>
+            <h3 class="text-white mb-2">Architecture Audit</h3>
+            <p class="text-muted small mb-4">Ideal for startups preparing for scale, investor due diligence, or tackling performance/cost bottlenecks.</p>
+            <ul class="service-deliverables mb-4">
+              <li><i class="fas fa-check text-accent"></i> In-depth codebase & cloud architecture audit</li>
+              <li><i class="fas fa-check text-accent"></i> Bottleneck & cost optimization report</li>
+              <li><i class="fas fa-check text-accent"></i> Modernization roadmap & risk assessment</li>
+            </ul>
+          </div>
+          <a routerLink="/contact" class="btn-glass-secondary w-100 justify-content-center">Request Audit</a>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="contact-hub-card h-100 d-flex flex-column justify-content-between p-4" style="border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 0 35px rgba(99, 102, 241, 0.2);">
+          <div>
+            <div class="section-tag mb-3" style="background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.5);"><i class="fas fa-star"></i> Most Popular</div>
+            <h3 class="text-white mb-2">Project Architecture</h3>
+            <p class="text-muted small mb-4">End-to-end design and scalable delivery of a new SaaS product, AI integration, or microservices migration.</p>
+            <ul class="service-deliverables mb-4">
+              <li><i class="fas fa-check text-accent"></i> Full multi-tenant system architecture blueprint</li>
+              <li><i class="fas fa-check text-accent"></i> Hands-on core backend & API development</li>
+              <li><i class="fas fa-check text-accent"></i> Automated CI/CD deployment pipelines</li>
+              <li><i class="fas fa-check text-accent"></i> Comprehensive documentation & team handover</li>
+            </ul>
+          </div>
+          <a routerLink="/contact" class="btn-glow-primary w-100 justify-content-center">Start Project</a>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="contact-hub-card h-100 d-flex flex-column justify-content-between p-4">
+          <div>
+            <div class="section-tag mb-3"><i class="fas fa-user-tie"></i> Executive Lead</div>
+            <h3 class="text-white mb-2">Fractional Architect</h3>
+            <p class="text-muted small mb-4">Ongoing strategic technical leadership and code governance on a predictable monthly retainer.</p>
+            <ul class="service-deliverables mb-4">
+              <li><i class="fas fa-check text-accent"></i> Weekly architectural reviews & sprint guidance</li>
+              <li><i class="fas fa-check text-accent"></i> Technical hiring & candidate interviews</li>
+              <li><i class="fas fa-check text-accent"></i> Direct advisory for Founder / CEO / CTO</li>
+            </ul>
+          </div>
+          <a routerLink="/contact" class="btn-glass-secondary w-100 justify-content-center">Inquire Fractional</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CALL TO ACTION ==================== -->
+<section class="portfolio-section">
+  <div class="container">
+    <div class="contact-hub-card text-center p-5">
+      <div class="max-w-700 mx-auto">
+        <div class="section-tag mb-3"><i class="fas fa-calendar-alt"></i> Let's Talk</div>
+        <h2 class="section-title mb-3">Have a Custom Project in Mind?</h2>
+        <p class="section-subtitle mx-auto mb-4">
+          Every system is unique. Let's discuss your timeline, technical requirements, and how we can achieve your architectural milestones.
+        </p>
+        <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
+          <i class="fas fa-comments"></i> Book Architecture Strategy Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

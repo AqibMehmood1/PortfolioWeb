@@ -1,0 +1,92 @@
+<!-- ==================== PROJECTS PAGE HEADER ==================== -->
+<section class="projects-page-header">
+  <div class="container text-center max-w-700 mx-auto">
+    <div class="section-tag"><i class="fas fa-laptop-code"></i> Portfolio Showcase</div>
+    <h1 class="section-title">Case Studies & Delivered Systems</h1>
+    <p class="section-subtitle mx-auto">
+      Real-world production platforms, automated estimation engines, and enterprise web portals designed and delivered for international clients.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== FILTER BAR & PROJECTS GRID ==================== -->
+<section class="portfolio-section pt-0">
+  <div class="container">
+    <!-- Filter Navigation -->
+    <div class="filter-nav-bar">
+      <button type="button" class="filter-pill-btn" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">
+        All Systems ({{ portfolioService.projects.length }})
+      </button>
+      <button type="button" class="filter-pill-btn" [class.active]="activeFilter === 'saas'" (click)="setFilter('saas')">
+        SaaS & Cloud
+      </button>
+      <button type="button" class="filter-pill-btn" [class.active]="activeFilter === 'dotnet'" (click)="setFilter('dotnet')">
+        Enterprise .NET & CPQ
+      </button>
+      <button type="button" class="filter-pill-btn" [class.active]="activeFilter === 'web'" (click)="setFilter('web')">
+        Web Platforms & SPAs
+      </button>
+      <button type="button" class="filter-pill-btn" [class.active]="activeFilter === 'health'" (click)="setFilter('health')">
+        HealthTech & Telemedicine
+      </button>
+    </div>
+
+    <!-- 6 Projects Grid -->
+    <div class="projects-grid-modern">
+      <div class="project-card-modern" *ngFor="let project of filteredProjects">
+        <div class="project-media-wrap">
+          <img [src]="project.image" [alt]="project.title">
+          <span class="project-category-badge">{{ project.category }}</span>
+        </div>
+
+        <div class="project-content-wrap">
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.description }}</p>
+
+          <div class="mb-3">
+            <h6 class="text-white small fw-bold mb-1"><i class="fas fa-microchip text-accent me-1"></i> Architecture Highlights:</h6>
+            <div class="d-flex flex-wrap gap-1">
+              <span class="tech-chip small" *ngFor="let h of project.highlights">
+                <i class="fas fa-check text-emerald me-1"></i>{{ h }}
+              </span>
+            </div>
+          </div>
+
+          <div class="project-tech-chips">
+            <span class="tech-chip" *ngFor="let t of project.tech">{{ t }}</span>
+          </div>
+
+          <div class="project-actions-row">
+            <a [href]="project.liveUrl" target="_blank" rel="noopener" class="btn-project-action btn-preview">
+              <i class="fas fa-external-link-alt"></i> Live Site
+            </a>
+            <button type="button" class="btn-project-action" (click)="openProjectModal(project)" title="Inspect Demo Media">
+              <i class="fas fa-eye"></i> Demo Media
+            </button>
+            <button type="button" class="btn-project-action" (click)="copyProjectLink(project)" title="Copy Link">
+              <i class="fas fa-link"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CALL TO ACTION ==================== -->
+<section class="portfolio-section">
+  <div class="container">
+    <div class="contact-hub-card text-center p-5">
+      <div class="max-w-700 mx-auto">
+        <div class="section-tag mb-3"><i class="fas fa-lightbulb"></i> Next Steps</div>
+        <h2 class="section-title mb-3">Have a Project Requiring High-Scale Architecture?</h2>
+        <p class="section-subtitle mx-auto mb-4">
+          I can help you evaluate technical feasibility, blueprint the system architecture, and guide your engineering team to delivery.
+        </p>
+        <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
+          <i class="fas fa-comments"></i> Discuss Your Project Requirements
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

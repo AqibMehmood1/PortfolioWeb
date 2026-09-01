@@ -1,13 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles & Design System Root */
 @import "./assets/css/style.css";
 
-/* Enforce no white background - dark theme everywhere */
+/* Base HTML & Body Settings */
 :root {
-  --portfolio-bg: #0f0f0f;
-  --portfolio-card: #1a1a1a;
+  color-scheme: dark;
 }
-html, body {
-  background-color: var(--portfolio-bg) !important;
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
 }
-.bg-white { background-color: var(--portfolio-card) !important; }
-.bg-light { background-color: var(--portfolio-card) !important; }
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060912;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #060912;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: #ffffff;
+}
