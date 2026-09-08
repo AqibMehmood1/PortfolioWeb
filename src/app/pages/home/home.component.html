@@ -1,95 +1,210 @@
-<!-- ==================== EXECUTIVE HERO SECTION ==================== -->
-<section class="hero-section" id="home">
+<!-- ==================== 1. INVOZONE HERO SECTION (Screenshot 2) ==================== -->
+<section class="iz-hero-origami" id="home">
   <div class="container">
+    <!-- Breadcrumbs -->
+    <div class="iz-breadcrumb">
+      <a routerLink="/">Home</a>
+      <span class="sep">»</span>
+      <a routerLink="/services">Solutions Architecture</a>
+      <span class="sep">»</span>
+      <span class="text-dark fw-bold">Multi-Tenant SaaS & AI Systems</span>
+    </div>
+
     <div class="row align-items-center g-5">
-      <!-- Left Column: Executive Bio & CTAs -->
+      <!-- Left Column: Value Proposition & Hero CTAs -->
       <div class="col-lg-7">
-        <div class="hero-status-pill">
-          <span class="live-indicator"></span>
-          <span>Available for Advisory & Fractional Architecture</span>
+        <!-- InvoZone Social Proof Stack -->
+        <div class="iz-social-proof-origami">
+          <div class="iz-avatar-stack-origami">
+            <img src="assets/img/team-1.png" alt="Client 1">
+            <img src="assets/img/team-2.jpg" alt="Client 2">
+            <img src="assets/img/team-3.png" alt="Client 3">
+          </div>
+          <div>
+            <div class="iz-stars mb-0">★★★★★</div>
+            <div class="iz-social-proof-text-origami">Trusted By 50+ Tech Leaders Worldwide</div>
+          </div>
         </div>
 
-        <h1 class="hero-main-title">
-          <span class="gradient-text">Bilal Ahmad</span>
+        <h1 class="iz-hero-title-main">
+          Architect High-Scale <br>
+          <span class="text-green-invo">SaaS & AI Systems</span>
         </h1>
 
-        <div class="hero-role-headline">
-          <span class="text-white fw-bold">Enterprise Solutions Architect</span>
-          <span class="role-sep">•</span>
-          <span class="text-accent">SaaS, AI Agents & Cloud Platforms</span>
-        </div>
-
-        <!-- Sleek Dynamic Specialization Strip -->
-        <div class="hero-specialty-strip">
-          <span class="spec-label">Core Focus:</span>
-          <span class="typed-text"></span>
-        </div>
-
-        <p class="hero-description">
-          Helping Startups & SMBs architect scalable SaaS products, autonomous AI agents, and high-performance cloud
-          applications.
-          With <strong>9+ years of international delivery</strong> across US, Canada, and Europe, I turn complex
-          business goals
-          into resilient, revenue-driving software architectures.
+        <p class="iz-hero-sub-origami">
+          Specialized Solutions Architect & Technology Partner helping Startups, SMBs, and Enterprises build, scale, and ship high-performance software with <strong>9+ years of proven delivery</strong> across the US, Canada, and Europe.
         </p>
 
-        <!-- Balanced CTA Action Buttons -->
-        <div class="hero-cta-actions">
-          <a routerLink="/contact" class="btn-glow-primary">
-            <i class="fas fa-paper-plane"></i> Discuss Your Project
+        <!-- Dual InvoZone Pill Buttons -->
+        <div class="iz-hero-actions-origami">
+          <a routerLink="/contact" class="iz-btn-book-call">
+            Book A Call <span class="iz-arrow-up-right">↗</span>
           </a>
-          <a routerLink="/projects" class="btn-glass-secondary">
-            <i class="fas fa-layer-group"></i> Explore Case Studies
+          <a routerLink="/services" class="iz-btn-matched">
+            Explore Architecture <span class="iz-arrow-up-right">↗</span>
           </a>
         </div>
 
-        <!-- Verified Professional Networks -->
-        <div class="hero-trust-box">
-          <span class="trust-title"><i class="fas fa-shield-alt text-accent me-1"></i> Verified Professional
-            Networks</span>
-          <div class="social-pills-row">
-            <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener"
-              class="social-pill linkedin-pill">
-              <i class="fab fa-linkedin text-primary"></i> LinkedIn
-            </a>
-            <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="social-pill">
-              <img src="assets/img/upwork.png" alt="Upwork"> Upwork Verified
-            </a>
-            <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="social-pill">
-              <img src="assets/img/fiverr.png" alt="Fiverr"> Fiverr Pro
-            </a>
-            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"
-              class="social-pill whatsapp-pill">
-              <i class="fab fa-whatsapp text-emerald"></i> WhatsApp
-            </a>
-          </div>
+        <!-- Trust Badges Strip -->
+        <div class="iz-trust-badges-row mt-4">
+          <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
+            <i class="fab fa-linkedin text-primary me-1"></i> LinkedIn Verified
+          </a>
+          <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="iz-chip">
+            <img src="assets/img/upwork.png" alt="Upwork" style="width: 14px; height: 14px; margin-right: 4px;"> Upwork Top Rated
+          </a>
+          <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="iz-chip">
+            <img src="assets/img/fiverr.png" alt="Fiverr" style="width: 14px; height: 14px; margin-right: 4px;"> Fiverr Pro
+          </a>
+          <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-chip">
+            <i class="fab fa-whatsapp text-green me-1"></i> WhatsApp Direct
+          </a>
         </div>
       </div>
 
-      <!-- Right Column: Executive Showcase Spotlight Card -->
+      <!-- Right Column: InvoZone Floating Inquiry Card (Screenshot 2) -->
       <div class="col-lg-5">
-        <div class="hero-visual-stage">
-          <div class="visual-aura-backdrop"></div>
+        <div class="iz-inquiry-card">
+          <h3 class="iz-inquiry-title">Your Vision, Our Expertise</h3>
+          <p class="iz-inquiry-sub">Submit your information to drive success forward.</p>
 
-          <div class="executive-spotlight-card">
-            <!-- Portrait Container -->
-            <div class="portrait-image-wrapper">
-              <img src="assets/img/profile.png" alt="Bilal Ahmad - Enterprise Solutions Architect">
+          <form (submit)="submitInquiry(); $event.preventDefault()">
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <input type="text" class="iz-input-light" [(ngModel)]="inquiryForm.fullName" name="fullName" placeholder="Enter your full name" required>
+              </div>
+              <div class="col-6">
+                <input type="email" class="iz-input-light" [(ngModel)]="inquiryForm.email" name="email" placeholder="Enter Email *" required>
+              </div>
             </div>
 
-            <!-- Integrated Glass Footer Badge -->
-            <div class="spotlight-card-footer">
-              <div class="spotlight-badge-header">
-                <span class="spotlight-dot"></span>
-                <span class="spotlight-role-title">Enterprise Solutions & Cloud Architecture</span>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <input type="tel" class="iz-input-light" [(ngModel)]="inquiryForm.phone" name="phone" placeholder="🇵🇰 +92 | Phone">
               </div>
-              <div class="spotlight-tech-chips">
-                <span class="spotlight-chip">.NET 9</span>
-                <span class="spotlight-chip">Azure & AWS</span>
-                <span class="spotlight-chip">AI Agents</span>
-                <span class="spotlight-chip">Angular</span>
-                <span class="spotlight-chip">Microservices</span>
+              <div class="col-6">
+                <select class="iz-select-light" [(ngModel)]="inquiryForm.techStack" name="techStack">
+                  <option value="Multi-Tenant SaaS Architecture">SaaS Architecture</option>
+                  <option value="Autonomous AI Agents & GenAI">AI Agents & GenAI</option>
+                  <option value="Cloud Cost Tuning (Azure & AWS)">Cloud Cost Tuning</option>
+                  <option value=".NET 9 & Microservices">.NET 9 Modernization</option>
+                  <option value="Fractional CTO & Advisory">Fractional Architect</option>
+                </select>
               </div>
+            </div>
+
+            <div class="mb-2">
+              <textarea class="iz-textarea-light" rows="3" [(ngModel)]="inquiryForm.message" name="message" placeholder="Help us understand what you require assistance with, the goal of your project, and the problem we're dedicated to solving *" required></textarea>
+            </div>
+
+            <div class="iz-checkbox-row">
+              <input type="checkbox" id="agreeTerms" [(ngModel)]="inquiryForm.agreed" name="agreed">
+              <label for="agreeTerms">I understand and agree to the <a routerLink="/about" class="text-dark fw-bold">terms & conditions</a>.</label>
+            </div>
+
+            <button type="submit" class="iz-submit-lime-btn">
+              Send Message <span class="iz-arrow-up-right">↗</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. INVOZONE DARK FOREST VALUE SECTION (Screenshot 3) ==================== -->
+<section class="iz-dark-value-section">
+  <div class="container">
+    <div class="iz-dark-value-header">
+      <h2>How Solutions Architecture Delivers Value To Your Business ?</h2>
+      <p>Choosing the right architecture partner changes everything. Here is what you need to know about us.</p>
+    </div>
+
+    <div class="iz-value-cards-grid">
+      <!-- Mint Card 1: Task Automation -->
+      <div class="iz-value-mint-card">
+        <h3>Task Automation</h3>
+        <p>DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 2: Agentic Workflows -->
+      <div class="iz-value-mint-card">
+        <h3>Agentic Workflows</h3>
+        <p>Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 3: Cost Efficiency -->
+      <div class="iz-value-mint-card">
+        <h3>Cost Efficiency</h3>
+        <p>Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 4: Resource Efficiency -->
+      <div class="iz-value-mint-card">
+        <h3>Resource Efficiency</h3>
+        <p>Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. INVOZONE "SERVICES WE OFFER" ACCORDION (Screenshot 4) ==================== -->
+<section class="iz-services-accordion-section" id="services">
+  <div class="container">
+    <div class="iz-services-accordion-header">
+      <div>
+        <h2 class="iz-accordion-title">
+          <span class="text-green-invo">Services</span> We Offer
+        </h2>
+      </div>
+      <p class="iz-accordion-tagline">
+        From strategy to delivery. Engineering that works.
+      </p>
+      <div>
+        <a routerLink="/services" class="iz-btn-view-all">
+          View All Services <span class="iz-arrow-up-right">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Accordion Rows -->
+    <div class="iz-accordion-container">
+      <div class="iz-accordion-row" *ngFor="let s of servicesAccordion; let i = index">
+        <!-- Row Header (Clickable) -->
+        <div class="iz-accordion-row-header" (click)="toggleServiceAccordion(i)">
+          <div class="iz-accordion-meta-left">
+            <span class="iz-accordion-index">{{ s.index }}</span>
+            <h3 class="iz-accordion-heading">{{ s.title }}</h3>
+          </div>
+          <button type="button" class="iz-accordion-toggle-circle" [attr.aria-label]="activeServiceIndex === i ? 'Collapse service' : 'Expand service'">
+            <i class="fas" [ngClass]="activeServiceIndex === i ? 'fa-minus' : 'fa-plus'"></i>
+          </button>
+        </div>
+
+        <!-- Expanded Body View -->
+        <div class="iz-accordion-body-expanded" *ngIf="activeServiceIndex === i">
+          <div class="row align-items-center g-4 pt-3">
+            <div class="col-md-4">
+              <div class="iz-accordion-media-box">
+                <img [src]="s.image" [alt]="s.title">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class="iz-accordion-desc">{{ s.shortDesc }}</p>
+              
+              <div class="iz-accordion-bullets-grid">
+                <div class="iz-accordion-bullet-item" *ngFor="let bullet of s.bullets">
+                  <span class="iz-dot-green-bullet"></span> {{ bullet }}
+                </div>
+              </div>
+
+              <a [routerLink]="s.route" class="iz-accordion-learn-more">
+                Learn More <i class="fas fa-arrow-right ms-1"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -98,142 +213,152 @@
   </div>
 </section>
 
-<!-- ==================== PROOF POINTS & ROI RIBBON ==================== -->
-<section class="metrics-bento-section">
+<!-- ==================== 4. INVOZONE "ENGINEERS FOR EVERY STACK" TECH MATRIX (Screenshot 5) ==================== -->
+<section class="iz-tech-matrix-section" id="tech-matrix">
   <div class="container">
-    <div class="metrics-bento-grid">
-      <div class="metric-bento-card">
-        <div class="metric-val gradient-indigo">9+</div>
-        <div class="metric-label">Years of Experience</div>
-        <p class="metric-sub">Architecting multi-tenant SaaS & distributed cloud applications worldwide</p>
+    <div class="iz-tech-matrix-header">
+      <div>
+        <h2 class="iz-tech-matrix-title">
+          Yes. We Have Expertise <span class="text-green-invo">For Every Stack.</span>
+        </h2>
+        <p class="iz-tech-matrix-sub">
+          9+ years of hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines.
+        </p>
       </div>
 
-      <div class="metric-bento-card">
-        <div class="metric-val gradient-cyan">+30%</div>
-        <div class="metric-label">Revenue Growth</div>
-        <p class="metric-sub">Generated for clients via platform scalability & conversion optimization</p>
+      <div class="d-flex align-items-center gap-3">
+        <div class="iz-tech-search-pill">
+          <i class="fas fa-search text-muted"></i>
+          <input type="text" [(ngModel)]="stackSearchQuery" placeholder="Search Stack">
+        </div>
+        <a routerLink="/expertise" class="iz-btn-view-all">
+          Our Full Stacks <span class="iz-arrow-up-right">↗</span>
+        </a>
       </div>
+    </div>
 
-      <div class="metric-bento-card">
-        <div class="metric-val gradient-emerald">-40%</div>
-        <div class="metric-label">Latency Reduction</div>
-        <p class="metric-sub">Accelerating response times and sub-second page performance</p>
-      </div>
+    <!-- Category Filter Tabs -->
+    <div class="iz-stack-tabs-row">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'ai'" (click)="setStackCategory('ai')">
+        <span class="iz-status-dot"></span> AI & ML
+      </button>
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'frontend'" (click)="setStackCategory('frontend')">
+        <span class="iz-status-dot"></span> Front-End
+      </button>
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'backend'" (click)="setStackCategory('backend')">
+        <span class="iz-status-dot"></span> Back-End
+      </button>
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'lownocode'" (click)="setStackCategory('lownocode')">
+        <span class="iz-status-dot"></span> Low/No Code
+      </button>
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'database'" (click)="setStackCategory('database')">
+        <span class="iz-status-dot"></span> Database
+      </button>
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'devops'" (click)="setStackCategory('devops')">
+        <span class="iz-status-dot"></span> DevOps & Cloud
+      </button>
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'mobile'" (click)="setStackCategory('mobile')">
+        <span class="iz-status-dot"></span> Mobile
+      </button>
+    </div>
 
-      <div class="metric-bento-card">
-        <div class="metric-val gradient-amber">-25%</div>
-        <div class="metric-label">Cloud Cost Savings</div>
-        <p class="metric-sub">Optimizing Azure & AWS compute, caching, and serverless infrastructure</p>
+    <!-- 6-Column Tech Tiles Grid -->
+    <div class="iz-tech-matrix-grid">
+      <div class="iz-tech-tile" *ngFor="let tile of displayedTechTiles">
+        <div class="iz-tech-tile-icon" [style.color]="tile.color">
+          <i [class]="tile.icon"></i>
+        </div>
+        <div class="iz-tech-tile-name">
+          <span>{{ tile.name }}</span>
+          <span class="iz-tile-arrow">›</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== STRATEGIC VALUE OVERVIEW ==================== -->
-<section class="portfolio-section" id="about-teaser">
+<!-- ==================== 5. INVOZONE DOMAIN MASTERY ==================== -->
+<section class="iz-section iz-section-offwhite" id="industries">
   <div class="container">
-    <div class="row g-5 align-items-center">
-      <div class="col-lg-6">
-        <div class="section-tag"><i class="fas fa-compass"></i> Strategic Value</div>
-        <h2 class="section-title">Architecture Should Drive Revenue, Not Bottlenecks</h2>
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-network-wired"></i> Industry Domain Mastery</div>
+      <h2 class="iz-title">Proven Solutions Across Core Industries</h2>
+      <p class="iz-subtitle">
+        Deep domain expertise applied to high-stakes industries where compliance, security, and uptime are mission-critical.
+      </p>
+    </div>
 
-        <p class="lead text-light mb-3">
-          I partner with founders, CTOs, and leadership teams to turn ambitious software visions into scalable,
-          resilient digital products.
-        </p>
-
-        <p class="mb-4">
-          Over 9+ years of engineering leadership, I've seen startups struggle with slow development cycles, high cloud
-          bills,
-          and technical debt. My architectural approach focuses on <strong>business outcomes first</strong>—ensuring
-          every technical decision
-          directly supports revenue, reliability, and velocity.
-        </p>
-
-        <div class="d-flex flex-wrap gap-3 mt-3">
-          <a routerLink="/about" class="btn-glow-primary">
-            <i class="fas fa-user-shield"></i> Read Architecture Philosophy
-          </a>
-          <a routerLink="/services" class="btn-glass-secondary">
-            <i class="fas fa-cubes"></i> Explore Services
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="about-bento-card">
-          <h4 class="text-white mb-4"><i class="fas fa-shield-alt text-accent me-2"></i>Execution Principles</h4>
-
-          <div class="strategic-framework-grid">
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-lightbulb"></i></div>
-              <h5>Business-First</h5>
-              <p>Aligning KPIs, concurrency demands, and unit economics before coding.</p>
+    <div class="iz-industries-grid">
+      <div class="iz-industry-card" *ngFor="let ind of industries">
+        <div>
+          <div class="iz-industry-top">
+            <div class="iz-industry-icon">
+              <i [class]="ind.icon"></i>
             </div>
-
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-project-diagram"></i></div>
-              <h5>System Blueprint</h5>
-              <p>Designing modular domain models, API boundaries, and elastic databases.</p>
-            </div>
-
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-code-branch"></i></div>
-              <h5>Scalable Build</h5>
-              <p>Developing microservices with .NET 9, Angular/React, and CI/CD pipelines.</p>
-            </div>
-
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-chart-line"></i></div>
-              <h5>Cloud Scale</h5>
-              <p>Real-time telemetry, Redis distributed caching, and cost governance.</p>
-            </div>
+            <span class="iz-industry-metric-tag">{{ ind.metric }}</span>
           </div>
+          <h4 class="iz-industry-title">{{ ind.title }}</h4>
+          <p class="iz-industry-desc">{{ ind.desc }}</p>
+        </div>
+        <div class="iz-industry-footer">
+          <span class="iz-industry-project">
+            <i class="fas fa-check-circle text-green"></i> {{ ind.project }}
+          </span>
+          <span class="iz-industry-arrow"><i class="fas fa-arrow-right"></i></span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== FEATURED DELIVERED SYSTEMS ==================== -->
-<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+<!-- ==================== 6. INVOZONE CASE STUDIES SHOWCASE ==================== -->
+<section class="iz-section" id="case-studies">
   <div class="container">
     <div class="d-flex flex-wrap justify-content-between align-items-end mb-5 gap-3">
       <div>
-        <div class="section-tag"><i class="fas fa-laptop-code"></i> Proven Systems</div>
-        <h2 class="section-title mb-1">Featured Case Studies</h2>
-        <p class="section-subtitle mb-0">Production web platforms and dynamic calculation engines delivered for global
-          clients.</p>
+        <div class="iz-tag"><i class="fas fa-laptop-code"></i> Delivered Systems</div>
+        <h2 class="iz-title mb-1">Featured Case Studies</h2>
+        <p class="iz-subtitle mb-0">Production web platforms, dynamic estimation engines, and SaaS architectures delivered worldwide.</p>
       </div>
-      <a routerLink="/projects" class="btn-glass-secondary">
+      <a routerLink="/projects" class="iz-btn-dark">
         View All Case Studies <i class="fas fa-arrow-right ms-2"></i>
       </a>
     </div>
 
-    <div class="projects-grid-modern">
-      <div class="project-card-modern" *ngFor="let project of featuredProjects">
-        <div class="project-media-wrap">
+    <div class="iz-projects-grid">
+      <div class="iz-project-card" *ngFor="let project of featuredProjects">
+        <div class="iz-project-media">
           <img [src]="project.image" [alt]="project.title">
-          <span class="project-category-badge">{{ project.category }}</span>
+          <span class="iz-project-cat-tag">{{ project.category }}</span>
         </div>
 
-        <div class="project-content-wrap">
-          <h4>{{ project.title }}</h4>
-          <p>{{ project.description }}</p>
+        <div class="iz-project-body">
+          <div>
+            <h4>{{ project.title }}</h4>
+            <p>{{ project.description }}</p>
 
-          <div class="project-tech-chips">
-            <span class="tech-chip" *ngFor="let t of project.tech">{{ t }}</span>
+            <div class="mb-3">
+              <h6 class="fw-bold small mb-2" style="color: #475569;">Architecture Highlights:</h6>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="iz-chip" *ngFor="let h of project.highlights">
+                  <i class="fas fa-check text-green me-1"></i> {{ h }}
+                </span>
+              </div>
+            </div>
+
+            <div class="iz-tech-chips">
+              <span class="iz-chip" *ngFor="let t of project.tech">{{ t }}</span>
+            </div>
           </div>
 
-          <div class="project-actions-row">
-            <a [href]="project.liveUrl" target="_blank" rel="noopener" class="btn-project-action btn-preview">
-              <i class="fas fa-external-link-alt"></i> Live Site
+          <div class="iz-project-actions">
+            <a [href]="project.liveUrl" target="_blank" rel="noopener" class="iz-btn-green py-2 px-3 small">
+              Live Site <i class="fas fa-external-link-alt ms-1"></i>
             </a>
-            <button type="button" class="btn-project-action" (click)="openProjectModal(project)"
-              title="Inspect Demo Media">
-              <i class="fas fa-eye"></i> Demo Media
+            <button type="button" class="iz-btn-dark py-2 px-3 small" (click)="openProjectModal(project)">
+              <i class="fas fa-eye me-1 text-green"></i> Demo Media
             </button>
-            <button type="button" class="btn-project-action" (click)="copyProjectLink(project)" title="Copy Link">
+            <button type="button" class="iz-btn-copy-link" (click)="copyProjectLink(project)" title="Copy Link" aria-label="Copy Link">
               <i class="fas fa-link"></i>
             </button>
           </div>
@@ -243,25 +368,150 @@
   </div>
 </section>
 
-<!-- ==================== QUICK CTA BANNER ==================== -->
-<section class="portfolio-section">
+<!-- ==================== 7. INVOZONE 3-STEP PROCESS (Screenshot 3 Exact Replica) ==================== -->
+<section class="iz-process-network-section" id="process">
+  <div class="container text-center">
+    <div class="iz-process-headline-wrap mb-5">
+      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
+      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <!-- Step 1 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">01</div>
+          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <p class="iz-process-col-desc">
+            One quick conversation. Tell us about your team, tech stack, and goals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">02</div>
+          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <p class="iz-process-col-desc">
+            We match AI developers to your stack and workflow. You review them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">03</div>
+          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <p class="iz-process-col-desc">
+            Your engineer is embedded, onboarded and contributing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <a routerLink="/contact" class="iz-btn-white-pill">
+        Schedule A Call Now <span class="iz-arrow-up-right">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 8. INVOZONE CLIENT TESTIMONIALS ==================== -->
+<section class="iz-section" id="testimonials">
   <div class="container">
-    <div class="contact-hub-card text-center p-5">
-      <div class="max-w-700 mx-auto">
-        <div class="section-tag mb-3"><i class="fas fa-calendar-check"></i> Let's Talk Strategy</div>
-        <h2 class="section-title mb-3">Ready to Build, Modernize, or Scale?</h2>
-        <p class="section-subtitle mx-auto mb-4">
-          Book a 30-minute architectural consultation to review your requirements, tech stack options, and execution
-          roadmap.
-        </p>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
-            <i class="fas fa-comments"></i> Request Architecture Consultation
-          </a>
-          <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"
-            class="btn-glass-secondary py-3 px-4">
-            <i class="fab fa-whatsapp text-emerald"></i> Quick Chat on WhatsApp
-          </a>
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
+      <h2 class="iz-title">Trusted by International Technology Teams</h2>
+      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" *ngFor="let t of testimonials">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
+          <div>
+            <div class="iz-stars mb-3">★★★★★</div>
+            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic;">
+              "{{ t.quote }}"
+            </p>
+          </div>
+          <div class="pt-3 border-top border-light d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-0 fw-bold">{{ t.author }}</h6>
+              <span class="text-muted small">{{ t.role }}</span>
+            </div>
+            <span class="iz-chip">{{ t.tag }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 9. INVOZONE 2-COLUMN CONTACT HUB ==================== -->
+<section class="iz-section iz-section-offwhite" id="contact-hub">
+  <div class="container">
+    <div class="iz-contact-box">
+      <div class="row g-0">
+        <!-- Form Side -->
+        <div class="col-lg-7 iz-form-side">
+          <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> Let's Talk</div>
+          <h2 class="iz-title mb-2 fs-2">Have a Project in Mind?</h2>
+          <p class="iz-subtitle mb-4 fs-6">Tell us what you're building. Let's discuss how we can help architect and scale your digital products.</p>
+
+          <form action="#" (submit)="$event.preventDefault()">
+            <input type="text" class="iz-input" placeholder="Your Full Name *" required>
+            <input type="email" class="iz-input" placeholder="Your Work Email *" required>
+            <input type="text" class="iz-input" placeholder="Subject / Tech Focus (e.g. SaaS Architecture, AI Agents, .NET 9)">
+            <textarea class="iz-textarea" rows="4" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required></textarea>
+            <button type="submit" class="iz-submit-btn">
+              Send Message & Request Consultation <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Stats & Direct Channels Side -->
+        <div class="col-lg-5 iz-stats-side">
+          <h4 class="fw-bold mb-3">Direct Communication Channels</h4>
+          <p class="small text-muted mb-4">Direct access to Bilal Ahmad, Enterprise Solutions Architect.</p>
+
+          <div class="direct-channel-card">
+            <div class="channel-icon"><i class="fas fa-envelope text-green"></i></div>
+            <div class="channel-meta">
+              <div class="label">Direct Email</div>
+              <div class="value">{{ portfolioService.profile.email }}</div>
+            </div>
+            <button type="button" class="channel-copy-btn" (click)="copyEmail()" title="Copy Email" aria-label="Copy Email">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+
+          <div class="direct-channel-card">
+            <div class="channel-icon"><i class="fas fa-phone-alt text-green"></i></div>
+            <div class="channel-meta">
+              <div class="label">Direct Phone & WhatsApp</div>
+              <div class="value">{{ portfolioService.profile.displayPhone }}</div>
+            </div>
+            <button type="button" class="channel-copy-btn" (click)="copyPhone()" title="Copy Phone" aria-label="Copy Phone">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+
+          <div class="direct-channel-card mb-4">
+            <div class="channel-icon"><i class="fas fa-globe text-green"></i></div>
+            <div class="channel-meta">
+              <div class="label">Location & Global Reach</div>
+              <div class="value">{{ portfolioService.profile.location }}</div>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-btn-green w-100 justify-content-center">
+              <i class="fab fa-whatsapp"></i> WhatsApp Direct
+            </a>
+          </div>
         </div>
       </div>
     </div>

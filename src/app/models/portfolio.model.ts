@@ -45,3 +45,27 @@ export interface CertificationItem {
   issuer: string;
   description: string;
 }
+
+export interface AccordionService {
+  index: string;
+  title: string;
+  shortDesc: string;
+  bullets: string[];
+  image: string;
+  route: string;
+}
+
+export interface IndustryItem {
+  title: string;
+  icon: string;
+  desc: string;
+  project: string;
+  metric: string;
+}
+
+export interface TestimonialItem {
+  quote: string;
+  author: string;
+  role: string;
+  tag: string;
+}

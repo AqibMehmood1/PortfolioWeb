@@ -1,128 +1,215 @@
-<!-- ==================== EXPERTISE PAGE HEADER ==================== -->
-<section class="expertise-page-header">
-  <div class="container">
-    <div class="section-tag"><i class="fas fa-layer-group"></i> Technical Competencies</div>
-    <h1 class="section-title">Architectural Disciplines & Tech Radar</h1>
-    <p class="section-subtitle">
+<!-- ==================== INVOZONE EXPERTISE HEADER ==================== -->
+<section class="iz-page-hero">
+  <div class="container text-center max-w-860 mx-auto">
+    <div class="iz-breadcrumb d-flex justify-content-center mb-3">
+      <a routerLink="/">Home</a>
+      <span class="sep">»</span>
+      <span class="text-dark fw-bold">Industries & Tech Radar</span>
+    </div>
+    <div class="iz-tag"><i class="fas fa-layer-group"></i> Technical Competencies</div>
+    <h1 class="iz-hero-headline">Architectural Disciplines & <span class="text-green-invo">Tech Radar</span></h1>
+    <p class="iz-hero-sub mx-auto">
       Comprehensive architectural mastery across distributed cloud systems, autonomous AI agents, enterprise .NET, modern web SPAs, and high-throughput data layers.
     </p>
   </div>
 </section>
 
-<!-- ==================== 6-DOMAIN TECH RADAR ==================== -->
-<section class="portfolio-section pt-0">
+<!-- ==================== 1. INVOZONE "ENGINEERS FOR EVERY STACK" TECH MATRIX ==================== -->
+<section class="iz-tech-matrix-section" id="tech-matrix">
   <div class="container">
-    <div class="tech-radar-grid">
-      <div class="tech-discipline-card">
-        <div class="discipline-header">
-          <div class="discipline-icon icon-cyan"><i class="fas fa-cloud"></i></div>
+    <div class="iz-tech-matrix-header">
+      <div>
+        <h2 class="iz-tech-matrix-title">
+          Yes. We Have Expertise <span class="text-green-invo">For Every Stack.</span>
+        </h2>
+        <p class="iz-tech-matrix-sub">
+          9+ years of hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines.
+        </p>
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <div class="iz-tech-search-pill">
+          <i class="fas fa-search text-muted"></i>
+          <input type="text" [(ngModel)]="stackSearchQuery" placeholder="Search Stack">
+        </div>
+        <a routerLink="/contact" class="iz-btn-view-all">
+          Request Stack Audit <span class="iz-arrow-up-right">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="iz-stack-tabs-row">
+      <button type="button" *ngFor="let cat of stackCategories" 
+        class="iz-stack-tab-pill" 
+        [class.active]="activeStackCategory === cat.key" 
+        (click)="setStackCategory(cat.key)">
+        <span class="iz-status-dot"></span> {{ cat.label }}
+      </button>
+    </div>
+
+    <!-- 6-Column Tech Tiles Grid -->
+    <div class="iz-tech-matrix-grid">
+      <div class="iz-tech-tile" *ngFor="let tile of displayedTechTiles">
+        <div class="iz-tech-tile-icon" [style.color]="tile.color">
+          <i [class]="tile.icon"></i>
+        </div>
+        <div class="iz-tech-tile-name">
+          <span>{{ tile.name }}</span>
+          <span class="iz-tile-arrow">›</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. INVOZONE DOMAIN MASTERY ==================== -->
+<section class="iz-section iz-section-offwhite" id="industries">
+  <div class="container">
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-network-wired"></i> Industry Domain Mastery</div>
+      <h2 class="iz-title">Proven Solutions Across Core Industries</h2>
+      <p class="iz-subtitle">
+        Deep domain expertise applied to high-stakes industries where compliance, security, and uptime are mission-critical.
+      </p>
+    </div>
+
+    <div class="iz-industries-grid">
+      <div class="iz-industry-card" *ngFor="let ind of industries">
+        <div>
+          <div class="iz-industry-top">
+            <div class="iz-industry-icon">
+              <i [class]="ind.icon"></i>
+            </div>
+            <span class="iz-industry-metric-tag">{{ ind.metric }}</span>
+          </div>
+          <h4 class="iz-industry-title">{{ ind.title }}</h4>
+          <p class="iz-industry-desc">{{ ind.desc }}</p>
+        </div>
+        <div class="iz-industry-footer">
+          <span class="iz-industry-project">
+            <i class="fas fa-check-circle text-green"></i> {{ ind.project }}
+          </span>
+          <span class="iz-industry-arrow"><i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. 6-DOMAIN TECH RADAR ==================== -->
+<section class="iz-section">
+  <div class="container">
+    <div class="iz-services-grid">
+      <div class="iz-service-card">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i class="fas fa-cloud"></i></div>
+            <span class="iz-chip">Cloud</span>
+          </div>
           <h4>Cloud & Distributed Systems</h4>
+          <p>Architecting resilient multi-region architectures, microservices, containerization, and zero-downtime deployment pipelines.</p>
         </div>
-        <p class="discipline-desc">
-          Architecting resilient multi-region architectures, microservices, containerization, and zero-downtime deployment pipelines.
-        </p>
-        <div class="tech-chip-group">
-          <span class="tech-chip">Microsoft Azure</span>
-          <span class="tech-chip">AWS Cloud</span>
-          <span class="tech-chip">Kubernetes</span>
-          <span class="tech-chip">Docker</span>
-          <span class="tech-chip">Serverless</span>
-          <span class="tech-chip">Microservices</span>
-          <span class="tech-chip">API Gateway</span>
+        <div class="iz-tech-chips">
+          <span class="iz-chip">Microsoft Azure</span>
+          <span class="iz-chip">AWS Cloud</span>
+          <span class="iz-chip">Kubernetes</span>
+          <span class="iz-chip">Docker</span>
+          <span class="iz-chip">Serverless</span>
+          <span class="iz-chip">Microservices</span>
+          <span class="iz-chip">API Gateway</span>
         </div>
       </div>
 
-      <div class="tech-discipline-card">
-        <div class="discipline-header">
-          <div class="discipline-icon icon-purple"><i class="fas fa-robot"></i></div>
+      <div class="iz-service-card">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i class="fas fa-robot"></i></div>
+            <span class="iz-chip">AI & GenAI</span>
+          </div>
           <h4>AI Agents & GenAI Engineering</h4>
+          <p>Integrating autonomous reasoning agents, retrieval-augmented generation (RAG), and enterprise LLM workflow automations.</p>
         </div>
-        <p class="discipline-desc">
-          Integrating autonomous reasoning agents, retrieval-augmented generation (RAG), and enterprise LLM workflow automations.
-        </p>
-        <div class="tech-chip-group">
-          <span class="tech-chip">AI Agents</span>
-          <span class="tech-chip">LangChain</span>
-          <span class="tech-chip">Semantic Kernel</span>
-          <span class="tech-chip">RAG Pipelines</span>
-          <span class="tech-chip">OpenAI / Claude</span>
-          <span class="tech-chip">Vector DBs (Pinecone)</span>
-          <span class="tech-chip">Prompt Engineering</span>
+        <div class="iz-tech-chips">
+          <span class="iz-chip">AI Agents</span>
+          <span class="iz-chip">LangChain</span>
+          <span class="iz-chip">Semantic Kernel</span>
+          <span class="iz-chip">RAG Pipelines</span>
+          <span class="iz-chip">OpenAI / Claude</span>
+          <span class="iz-chip">Pinecone Vector DB</span>
         </div>
       </div>
 
-      <div class="tech-discipline-card">
-        <div class="discipline-header">
-          <div class="discipline-icon icon-indigo"><i class="fas fa-bolt"></i></div>
+      <div class="iz-service-card">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i class="fas fa-bolt"></i></div>
+            <span class="iz-chip">.NET Core</span>
+          </div>
           <h4>Enterprise .NET & Backend</h4>
+          <p>High-throughput backend architectures using modern C#, ASP.NET WebAPI, asynchronous event buses, and domain-driven design.</p>
         </div>
-        <p class="discipline-desc">
-          High-throughput backend architectures using modern C#, ASP.NET WebAPI, asynchronous event buses, and domain-driven design.
-        </p>
-        <div class="tech-chip-group">
-          <span class="tech-chip">.NET 9 / .NET Core</span>
-          <span class="tech-chip">C# (Async/Await)</span>
-          <span class="tech-chip">ASP.NET WebAPI</span>
-          <span class="tech-chip">Entity Framework Core</span>
-          <span class="tech-chip">Event-Driven</span>
-          <span class="tech-chip">REST / gRPC</span>
-          <span class="tech-chip">Clean Architecture</span>
+        <div class="iz-tech-chips">
+          <span class="iz-chip">.NET 9 / .NET Core</span>
+          <span class="iz-chip">C# (Async/Await)</span>
+          <span class="iz-chip">ASP.NET WebAPI</span>
+          <span class="iz-chip">Entity Framework Core</span>
+          <span class="iz-chip">Clean Architecture</span>
         </div>
       </div>
 
-      <div class="tech-discipline-card">
-        <div class="discipline-header">
-          <div class="discipline-icon icon-emerald"><i class="fas fa-laptop-code"></i></div>
+      <div class="iz-service-card">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i class="fas fa-laptop-code"></i></div>
+            <span class="iz-chip">Frontend</span>
+          </div>
           <h4>Modern Frontend & Web Systems</h4>
+          <p>Building responsive, lightning-fast Single Page Applications and portals with strict type safety and rich user experience.</p>
         </div>
-        <p class="discipline-desc">
-          Building responsive, lightning-fast Single Page Applications and portals with strict type safety and rich user experience.
-        </p>
-        <div class="tech-chip-group">
-          <span class="tech-chip">Angular 17+</span>
-          <span class="tech-chip">React</span>
-          <span class="tech-chip">TypeScript</span>
-          <span class="tech-chip">RxJS</span>
-          <span class="tech-chip">Bootstrap 5</span>
-          <span class="tech-chip">Vanilla CSS</span>
-          <span class="tech-chip">Responsive Web</span>
+        <div class="iz-tech-chips">
+          <span class="iz-chip">Angular 17+</span>
+          <span class="iz-chip">React</span>
+          <span class="iz-chip">TypeScript</span>
+          <span class="iz-chip">RxJS</span>
+          <span class="iz-chip">Bootstrap 5</span>
+          <span class="iz-chip">Responsive Web</span>
         </div>
       </div>
 
-      <div class="tech-discipline-card">
-        <div class="discipline-header">
-          <div class="discipline-icon icon-amber"><i class="fas fa-database"></i></div>
+      <div class="iz-service-card">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i class="fas fa-database"></i></div>
+            <span class="iz-chip">Data</span>
+          </div>
           <h4>Data, Caching & Performance</h4>
+          <p>Optimizing transactional databases, high-speed distributed cache layers, database indexing, and query execution plans.</p>
         </div>
-        <p class="discipline-desc">
-          Optimizing transactional databases, high-speed distributed cache layers, database indexing, and query execution plans.
-        </p>
-        <div class="tech-chip-group">
-          <span class="tech-chip">SQL Server</span>
-          <span class="tech-chip">PostgreSQL</span>
-          <span class="tech-chip">Redis Caching</span>
-          <span class="tech-chip">MongoDB</span>
-          <span class="tech-chip">Index Tuning</span>
-          <span class="tech-chip">ETL Pipelines</span>
-          <span class="tech-chip">Connection Pooling</span>
+        <div class="iz-tech-chips">
+          <span class="iz-chip">SQL Server</span>
+          <span class="iz-chip">PostgreSQL</span>
+          <span class="iz-chip">Redis Caching</span>
+          <span class="iz-chip">MongoDB</span>
+          <span class="iz-chip">Index Tuning</span>
         </div>
       </div>
 
-      <div class="tech-discipline-card">
-        <div class="discipline-header">
-          <div class="discipline-icon icon-cyan"><i class="fas fa-user-shield"></i></div>
-          <h4>Architecture Advisory & Leadership</h4>
+      <div class="iz-service-card">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i class="fas fa-user-shield"></i></div>
+            <span class="iz-chip">Leadership</span>
+          </div>
+          <h4>Architecture Advisory & Governance</h4>
+          <p>Guiding engineering teams with technical roadmaps, architectural reviews, agile sprint governance, and security audits.</p>
         </div>
-        <p class="discipline-desc">
-          Guiding engineering teams with technical roadmaps, architectural reviews, agile sprint governance, and security audits.
-        </p>
-        <div class="tech-chip-group">
-          <span class="tech-chip">Fractional CTO</span>
-          <span class="tech-chip">Scrum Leadership</span>
-          <span class="tech-chip">RBAC Security</span>
-          <span class="tech-chip">Cost Optimization</span>
-          <span class="tech-chip">Code Review</span>
-          <span class="tech-chip">System Audits</span>
+        <div class="iz-tech-chips">
+          <span class="iz-chip">Fractional CTO</span>
+          <span class="iz-chip">Scrum Leadership</span>
+          <span class="iz-chip">Zero-Trust Security</span>
+          <span class="iz-chip">Cost Optimization</span>
+          <span class="iz-chip">System Audits</span>
         </div>
       </div>
     </div>
@@ -130,44 +217,126 @@
 </section>
 
 <!-- ==================== ARCHITECTURAL PRINCIPLES ==================== -->
-<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+<section class="iz-section iz-section-sage">
   <div class="container">
-    <div class="section-header-center">
-      <div class="section-tag"><i class="fas fa-shield-alt"></i> Architecture Standards</div>
-      <h2 class="section-title">Core Engineering Principles</h2>
-      <p class="section-subtitle">The standard operating guidelines applied to every enterprise software system I architect.</p>
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-shield-alt"></i> Architecture Standards</div>
+      <h2 class="iz-title">Core Engineering Principles</h2>
+      <p class="iz-subtitle">The standard operating guidelines applied to every enterprise software system I architect.</p>
     </div>
 
     <div class="row g-4">
       <div class="col-md-6 col-lg-3">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-cubes"></i></div>
-          <h5>Zero-Lock-in Modularity</h5>
-          <p>Designing clean separation between core domain logic and third-party cloud providers, enabling painless evolution.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-cubes"></i></div>
+          <h5 class="fw-bold">Zero-Lock-in Modularity</h5>
+          <p class="small text-muted mb-0">Designing clean separation between domain logic and cloud providers, enabling painless evolution.</p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-bolt"></i></div>
-          <h5>Sub-Second Performance</h5>
-          <p>Utilizing distributed Redis caching, non-blocking asynchronous APIs, and CDN edge assets to ensure sub-second loads.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-bolt"></i></div>
+          <h5 class="fw-bold">Sub-Second Performance</h5>
+          <p class="small text-muted mb-0">Utilizing distributed Redis caching, non-blocking async APIs, and CDN edge assets for sub-second loads.</p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-lock"></i></div>
-          <h5>Zero-Trust Security</h5>
-          <p>Enforcing strict role-based access control (RBAC), end-to-end data encryption, and OWASP top 10 compliance.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-lock"></i></div>
+          <h5 class="fw-bold">Zero-Trust Security</h5>
+          <p class="small text-muted mb-0">Enforcing strict role-based access control (RBAC), end-to-end encryption, and OWASP top 10 compliance.</p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-wallet"></i></div>
-          <h5>Cost-Aware Scalability</h5>
-          <p>Building elastic serverless and auto-scaling workloads so you only pay for compute when customers actively use it.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-wallet"></i></div>
+          <h5 class="fw-bold">Cost-Aware Scalability</h5>
+          <p class="small text-muted mb-0">Building elastic serverless and auto-scaling workloads so you only pay for compute when customers use it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3-STEP PROCESS ==================== -->
+<section class="iz-process-network-section" id="process">
+  <div class="container text-center">
+    <div class="iz-process-headline-wrap mb-5">
+      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
+      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <!-- Step 1 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">01</div>
+          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <p class="iz-process-col-desc">
+            One quick conversation. Tell us about your team, tech stack, and goals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">02</div>
+          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <p class="iz-process-col-desc">
+            We match AI developers to your stack and workflow. You review them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">03</div>
+          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <p class="iz-process-col-desc">
+            Your engineer is embedded, onboarded and contributing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <a routerLink="/contact" class="iz-btn-white-pill">
+        Schedule A Call Now <span class="iz-arrow-up-right">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLIENT TESTIMONIALS ==================== -->
+<section class="iz-section" id="testimonials">
+  <div class="container">
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
+      <h2 class="iz-title">Trusted by International Technology Teams</h2>
+      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" *ngFor="let t of portfolioService.testimonials">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
+          <div>
+            <div class="iz-stars mb-3">★★★★★</div>
+            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic;">
+              "{{ t.quote }}"
+            </p>
+          </div>
+          <div class="pt-3 border-top border-light d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-0 fw-bold">{{ t.author }}</h6>
+              <span class="text-muted small">{{ t.role }}</span>
+            </div>
+            <span class="iz-chip">{{ t.tag }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -175,19 +344,18 @@
 </section>
 
 <!-- ==================== CALL TO ACTION ==================== -->
-<section class="portfolio-section">
-  <div class="container">
-    <div class="contact-hub-card text-center p-5">
-      <div class="max-w-700 mx-auto">
-        <div class="section-tag mb-3"><i class="fas fa-cogs"></i> Technical Architecture</div>
-        <h2 class="section-title mb-3">Need Guidance on Your Tech Stack?</h2>
-        <p class="section-subtitle mx-auto mb-4">
-          Let's review your product roadmap, compare architectural trade-offs (.NET vs Node vs Python, Azure vs AWS), and design the right system.
-        </p>
-        <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
-          <i class="fas fa-comments"></i> Request Technical Stack Audit
-        </a>
-      </div>
+<section class="iz-section iz-section-sage">
+  <div class="container text-center">
+    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-cogs"></i> Technical Architecture</div>
+      <h2 class="text-white fw-bold mb-3">Need Guidance on Your Tech Stack?</h2>
+      <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
+        Let's review your product roadmap, compare architectural trade-offs (.NET vs Node vs Python, Azure vs AWS), and design the right system.
+      </p>
+      <a routerLink="/contact" class="iz-btn-green py-3 px-4">
+        Request Technical Stack Audit <i class="fas fa-arrow-right ms-2"></i>
+      </a>
     </div>
   </div>
 </section>
+

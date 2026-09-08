@@ -1,79 +1,91 @@
-<!-- ==================== ABOUT PAGE HEADER ==================== -->
-<section class="about-page-header">
-  <div class="container">
-    <div class="section-tag"><i class="fas fa-user-shield"></i> About & Strategy</div>
-    <h1 class="section-title">Bilal Ahmad</h1>
-    <p class="section-subtitle">
-      Enterprise Solutions Architect & Technology Partner helping Startups & SMBs build scalable SaaS, AI Agents & Cloud Platforms.
+<!-- ==================== INVOZONE ABOUT HEADER ==================== -->
+<section class="iz-page-hero">
+  <div class="container text-center max-w-860 mx-auto">
+    <div class="iz-breadcrumb d-flex justify-content-center mb-3">
+      <a routerLink="/">Home</a>
+      <span class="sep">»</span>
+      <span class="text-dark fw-bold">Company & Strategy</span>
+    </div>
+    <div class="iz-tag"><i class="fas fa-user-shield"></i> About & Leadership</div>
+    <h1 class="iz-hero-headline">Architectural Philosophy & <span class="text-green-invo">Strategy</span></h1>
+    <p class="iz-hero-sub mx-auto">
+      Enterprise Solutions Architect & Technology Partner helping Startups, SMBs, and Enterprises architect scalable SaaS products, autonomous AI agents, and high-performance cloud applications.
     </p>
   </div>
 </section>
 
-<!-- ==================== EXECUTIVE PROFILE & PHILOSOPHY ==================== -->
-<section class="portfolio-section pt-0">
+<!-- ==================== EXECUTIVE PHILOSOPHY ==================== -->
+<section class="iz-section">
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <h2 class="h1 text-white mb-4">Technology Should Drive Measurable Growth</h2>
+        <div class="iz-tag"><i class="fas fa-compass"></i> Engineering Vision</div>
+        <h2 class="iz-title mb-4">Technology Decisions Must Directly Drive Revenue & Velocity</h2>
         
-        <p class="lead text-light mb-3">
+        <p class="lead text-dark mb-3">
           With <strong>9+ years of international software delivery</strong> across the US, Canada, and Europe, 
           I partner with founders, CEOs, and CTOs to design secure, scalable, and high-performance software.
         </p>
 
-        <p class="mb-4">
-          I believe successful software starts with understanding business goals before making technology decisions. 
-          The right architecture should simplify operations, reduce unnecessary cloud overhead, and support massive future growth 
-          without painful rewrites.
+        <p class="mb-4 text-muted">
+          I believe successful software starts with understanding unit economics, user growth projections, and business workflows before choosing technologies. The right architecture simplifies ongoing development, reduces cloud bills, and prevents catastrophic rewrites.
         </p>
 
-        <div class="about-highlight-box p-4 rounded-3 border border-secondary mb-4" style="background: rgba(14, 21, 38, 0.7);">
-          <h5 class="text-white mb-3"><i class="fas fa-check-circle text-accent me-2"></i>Core Client Engagements:</h5>
-          <ul class="strategic-checklist mb-0">
-            <li><i class="fas fa-check-circle"></i> <span>Designing multi-tenant SaaS platforms with the right architecture from day one.</span></li>
-            <li><i class="fas fa-check-circle"></i> <span>Refactoring and modernizing difficult-to-maintain legacy .NET monoliths into high-velocity microservices.</span></li>
-            <li><i class="fas fa-check-circle"></i> <span>Integrating autonomous AI agents and RAG pipelines that automate complex manual workflows.</span></li>
-            <li><i class="fas fa-check-circle"></i> <span>Auditing and optimizing Azure/AWS cloud infrastructures to cut operational bills by up to 25%.</span></li>
+        <div class="iz-stat-card text-start p-4 mb-4" style="background: var(--iz-green-sage);">
+          <h5 class="fw-bold mb-3"><i class="fas fa-check-circle text-green me-2"></i>Core Focus Areas:</h5>
+          <ul class="iz-deliverables-list mb-0">
+            <li><i class="fas fa-check-circle text-green"></i> <span>Designing multi-tenant SaaS foundations with clean data isolation from day one.</span></li>
+            <li><i class="fas fa-check-circle text-green"></i> <span>Refactoring legacy monolithic .NET systems into modular, high-velocity microservices.</span></li>
+            <li><i class="fas fa-check-circle text-green"></i> <span>Integrating autonomous AI agents and enterprise RAG pipelines that automate complex manual work.</span></li>
+            <li><i class="fas fa-check-circle text-green"></i> <span>Auditing and optimizing Azure/AWS cloud infrastructures to cut operational costs by up to 25%.</span></li>
           </ul>
         </div>
 
         <div class="d-flex flex-wrap gap-3">
-          <a routerLink="/contact" class="btn-glow-primary">
-            <i class="fas fa-paper-plane"></i> Discuss Your Project
+          <a routerLink="/contact" class="iz-btn-green">
+            Schedule Strategy Session <i class="fas fa-arrow-right ms-1"></i>
           </a>
-          <a routerLink="/expertise" class="btn-glass-secondary">
-            <i class="fas fa-layer-group"></i> Technical Radar
+          <a href="#" (click)="portfolioService.downloadCV(); $event.preventDefault()" class="iz-btn-dark">
+            <i class="fas fa-file-pdf text-green me-1"></i> Download Official CV
           </a>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <div class="about-bento-card">
-          <h4 class="text-white mb-4"><i class="fas fa-shield-alt text-accent me-2"></i>Architectural Execution Framework</h4>
+        <div class="iz-stat-card p-4 text-start">
+          <h4 class="fw-bold mb-4"><i class="fas fa-shield-alt text-green me-2"></i>4-Step Execution Framework</h4>
           
-          <div class="strategic-framework-grid">
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-lightbulb"></i></div>
-              <h5>1. Business Discovery</h5>
-              <p>Aligning KPIs, user concurrency demands, and unit economics before coding.</p>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="iz-process-card h-100 p-3">
+                <div class="iz-process-step fs-4 mb-1">01</div>
+                <h6 class="fw-bold mb-1">Business Discovery</h6>
+                <p class="small text-muted mb-0">Aligning KPIs, concurrency demands, and unit economics.</p>
+              </div>
             </div>
 
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-project-diagram"></i></div>
-              <h5>2. System Blueprint</h5>
-              <p>Designing modular domain models, API boundaries, and elastic databases.</p>
+            <div class="col-sm-6">
+              <div class="iz-process-card h-100 p-3">
+                <div class="iz-process-step fs-4 mb-1">02</div>
+                <h6 class="fw-bold mb-1">System Blueprint</h6>
+                <p class="small text-muted mb-0">Designing modular domain models and elastic schemas.</p>
+              </div>
             </div>
 
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-code-branch"></i></div>
-              <h5>3. Rapid Scalable Build</h5>
-              <p>Developing microservices with .NET 9, Angular/React, and CI/CD pipelines.</p>
+            <div class="col-sm-6">
+              <div class="iz-process-card h-100 p-3">
+                <div class="iz-process-step fs-4 mb-1">03</div>
+                <h6 class="fw-bold mb-1">Rapid Scalable Build</h6>
+                <p class="small text-muted mb-0">Developing microservices with .NET 9, Angular/React, and CI/CD.</p>
+              </div>
             </div>
 
-            <div class="framework-card">
-              <div class="framework-icon-wrap"><i class="fas fa-chart-line"></i></div>
-              <h5>4. Performance Scale</h5>
-              <p>Real-time telemetry, Redis distributed caching, and cost governance.</p>
+            <div class="col-sm-6">
+              <div class="iz-process-card h-100 p-3">
+                <div class="iz-process-step fs-4 mb-1">04</div>
+                <h6 class="fw-bold mb-1">Scale & Governance</h6>
+                <p class="small text-muted mb-0">Real-time telemetry, Redis caching, and cost governance.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -82,13 +94,53 @@
   </div>
 </section>
 
-<!-- ==================== CAREER TRACK RECORD TIMELINE ==================== -->
-<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+<!-- ==================== VALUE PROPOSITION SECTION ==================== -->
+<section class="iz-dark-value-section">
   <div class="container">
-    <div class="section-header-center">
-      <div class="section-tag"><i class="fas fa-history"></i> Career Journey</div>
-      <h2 class="section-title">Verified Track Record</h2>
-      <p class="section-subtitle">
+    <div class="iz-dark-value-header">
+      <h2>How Solutions Architecture Delivers Value To Your Business ?</h2>
+      <p>Choosing the right architecture partner changes everything. Here is what you need to know about us.</p>
+    </div>
+
+    <div class="iz-value-cards-grid">
+      <!-- Mint Card 1: Task Automation -->
+      <div class="iz-value-mint-card">
+        <h3>Task Automation</h3>
+        <p>DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 2: Agentic Workflows -->
+      <div class="iz-value-mint-card">
+        <h3>Agentic Workflows</h3>
+        <p>Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 3: Cost Efficiency -->
+      <div class="iz-value-mint-card">
+        <h3>Cost Efficiency</h3>
+        <p>Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 4: Resource Efficiency -->
+      <div class="iz-value-mint-card">
+        <h3>Resource Efficiency</h3>
+        <p>Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CAREER TRACK RECORD TIMELINE ==================== -->
+<section class="iz-section iz-section-sage">
+  <div class="container">
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-history"></i> Track Record</div>
+      <h2 class="iz-title">Verified Career Journey</h2>
+      <p class="iz-subtitle">
         Over 9 years of dedicated software engineering and solutions architecture across international technology companies.
       </p>
     </div>
@@ -96,18 +148,18 @@
     <div class="row g-5">
       <!-- Experience Column -->
       <div class="col-lg-7">
-        <h4 class="text-white mb-4"><i class="fas fa-briefcase text-accent me-2"></i>Professional Experience</h4>
-        <div class="timeline-flow">
+        <h4 class="fw-bold mb-4"><i class="fas fa-briefcase text-green me-2"></i>Professional Experience</h4>
+        <div class="timeline-flow" style="border-left-color: rgba(106, 198, 47, 0.4);">
           <div class="timeline-item" *ngFor="let exp of portfolioService.experiences">
-            <div class="timeline-dot"></div>
+            <div class="timeline-dot" style="background: #6ac62f; box-shadow: 0 0 10px #6ac62f;"></div>
             <div class="timeline-title-row">
-              <h5>{{ exp.title }}</h5>
-              <span class="timeline-period">{{ exp.period }}</span>
+              <h5 class="text-dark fw-bold">{{ exp.title }}</h5>
+              <span class="timeline-period" style="background: #eaf8df; color: #273f2b;">{{ exp.period }}</span>
             </div>
-            <div class="timeline-company">{{ exp.company }} · {{ exp.location }}</div>
-            <p class="timeline-desc">{{ exp.description }}</p>
-            <div class="timeline-skills-badge">
-              <i class="fas fa-gem"></i> {{ exp.tags.join(' · ') }}
+            <div class="timeline-company text-green fw-bold">{{ exp.company }} · {{ exp.location }}</div>
+            <p class="timeline-desc text-muted">{{ exp.description }}</p>
+            <div class="timeline-skills-badge" style="background: #ffffff; border-color: #e5e7eb; color: #33413b;">
+              <i class="fas fa-gem text-green"></i> {{ exp.tags.join(' · ') }}
             </div>
           </div>
         </div>
@@ -115,29 +167,111 @@
 
       <!-- Education & Certifications Column -->
       <div class="col-lg-5">
-        <h4 class="text-white mb-4"><i class="fas fa-graduation-cap text-accent me-2"></i>Education</h4>
-        <div class="timeline-flow mb-5">
+        <h4 class="fw-bold mb-4"><i class="fas fa-graduation-cap text-green me-2"></i>Education</h4>
+        <div class="timeline-flow mb-5" style="border-left-color: rgba(106, 198, 47, 0.4);">
           <div class="timeline-item" *ngFor="let edu of portfolioService.educations">
-            <div class="timeline-dot"></div>
+            <div class="timeline-dot" style="background: #6ac62f; box-shadow: 0 0 10px #6ac62f;"></div>
             <div class="timeline-title-row">
-              <h5>{{ edu.degree }}</h5>
-              <span class="timeline-period">{{ edu.period }}</span>
+              <h5 class="text-dark fw-bold">{{ edu.degree }}</h5>
+              <span class="timeline-period" style="background: #eaf8df; color: #273f2b;">{{ edu.period }}</span>
             </div>
-            <div class="timeline-company">{{ edu.institution }}</div>
-            <p class="timeline-desc">{{ edu.description }}</p>
+            <div class="timeline-company text-green fw-bold">{{ edu.institution }}</div>
+            <p class="timeline-desc text-muted">{{ edu.description }}</p>
           </div>
         </div>
 
-        <h4 class="text-white mb-4"><i class="fas fa-certificate text-accent me-2"></i>Certifications</h4>
-        <div class="timeline-flow">
+        <h4 class="fw-bold mb-4"><i class="fas fa-certificate text-green me-2"></i>Certifications</h4>
+        <div class="timeline-flow" style="border-left-color: rgba(106, 198, 47, 0.4);">
           <div class="timeline-item" *ngFor="let cert of portfolioService.certifications">
-            <div class="timeline-dot"></div>
+            <div class="timeline-dot" style="background: #6ac62f; box-shadow: 0 0 10px #6ac62f;"></div>
             <div class="timeline-title-row">
-              <h5>{{ cert.title }}</h5>
-              <span class="timeline-period">{{ cert.level }}</span>
+              <h5 class="text-dark fw-bold">{{ cert.title }}</h5>
+              <span class="timeline-period" style="background: #eaf8df; color: #273f2b;">{{ cert.level }}</span>
             </div>
-            <div class="timeline-company">{{ cert.issuer }}</div>
-            <p class="timeline-desc">{{ cert.description }}</p>
+            <div class="timeline-company text-green fw-bold">{{ cert.issuer }}</div>
+            <p class="timeline-desc text-muted">{{ cert.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3-STEP PROCESS ==================== -->
+<section class="iz-process-network-section" id="process">
+  <div class="container text-center">
+    <div class="iz-process-headline-wrap mb-5">
+      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
+      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <!-- Step 1 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">01</div>
+          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <p class="iz-process-col-desc">
+            One quick conversation. Tell us about your team, tech stack, and goals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">02</div>
+          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <p class="iz-process-col-desc">
+            We match AI developers to your stack and workflow. You review them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">03</div>
+          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <p class="iz-process-col-desc">
+            Your engineer is embedded, onboarded and contributing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <a routerLink="/contact" class="iz-btn-white-pill">
+        Schedule A Call Now <span class="iz-arrow-up-right">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLIENT TESTIMONIALS ==================== -->
+<section class="iz-section" id="testimonials">
+  <div class="container">
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
+      <h2 class="iz-title">Trusted by International Technology Teams</h2>
+      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" *ngFor="let t of portfolioService.testimonials">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
+          <div>
+            <div class="iz-stars mb-3">★★★★★</div>
+            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic;">
+              "{{ t.quote }}"
+            </p>
+          </div>
+          <div class="pt-3 border-top border-light d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-0 fw-bold">{{ t.author }}</h6>
+              <span class="text-muted small">{{ t.role }}</span>
+            </div>
+            <span class="iz-chip">{{ t.tag }}</span>
           </div>
         </div>
       </div>
@@ -146,19 +280,18 @@
 </section>
 
 <!-- ==================== CALL TO ACTION ==================== -->
-<section class="portfolio-section">
-  <div class="container">
-    <div class="contact-hub-card text-center p-5">
-      <div class="max-w-700 mx-auto">
-        <div class="section-tag mb-3"><i class="fas fa-handshake"></i> Let's Collaborate</div>
-        <h2 class="section-title mb-3">Looking for Architecture Leadership?</h2>
-        <p class="section-subtitle mx-auto mb-4">
-          Whether you need a full architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session.
-        </p>
-        <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
-          <i class="fas fa-comments"></i> Schedule Strategy Session
-        </a>
-      </div>
+<section class="iz-section iz-section-sage">
+  <div class="container text-center">
+    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-handshake"></i> Let's Collaborate</div>
+      <h2 class="text-white fw-bold mb-3">Looking for Senior Architecture Leadership?</h2>
+      <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
+        Whether you need a full system architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session.
+      </p>
+      <a routerLink="/contact" class="iz-btn-green py-3 px-4">
+        Schedule Strategy Session <i class="fas fa-arrow-right ms-2"></i>
+      </a>
     </div>
   </div>
 </section>
+

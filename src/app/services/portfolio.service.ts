@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ProjectItem, ServiceItem, ExperienceItem, EducationItem, CertificationItem } from '../models/portfolio.model';
+import { 
+  ProjectItem, 
+  ServiceItem, 
+  ExperienceItem, 
+  EducationItem, 
+  CertificationItem, 
+  AccordionService, 
+  IndustryItem, 
+  TestimonialItem 
+} from '../models/portfolio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -269,6 +278,127 @@ export class PortfolioService {
       level: 'SDLC Leadership',
       issuer: 'Agile Software Development',
       description: 'Sprint management, technical backlog governance, architectural roadmapping, and continuous integration delivery.'
+    }
+  ];
+
+  readonly servicesAccordion: AccordionService[] = [
+    {
+      index: '//01',
+      title: 'AI & Data Innovation',
+      shortDesc: 'Build Intelligent Products Using AI, Machine Learning, And Advanced Data Engineering.',
+      bullets: [
+        'Agent As a Service',
+        'AI Product Development',
+        'Autonomous Agentic AI',
+        'Enterprise RAG & Vector DBs'
+      ],
+      image: 'assets/img/project-3.jpg',
+      route: '/expertise'
+    },
+    {
+      index: '//02',
+      title: 'Custom Software Development',
+      shortDesc: 'End-to-End Scalable Architectures Tailored for Startup MVPs & High-Growth SaaS Platforms.',
+      bullets: [
+        'Multi-Tenant SaaS Platforms',
+        'Automated Stripe Billing',
+        'Dynamic Subdomain Routers',
+        'Clean RBAC Data Isolation'
+      ],
+      image: 'assets/img/project-1.jpg',
+      route: '/services'
+    },
+    {
+      index: '//03',
+      title: 'Enterprise .NET & CPQ Engines',
+      shortDesc: 'Modern High-Throughput C# / .NET 9 WebAPIs, Microservices, and Dynamic Pricing Systems.',
+      bullets: [
+        '.NET 9 & ASP.NET WebAPI',
+        'Dynamic CPQ Price Calculation',
+        'Asynchronous Event-Bus',
+        'Monolith to Microservices Modernization'
+      ],
+      image: 'assets/img/project-2.jpg',
+      route: '/services'
+    },
+    {
+      index: '//04',
+      title: 'Cloud Scaling & Cost Optimization',
+      shortDesc: 'Resilient Azure & AWS Cloud Infrastructure Engineered to Cut Operating Bills by up to 25%.',
+      bullets: [
+        '25% Cloud Cost Reduction',
+        'Kubernetes & Docker Clusters',
+        'Zero-Downtime Blue/Green CI/CD',
+        'Distributed In-Memory Redis Caching'
+      ],
+      image: 'assets/img/project-4.jpg',
+      route: '/expertise'
+    }
+  ];
+
+  readonly industries: IndustryItem[] = [
+    {
+      title: 'Fintech & Digital Banking',
+      icon: 'fas fa-shield-alt',
+      desc: 'Secure, high-availability customer portals, strict RBAC authorization, and zero-trust transaction processing.',
+      project: 'Eurobank Banking Portal',
+      metric: 'Zero-Downtime Resilience'
+    },
+    {
+      title: 'Multi-Tenant Cloud SaaS',
+      icon: 'fas fa-cloud',
+      desc: 'Elastic microservices, automated tenant partitioning, Stripe subscription billing, and automated CI/CD.',
+      project: 'Cloudoor Cloud SaaS',
+      metric: '25% Cloud Cost Optimization'
+    },
+    {
+      title: 'HealthTech & Telemedicine',
+      icon: 'fas fa-heartbeat',
+      desc: 'Encrypted patient consultation pipelines, WebSockets live messaging, and HIPAA-aligned architecture.',
+      project: 'Medikea Health Platform',
+      metric: 'High Concurrency Queues'
+    },
+    {
+      title: 'Enterprise CPQ & Pricing Engines',
+      icon: 'fas fa-calculator',
+      desc: 'Dynamic formula calculation engines that replace error-prone manual spreadsheets with automated workflows.',
+      project: 'ODTool Quotation Engine',
+      metric: '3 Hours/Day Saved'
+    },
+    {
+      title: 'High-Traffic Web Portals & SPAs',
+      icon: 'fas fa-bolt',
+      desc: 'Distributed Redis caching, non-blocking asynchronous APIs, and CDN edge optimization for instant render.',
+      project: 'Scrole & LinksCenter',
+      metric: 'Sub-Second Latency'
+    },
+    {
+      title: 'AI Agents & Intelligent Workflows',
+      icon: 'fas fa-robot',
+      desc: 'Autonomous LLM tool-calling agents, enterprise RAG vector retrieval, and automated document parsing.',
+      project: 'Pulstech AI Integrations',
+      metric: 'Enterprise LLM Pipelines'
+    }
+  ];
+
+  readonly testimonials: TestimonialItem[] = [
+    {
+      quote: 'Bilal architected our dynamic CPQ calculation engine from the ground up. His architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.',
+      author: 'Odyssey Design Leadership',
+      role: 'San Antonio, TX, USA',
+      tag: 'Enterprise .NET & CPQ'
+    },
+    {
+      quote: 'His ability to integrate complex GenAI agent workflows while ensuring our cloud infrastructure remains cost-optimized is unmatched. An invaluable technology partner.',
+      author: 'Pulstech Engineering',
+      role: 'Paris, France',
+      tag: 'Cloud & AI Architecture'
+    },
+    {
+      quote: 'Delivered our multi-tenant SaaS infrastructure on Azure with flawless execution. Zero-downtime deployments and reduced our monthly cloud bill by 25%.',
+      author: 'Cloudoor Technology Team',
+      role: 'San Francisco, CA, USA',
+      tag: 'Multi-Tenant SaaS'
     }
   ];
 

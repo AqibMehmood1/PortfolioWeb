@@ -1,69 +1,189 @@
-<!-- ==================== FLOATING ISLAND GLASS NAVBAR ==================== -->
-<header class="floating-navbar">
-  <div class="navbar-island">
-    <a routerLink="/" class="brand-wrapper" (click)="closeMobileMenu()">
-      <div class="brand-avatar-mini">
-        <img src="assets/img/profile.png" alt="Bilal Ahmad">
-      </div>
-      <div class="brand-meta">
-        <span class="brand-name">Bilal Ahmad</span>
-        <span class="brand-role">SOLUTIONS ARCHITECT</span>
-      </div>
-    </a>
+<!-- ==================== 0. INVOZONE TOP TICKER BAR ==================== -->
+<div class="iz-top-ticker-bar">
+  <div class="iz-ticker-track">
+    <div class="iz-ticker-content">
+      <span>• We're available for Q2/Q3 Architectural Advisory & Scale! Come connect with us!</span>
+      <span>• 9+ Years Enterprise Solutions Architecture & Cloud Engineering</span>
+      <span>• Multi-Tenant SaaS, Autonomous AI Agents & High-Concurrency Systems</span>
+      <span>• Trusted by Tech Leaders across US, Canada, Europe & Worldwide</span>
+      <span>• We're available for Q2/Q3 Architectural Advisory & Scale! Come connect with us!</span>
+      <span>• 9+ Years Enterprise Solutions Architecture & Cloud Engineering</span>
+      <span>• Multi-Tenant SaaS, Autonomous AI Agents & High-Concurrency Systems</span>
+      <span>• Trusted by Tech Leaders across US, Canada, Europe & Worldwide</span>
+    </div>
+  </div>
+</div>
 
-    <!-- Desktop Navigation Links (Multi-Page Routing) -->
-    <ul class="nav-menu-desktop">
-      <li>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      </li>
-      <li>
-        <a routerLink="/about" routerLinkActive="active">About</a>
-      </li>
-      <li>
-        <a routerLink="/expertise" routerLinkActive="active">Technical Radar</a>
-      </li>
-      <li>
-        <a routerLink="/services" routerLinkActive="active">Services</a>
-      </li>
-      <li>
-        <a routerLink="/projects" routerLinkActive="active">Case Studies</a>
-      </li>
-      <li>
-        <a routerLink="/contact" routerLinkActive="active">Contact</a>
-      </li>
-    </ul>
-
-    <!-- Action Button -->
-    <div class="d-flex align-items-center gap-2">
-      <a routerLink="/contact" class="nav-cta-btn d-none d-sm-inline-flex">
-        <i class="fas fa-paper-plane"></i> Let's Talk
+<!-- ==================== 1. INVOZONE PURE-WHITE NAVBAR ==================== -->
+<header class="iz-navbar-white">
+  <div class="container">
+    <div class="iz-navbar-inner">
+      <!-- Brand Logo with square green BA icon -->
+      <a routerLink="/" class="iz-brand-invozone" (click)="closeMobileMenu(); closeMegaMenu()">
+        <div class="iz-logo-icon">
+          <span class="iz-symbol">BA</span>
+        </div>
+        <div class="iz-brand-details">
+          <span class="iz-brand-name">Bilal Ahmad <span class="iz-brand-subtag">| Solutions Architect</span></span>
+        </div>
       </a>
-      <button type="button" class="mobile-nav-toggle" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
-        <i class="fas" [ngClass]="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
-      </button>
+
+      <!-- Simplified Navigation Links -->
+      <ul class="iz-nav-links-white">
+        <li (mouseenter)="closeMegaMenu()">
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMegaMenu()">Home</a>
+        </li>
+        <li class="iz-nav-item-dropdown" (mouseenter)="onMouseEnterServices()" (mouseleave)="onMouseLeaveDropdown()">
+          <a routerLink="/services" class="iz-nav-link-btn" [class.active]="activeMegaMenu === 'services'" (click)="toggleMegaMenu('services')">
+            Services <i class="fas fa-chevron-down iz-nav-chevron"></i>
+          </a>
+        </li>
+        <li (mouseenter)="closeMegaMenu()">
+          <a routerLink="/expertise" routerLinkActive="active" (click)="closeMegaMenu()">Expertise</a>
+        </li>
+        <li (mouseenter)="closeMegaMenu()">
+          <a routerLink="/projects" routerLinkActive="active" (click)="closeMegaMenu()">Portfolio</a>
+        </li>
+        <li (mouseenter)="closeMegaMenu()">
+          <a routerLink="/about" routerLinkActive="active" (click)="closeMegaMenu()">About</a>
+        </li>
+      </ul>
+
+      <!-- Right CTA & Mobile Toggle -->
+      <div class="d-flex align-items-center gap-3">
+        <a routerLink="/contact" class="iz-btn-contact-top" (click)="closeMegaMenu()" (mouseenter)="closeMegaMenu()">
+          Contact Us <span class="iz-arrow-up-right">↗</span>
+        </a>
+        <button type="button" class="iz-mobile-toggle-dark" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+          <i class="fas" [ngClass]="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SIMPLIFIED ARCHITECTURAL SERVICES DRAWER ==================== -->
+  <div class="iz-mega-menu-overlay" *ngIf="activeMegaMenu" (mouseenter)="onMouseEnterMegaMenu()" (mouseleave)="onMouseLeaveDropdown()" (click)="closeMegaMenu()">
+    <div class="container" (click)="$event.stopPropagation()">
+      <div class="iz-mega-menu-card iz-simplified-card">
+        <div class="row g-0">
+          <!-- Left Proof & Authority Panel -->
+          <div class="col-lg-4 iz-mega-left-panel">
+            <div>
+              <span class="iz-mega-trusted-tag">CORE ARCHITECTURAL SERVICES</span>
+              <h3 class="iz-mega-left-title">High-Scale SaaS & Autonomous AI Systems</h3>
+              <p class="iz-mega-left-desc">
+                9+ years designing high-concurrency cloud systems, multi-tenant databases, and enterprise AI agent pipelines across the US, Canada & Europe.
+              </p>
+            </div>
+
+            <div class="iz-mega-badges-section">
+              <div class="iz-mega-divider-recog">
+                <span>VERIFIED CREDENTIALS</span>
+              </div>
+              <div class="iz-mega-recog-logos-grid">
+                <span class="recog-pill-dark"><i class="fab fa-linkedin text-primary me-1"></i> LinkedIn</span>
+                <span class="recog-pill-dark"><i class="fas fa-award text-warning me-1"></i> Upwork Pro</span>
+                <span class="recog-pill-dark"><i class="fas fa-star text-warning me-1"></i> Trustpilot</span>
+                <span class="recog-pill-dark"><i class="fab fa-google text-danger me-1"></i> Google</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 4-Pillar Grid Panel -->
+          <div class="col-lg-8 iz-mega-right-panel">
+            <div class="iz-mega-header-row">
+              <h4 class="iz-mega-category-title">Solutions Architecture Capabilities</h4>
+              <button type="button" class="iz-mega-close-btn" (click)="closeMegaMenu()" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <!-- Pillar 1 -->
+              <div class="col-md-6">
+                <a routerLink="/services" (click)="closeMegaMenu()" class="iz-pillar-card">
+                  <div class="iz-pillar-icon"><i class="fas fa-cubes text-green"></i></div>
+                  <div>
+                    <h5 class="iz-pillar-title">Multi-Tenant SaaS Architecture</h5>
+                    <p class="iz-pillar-desc">Database schema isolation, elastic auto-scaling, distributed Redis caching, and zero-downtime rollouts.</p>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="col-md-6">
+                <a routerLink="/services" (click)="closeMegaMenu()" class="iz-pillar-card">
+                  <div class="iz-pillar-icon"><i class="fas fa-robot text-green"></i></div>
+                  <div>
+                    <h5 class="iz-pillar-title">Autonomous AI Agents & GenAI</h5>
+                    <p class="iz-pillar-desc">Custom reasoning agents, LangChain/Semantic Kernel, RAG vector pipelines, and automated LLM workflows.</p>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="col-md-6">
+                <a routerLink="/services" (click)="closeMegaMenu()" class="iz-pillar-card">
+                  <div class="iz-pillar-icon"><i class="fas fa-bolt text-green"></i></div>
+                  <div>
+                    <h5 class="iz-pillar-title">Enterprise .NET 9 & Cloud Systems</h5>
+                    <p class="iz-pillar-desc">Modular microservices, ASP.NET WebAPI, Azure/AWS cloud infrastructure, and distributed event buses.</p>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Pillar 4 -->
+              <div class="col-md-6">
+                <a routerLink="/services" (click)="closeMegaMenu()" class="iz-pillar-card">
+                  <div class="iz-pillar-icon"><i class="fas fa-chart-line text-green"></i></div>
+                  <div>
+                    <h5 class="iz-pillar-title">Fractional CTO & Codebase Audits</h5>
+                    <p class="iz-pillar-desc">Architectural due diligence, reducing cloud infrastructure costs by up to 25%, and agile sprint governance.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Footer Action Bar -->
+            <div class="d-flex flex-wrap align-items-center justify-content-between pt-3 border-top border-light gap-2">
+              <a routerLink="/services" (click)="closeMegaMenu()" class="iz-btn-dark py-2 px-3 small">
+                Explore All 5 Architecture Pillars <i class="fas fa-arrow-right ms-1 text-green"></i>
+              </a>
+              <a routerLink="/contact" (click)="closeMegaMenu()" class="iz-btn-green py-2 px-3 small">
+                Book Strategy Consultation <span class="ms-1">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div class="mobile-drawer" [class.open]="mobileMenuOpen">
+  <div class="iz-mobile-drawer-white" [class.open]="mobileMenuOpen">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
-      <i class="fas fa-home me-2 text-accent"></i> Home
-    </a>
-    <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-user-shield me-2 text-accent"></i> About & Strategy
-    </a>
-    <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-layer-group me-2 text-accent"></i> Technical Radar
+      <i class="fas fa-home me-2 text-green"></i> Home
     </a>
     <a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-cubes me-2 text-accent"></i> Services & Solutions
+      <i class="fas fa-cubes me-2 text-green"></i> Services
+    </a>
+    <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-layer-group me-2 text-green"></i> Industries & Stacks
     </a>
     <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-laptop-code me-2 text-accent"></i> Case Studies
+      <i class="fas fa-laptop-code me-2 text-green"></i> Portfolio
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">
+      <i class="fas fa-user-shield me-2 text-green"></i> Company & About
     </a>
     <a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-envelope me-2 text-accent"></i> Schedule Consultation
+      <i class="fas fa-envelope me-2 text-green"></i> Contact Us
     </a>
+    <div class="pt-3 mt-2 border-top border-light d-flex gap-2">
+      <a routerLink="/contact" (click)="closeMobileMenu()" class="iz-btn-green w-100 justify-content-center py-2">
+        Contact Us <span class="ms-1">↗</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -73,59 +193,140 @@
 </main>
 
 <!-- ==================== PROJECT MEDIA INSPECTION MODAL ==================== -->
-<div class="modal-backdrop-custom" *ngIf="selectedProject" (click)="closeProjectModal()">
-  <div class="modal-dialog-custom" (click)="$event.stopPropagation()">
-    <div class="modal-header-custom">
+<div class="iz-modal-backdrop" *ngIf="selectedProject" (click)="closeProjectModal()">
+  <div class="iz-modal-dialog" (click)="$event.stopPropagation()">
+    <div class="iz-modal-header">
       <div>
-        <h4>{{ selectedProject.title }}</h4>
-        <span class="text-accent small">{{ selectedProject.category }}</span>
+        <h4 class="mb-1 fw-bold">{{ selectedProject.title }}</h4>
+        <span class="text-green small fw-bold text-uppercase">{{ selectedProject.category }}</span>
       </div>
-      <button type="button" class="modal-close-btn" (click)="closeProjectModal()" aria-label="Close modal">
+      <button type="button" class="channel-copy-btn" (click)="closeProjectModal()" aria-label="Close modal">
         <i class="fas fa-times"></i>
       </button>
     </div>
 
-    <div class="modal-body-custom">
-      <div class="modal-preview-media">
-        <img [src]="selectedProject.gif" [alt]="selectedProject.title">
+    <div class="iz-modal-body">
+      <div class="modal-preview-media mb-4" style="border-radius: 16px; overflow: hidden; background: #0f172a;">
+        <img [src]="selectedProject.gif" [alt]="selectedProject.title" style="width: 100%; height: auto; max-height: 400px; object-fit: contain;">
       </div>
 
-      <h5 class="text-white mb-2">Architecture & Highlights:</h5>
-      <p class="text-muted mb-3">{{ selectedProject.description }}</p>
+      <h5 class="fw-bold mb-2">Problem Statement:</h5>
+      <p class="text-muted mb-3">{{ selectedProject.problem }}</p>
 
-      <div class="d-flex flex-wrap gap-2 mb-4">
-        <span class="tech-chip" *ngFor="let h of selectedProject.highlights">
-          <i class="fas fa-check text-accent me-1"></i> {{ h }}
-        </span>
-      </div>
+      <h5 class="fw-bold mb-2">Architectural Blueprint:</h5>
+      <p class="text-muted mb-4">{{ selectedProject.architecture }}</p>
 
-      <div class="d-flex justify-content-between align-items-center pt-3 border-top border-secondary">
-        <div class="d-flex gap-2">
-          <span class="tech-chip" *ngFor="let t of selectedProject.tech">{{ t }}</span>
+      <div class="mb-4">
+        <h6 class="fw-bold mb-2">Key Highlights & Business Outcomes:</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="iz-chip" *ngFor="let h of selectedProject.highlights">
+            <i class="fas fa-check text-green me-1"></i> {{ h }}
+          </span>
         </div>
-        <a [href]="selectedProject.liveUrl" target="_blank" rel="noopener" class="btn-glow-primary py-2 px-3 small">
-          <i class="fas fa-external-link-alt"></i> Visit Live Platform
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-between align-items-center pt-3 border-top border-light gap-3">
+        <div class="d-flex flex-wrap gap-2">
+          <span class="iz-chip" *ngFor="let t of selectedProject.tech">{{ t }}</span>
+        </div>
+        <a [href]="selectedProject.liveUrl" target="_blank" rel="noopener" class="iz-btn-green py-2 px-3 small">
+          Visit Live Platform <i class="fas fa-external-link-alt ms-1"></i>
         </a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ==================== MODERN FOOTER ==================== -->
-<footer class="portfolio-footer">
+<!-- ==================== INVOZONE MULTI-COLUMN FOOTER ==================== -->
+<footer class="iz-footer">
   <div class="container">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-      <div>
-        &copy; 2026 <strong>Bilal Ahmad</strong> · Enterprise Solutions Architect & Technology Partner.
+    <div class="row g-5">
+      <!-- Col 1: Brand & Bio -->
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="iz-brand-symbol">
+            <i class="fas fa-cubes"></i>
+          </div>
+          <div>
+            <h4 class="mb-0 text-white fw-bold">Bilal Ahmad</h4>
+            <span class="text-green small fw-bold text-uppercase">Solutions Architect</span>
+          </div>
+        </div>
+        <p class="small text-muted mb-4">
+          Helping Startups, SMBs, and Enterprises architect scalable multi-tenant SaaS products, autonomous AI agents, and high-performance cloud applications with 9+ years of proven delivery.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-trust-badge">
+            <i class="fab fa-linkedin text-primary"></i> LinkedIn
+          </a>
+          <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="iz-trust-badge">
+            <img src="assets/img/upwork.png" alt="Upwork"> Upwork
+          </a>
+          <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="iz-trust-badge">
+            <img src="assets/img/fiverr.png" alt="Fiverr"> Fiverr Pro
+          </a>
+        </div>
       </div>
-      <ul class="footer-nav-links">
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/expertise">Technical Radar</a></li>
-        <li><a routerLink="/services">Services</a></li>
-        <li><a routerLink="/projects">Case Studies</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-      </ul>
+
+      <!-- Col 2: Services -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5>Services</h5>
+        <ul class="iz-footer-links">
+          <li><a routerLink="/services">SaaS Multi-Tenancy</a></li>
+          <li><a routerLink="/services">AI Agents & GenAI</a></li>
+          <li><a routerLink="/services">Cloud Optimization</a></li>
+          <li><a routerLink="/services">.NET Modernization</a></li>
+          <li><a routerLink="/services">Fractional Architect</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Case Studies -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5>Case Studies</h5>
+        <ul class="iz-footer-links">
+          <li><a routerLink="/projects">Scrole Platform</a></li>
+          <li><a routerLink="/projects">ODTool Engine</a></li>
+          <li><a routerLink="/projects">Eurobank Banking</a></li>
+          <li><a routerLink="/projects">Cloudoor SaaS</a></li>
+          <li><a routerLink="/projects">Medikea Health</a></li>
+          <li><a routerLink="/projects">LinksCenter Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Technologies -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5>Tech Radar</h5>
+        <ul class="iz-footer-links">
+          <li><a routerLink="/expertise">.NET 9 / C#</a></li>
+          <li><a routerLink="/expertise">Microsoft Azure</a></li>
+          <li><a routerLink="/expertise">AWS Cloud</a></li>
+          <li><a routerLink="/expertise">Angular & React</a></li>
+          <li><a routerLink="/expertise">AI & LangChain</a></li>
+          <li><a routerLink="/expertise">Redis & SQL Server</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Connect -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5>Connect</h5>
+        <ul class="iz-footer-links">
+          <li><a routerLink="/contact">Schedule Consultation</a></li>
+          <li><a href="mailto:bilalsoftengr@gmail.com">{{ portfolioService.profile.email }}</a></li>
+          <li><a href="tel:+923456466188">{{ portfolioService.profile.displayPhone }}</a></li>
+          <li><a href="#" (click)="portfolioService.downloadCV(); $event.preventDefault()"><i class="fas fa-file-pdf text-green me-1"></i> Download CV</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="iz-footer-bottom">
+      <div>
+        &copy; 2026 <strong>Bilal Ahmad</strong>. All rights reserved. Enterprise Software Architecture & Advisory.
+      </div>
+      <div class="d-flex gap-4">
+        <span>Lahore, Pakistan · Global Remote</span>
+        <a routerLink="/contact" class="text-green">Let's Discuss Your Roadmap →</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -133,7 +334,7 @@
 <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
 <div class="toast-container-custom" *ngIf="toastMessage">
   <div class="custom-toast">
-    <i class="fas fa-check-circle text-accent"></i>
+    <i class="fas fa-check-circle text-green"></i>
     <span>{{ toastMessage }}</span>
   </div>
 </div>

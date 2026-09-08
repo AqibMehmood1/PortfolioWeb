@@ -1,33 +1,144 @@
-<!-- ==================== SERVICES PAGE HEADER ==================== -->
-<section class="services-page-header">
-  <div class="container">
-    <div class="section-tag"><i class="fas fa-cubes"></i> Architectural Capabilities</div>
-    <h1 class="section-title">Services & Technical Solutions</h1>
-    <p class="section-subtitle">
+<!-- ==================== INVOZONE SERVICES HEADER ==================== -->
+<section class="iz-page-hero">
+  <div class="container text-center max-w-860 mx-auto">
+    <div class="iz-breadcrumb d-flex justify-content-center mb-3">
+      <a routerLink="/">Home</a>
+      <span class="sep">»</span>
+      <span class="text-dark fw-bold">Services & Architecture</span>
+    </div>
+    <div class="iz-tag"><i class="fas fa-cubes"></i> Architectural Capabilities</div>
+    <h1 class="iz-hero-headline">Services & <span class="text-green-invo">Technical Solutions</span></h1>
+    <p class="iz-hero-sub mx-auto">
       Tailored architectural advisory, hands-on software engineering, and technical leadership designed to minimize risk, reduce costs, and accelerate time-to-market.
     </p>
   </div>
 </section>
 
-<!-- ==================== 5 ARCHITECTURAL SERVICE PILLARS ==================== -->
-<section class="portfolio-section pt-0">
+<!-- ==================== 1. INTERACTIVE SERVICES ACCORDION ==================== -->
+<section class="iz-services-accordion-section" id="services-accordion">
   <div class="container">
-    <div class="services-grid">
-      <div class="service-card-modern" *ngFor="let service of portfolioService.services">
-        <div class="service-icon-box"><i [class]="service.icon"></i></div>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.fullDesc }}</p>
-        
-        <h6 class="text-white small text-uppercase fw-bold mb-2">Key Deliverables:</h6>
-        <ul class="service-deliverables mb-4">
-          <li *ngFor="let del of service.deliverables">
-            <i class="fas fa-check-circle text-accent"></i> {{ del }}
-          </li>
-        </ul>
+    <div class="iz-services-accordion-header">
+      <div>
+        <h2 class="iz-accordion-title">
+          <span class="text-green-invo">Services</span> We Offer
+        </h2>
+      </div>
+      <p class="iz-accordion-tagline">
+        From strategy to delivery. Engineering that works.
+      </p>
+      <div>
+        <a routerLink="/contact" class="iz-btn-view-all">
+          Schedule Consultation <span class="iz-arrow-up-right">↗</span>
+        </a>
+      </div>
+    </div>
 
-        <button type="button" class="btn-project-action py-2 px-3 w-100 justify-content-between" (click)="selectService(service)">
+    <!-- Accordion Rows -->
+    <div class="iz-accordion-container">
+      <div class="iz-accordion-row" *ngFor="let s of servicesAccordion; let i = index">
+        <!-- Row Header (Clickable) -->
+        <div class="iz-accordion-row-header" (click)="toggleServiceAccordion(i)">
+          <div class="iz-accordion-meta-left">
+            <span class="iz-accordion-index">{{ s.index }}</span>
+            <h3 class="iz-accordion-heading">{{ s.title }}</h3>
+          </div>
+          <button type="button" class="iz-accordion-toggle-circle" [attr.aria-label]="activeServiceIndex === i ? 'Collapse service' : 'Expand service'">
+            <i class="fas" [ngClass]="activeServiceIndex === i ? 'fa-minus' : 'fa-plus'"></i>
+          </button>
+        </div>
+
+        <!-- Expanded Body View -->
+        <div class="iz-accordion-body-expanded" *ngIf="activeServiceIndex === i">
+          <div class="row align-items-center g-4 pt-3">
+            <div class="col-md-4">
+              <div class="iz-accordion-media-box">
+                <img [src]="s.image" [alt]="s.title">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class="iz-accordion-desc">{{ s.shortDesc }}</p>
+              
+              <div class="iz-accordion-bullets-grid">
+                <div class="iz-accordion-bullet-item" *ngFor="let bullet of s.bullets">
+                  <span class="iz-dot-green-bullet"></span> {{ bullet }}
+                </div>
+              </div>
+
+              <a [routerLink]="s.route" class="iz-accordion-learn-more">
+                Learn More <i class="fas fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. DARK FOREST VALUE PROPOSITION SECTION ==================== -->
+<section class="iz-dark-value-section">
+  <div class="container">
+    <div class="iz-dark-value-header">
+      <h2>How Solutions Architecture Delivers Value To Your Business ?</h2>
+      <p>Choosing the right architecture partner changes everything. Here is what you need to know about us.</p>
+    </div>
+
+    <div class="iz-value-cards-grid">
+      <!-- Mint Card 1: Task Automation -->
+      <div class="iz-value-mint-card">
+        <h3>Task Automation</h3>
+        <p>DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 2: Agentic Workflows -->
+      <div class="iz-value-mint-card">
+        <h3>Agentic Workflows</h3>
+        <p>Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 3: Cost Efficiency -->
+      <div class="iz-value-mint-card">
+        <h3>Cost Efficiency</h3>
+        <p>Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+
+      <!-- Mint Card 4: Resource Efficiency -->
+      <div class="iz-value-mint-card">
+        <h3>Resource Efficiency</h3>
+        <p>Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.</p>
+        <div class="iz-triangle-polygon"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. 5 ARCHITECTURAL SERVICE PILLARS ==================== -->
+<section class="iz-section">
+  <div class="container">
+    <div class="iz-services-grid">
+      <div class="iz-service-card" *ngFor="let service of portfolioService.services; let i = index">
+        <div>
+          <div class="iz-service-top">
+            <div class="iz-service-icon"><i [class]="service.icon"></i></div>
+            <span class="iz-service-index">0{{ i + 1 }}</span>
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.fullDesc }}</p>
+          
+          <h6 class="fw-bold small text-uppercase mb-2" style="color: #475569;">Key Deliverables:</h6>
+          <ul class="iz-deliverables-list">
+            <li *ngFor="let del of service.deliverables">
+              <i class="fas fa-check-circle"></i> {{ del }}
+            </li>
+          </ul>
+        </div>
+
+        <button type="button" class="iz-btn-dark py-2 px-3 w-100 justify-content-between mt-3" (click)="selectService(service)">
           <span>Discuss {{ service.title }}</span>
-          <i class="fas fa-arrow-right text-accent"></i>
+          <i class="fas fa-arrow-right text-green"></i>
         </button>
       </div>
     </div>
@@ -35,61 +146,143 @@
 </section>
 
 <!-- ==================== ENGAGEMENT MODELS ==================== -->
-<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+<section class="iz-section iz-section-sage">
   <div class="container">
-    <div class="section-header-center">
-      <div class="section-tag"><i class="fas fa-handshake"></i> Partnership Options</div>
-      <h2 class="section-title">Flexible Engagement Models</h2>
-      <p class="section-subtitle">Choose the structure that matches your team stage, roadmap urgency, and project scope.</p>
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-handshake"></i> Partnership Options</div>
+      <h2 class="iz-title">Flexible Engagement Models</h2>
+      <p class="iz-subtitle">Choose the structure that matches your team stage, roadmap urgency, and project scope.</p>
     </div>
 
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="contact-hub-card h-100 d-flex flex-column justify-content-between p-4">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
           <div>
-            <div class="section-tag mb-3"><i class="fas fa-search"></i> Advisory & Audit</div>
-            <h3 class="text-white mb-2">Architecture Audit</h3>
+            <div class="iz-tag mb-3"><i class="fas fa-search"></i> Advisory & Audit</div>
+            <h3 class="mb-2 fw-bold">Architecture Audit</h3>
             <p class="text-muted small mb-4">Ideal for startups preparing for scale, investor due diligence, or tackling performance/cost bottlenecks.</p>
-            <ul class="service-deliverables mb-4">
-              <li><i class="fas fa-check text-accent"></i> In-depth codebase & cloud architecture audit</li>
-              <li><i class="fas fa-check text-accent"></i> Bottleneck & cost optimization report</li>
-              <li><i class="fas fa-check text-accent"></i> Modernization roadmap & risk assessment</li>
+            <ul class="iz-deliverables-list mb-4">
+              <li><i class="fas fa-check text-green"></i> In-depth codebase & cloud architecture audit</li>
+              <li><i class="fas fa-check text-green"></i> Bottleneck & cost optimization report</li>
+              <li><i class="fas fa-check text-green"></i> Modernization roadmap & risk assessment</li>
             </ul>
           </div>
-          <a routerLink="/contact" class="btn-glass-secondary w-100 justify-content-center">Request Audit</a>
+          <a routerLink="/contact" class="iz-btn-dark w-100 justify-content-center">Request Audit</a>
         </div>
       </div>
 
       <div class="col-lg-4">
-        <div class="contact-hub-card h-100 d-flex flex-column justify-content-between p-4" style="border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 0 35px rgba(99, 102, 241, 0.2);">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4" style="border: 2px solid var(--iz-green-dark); box-shadow: var(--shadow-iz-hover);">
           <div>
-            <div class="section-tag mb-3" style="background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.5);"><i class="fas fa-star"></i> Most Popular</div>
-            <h3 class="text-white mb-2">Project Architecture</h3>
+            <div class="iz-tag mb-3" style="background: var(--iz-green-dark); color: #ffffff;"><i class="fas fa-star"></i> Most Popular</div>
+            <h3 class="mb-2 fw-bold">Project Architecture</h3>
             <p class="text-muted small mb-4">End-to-end design and scalable delivery of a new SaaS product, AI integration, or microservices migration.</p>
-            <ul class="service-deliverables mb-4">
-              <li><i class="fas fa-check text-accent"></i> Full multi-tenant system architecture blueprint</li>
-              <li><i class="fas fa-check text-accent"></i> Hands-on core backend & API development</li>
-              <li><i class="fas fa-check text-accent"></i> Automated CI/CD deployment pipelines</li>
-              <li><i class="fas fa-check text-accent"></i> Comprehensive documentation & team handover</li>
+            <ul class="iz-deliverables-list mb-4">
+              <li><i class="fas fa-check text-green"></i> Full multi-tenant system architecture blueprint</li>
+              <li><i class="fas fa-check text-green"></i> Hands-on core backend & API development</li>
+              <li><i class="fas fa-check text-green"></i> Automated CI/CD deployment pipelines</li>
+              <li><i class="fas fa-check text-green"></i> Comprehensive documentation & handover</li>
             </ul>
           </div>
-          <a routerLink="/contact" class="btn-glow-primary w-100 justify-content-center">Start Project</a>
+          <a routerLink="/contact" class="iz-btn-green w-100 justify-content-center">Start Project</a>
         </div>
       </div>
 
       <div class="col-lg-4">
-        <div class="contact-hub-card h-100 d-flex flex-column justify-content-between p-4">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
           <div>
-            <div class="section-tag mb-3"><i class="fas fa-user-tie"></i> Executive Lead</div>
-            <h3 class="text-white mb-2">Fractional Architect</h3>
+            <div class="iz-tag mb-3"><i class="fas fa-user-tie"></i> Executive Lead</div>
+            <h3 class="mb-2 fw-bold">Fractional Architect</h3>
             <p class="text-muted small mb-4">Ongoing strategic technical leadership and code governance on a predictable monthly retainer.</p>
-            <ul class="service-deliverables mb-4">
-              <li><i class="fas fa-check text-accent"></i> Weekly architectural reviews & sprint guidance</li>
-              <li><i class="fas fa-check text-accent"></i> Technical hiring & candidate interviews</li>
-              <li><i class="fas fa-check text-accent"></i> Direct advisory for Founder / CEO / CTO</li>
+            <ul class="iz-deliverables-list mb-4">
+              <li><i class="fas fa-check text-green"></i> Weekly architectural reviews & sprint guidance</li>
+              <li><i class="fas fa-check text-green"></i> Technical hiring & candidate interviews</li>
+              <li><i class="fas fa-check text-green"></i> Direct advisory for Founder / CEO / CTO</li>
             </ul>
           </div>
-          <a routerLink="/contact" class="btn-glass-secondary w-100 justify-content-center">Inquire Fractional</a>
+          <a routerLink="/contact" class="iz-btn-dark w-100 justify-content-center">Inquire Fractional</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3-STEP PROCESS ==================== -->
+<section class="iz-process-network-section" id="process">
+  <div class="container text-center">
+    <div class="iz-process-headline-wrap mb-5">
+      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
+      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <!-- Step 1 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">01</div>
+          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <p class="iz-process-col-desc">
+            One quick conversation. Tell us about your team, tech stack, and goals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">02</div>
+          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <p class="iz-process-col-desc">
+            We match AI developers to your stack and workflow. You review them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">03</div>
+          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <p class="iz-process-col-desc">
+            Your engineer is embedded, onboarded and contributing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <a routerLink="/contact" class="iz-btn-white-pill">
+        Schedule A Call Now <span class="iz-arrow-up-right">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLIENT TESTIMONIALS ==================== -->
+<section class="iz-section" id="testimonials">
+  <div class="container">
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
+      <h2 class="iz-title">Trusted by International Technology Teams</h2>
+      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" *ngFor="let t of portfolioService.testimonials">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
+          <div>
+            <div class="iz-stars mb-3">★★★★★</div>
+            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic;">
+              "{{ t.quote }}"
+            </p>
+          </div>
+          <div class="pt-3 border-top border-light d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-0 fw-bold">{{ t.author }}</h6>
+              <span class="text-muted small">{{ t.role }}</span>
+            </div>
+            <span class="iz-chip">{{ t.tag }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -97,19 +290,18 @@
 </section>
 
 <!-- ==================== CALL TO ACTION ==================== -->
-<section class="portfolio-section">
-  <div class="container">
-    <div class="contact-hub-card text-center p-5">
-      <div class="max-w-700 mx-auto">
-        <div class="section-tag mb-3"><i class="fas fa-calendar-alt"></i> Let's Talk</div>
-        <h2 class="section-title mb-3">Have a Custom Project in Mind?</h2>
-        <p class="section-subtitle mx-auto mb-4">
-          Every system is unique. Let's discuss your timeline, technical requirements, and how we can achieve your architectural milestones.
-        </p>
-        <a routerLink="/contact" class="btn-glow-primary py-3 px-4">
-          <i class="fas fa-comments"></i> Book Architecture Strategy Call
-        </a>
-      </div>
+<section class="iz-section iz-section-sage">
+  <div class="container text-center">
+    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-calendar-alt"></i> Let's Talk</div>
+      <h2 class="text-white fw-bold mb-3">Have a Custom Project in Mind?</h2>
+      <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
+        Every system is unique. Let's discuss your timeline, technical requirements, and how we can achieve your architectural milestones.
+      </p>
+      <a routerLink="/contact" class="iz-btn-green py-3 px-4">
+        Book Architecture Strategy Call <i class="fas fa-arrow-right ms-2"></i>
+      </a>
     </div>
   </div>
 </section>
+

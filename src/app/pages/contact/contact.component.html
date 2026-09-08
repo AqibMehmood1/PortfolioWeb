@@ -1,87 +1,36 @@
-<!-- ==================== CONTACT PAGE HEADER ==================== -->
-<section class="contact-page-header">
-  <div class="container text-center max-w-700 mx-auto">
-    <div class="section-tag"><i class="fas fa-handshake"></i> Let's Collaborate</div>
-    <h1 class="section-title">Schedule an Architectural Consultation</h1>
-    <p class="section-subtitle mx-auto">
+<!-- ==================== INVOZONE CONTACT HEADER ==================== -->
+<section class="iz-page-hero">
+  <div class="container text-center max-w-860 mx-auto">
+    <div class="iz-breadcrumb d-flex justify-content-center mb-3">
+      <a routerLink="/">Home</a>
+      <span class="sep">»</span>
+      <span class="text-dark fw-bold">Contact & Consultation</span>
+    </div>
+    <div class="iz-tag"><i class="fas fa-handshake"></i> Let's Collaborate</div>
+    <h1 class="iz-hero-headline">Schedule an <span class="text-green-invo">Architectural Consultation</span></h1>
+    <p class="iz-hero-sub mx-auto">
       Whether you're scoping a new SaaS product, integrating autonomous AI agents, or modernizing legacy infrastructure, let's map out the right strategy.
     </p>
   </div>
 </section>
 
-<!-- ==================== CONTACT CHANNELS & BOOKING FORM ==================== -->
-<section class="portfolio-section pt-0">
+<!-- ==================== INVOZONE 2-COLUMN CONTACT HUB ==================== -->
+<section class="iz-section">
   <div class="container">
-    <div class="row g-5 align-items-center">
-      <!-- Left Column: Direct Communication Channels -->
-      <div class="col-lg-5">
-        <h3 class="text-white mb-3">Direct Channels</h3>
-        <p class="mb-4">
-          I work with clients across the US, Canada, Europe, and globally. Choose your preferred communication channel:
-        </p>
-
-        <!-- Direct Channel Cards -->
-        <div class="direct-channel-card">
-          <div class="channel-icon"><i class="fas fa-envelope"></i></div>
-          <div class="channel-meta">
-            <div class="label">Direct Email</div>
-            <div class="value">{{ portfolioService.profile.email }}</div>
-          </div>
-          <button type="button" class="channel-copy-btn" (click)="copyEmail()" title="Copy Email">
-            <i class="fas fa-copy"></i>
-          </button>
-        </div>
-
-        <div class="direct-channel-card">
-          <div class="channel-icon"><i class="fas fa-phone-alt"></i></div>
-          <div class="channel-meta">
-            <div class="label">Direct Phone & WhatsApp</div>
-            <div class="value">{{ portfolioService.profile.displayPhone }}</div>
-          </div>
-          <button type="button" class="channel-copy-btn" (click)="copyPhone()" title="Copy Phone">
-            <i class="fas fa-copy"></i>
-          </button>
-        </div>
-
-        <div class="direct-channel-card">
-          <div class="channel-icon"><i class="fas fa-globe"></i></div>
-          <div class="channel-meta">
-            <div class="label">Location & Global Reach</div>
-            <div class="value">{{ portfolioService.profile.location }}</div>
-          </div>
-        </div>
-
-        <div class="mt-4 pt-2">
-          <span class="trust-title d-block mb-2">Verified Professional Profiles</span>
-          <div class="social-pills-row">
-            <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="social-pill linkedin-pill">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="social-pill">
-              <img src="assets/img/upwork.png" alt="Upwork"> Upwork
-            </a>
-            <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="social-pill">
-              <img src="assets/img/fiverr.png" alt="Fiverr"> Fiverr
-            </a>
-            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="social-pill whatsapp-pill">
-              <i class="fab fa-whatsapp text-emerald"></i> WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Interactive Consultation Booking Form -->
-      <div class="col-lg-7">
-        <div class="contact-hub-card">
-          <h3 class="text-white mb-2">Request an Architectural Strategy Session</h3>
-          <p class="text-muted small mb-4">Select your primary objective so I can prepare relevant case studies and technical options:</p>
+    <div class="iz-contact-box">
+      <div class="row g-0">
+        <!-- Form Side -->
+        <div class="col-lg-7 iz-form-side">
+          <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> Book Strategy Call</div>
+          <h2 class="iz-title mb-2 fs-2">Request Architecture Session</h2>
+          <p class="iz-subtitle mb-4 fs-6">Select your primary objective so I can prepare relevant case studies and technical options:</p>
 
           <!-- Interactive Topic Selector -->
-          <div class="topic-selector-container">
-            <div class="topic-selector-label"><i class="fas fa-sliders-h text-accent me-1"></i> Consultation Focus:</div>
-            <div class="topic-pills-row">
+          <div class="topic-selector-container mb-4">
+            <div class="fw-bold small text-muted mb-2"><i class="fas fa-sliders-h text-green me-1"></i> Consultation Focus:</div>
+            <div class="d-flex flex-wrap gap-2">
               <button type="button" *ngFor="let topic of topics" 
-                class="topic-pill-btn" 
+                class="filter-pill-btn" 
                 [class.active]="selectedTopic === topic" 
                 (click)="selectTopic(topic)">
                 {{ topic }}
@@ -92,36 +41,161 @@
           <form (submit)="submitContactForm(); $event.preventDefault()">
             <div class="row g-3">
               <div class="col-md-6">
-                <div class="form-group-custom">
-                  <label class="form-label-custom" for="userName">Your Full Name *</label>
-                  <input type="text" class="form-control-dark" id="userName" [(ngModel)]="contactForm.name" name="name" placeholder="e.g. John Doe" required>
-                </div>
+                <input type="text" class="iz-input" [(ngModel)]="contactForm.name" name="name" placeholder="Your Full Name *" required>
               </div>
               <div class="col-md-6">
-                <div class="form-group-custom">
-                  <label class="form-label-custom" for="userEmail">Your Work Email *</label>
-                  <input type="email" class="form-control-dark" id="userEmail" [(ngModel)]="contactForm.email" name="email" placeholder="john@company.com" required>
-                </div>
+                <input type="email" class="iz-input" [(ngModel)]="contactForm.email" name="email" placeholder="Your Work Email *" required>
               </div>
               <div class="col-12">
-                <div class="form-group-custom">
-                  <label class="form-label-custom" for="formSubject">Subject / Focus</label>
-                  <input type="text" class="form-control-dark" id="formSubject" [(ngModel)]="contactForm.subject" name="subject" placeholder="Project Architecture Discussion">
-                </div>
+                <input type="text" class="iz-input" [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject / Focus">
               </div>
               <div class="col-12">
-                <div class="form-group-custom">
-                  <label class="form-label-custom" for="userMessage">Tell me about your product, requirements, or goals *</label>
-                  <textarea class="form-control-dark" id="userMessage" [(ngModel)]="contactForm.message" name="message" rows="4" placeholder="Briefly describe your project requirements, tech stack, timeline, or architecture challenges..." required></textarea>
-                </div>
+                <textarea class="iz-textarea" rows="4" [(ngModel)]="contactForm.message" name="message" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required></textarea>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn-submit-consultation">
-                  <i class="fas fa-paper-plane"></i> Send Message & Request Consultation
+                <button type="submit" class="iz-submit-btn">
+                  Send Message & Request Consultation <i class="fas fa-arrow-right"></i>
                 </button>
               </div>
             </div>
           </form>
+        </div>
+
+        <!-- Direct Channels & Trust Side -->
+        <div class="col-lg-5 iz-stats-side">
+          <h4 class="fw-bold mb-3">Direct Channels</h4>
+          <p class="small text-muted mb-4">I collaborate with clients across US, Canada, Europe, and worldwide.</p>
+
+          <div class="direct-channel-card">
+            <div class="channel-icon"><i class="fas fa-envelope text-green"></i></div>
+            <div class="channel-meta">
+              <div class="label">Direct Email</div>
+              <div class="value">{{ portfolioService.profile.email }}</div>
+            </div>
+            <button type="button" class="channel-copy-btn" (click)="copyEmail()" title="Copy Email" aria-label="Copy Email">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+
+          <div class="direct-channel-card">
+            <div class="channel-icon"><i class="fas fa-phone-alt text-green"></i></div>
+            <div class="channel-meta">
+              <div class="label">Direct Phone & WhatsApp</div>
+              <div class="value">{{ portfolioService.profile.displayPhone }}</div>
+            </div>
+            <button type="button" class="channel-copy-btn" (click)="copyPhone()" title="Copy Phone" aria-label="Copy Phone">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+
+          <div class="direct-channel-card mb-4">
+            <div class="channel-icon"><i class="fas fa-globe text-green"></i></div>
+            <div class="channel-meta">
+              <div class="label">Location & Global Reach</div>
+              <div class="value">{{ portfolioService.profile.location }}</div>
+            </div>
+          </div>
+
+          <div class="pt-2 mb-4">
+            <span class="small fw-bold text-muted d-block mb-2 text-uppercase">Verified Professional Profiles</span>
+            <div class="d-flex flex-wrap gap-2">
+              <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
+                <i class="fab fa-linkedin text-primary me-1"></i> LinkedIn
+              </a>
+              <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="iz-chip">
+                <img src="assets/img/upwork.png" alt="Upwork" style="width: 14px; height: 14px; margin-right: 4px;"> Upwork
+              </a>
+              <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="iz-chip">
+                <img src="assets/img/fiverr.png" alt="Fiverr" style="width: 14px; height: 14px; margin-right: 4px;"> Fiverr
+              </a>
+            </div>
+          </div>
+
+          <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-btn-green w-100 justify-content-center">
+            <i class="fab fa-whatsapp"></i> Quick Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3-STEP PROCESS ==================== -->
+<section class="iz-process-network-section" id="process">
+  <div class="container text-center">
+    <div class="iz-process-headline-wrap mb-5">
+      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
+      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <!-- Step 1 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">01</div>
+          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <p class="iz-process-col-desc">
+            One quick conversation. Tell us about your team, tech stack, and goals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">02</div>
+          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <p class="iz-process-col-desc">
+            We match AI developers to your stack and workflow. You review them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-4">
+        <div class="iz-process-column">
+          <div class="iz-process-badge-lime">03</div>
+          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <p class="iz-process-col-desc">
+            Your engineer is embedded, onboarded and contributing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <a href="#contact-hub" class="iz-btn-white-pill">
+        Schedule A Call Now <span class="iz-arrow-up-right">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLIENT TESTIMONIALS ==================== -->
+<section class="iz-section" id="testimonials">
+  <div class="container">
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
+      <h2 class="iz-title">Trusted by International Technology Teams</h2>
+      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" *ngFor="let t of portfolioService.testimonials">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
+          <div>
+            <div class="iz-stars mb-3">★★★★★</div>
+            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic;">
+              "{{ t.quote }}"
+            </p>
+          </div>
+          <div class="pt-3 border-top border-light d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-0 fw-bold">{{ t.author }}</h6>
+              <span class="text-muted small">{{ t.role }}</span>
+            </div>
+            <span class="iz-chip">{{ t.tag }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -129,46 +203,47 @@
 </section>
 
 <!-- ==================== STRATEGY SESSION FAQ ==================== -->
-<section class="portfolio-section" style="background: rgba(8, 12, 22, 0.6);">
+<section class="iz-section iz-section-sage">
   <div class="container">
-    <div class="section-header-center">
-      <div class="section-tag"><i class="fas fa-question-circle"></i> FAQ</div>
-      <h2 class="section-title">What to Expect in Our First Session</h2>
-      <p class="section-subtitle">Common questions from founders and technology leaders.</p>
+    <div class="iz-section-header">
+      <div class="iz-tag"><i class="fas fa-question-circle"></i> FAQ</div>
+      <h2 class="iz-title">What to Expect in Our First Session</h2>
+      <p class="iz-subtitle">Common questions from founders and technology leaders.</p>
     </div>
 
     <div class="row g-4 max-w-900 mx-auto">
       <div class="col-md-6">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-file-contract"></i></div>
-          <h5>Do you sign NDAs?</h5>
-          <p>Yes. I am happy to sign a Non-Disclosure Agreement before diving into proprietary product specifications or codebase audits.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-file-contract"></i></div>
+          <h5 class="fw-bold">Do you sign NDAs?</h5>
+          <p class="small text-muted mb-0">Yes. I am happy to sign a Non-Disclosure Agreement before diving into proprietary product specifications or codebase audits.</p>
         </div>
       </div>
 
       <div class="col-md-6">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-clock"></i></div>
-          <h5>What is the session agenda?</h5>
-          <p>We review your business goals, current tech stack, concurrency requirements, and outline initial architectural options and next steps.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-clock"></i></div>
+          <h5 class="fw-bold">What is the session agenda?</h5>
+          <p class="small text-muted mb-0">We review your business goals, current tech stack, concurrency requirements, and outline initial architectural options and next steps.</p>
         </div>
       </div>
 
       <div class="col-md-6">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-globe-americas"></i></div>
-          <h5>How do you handle time zones?</h5>
-          <p>I collaborate seamlessly with teams across US Eastern/Pacific, European (CET/GMT), and Asian time zones with dedicated overlap hours.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-globe-americas"></i></div>
+          <h5 class="fw-bold">How do you handle time zones?</h5>
+          <p class="small text-muted mb-0">I collaborate seamlessly with teams across US Eastern/Pacific, European (CET/GMT), and Asian time zones with dedicated overlap hours.</p>
         </div>
       </div>
 
       <div class="col-md-6">
-        <div class="framework-card h-100">
-          <div class="framework-icon-wrap"><i class="fas fa-laptop-code"></i></div>
-          <h5>Advisory or Hands-On Delivery?</h5>
-          <p>Both. Depending on your needs, I can provide strategic architectural advisory or lead hands-on implementation and core system builds.</p>
+        <div class="iz-stat-card h-100 p-4 text-start">
+          <div class="iz-service-icon mb-3" style="width: 44px; height: 44px; font-size: 1.1rem;"><i class="fas fa-laptop-code"></i></div>
+          <h5 class="fw-bold">Advisory or Hands-On Delivery?</h5>
+          <p class="small text-muted mb-0">Both. Depending on your needs, I can provide strategic architectural advisory or lead hands-on implementation and core system builds.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+

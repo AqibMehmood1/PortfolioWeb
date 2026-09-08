@@ -1,19 +1,19 @@
-/* Global Styles & Design System Root */
+/* Global Styles & InvoZone Design System Root */
 @import "./assets/css/style.css";
 
 /* Base HTML & Body Settings */
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg-dark);
+  background-color: var(--iz-bg-white);
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-secondary);
+  background-color: var(--iz-bg-white);
+  color: var(--iz-text-body);
   font-family: var(--font-sans);
   overflow-x: hidden;
   margin: 0;
@@ -22,25 +22,25 @@ body {
 
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #060912;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 9999px;
-  border: 2px solid #060912;
+  border: 2px solid #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(99, 102, 241, 0.35);
-  color: #ffffff;
+  background: rgba(135, 230, 75, 0.35);
+  color: #111915;
 }
