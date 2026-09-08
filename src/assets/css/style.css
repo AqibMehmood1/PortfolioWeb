@@ -1,6 +1,7 @@
 /* ==========================================================================
    BILAL AHMAD - ENTERPRISE SOLUTIONS ARCHITECT
-   InvoZone (https://invozone.com/) Authentic B2B Enterprise Technology Design System
+   InvoZone Authentic B2B Enterprise Technology Design System
+   Fully Responsive Multi-Tier Architecture (Mobile, Tablet, Desktop, 4K)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -78,6 +79,8 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--iz-bg-white);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -90,28 +93,50 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 .container {
+  width: 100%;
   max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
-/* Typography Scale */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Typography Scale with Fluid Sizing */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--iz-text-dark);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.025em;
+  word-wrap: break-word;
 }
 
 p {
   color: var(--iz-text-body);
   margin-bottom: 1rem;
+  word-wrap: break-word;
 }
 
 p.lead, .lead {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
   color: #475569;
   line-height: 1.75;
 }
@@ -126,8 +151,9 @@ p.lead, .lead {
 
 /* Section Spacing & Headers */
 .iz-section {
-  padding: 90px 0;
+  padding: clamp(48px, 6vw, 90px) 0;
   position: relative;
+  width: 100%;
 }
 
 .iz-section-dark {
@@ -158,7 +184,7 @@ p.lead, .lead {
 
 .iz-section-header {
   max-width: 760px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto clamp(32px, 4vw, 50px) auto;
   text-align: center;
 }
 
@@ -166,17 +192,18 @@ p.lead, .lead {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 18px;
+  padding: 6px 16px;
   background: var(--iz-green-badge-bg);
   border: 1px solid rgba(106, 198, 47, 0.3);
   border-radius: var(--radius-pill);
   color: var(--iz-dark-button);
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  max-width: 100%;
 }
 
 .iz-tag-dark {
@@ -186,21 +213,15 @@ p.lead, .lead {
 }
 
 .iz-title {
-  font-size: 2.75rem;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   line-height: 1.18;
 }
 
-@media (max-width: 768px) {
-  .iz-title {
-    font-size: 2.1rem;
-  }
-}
-
 .iz-subtitle {
-  font-size: 1.12rem;
+  font-size: clamp(0.95rem, 2vw, 1.12rem);
   color: var(--iz-text-muted);
   line-height: 1.7;
 }
@@ -210,15 +231,15 @@ p.lead, .lead {
 }
 
 /* Utility Max-Width Containers */
-.max-w-700 { max-width: 700px; }
-.max-w-860 { max-width: 860px; }
-.max-w-900 { max-width: 900px; }
+.max-w-700 { max-width: 700px; width: 100%; }
+.max-w-860 { max-width: 860px; width: 100%; }
+.max-w-900 { max-width: 900px; width: 100%; }
 
 /* Subpage Hero Section (InvoZone Facet Backdrop) */
 .iz-hero,
 .iz-page-hero {
   background: #ffffff;
-  padding: 60px 0 50px 0;
+  padding: clamp(40px, 6vw, 65px) 0 clamp(30px, 4vw, 50px) 0;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid #eef2f6;
@@ -241,22 +262,16 @@ p.lead, .lead {
 
 .iz-hero-headline {
   font-family: var(--font-heading);
-  font-size: 3.25rem;
+  font-size: clamp(1.85rem, 4.5vw, 3.25rem);
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.035em;
   color: #111915;
-  margin-bottom: 18px;
-}
-
-@media (max-width: 768px) {
-  .iz-hero-headline {
-    font-size: 2.3rem;
-  }
+  margin-bottom: 16px;
 }
 
 .iz-hero-sub {
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: #475569;
   line-height: 1.7;
   max-width: 720px;
@@ -269,16 +284,19 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 12px 26px;
+  padding: 12px 24px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(135, 230, 75, 0.35);
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  min-height: 44px;
 }
 
 .iz-btn-green:hover {
@@ -294,15 +312,18 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 12px 26px;
+  padding: 12px 24px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   border: none;
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  min-height: 44px;
 }
 
 .iz-btn-dark:hover {
@@ -318,6 +339,7 @@ p.lead, .lead {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-iz-card);
   transition: all var(--transition-base);
+  width: 100%;
 }
 
 .iz-stat-card:hover {
@@ -330,7 +352,7 @@ p.lead, .lead {
 .iz-services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: clamp(16px, 2.5vw, 28px);
 }
 
 @media (max-width: 991px) {
@@ -367,6 +389,7 @@ p.lead, .lead {
   gap: 6px;
   text-decoration: none;
   transition: all var(--transition-fast);
+  min-height: 36px;
 }
 
 .iz-trust-badge img {
@@ -394,21 +417,23 @@ p.lead, .lead {
   font-size: 1.25rem;
   font-weight: 900;
   box-shadow: 0 4px 12px rgba(135, 230, 75, 0.35);
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
-   3. InvoZone Top Ticker & White Sticky Navbar (Screenshot 1 & 2)
+   3. InvoZone Top Ticker & White Sticky Navbar
    -------------------------------------------------------------------------- */
 .iz-top-ticker-bar {
   background: linear-gradient(90deg, #381b7a 0%, #4f28a6 50%, #6b21a8 100%);
   color: #ffffff;
-  padding: 8px 0;
+  padding: 7px 0;
   overflow: hidden;
   position: relative;
   z-index: 1001;
-  font-size: 0.82rem;
+  font-size: clamp(0.74rem, 1.5vw, 0.82rem);
   font-weight: 600;
   letter-spacing: 0.02em;
+  width: 100%;
 }
 
 .iz-ticker-track {
@@ -426,7 +451,7 @@ p.lead, .lead {
 
 .iz-ticker-content span {
   display: inline-block;
-  margin-right: 48px;
+  margin-right: clamp(24px, 4vw, 48px);
 }
 
 @keyframes ticker-slide {
@@ -442,15 +467,17 @@ p.lead, .lead {
   z-index: 1000;
   background: #ffffff;
   border-bottom: 1px solid #eef2f6;
-  padding: 16px 0;
+  padding: clamp(10px, 2vw, 16px) 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-base);
+  width: 100%;
 }
 
 .iz-navbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .iz-brand-invozone {
@@ -458,6 +485,8 @@ p.lead, .lead {
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .iz-logo-icon {
@@ -469,6 +498,7 @@ p.lead, .lead {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 10px rgba(135, 230, 75, 0.4);
+  flex-shrink: 0;
 }
 
 .iz-symbol {
@@ -480,13 +510,19 @@ p.lead, .lead {
   line-height: 1;
 }
 
+.iz-brand-details {
+  min-width: 0;
+  overflow: hidden;
+}
+
 .iz-brand-name {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 800;
   color: #111915;
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .iz-brand-subtag {
@@ -496,10 +532,16 @@ p.lead, .lead {
   margin-left: 2px;
 }
 
+@media (max-width: 440px) {
+  .iz-brand-subtag {
+    display: none;
+  }
+}
+
 .iz-nav-links-white {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: clamp(16px, 2.5vw, 32px);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -520,6 +562,7 @@ p.lead, .lead {
   align-items: center;
   gap: 5px;
   transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .iz-nav-links-white a:hover,
@@ -549,11 +592,13 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 10px 24px;
+  padding: 10px 22px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   transition: all var(--transition-fast);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  min-height: 40px;
 }
 
 .iz-btn-contact-top:hover {
@@ -571,15 +616,24 @@ p.lead, .lead {
 .iz-mobile-toggle-dark {
   display: none;
   background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  border: 1.5px solid #e2e8f0;
   color: #111915;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.iz-mobile-toggle-dark:hover,
+.iz-mobile-toggle-dark:focus {
+  background: var(--iz-green-tint);
+  border-color: var(--iz-green-dark);
+  color: var(--iz-green-dark);
 }
 
 @media (max-width: 991px) {
@@ -591,26 +645,52 @@ p.lead, .lead {
   }
 }
 
+@media (max-width: 576px) {
+  .iz-btn-contact-top {
+    display: none !important;
+  }
+}
+
+/* Mobile Drawer Menu */
 .iz-mobile-drawer-white {
   display: none;
   flex-direction: column;
   background: #ffffff;
   border-top: 1px solid #e2e8f0;
-  padding: 20px;
-  gap: 10px;
+  padding: 18px 20px 24px 20px;
+  gap: 8px;
+  max-height: calc(100vh - 75px);
+  overflow-y: auto;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
 }
 
 .iz-mobile-drawer-white.open {
   display: flex;
+  animation: izDrawerSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes izDrawerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .iz-mobile-drawer-white a {
   color: #1e293b;
   font-size: 1.05rem;
   font-weight: 600;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+  min-height: 44px;
 }
 
 .iz-mobile-drawer-white a:hover,
@@ -619,14 +699,14 @@ p.lead, .lead {
   color: var(--iz-green-dark);
 }
 
-/* InvoZone Interactive Mega Menu Drawer (Screenshot 1) */
+/* InvoZone Interactive Mega Menu Drawer */
 .iz-mega-menu-overlay {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   min-height: calc(100vh - 100%);
-  background: rgba(17, 25, 21, 0.55);
+  background: rgba(17, 25, 21, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 1050;
@@ -646,7 +726,6 @@ p.lead, .lead {
   }
 }
 
-
 .iz-mega-menu-card {
   background: #ffffff;
   border-radius: var(--radius-2xl);
@@ -657,7 +736,7 @@ p.lead, .lead {
 
 .iz-mega-left-panel {
   background: linear-gradient(145deg, #87e64b 0%, #9fe870 100%);
-  padding: 40px 32px;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px);
   color: #111915;
   display: flex;
   flex-direction: column;
@@ -676,25 +755,24 @@ p.lead, .lead {
 
 .iz-mega-left-title {
   font-family: var(--font-heading);
-  font-size: 1.85rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
   font-weight: 800;
   line-height: 1.15;
   color: #111915;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .iz-mega-left-desc {
   font-size: 0.92rem;
   color: #1e3a20;
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .iz-mega-divider-recog {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  position: relative;
 }
 
 .iz-mega-divider-recog span {
@@ -703,7 +781,6 @@ p.lead, .lead {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #1b381d;
-  background: transparent;
 }
 
 .iz-mega-recog-logos-grid {
@@ -725,92 +802,6 @@ p.lead, .lead {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.recog-pill {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: var(--radius-pill);
-  padding: 4px 12px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #111915;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Industries Menu Grid (Screenshot 2) */
-.iz-industries-menu-card {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.iz-industries-menu-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px 24px;
-}
-
-@media (max-width: 991px) {
-  .iz-industries-menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .iz-industries-menu-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.iz-ind-item-tile {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  text-decoration: none;
-  background: transparent;
-  transition: all var(--transition-fast);
-}
-
-.iz-ind-item-tile:hover {
-  background: #f8fafc;
-  transform: translateY(-2px);
-}
-
-.iz-ind-dark-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #111915;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
-  flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform var(--transition-fast);
-}
-
-.iz-ind-item-tile:hover .iz-ind-dark-icon {
-  transform: scale(1.08);
-  background: var(--iz-dark-button);
-}
-
-.iz-ind-name {
-  font-family: var(--font-heading);
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: #111915;
-  margin-bottom: 2px;
-  line-height: 1.2;
-}
-
-.iz-ind-summary {
-  font-size: 0.82rem;
-  color: #64748b;
-  line-height: 1.45;
-}
-
-/* Simplified Architecture Drawer Cards */
 .iz-simplified-card {
   max-width: 1040px;
   margin: 0 auto;
@@ -877,21 +868,21 @@ p.lead, .lead {
 
 .iz-mega-right-panel {
   background: #ffffff;
-  padding: 36px 40px;
+  padding: clamp(20px, 3vw, 36px) clamp(20px, 3.5vw, 40px);
 }
 
 .iz-mega-header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding-bottom: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #f1f5f9;
 }
 
 .iz-mega-category-title {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
   font-weight: 800;
   color: #111915;
   margin: 0;
@@ -916,97 +907,15 @@ p.lead, .lead {
   color: #111915;
 }
 
-.iz-mega-columns-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-  margin-bottom: 30px;
-}
-
-@media (max-width: 991px) {
-  .iz-mega-columns-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.iz-mega-col-heading {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #111915;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.iz-square-bullet {
-  width: 7px;
-  height: 7px;
-  background: var(--iz-green-dark);
-  border-radius: 2px;
-  display: inline-block;
-}
-
-.iz-mega-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.iz-mega-list li {
-  margin-bottom: 10px;
-}
-
-.iz-mega-list a {
-  color: #475569;
-  font-size: 0.88rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  display: inline-block;
-}
-
-.iz-mega-list a:hover {
-  color: var(--iz-green-dark);
-  transform: translateX(3px);
-}
-
-.iz-mega-footer-action {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 20px;
-  border-top: 1px solid #f1f5f9;
-}
-
-.iz-btn-dark-mega {
-  background: #111915;
-  color: #ffffff !important;
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 700;
-  padding: 10px 24px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all var(--transition-fast);
-}
-
-.iz-btn-dark-mega:hover {
-  background: var(--iz-green-primary);
-  color: #111915 !important;
-}
-
 /* --------------------------------------------------------------------------
-   4. InvoZone Hero Section with Origami Facets (Screenshot 2)
+   4. InvoZone Hero Section with Origami Facets
    -------------------------------------------------------------------------- */
 .iz-hero-origami {
   background: #ffffff;
-  padding: 60px 0 90px 0;
+  padding: clamp(36px, 5vw, 60px) 0 clamp(48px, 6vw, 90px) 0;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .iz-hero-origami::before {
@@ -1027,7 +936,10 @@ p.lead, .lead {
   font-size: 0.84rem;
   font-weight: 600;
   color: #64748b;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
 }
 
 .iz-breadcrumb a {
@@ -1048,7 +960,8 @@ p.lead, .lead {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .iz-avatar-stack-origami {
@@ -1071,30 +984,18 @@ p.lead, .lead {
 }
 
 .iz-social-proof-text-origami {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
   font-weight: 700;
   color: #111915;
 }
 
 .iz-hero-title-main {
-  font-size: 4rem;
+  font-size: clamp(2.1rem, 5.2vw, 4rem);
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   color: #111915;
-  margin-bottom: 22px;
-}
-
-@media (max-width: 991px) {
-  .iz-hero-title-main {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .iz-hero-title-main {
-    font-size: 2.3rem;
-  }
+  margin-bottom: 20px;
 }
 
 .text-green-invo {
@@ -1102,17 +1003,17 @@ p.lead, .lead {
 }
 
 .iz-hero-sub-origami {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
   color: #475569;
   line-height: 1.7;
-  margin-bottom: 34px;
+  margin-bottom: 30px;
   max-width: 600px;
 }
 
 .iz-hero-actions-origami {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
 }
 
 .iz-btn-book-call {
@@ -1121,14 +1022,16 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 700;
-  padding: 14px 30px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   transition: all var(--transition-fast);
   box-shadow: 0 6px 20px rgba(17, 25, 21, 0.2);
+  min-height: 48px;
 }
 
 .iz-btn-book-call:hover {
@@ -1144,13 +1047,15 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 700;
-  padding: 14px 30px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   transition: all var(--transition-fast);
+  min-height: 48px;
 }
 
 .iz-btn-matched:hover {
@@ -1160,20 +1065,39 @@ p.lead, .lead {
   transform: translateY(-2px);
 }
 
-/* InvoZone Floating Inquiry Card (Screenshot 2) */
+@media (max-width: 576px) {
+  .iz-hero-actions-origami {
+    flex-direction: column;
+    width: 100%;
+  }
+  .iz-btn-book-call,
+  .iz-btn-matched {
+    width: 100%;
+  }
+}
+
+.iz-trust-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  align-items: center;
+}
+
+/* InvoZone Floating Inquiry Card */
 .iz-inquiry-card {
   background: #ffffff;
-  border-radius: 28px;
+  border-radius: clamp(18px, 3vw, 28px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  padding: 38px 34px;
+  padding: clamp(22px, 4vw, 38px) clamp(18px, 3.5vw, 34px);
   border: 1px solid #eef2f6;
   position: relative;
   z-index: 10;
+  width: 100%;
 }
 
 .iz-inquiry-title {
   font-family: var(--font-heading);
-  font-size: 1.7rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
   font-weight: 800;
   color: #111915;
   text-align: center;
@@ -1181,23 +1105,34 @@ p.lead, .lead {
 }
 
 .iz-inquiry-sub {
-  font-size: 0.9rem;
+  font-size: clamp(0.82rem, 1.5vw, 0.9rem);
   color: #64748b;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-.iz-input-light {
+.iz-input-light,
+.iz-select-light,
+.iz-textarea-light {
   width: 100%;
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 12px 14px;
   font-family: var(--font-sans);
-  font-size: 0.92rem;
+  font-size: 16px; /* Prevents iOS auto-zoom */
   color: #111915;
   background: #f8fafc;
   outline: none;
   transition: all var(--transition-fast);
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .iz-input-light,
+  .iz-select-light,
+  .iz-textarea-light {
+    font-size: 0.92rem;
+  }
 }
 
 .iz-input-light:focus,
@@ -1209,46 +1144,29 @@ p.lead, .lead {
 }
 
 .iz-select-light {
-  width: 100%;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  color: #111915;
-  background: #f8fafc;
-  outline: none;
-  transition: all var(--transition-fast);
   cursor: pointer;
 }
 
 .iz-textarea-light {
-  width: 100%;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  color: #111915;
-  background: #f8fafc;
-  outline: none;
-  transition: all var(--transition-fast);
   resize: vertical;
 }
 
 .iz-checkbox-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   font-size: 0.82rem;
   color: #64748b;
-  margin: 12px 0 20px 0;
+  margin: 12px 0 18px 0;
+  line-height: 1.4;
 }
 
 .iz-checkbox-row input[type="checkbox"] {
   accent-color: var(--iz-green-dark);
   width: 16px;
   height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 .iz-submit-lime-btn {
@@ -1256,7 +1174,7 @@ p.lead, .lead {
   background: var(--iz-green-primary);
   color: #111915;
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 800;
   padding: 14px;
   border-radius: var(--radius-pill);
@@ -1268,6 +1186,7 @@ p.lead, .lead {
   gap: 8px;
   box-shadow: 0 6px 20px rgba(135, 230, 75, 0.4);
   transition: all var(--transition-fast);
+  min-height: 48px;
 }
 
 .iz-submit-lime-btn:hover {
@@ -1277,32 +1196,33 @@ p.lead, .lead {
 }
 
 /* --------------------------------------------------------------------------
-   5. InvoZone Dark Forest Section with Triangle Vector (Screenshot 3)
+   5. InvoZone Dark Forest Section with Scaled Polygon Vector
    -------------------------------------------------------------------------- */
 .iz-dark-value-section {
   background: #152b1b;
   color: #ffffff;
-  padding: 100px 0 110px 0;
+  padding: clamp(60px, 7vw, 100px) 0 clamp(70px, 8vw, 110px) 0;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .iz-dark-value-header {
   max-width: 860px;
-  margin: 0 auto 60px auto;
+  margin: 0 auto clamp(36px, 5vw, 60px) auto;
   text-align: center;
 }
 
 .iz-dark-value-header h2 {
-  font-size: 2.85rem;
+  font-size: clamp(1.85rem, 4vw, 2.85rem);
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.03em;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .iz-dark-value-header p {
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: #d1fae5;
   line-height: 1.6;
 }
@@ -1310,7 +1230,7 @@ p.lead, .lead {
 .iz-value-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: clamp(16px, 2vw, 24px);
 }
 
 @media (max-width: 991px) {
@@ -1328,28 +1248,28 @@ p.lead, .lead {
 .iz-value-mint-card {
   background: #def7c8;
   color: #111915;
-  border-radius: 24px;
-  padding: 34px 26px 80px 26px;
+  border-radius: clamp(18px, 2.5vw, 24px);
+  padding: clamp(24px, 3vw, 34px) clamp(18px, 2.5vw, 26px) 70px clamp(18px, 2.5vw, 26px);
   position: relative;
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   transition: all var(--transition-base);
-  min-height: 380px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
 }
 
 .iz-value-mint-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
 }
 
 .iz-value-mint-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: clamp(1.25rem, 2vw, 1.45rem);
   font-weight: 800;
   color: #111915;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .iz-value-mint-card p {
@@ -1361,15 +1281,14 @@ p.lead, .lead {
   z-index: 2;
 }
 
-/* Bottom Origami Mountain Graphic */
 .iz-triangle-polygon {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 110px;
+  height: 90px;
   background: linear-gradient(180deg, #1d4e38 0%, #0d2c1e 100%);
-  clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 20%, 0% 100%, 100% 100%);
   z-index: 1;
   opacity: 0.9;
   transition: transform var(--transition-smooth);
@@ -1380,11 +1299,12 @@ p.lead, .lead {
 }
 
 /* --------------------------------------------------------------------------
-   6. InvoZone "Services We Offer" Interactive Accordion (Screenshot 4)
+   6. InvoZone "Services We Offer" Interactive Accordion
    -------------------------------------------------------------------------- */
 .iz-services-accordion-section {
   background: #ffffff;
-  padding: 100px 0;
+  padding: clamp(50px, 6vw, 100px) 0;
+  width: 100%;
 }
 
 .iz-services-accordion-header {
@@ -1392,19 +1312,19 @@ p.lead, .lead {
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 50px;
-  gap: 20px;
+  margin-bottom: clamp(30px, 4vw, 50px);
+  gap: 16px;
 }
 
 .iz-accordion-title {
-  font-size: 3rem;
+  font-size: clamp(1.85rem, 4vw, 3rem);
   font-weight: 800;
   color: #111915;
   margin: 0;
 }
 
 .iz-accordion-tagline {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
   color: #64748b;
   margin: 0;
 }
@@ -1415,13 +1335,15 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 12px 26px;
+  padding: 12px 24px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  min-height: 44px;
 }
 
 .iz-btn-view-all:hover {
@@ -1432,11 +1354,12 @@ p.lead, .lead {
 .iz-accordion-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .iz-accordion-row {
   border-top: 1.5px solid #e2e8f0;
-  padding: 28px 0;
+  padding: clamp(20px, 3vw, 28px) 0;
   transition: background var(--transition-fast);
 }
 
@@ -1449,28 +1372,32 @@ p.lead, .lead {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  gap: 12px;
 }
 
 .iz-accordion-meta-left {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: clamp(12px, 2.5vw, 36px);
+  min-width: 0;
 }
 
 .iz-accordion-index {
   font-family: var(--font-mono);
-  font-size: 1.35rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
   font-weight: 700;
   color: #94a3b8;
-  min-width: 50px;
+  min-width: clamp(28px, 4vw, 50px);
+  flex-shrink: 0;
 }
 
 .iz-accordion-heading {
   font-family: var(--font-heading);
-  font-size: 1.85rem;
+  font-size: clamp(1.2rem, 2.8vw, 1.85rem);
   font-weight: 800;
   color: #111915;
   margin: 0;
+  line-height: 1.25;
 }
 
 .iz-accordion-toggle-circle {
@@ -1482,10 +1409,11 @@ p.lead, .lead {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   cursor: pointer;
   transition: all var(--transition-fast);
   flex-shrink: 0;
+  border: none;
 }
 
 .iz-accordion-toggle-circle:hover {
@@ -1494,21 +1422,16 @@ p.lead, .lead {
 }
 
 .iz-accordion-body-expanded {
-  margin-top: 24px;
-  padding-left: 86px;
-}
-
-@media (max-width: 768px) {
-  .iz-accordion-body-expanded {
-    padding-left: 0;
-  }
+  margin-top: 20px;
+  padding-left: clamp(0px, 4vw, 86px);
 }
 
 .iz-accordion-media-box {
   border-radius: 18px;
   overflow: hidden;
-  height: 180px;
+  height: clamp(160px, 20vw, 200px);
   background: #0f172a;
+  width: 100%;
 }
 
 .iz-accordion-media-box img {
@@ -1518,17 +1441,23 @@ p.lead, .lead {
 }
 
 .iz-accordion-desc {
-  font-size: 1.05rem;
+  font-size: clamp(0.92rem, 1.8vw, 1.05rem);
   color: #475569;
   line-height: 1.7;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .iz-accordion-bullets-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px 24px;
+  gap: 10px clamp(12px, 2vw, 24px);
   margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+  .iz-accordion-bullets-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .iz-accordion-bullet-item {
@@ -1546,6 +1475,7 @@ p.lead, .lead {
   border-radius: 50%;
   background: var(--iz-green-dark);
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .iz-accordion-learn-more {
@@ -1556,6 +1486,7 @@ p.lead, .lead {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: 40px;
 }
 
 .iz-accordion-learn-more:hover {
@@ -1563,11 +1494,12 @@ p.lead, .lead {
 }
 
 /* --------------------------------------------------------------------------
-   7. InvoZone "Engineers For Every Stack" Tech Matrix (Screenshot 5)
+   7. InvoZone "Engineers For Every Stack" Tech Matrix
    -------------------------------------------------------------------------- */
 .iz-tech-matrix-section {
   background: #ffffff;
-  padding: 90px 0;
+  padding: clamp(48px, 6vw, 90px) 0;
+  width: 100%;
 }
 
 .iz-tech-matrix-header {
@@ -1575,19 +1507,19 @@ p.lead, .lead {
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 36px;
-  gap: 20px;
+  margin-bottom: clamp(24px, 3vw, 36px);
+  gap: 16px;
 }
 
 .iz-tech-matrix-title {
-  font-size: 2.85rem;
+  font-size: clamp(1.75rem, 3.8vw, 2.85rem);
   font-weight: 900;
   color: #111915;
   margin-bottom: 8px;
 }
 
 .iz-tech-matrix-sub {
-  font-size: 1.05rem;
+  font-size: clamp(0.92rem, 1.8vw, 1.05rem);
   color: #64748b;
   margin: 0;
 }
@@ -1600,6 +1532,7 @@ p.lead, .lead {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-height: 42px;
 }
 
 .iz-tech-search-pill input {
@@ -1608,13 +1541,14 @@ p.lead, .lead {
   outline: none;
   font-size: 0.9rem;
   color: #111915;
+  width: 100%;
 }
 
 .iz-stack-tabs-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 36px;
+  gap: 8px;
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
 
 .iz-stack-tab-pill {
@@ -1631,6 +1565,8 @@ p.lead, .lead {
   align-items: center;
   gap: 8px;
   transition: all var(--transition-fast);
+  min-height: 40px;
+  white-space: nowrap;
 }
 
 .iz-stack-tab-pill:hover {
@@ -1650,6 +1586,7 @@ p.lead, .lead {
   height: 8px;
   border-radius: 50%;
   background: var(--iz-green-dark);
+  flex-shrink: 0;
 }
 
 .iz-stack-tab-pill.active .iz-status-dot {
@@ -1662,15 +1599,23 @@ p.lead, .lead {
   gap: 16px;
 }
 
+@media (max-width: 1199px) {
+  .iz-tech-matrix-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (max-width: 991px) {
   .iz-tech-matrix-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 }
 
 @media (max-width: 576px) {
   .iz-tech-matrix-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
 
@@ -1678,15 +1623,15 @@ p.lead, .lead {
   background: #f8fafc;
   border: 1.5px solid #eef2f6;
   border-radius: 20px;
-  padding: 24px 16px;
+  padding: clamp(16px, 2vw, 24px) clamp(10px, 1.5vw, 16px);
   text-align: center;
   transition: all var(--transition-fast);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-height: 120px;
+  gap: 10px;
+  min-height: 110px;
 }
 
 .iz-tech-tile:hover {
@@ -1697,12 +1642,12 @@ p.lead, .lead {
 }
 
 .iz-tech-tile-icon {
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 2.5vw, 1.8rem);
   line-height: 1;
 }
 
 .iz-tech-tile-name {
-  font-size: 0.92rem;
+  font-size: clamp(0.82rem, 1.5vw, 0.92rem);
   font-weight: 700;
   color: #111915;
   display: inline-flex;
@@ -1721,16 +1666,18 @@ p.lead, .lead {
   color: var(--iz-green-dark);
 }
 
+/* Service Card Token */
 .iz-service-card {
   background: #ffffff;
   border: 1.5px solid var(--iz-border-light);
   border-radius: var(--radius-xl);
-  padding: 32px 28px;
+  padding: clamp(20px, 3vw, 32px) clamp(18px, 2.5vw, 28px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: var(--shadow-iz-card);
   transition: all var(--transition-base);
+  width: 100%;
 }
 
 .iz-service-card:hover {
@@ -1743,7 +1690,7 @@ p.lead, .lead {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .iz-service-icon {
@@ -1757,6 +1704,7 @@ p.lead, .lead {
   justify-content: center;
   color: var(--iz-dark-button);
   font-size: 1.3rem;
+  flex-shrink: 0;
 }
 
 .iz-service-index {
@@ -1766,23 +1714,24 @@ p.lead, .lead {
   color: #cbd5e1;
 }
 
-.iz-service-card h3 {
-  font-size: 1.35rem;
+.iz-service-card h3,
+.iz-service-card h4 {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .iz-service-card p {
   font-size: 0.94rem;
   color: var(--iz-text-muted);
   line-height: 1.65;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .iz-deliverables-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 18px 0;
 }
 
 .iz-deliverables-list li {
@@ -1797,16 +1746,17 @@ p.lead, .lead {
 .iz-deliverables-list li i {
   color: var(--iz-green-dark);
   margin-top: 4px;
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
-   7. InvoZone Industries Grid (Fix for Screenshot 1)
+   8. InvoZone Industries Grid
    -------------------------------------------------------------------------- */
 .industry-bento-grid,
 .iz-industries-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: clamp(16px, 2.5vw, 24px);
 }
 
 @media (max-width: 991px) {
@@ -1827,13 +1777,14 @@ p.lead, .lead {
   background: #ffffff;
   border: 1.5px solid var(--iz-border-light);
   border-radius: var(--radius-xl);
-  padding: 28px 24px;
+  padding: clamp(20px, 3vw, 28px) clamp(16px, 2.5vw, 24px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: var(--shadow-iz-card);
   transition: all var(--transition-base);
-  min-height: 240px;
+  min-height: 220px;
+  width: 100%;
 }
 
 .iz-industry-card:hover {
@@ -1846,7 +1797,8 @@ p.lead, .lead {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  gap: 8px;
 }
 
 .iz-industry-icon {
@@ -1876,7 +1828,7 @@ p.lead, .lead {
 }
 
 .iz-industry-title {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.25rem);
   font-weight: 700;
   color: var(--iz-text-dark);
   margin-bottom: 8px;
@@ -1886,14 +1838,14 @@ p.lead, .lead {
   font-size: 0.92rem;
   color: var(--iz-text-muted);
   line-height: 1.6;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .iz-industry-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid #f1f5f9;
   gap: 8px;
 }
@@ -1918,12 +1870,13 @@ p.lead, .lead {
 }
 
 /* --------------------------------------------------------------------------
-   8. InvoZone Case Studies (Fix for Screenshot 2)
+   9. InvoZone Case Studies & Projects
    -------------------------------------------------------------------------- */
 .iz-projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  gap: clamp(18px, 3vw, 28px);
+  width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -1941,6 +1894,7 @@ p.lead, .lead {
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .iz-project-card:hover {
@@ -1951,7 +1905,7 @@ p.lead, .lead {
 
 .iz-project-media {
   width: 100%;
-  height: 240px;
+  height: clamp(190px, 25vw, 240px);
   background: #0f172a;
   position: relative;
   overflow: hidden;
@@ -1979,7 +1933,7 @@ p.lead, .lead {
   color: var(--iz-green-primary);
   font-size: 0.76rem;
   font-weight: 700;
-  padding: 5px 14px;
+  padding: 5px 12px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(135, 230, 75, 0.4);
   z-index: 2;
@@ -1987,7 +1941,7 @@ p.lead, .lead {
 }
 
 .iz-project-body {
-  padding: 28px;
+  padding: clamp(18px, 3vw, 28px);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -1995,7 +1949,7 @@ p.lead, .lead {
 }
 
 .iz-project-body h4 {
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -2011,28 +1965,47 @@ p.lead, .lead {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .iz-chip {
   background: var(--iz-bg-offwhite);
-  border: 1px solid var(--iz-border-light);
+  border: 1.5px solid var(--iz-border-light);
   color: var(--iz-text-body);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  text-decoration: none !important;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+a.iz-chip {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+a.iz-chip:hover {
+  background: var(--iz-green-tint);
+  border-color: var(--iz-green-dark);
+  color: var(--iz-green-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 198, 47, 0.2);
 }
 
 .iz-project-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-top: 16px;
+  gap: 8px;
+  padding-top: 14px;
   border-top: 1px solid var(--iz-border-light);
+  flex-wrap: wrap;
 }
 
 .iz-btn-copy-link {
@@ -2060,7 +2033,7 @@ p.lead, .lead {
 }
 
 /* --------------------------------------------------------------------------
-   9. InvoZone Filter Nav Bar & Topic Pills (Fix for Screenshot 5)
+   10. Filter Navigation Bar & Topic Pills
    -------------------------------------------------------------------------- */
 .filter-nav-bar,
 .topic-pills-row,
@@ -2081,16 +2054,19 @@ a.filter-pill-btn,
   font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 600;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   outline: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  min-height: 40px;
+  white-space: nowrap;
 }
 
 button.filter-pill-btn:hover,
@@ -2112,7 +2088,7 @@ a.filter-pill-btn.active,
 }
 
 /* --------------------------------------------------------------------------
-   10. InvoZone 3-Step Process Framework (Screenshot 3 Exact Replica)
+   11. InvoZone 3-Step Process Framework
    -------------------------------------------------------------------------- */
 .iz-process-network-section {
   background: #09150d;
@@ -2122,18 +2098,19 @@ a.filter-pill-btn.active,
     linear-gradient(90deg, rgba(135, 230, 75, 0.08) 1px, transparent 1px);
   background-size: 100% 100%, 36px 36px, 36px 36px;
   color: #ffffff;
-  padding: 100px 0 110px 0;
+  padding: clamp(60px, 7vw, 100px) 0 clamp(70px, 8vw, 110px) 0;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .iz-process-headline-wrap {
-  margin-bottom: 60px;
+  margin-bottom: clamp(36px, 5vw, 60px);
 }
 
 .iz-process-title-white {
   font-family: var(--font-heading);
-  font-size: 2.85rem;
+  font-size: clamp(1.85rem, 4vw, 2.85rem);
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.035em;
@@ -2143,7 +2120,7 @@ a.filter-pill-btn.active,
 
 .iz-process-title-green {
   font-family: var(--font-heading);
-  font-size: 2.85rem;
+  font-size: clamp(1.85rem, 4vw, 2.85rem);
   font-weight: 900;
   color: var(--iz-green-primary);
   letter-spacing: -0.035em;
@@ -2151,15 +2128,8 @@ a.filter-pill-btn.active,
   line-height: 1.15;
 }
 
-@media (max-width: 768px) {
-  .iz-process-title-white,
-  .iz-process-title-green {
-    font-size: 2.1rem;
-  }
-}
-
 .iz-process-column {
-  padding: 20px 16px;
+  padding: clamp(16px, 2.5vw, 24px) 16px;
   text-align: center;
 }
 
@@ -2175,7 +2145,7 @@ a.filter-pill-btn.active,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 24px auto;
+  margin: 0 auto 20px auto;
   box-shadow: 0 0 24px rgba(135, 230, 75, 0.5);
   transition: transform var(--transition-fast);
 }
@@ -2187,10 +2157,10 @@ a.filter-pill-btn.active,
 
 .iz-process-col-title {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 800;
   color: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   letter-spacing: -0.02em;
 }
 
@@ -2213,9 +2183,11 @@ a.filter-pill-btn.active,
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   transition: all var(--transition-fast);
+  min-height: 48px;
 }
 
 .iz-btn-white-pill:hover {
@@ -2229,9 +2201,10 @@ a.filter-pill-btn.active,
   background: #ffffff;
   border: 1.5px solid var(--iz-border-light);
   border-radius: var(--radius-xl);
-  padding: 28px 22px;
+  padding: clamp(18px, 2.5vw, 28px) clamp(16px, 2vw, 22px);
   box-shadow: var(--shadow-iz-card);
   transition: all var(--transition-base);
+  width: 100%;
 }
 
 .iz-process-card:hover {
@@ -2244,14 +2217,15 @@ a.filter-pill-btn.active,
   font-size: 2rem;
   font-weight: 800;
   color: var(--iz-green-dark);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1;
 }
 
-.iz-process-card h5 {
-  font-size: 1.2rem;
+.iz-process-card h5,
+.iz-process-card h6 {
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .iz-process-card p {
@@ -2262,7 +2236,7 @@ a.filter-pill-btn.active,
 }
 
 /* --------------------------------------------------------------------------
-   11. InvoZone 2-Column Contact Box (Fix for Screenshot 3 & 5)
+   12. InvoZone 2-Column Contact Box
    -------------------------------------------------------------------------- */
 .iz-contact-box {
   background: #ffffff;
@@ -2270,21 +2244,16 @@ a.filter-pill-btn.active,
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-iz-hover);
   overflow: hidden;
+  width: 100%;
 }
 
 .iz-form-side {
-  padding: 44px;
-}
-
-@media (max-width: 768px) {
-  .iz-form-side {
-    padding: 30px 20px;
-  }
+  padding: clamp(24px, 4vw, 44px);
 }
 
 .iz-stats-side {
   background: var(--iz-green-sage);
-  padding: 44px;
+  padding: clamp(24px, 4vw, 44px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2302,14 +2271,20 @@ a.filter-pill-btn.active,
   width: 100%;
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  padding: 13px 18px;
+  padding: 13px 16px;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 16px; /* Prevents iOS auto-zoom */
   color: var(--iz-text-dark);
   background: #ffffff;
   outline: none;
   transition: all var(--transition-fast);
   margin-bottom: 14px;
+}
+
+@media (min-width: 768px) {
+  .iz-input {
+    font-size: 0.95rem;
+  }
 }
 
 .iz-input:focus {
@@ -2321,15 +2296,21 @@ a.filter-pill-btn.active,
   width: 100%;
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  padding: 13px 18px;
+  padding: 13px 16px;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 16px; /* Prevents iOS auto-zoom */
   color: var(--iz-text-dark);
   background: #ffffff;
   outline: none;
   transition: all var(--transition-fast);
   margin-bottom: 16px;
   resize: vertical;
+}
+
+@media (min-width: 768px) {
+  .iz-textarea {
+    font-size: 0.95rem;
+  }
 }
 
 .iz-textarea:focus {
@@ -2353,6 +2334,7 @@ a.filter-pill-btn.active,
   justify-content: center;
   gap: 10px;
   transition: background var(--transition-fast);
+  min-height: 48px;
 }
 
 .iz-submit-btn:hover {
@@ -2367,13 +2349,13 @@ a.filter-pill-btn.active,
   background: #ffffff;
   border: 1.5px solid var(--iz-border-light);
   border-radius: 16px;
-  padding: 14px 18px;
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 18px);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 12px;
   box-shadow: var(--shadow-iz-card);
   width: 100%;
 }
@@ -2408,17 +2390,18 @@ a.filter-pill-btn.active,
 }
 
 .channel-meta .value {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
   font-weight: 700;
   color: var(--iz-text-dark);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
 }
 
 .channel-copy-btn {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
   background: #f8fafc;
   border: 1px solid #d1d5db;
@@ -2440,14 +2423,15 @@ a.filter-pill-btn.active,
 }
 
 /* --------------------------------------------------------------------------
-   12. InvoZone Multi-Column Footer (Fix for Screenshot 4)
+   13. InvoZone Multi-Column Footer
    -------------------------------------------------------------------------- */
 .iz-footer {
   background: #111915;
   color: #cbd5e1;
-  padding: 80px 0 36px 0;
+  padding: clamp(48px, 6vw, 80px) 0 32px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
+  width: 100%;
 }
 
 .iz-footer h4,
@@ -2458,7 +2442,7 @@ a.filter-pill-btn.active,
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .iz-footer p,
@@ -2485,6 +2469,7 @@ a.filter-pill-btn.active,
   text-decoration: none;
   transition: all var(--transition-fast);
   display: inline-block;
+  padding: 2px 0;
 }
 
 .iz-footer-links a:hover {
@@ -2494,8 +2479,8 @@ a.filter-pill-btn.active,
 
 .iz-footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 28px;
-  margin-top: 50px;
+  padding-top: 24px;
+  margin-top: clamp(32px, 5vw, 50px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -2509,10 +2494,27 @@ a.filter-pill-btn.active,
   color: #ffffff;
 }
 
+@media (max-width: 768px) {
+  .iz-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    justify-content: center;
+  }
+  .iz-footer-bottom .d-flex {
+    flex-direction: column;
+    gap: 8px !important;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Back to Top Button
+   -------------------------------------------------------------------------- */
 .back-to-top {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: clamp(16px, 3vw, 28px);
+  right: clamp(16px, 3vw, 28px);
   left: auto;
   width: 44px;
   height: 44px;
@@ -2547,7 +2549,7 @@ a.filter-pill-btn.active,
 }
 
 /* --------------------------------------------------------------------------
-   13. InvoZone Modal & Timeline Styles
+   15. Modal & Timeline Styles
    -------------------------------------------------------------------------- */
 .iz-modal-backdrop {
   position: fixed;
@@ -2559,7 +2561,7 @@ a.filter-pill-btn.active,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: clamp(10px, 2.5vw, 20px);
 }
 
 .iz-modal-dialog {
@@ -2567,21 +2569,22 @@ a.filter-pill-btn.active,
   border-radius: var(--radius-2xl);
   max-width: 800px;
   width: 100%;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
 }
 
 .iz-modal-header {
-  padding: 24px 32px;
+  padding: clamp(16px, 2.5vw, 24px) clamp(18px, 3vw, 32px);
   border-bottom: 1px solid var(--iz-border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .iz-modal-body {
-  padding: 32px;
+  padding: clamp(18px, 3vw, 32px);
 }
 
 .timeline-flow {
@@ -2592,7 +2595,7 @@ a.filter-pill-btn.active,
 
 .timeline-item {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: clamp(24px, 3vw, 32px);
 }
 
 .timeline-item:last-child {
@@ -2621,7 +2624,7 @@ a.filter-pill-btn.active,
 }
 
 .timeline-title-row h5 {
-  font-size: 1.15rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.15rem);
   font-weight: 700;
   color: var(--iz-text-dark);
   margin-bottom: 0;
@@ -2635,6 +2638,7 @@ a.filter-pill-btn.active,
   background: var(--iz-green-badge-bg);
   padding: 2px 10px;
   border-radius: var(--radius-pill);
+  white-space: nowrap;
 }
 
 .timeline-company {
@@ -2663,6 +2667,8 @@ a.filter-pill-btn.active,
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--iz-border-light);
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .toast-container-custom {

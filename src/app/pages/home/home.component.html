@@ -70,19 +70,19 @@
 
           <form (submit)="submitInquiry(); $event.preventDefault()">
             <div class="row g-2 mb-2">
-              <div class="col-6">
+              <div class="col-12 col-sm-6">
                 <input type="text" class="iz-input-light" [(ngModel)]="inquiryForm.fullName" name="fullName" placeholder="Enter your full name" required>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-sm-6">
                 <input type="email" class="iz-input-light" [(ngModel)]="inquiryForm.email" name="email" placeholder="Enter Email *" required>
               </div>
             </div>
 
             <div class="row g-2 mb-2">
-              <div class="col-6">
+              <div class="col-12 col-sm-6">
                 <input type="tel" class="iz-input-light" [(ngModel)]="inquiryForm.phone" name="phone" placeholder="🇵🇰 +92 | Phone">
               </div>
-              <div class="col-6">
+              <div class="col-12 col-sm-6">
                 <select class="iz-select-light" [(ngModel)]="inquiryForm.techStack" name="techStack">
                   <option value="Multi-Tenant SaaS Architecture">SaaS Architecture</option>
                   <option value="Autonomous AI Agents & GenAI">AI Agents & GenAI</option>

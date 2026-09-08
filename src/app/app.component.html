@@ -242,7 +242,7 @@
   <div class="container">
     <div class="row g-5">
       <!-- Col 1: Brand & Bio -->
-      <div class="col-lg-4">
+      <div class="col-12 col-lg-4 mb-3 mb-lg-0">
         <div class="d-flex align-items-center gap-3 mb-3">
           <div class="iz-brand-symbol">
             <i class="fas fa-cubes"></i>
@@ -255,7 +255,7 @@
         <p class="small text-muted mb-4">
           Helping Startups, SMBs, and Enterprises architect scalable multi-tenant SaaS products, autonomous AI agents, and high-performance cloud applications with 9+ years of proven delivery.
         </p>
-        <div class="d-flex flex-wrap gap-2">
+        <div class="d-flex flex-wrap gap-3">
           <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-trust-badge">
             <i class="fab fa-linkedin text-primary"></i> LinkedIn
           </a>
@@ -269,7 +269,7 @@
       </div>
 
       <!-- Col 2: Services -->
-      <div class="col-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
         <h5>Services</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/services">SaaS Multi-Tenancy</a></li>
@@ -281,7 +281,7 @@
       </div>
 
       <!-- Col 3: Case Studies -->
-      <div class="col-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
         <h5>Case Studies</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/projects">Scrole Platform</a></li>
@@ -294,7 +294,7 @@
       </div>
 
       <!-- Col 4: Technologies -->
-      <div class="col-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
         <h5>Tech Radar</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/expertise">.NET 9 / C#</a></li>
@@ -307,13 +307,13 @@
       </div>
 
       <!-- Col 5: Connect -->
-      <div class="col-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
         <h5>Connect</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/contact">Schedule Consultation</a></li>
           <li><a href="mailto:bilalsoftengr@gmail.com">{{ portfolioService.profile.email }}</a></li>
           <li><a href="tel:+923456466188">{{ portfolioService.profile.displayPhone }}</a></li>
-          <li><a href="#" (click)="portfolioService.downloadCV(); $event.preventDefault()"><i class="fas fa-file-pdf text-green me-1"></i> Download CV</a></li>
+          <li><a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"><i class="fab fa-whatsapp text-green me-1"></i> WhatsApp Direct</a></li>
         </ul>
       </div>
     </div>
