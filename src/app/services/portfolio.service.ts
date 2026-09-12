@@ -16,13 +16,14 @@ import {
 })
 export class PortfolioService {
   readonly profile = {
-    name: 'Bilal Ahmad',
-    role: 'Enterprise Solutions Architect',
-    email: 'bilalsoftengr@gmail.com',
+    name: 'NEXVOYS',
+    tagline: 'Enterprise Technology Partner',
+    role: 'Enterprise Technology Partner & Solutions Architecture',
+    email: 'contact@nexvoys.com',
     phone: '+923456466188',
     displayPhone: '+92 345 6466188',
     location: 'Lahore, Pakistan · Global Remote',
-    linkedinUrl: 'https://www.linkedin.com/in/bilalsoftengr/',
+    linkedinUrl: 'https://www.linkedin.com/company/nexvoys/',
     upworkUrl: 'https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1',
     fiverrUrl: 'https://www.fiverr.com/bilalsoftengr',
     cvPath: 'assets/Bilal_CV.pdf'
@@ -383,13 +384,13 @@ export class PortfolioService {
 
   readonly testimonials: TestimonialItem[] = [
     {
-      quote: 'Bilal architected our dynamic CPQ calculation engine from the ground up. His architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.',
+      quote: 'The NEXVOYS team architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.',
       author: 'Odyssey Design Leadership',
       role: 'San Antonio, TX, USA',
       tag: 'Enterprise .NET & CPQ'
     },
     {
-      quote: 'His ability to integrate complex GenAI agent workflows while ensuring our cloud infrastructure remains cost-optimized is unmatched. An invaluable technology partner.',
+      quote: 'NEXVOYS has an exceptional ability to integrate complex GenAI agent workflows while ensuring cloud infrastructure remains cost-optimized. An invaluable technology partner.',
       author: 'Pulstech Engineering',
       role: 'Paris, France',
       tag: 'Cloud & AI Architecture'
@@ -437,13 +438,13 @@ export class PortfolioService {
   downloadCV(): void {
     const link = document.createElement('a');
     link.href = this.profile.cvPath;
-    link.download = 'Bilal_Ahmad_Solutions_Architect_CV.pdf';
+    link.download = 'NEXVOYS_Enterprise_Capabilities.pdf';
     link.click();
-    this.showToast('Downloading Bilal Ahmad CV... 📄');
+    this.showToast('Downloading NEXVOYS Company Profile... 📄');
   }
 
   openWhatsApp(): void {
-    const msg = encodeURIComponent(`Hi Bilal, I reviewed your Solutions Architect portfolio and would like to discuss a project.`);
+    const msg = encodeURIComponent(`Hi NEXVOYS team, I reviewed your enterprise solutions architecture services and would like to discuss a project roadmap.`);
     window.open(`https://wa.me/${this.profile.phone}?text=${msg}`, '_blank');
   }
 

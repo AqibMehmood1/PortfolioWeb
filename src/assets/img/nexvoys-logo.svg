@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101828"/>
+      <stop offset="100%" stop-color="#0C111D"/>
+    </linearGradient>
+    <linearGradient id="logoLime" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8F500"/>
+      <stop offset="100%" stop-color="#A1E000"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Mark Container -->
+  <g transform="translate(6, 6)">
+    <rect width="48" height="48" rx="12" fill="url(#logoBgGrad)" stroke="#B8F500" stroke-width="1.5" stroke-opacity="0.35"/>
+    <g transform="translate(10, 10)">
+      <!-- Left Pillar -->
+      <path d="M0 28 L0 0 L6 0 L6 28 Z" fill="#FFFFFF"/>
+      <!-- Diagonal Dynamic Beam -->
+      <path d="M5 0 L22 28 L17 28 L0 2 Z" fill="url(#logoLime)"/>
+      <!-- Right Pillar -->
+      <path d="M22 0 L22 28 L28 28 L28 0 Z" fill="#FFFFFF"/>
+      <!-- Neon Accent Dot -->
+      <circle cx="25" cy="3" r="2.5" fill="#B8F500"/>
+    </g>
+  </g>
+
+  <!-- Wordmark 'NEXVOYS' -->
+  <g transform="translate(64, 40)">
+    <text font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="28" letter-spacing="-0.5" fill="#101828">
+      NEX<tspan fill="#101828">VOYS</tspan>
+    </text>
+    <!-- Tagline below logo -->
+    <text y="14" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="700" font-size="9" letter-spacing="1.5" fill="#667085" text-transform="uppercase">
+      TECHNOLOGY PARTNER
+    </text>
+  </g>
+</svg>

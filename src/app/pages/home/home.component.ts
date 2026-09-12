@@ -235,7 +235,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   readonly testimonials = [
     {
-      quote: 'Bilal architected our dynamic CPQ calculation engine from the ground up. His architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.',
+      quote: 'The NEXVOYS team architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.',
       author: 'Odyssey Design Leadership',
       role: 'San Antonio, TX, USA',
       tag: 'Enterprise .NET & CPQ'

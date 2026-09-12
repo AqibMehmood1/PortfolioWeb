@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BILAL AHMAD - ENTERPRISE SOLUTIONS ARCHITECT
+   NEXVOYS - ENTERPRISE SAAS, AI & CLOUD ARCHITECTURE
    InvoZone Authentic B2B Enterprise Technology Design System
    Fully Responsive Multi-Tier Architecture (Mobile, Tablet, Desktop, 4K)
    ========================================================================== */
@@ -9,21 +9,21 @@
    -------------------------------------------------------------------------- */
 :root {
   /* InvoZone Signature Brand Accents */
-  --iz-green-primary: #87e64b;
-  --iz-green-light: #9ee263;
-  --iz-green-bright: #9fe870;
-  --iz-green-dark: #6ac62f;
-  --iz-green-tint: #f0f7e8;
-  --iz-green-sage: #f2f5eb;
-  --iz-green-badge-bg: #eaf8df;
+  --iz-green-primary: #B8F500;
+  --iz-green-light: #B8F500;
+  --iz-green-bright: #B8F500;
+  --iz-green-dark: #9bd200;
+  --iz-green-tint: #f5fde6;
+  --iz-green-sage: #E8FF9E;
+  --iz-green-badge-bg: #E8FF9E;
 
   /* InvoZone Dark Forest & Slate Palette */
-  --iz-dark-hero: #111915;
-  --iz-dark-forest: #1d2f20;
-  --iz-dark-button: #273f2b;
-  --iz-dark-charcoal: #111915;
+  --iz-dark-hero: #101828;
+  --iz-dark-forest: #101828;
+  --iz-dark-button: #101828;
+  --iz-dark-charcoal: #101828;
   --iz-dark-slate: #0f172a;
-  --iz-dark-card: #16221c;
+  --iz-dark-card: #151f32;
 
   /* InvoZone Light & Surface Colors */
   --iz-bg-white: #ffffff;
@@ -32,9 +32,9 @@
   --iz-bg-card: #ffffff;
 
   /* Typography Colors */
-  --iz-text-dark: #111915;
+  --iz-text-dark: #101828;
   --iz-text-body: #33413b;
-  --iz-text-muted: #64748b;
+  --iz-text-muted: #667085;
   --iz-text-light: #ffffff;
   --iz-text-light-muted: #94a3b8;
 
@@ -42,7 +42,7 @@
   --iz-border-light: #e5e7eb;
   --iz-border-subtle: #f1f5f9;
   --iz-border-dark: rgba(255, 255, 255, 0.12);
-  --iz-border-green: rgba(135, 230, 75, 0.4);
+  --iz-border-green: rgba(184, 245, 0, 0.4);
 
   /* Typography Stacks */
   --font-heading: 'Outfit', 'Product Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -59,7 +59,7 @@
   /* Shadows */
   --shadow-iz-card: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
   --shadow-iz-hover: 0 16px 36px rgba(0, 0, 0, 0.08);
-  --shadow-iz-button: 0 4px 14px rgba(135, 230, 75, 0.35);
+  --shadow-iz-button: 0 4px 14px rgba(184, 245, 0, 0.35);
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -194,7 +194,7 @@ p.lead, .lead {
   gap: 8px;
   padding: 6px 16px;
   background: var(--iz-green-badge-bg);
-  border: 1px solid rgba(106, 198, 47, 0.3);
+  border: 1px solid rgba(184, 245, 0, 0.3);
   border-radius: var(--radius-pill);
   color: var(--iz-dark-button);
   font-family: var(--font-sans);
@@ -207,8 +207,8 @@ p.lead, .lead {
 }
 
 .iz-tag-dark {
-  background: rgba(135, 230, 75, 0.12);
-  border-color: rgba(135, 230, 75, 0.35);
+  background: rgba(184, 245, 0, 0.12);
+  border-color: rgba(184, 245, 0, 0.35);
   color: var(--iz-green-bright);
 }
 
@@ -254,9 +254,9 @@ p.lead, .lead {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 50% 20%, rgba(158, 226, 99, 0.22) 0%, transparent 60%),
-    linear-gradient(135deg, rgba(135, 230, 75, 0.1) 0%, transparent 50%),
-    linear-gradient(225deg, rgba(106, 198, 47, 0.08) 0%, transparent 50%);
+    radial-gradient(circle at 50% 20%, rgba(184, 245, 0, 0.22) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(184, 245, 0, 0.1) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(184, 245, 0, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -266,7 +266,7 @@ p.lead, .lead {
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.035em;
-  color: #111915;
+  color: #101828;
   margin-bottom: 16px;
 }
 
@@ -280,7 +280,7 @@ p.lead, .lead {
 /* Reusable InvoZone Button Tokens */
 .iz-btn-green {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
@@ -293,21 +293,21 @@ p.lead, .lead {
   gap: 8px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(135, 230, 75, 0.35);
+  box-shadow: 0 4px 14px rgba(184, 245, 0, 0.35);
   transition: all var(--transition-fast);
   white-space: nowrap;
   min-height: 44px;
 }
 
 .iz-btn-green:hover {
-  background: #111915;
+  background: #101828;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(17, 25, 21, 0.25);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.25);
 }
 
 .iz-btn-dark {
-  background: #111915;
+  background: #101828;
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 0.95rem;
@@ -328,7 +328,7 @@ p.lead, .lead {
 
 .iz-btn-dark:hover {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
   transform: translateY(-2px);
 }
 
@@ -400,7 +400,7 @@ p.lead, .lead {
 
 .iz-trust-badge:hover {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
   border-color: var(--iz-green-primary);
   transform: translateY(-2px);
 }
@@ -410,13 +410,13 @@ p.lead, .lead {
   height: 42px;
   border-radius: 10px;
   background: var(--iz-green-primary);
-  color: #111915;
+  color: #101828;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
   font-weight: 900;
-  box-shadow: 0 4px 12px rgba(135, 230, 75, 0.35);
+  box-shadow: 0 4px 12px rgba(184, 245, 0, 0.35);
   flex-shrink: 0;
 }
 
@@ -467,7 +467,7 @@ p.lead, .lead {
   z-index: 1000;
   background: #ffffff;
   border-bottom: 1px solid #eef2f6;
-  padding: clamp(10px, 2vw, 16px) 0;
+  padding: clamp(6px, 1.2vw, 10px) 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-base);
   width: 100%;
@@ -483,31 +483,64 @@ p.lead, .lead {
 .iz-brand-invozone {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
   min-width: 0;
   flex-shrink: 1;
 }
 
-.iz-logo-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--iz-green-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(135, 230, 75, 0.4);
+.iz-header-logo {
+  height: clamp(56px, 6vw, 68px);
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+  display: block;
   flex-shrink: 0;
 }
 
-.iz-symbol {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: #111915;
-  letter-spacing: -0.05em;
-  line-height: 1;
+.iz-brand-invozone:hover .iz-header-logo {
+  transform: scale(1.04);
+}
+
+.iz-footer-logo {
+  height: clamp(80px, 9vw, 105px);
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+  display: block;
+  flex-shrink: 0;
+}
+
+.iz-footer-logo:hover {
+  transform: scale(1.04);
+}
+
+.iz-mobile-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.iz-mobile-drawer-close {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #101828;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.iz-mobile-drawer-close:hover {
+  background: var(--iz-green-tint);
+  color: var(--iz-green-dark);
 }
 
 .iz-brand-details {
@@ -519,7 +552,7 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   letter-spacing: -0.03em;
   line-height: 1.1;
   white-space: nowrap;
@@ -528,7 +561,7 @@ p.lead, .lead {
 .iz-brand-subtag {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #64748b;
+  color: #667085;
   margin-left: 2px;
 }
 
@@ -587,7 +620,7 @@ p.lead, .lead {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #111915;
+  background: #101828;
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 0.95rem;
@@ -603,7 +636,7 @@ p.lead, .lead {
 
 .iz-btn-contact-top:hover {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
   transform: translateY(-2px);
 }
 
@@ -617,7 +650,7 @@ p.lead, .lead {
   display: none;
   background: #f1f5f9;
   border: 1.5px solid #e2e8f0;
-  color: #111915;
+  color: #101828;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -706,7 +739,7 @@ p.lead, .lead {
   left: 0;
   right: 0;
   min-height: calc(100vh - 100%);
-  background: rgba(17, 25, 21, 0.6);
+  background: rgba(16, 24, 40, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 1050;
@@ -735,9 +768,9 @@ p.lead, .lead {
 }
 
 .iz-mega-left-panel {
-  background: linear-gradient(145deg, #87e64b 0%, #9fe870 100%);
+  background: linear-gradient(145deg, #B8F500 0%, #B8F500 100%);
   padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px);
-  color: #111915;
+  color: #101828;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -758,7 +791,7 @@ p.lead, .lead {
   font-size: clamp(1.4rem, 2.5vw, 1.85rem);
   font-weight: 800;
   line-height: 1.15;
-  color: #111915;
+  color: #101828;
   margin-bottom: 14px;
 }
 
@@ -790,7 +823,7 @@ p.lead, .lead {
 }
 
 .recog-pill-dark {
-  background: rgba(17, 25, 21, 0.85);
+  background: rgba(16, 24, 40, 0.85);
   border-radius: var(--radius-pill);
   padding: 6px 12px;
   font-size: 0.76rem;
@@ -832,7 +865,7 @@ p.lead, .lead {
   height: 44px;
   border-radius: 12px;
   background: var(--iz-green-tint);
-  border: 1px solid rgba(106, 198, 47, 0.3);
+  border: 1px solid rgba(184, 245, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -847,21 +880,21 @@ p.lead, .lead {
 }
 
 .iz-pillar-card:hover .iz-pillar-icon i {
-  color: #111915 !important;
+  color: #101828 !important;
 }
 
 .iz-pillar-title {
   font-family: var(--font-heading);
   font-size: 1.02rem;
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   margin-bottom: 4px;
   line-height: 1.25;
 }
 
 .iz-pillar-desc {
   font-size: 0.85rem;
-  color: #64748b;
+  color: #667085;
   line-height: 1.5;
   margin: 0;
 }
@@ -884,7 +917,7 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   margin: 0;
 }
 
@@ -894,7 +927,7 @@ p.lead, .lead {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  color: #64748b;
+  color: #667085;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -904,7 +937,7 @@ p.lead, .lead {
 
 .iz-mega-close-btn:hover {
   background: #e2e8f0;
-  color: #111915;
+  color: #101828;
 }
 
 /* --------------------------------------------------------------------------
@@ -926,16 +959,16 @@ p.lead, .lead {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 45% 35%, rgba(158, 226, 99, 0.28) 0%, transparent 55%),
-    linear-gradient(135deg, rgba(135, 230, 75, 0.15) 0%, transparent 45%),
-    linear-gradient(225deg, rgba(106, 198, 47, 0.12) 0%, transparent 50%);
+    radial-gradient(circle at 45% 35%, rgba(184, 245, 0, 0.28) 0%, transparent 55%),
+    linear-gradient(135deg, rgba(184, 245, 0, 0.15) 0%, transparent 45%),
+    linear-gradient(225deg, rgba(184, 245, 0, 0.12) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .iz-breadcrumb {
   font-size: 0.84rem;
   font-weight: 600;
-  color: #64748b;
+  color: #667085;
   margin-bottom: 20px;
   flex-wrap: wrap;
   display: flex;
@@ -943,7 +976,7 @@ p.lead, .lead {
 }
 
 .iz-breadcrumb a {
-  color: #64748b;
+  color: #667085;
   text-decoration: none;
 }
 
@@ -986,7 +1019,7 @@ p.lead, .lead {
 .iz-social-proof-text-origami {
   font-size: clamp(0.85rem, 1.8vw, 0.95rem);
   font-weight: 700;
-  color: #111915;
+  color: #101828;
 }
 
 .iz-hero-title-main {
@@ -994,7 +1027,7 @@ p.lead, .lead {
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.04em;
-  color: #111915;
+  color: #101828;
   margin-bottom: 20px;
 }
 
@@ -1017,7 +1050,7 @@ p.lead, .lead {
 }
 
 .iz-btn-book-call {
-  background: #111915;
+  background: #101828;
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 1rem;
@@ -1030,19 +1063,19 @@ p.lead, .lead {
   justify-content: center;
   gap: 8px;
   transition: all var(--transition-fast);
-  box-shadow: 0 6px 20px rgba(17, 25, 21, 0.2);
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.2);
   min-height: 48px;
 }
 
 .iz-btn-book-call:hover {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
   transform: translateY(-2px);
 }
 
 .iz-btn-matched {
   background: #def7c8;
-  border: 1.5px solid rgba(106, 198, 47, 0.6);
+  border: 1.5px solid rgba(184, 245, 0, 0.6);
   color: #1b381d !important;
   font-family: var(--font-heading);
   font-size: 1rem;
@@ -1059,9 +1092,9 @@ p.lead, .lead {
 }
 
 .iz-btn-matched:hover {
-  background: #111915;
+  background: #101828;
   color: #ffffff !important;
-  border-color: #111915;
+  border-color: #101828;
   transform: translateY(-2px);
 }
 
@@ -1099,14 +1132,14 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2.5vw, 1.7rem);
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   text-align: center;
   margin-bottom: 6px;
 }
 
 .iz-inquiry-sub {
   font-size: clamp(0.82rem, 1.5vw, 0.9rem);
-  color: #64748b;
+  color: #667085;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -1120,7 +1153,7 @@ p.lead, .lead {
   padding: 12px 14px;
   font-family: var(--font-sans);
   font-size: 16px; /* Prevents iOS auto-zoom */
-  color: #111915;
+  color: #101828;
   background: #f8fafc;
   outline: none;
   transition: all var(--transition-fast);
@@ -1140,7 +1173,7 @@ p.lead, .lead {
 .iz-textarea-light:focus {
   border-color: var(--iz-green-dark);
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(106, 198, 47, 0.18);
+  box-shadow: 0 0 0 3px rgba(184, 245, 0, 0.18);
 }
 
 .iz-select-light {
@@ -1156,7 +1189,7 @@ p.lead, .lead {
   align-items: flex-start;
   gap: 8px;
   font-size: 0.82rem;
-  color: #64748b;
+  color: #667085;
   margin: 12px 0 18px 0;
   line-height: 1.4;
 }
@@ -1172,7 +1205,7 @@ p.lead, .lead {
 .iz-submit-lime-btn {
   width: 100%;
   background: var(--iz-green-primary);
-  color: #111915;
+  color: #101828;
   font-family: var(--font-heading);
   font-size: 1.02rem;
   font-weight: 800;
@@ -1184,13 +1217,13 @@ p.lead, .lead {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 6px 20px rgba(135, 230, 75, 0.4);
+  box-shadow: 0 6px 20px rgba(184, 245, 0, 0.4);
   transition: all var(--transition-fast);
   min-height: 48px;
 }
 
 .iz-submit-lime-btn:hover {
-  background: #111915;
+  background: #101828;
   color: #ffffff;
   transform: translateY(-2px);
 }
@@ -1247,7 +1280,7 @@ p.lead, .lead {
 
 .iz-value-mint-card {
   background: #def7c8;
-  color: #111915;
+  color: #101828;
   border-radius: clamp(18px, 2.5vw, 24px);
   padding: clamp(24px, 3vw, 34px) clamp(18px, 2.5vw, 26px) 70px clamp(18px, 2.5vw, 26px);
   position: relative;
@@ -1268,13 +1301,13 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2vw, 1.45rem);
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   margin-bottom: 12px;
 }
 
 .iz-value-mint-card p {
   font-size: 0.92rem;
-  color: #273f2b;
+  color: #101828;
   line-height: 1.65;
   margin: 0;
   position: relative;
@@ -1319,18 +1352,18 @@ p.lead, .lead {
 .iz-accordion-title {
   font-size: clamp(1.85rem, 4vw, 3rem);
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   margin: 0;
 }
 
 .iz-accordion-tagline {
   font-size: clamp(0.95rem, 2vw, 1.1rem);
-  color: #64748b;
+  color: #667085;
   margin: 0;
 }
 
 .iz-btn-view-all {
-  background: #111915;
+  background: #101828;
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 0.95rem;
@@ -1348,7 +1381,7 @@ p.lead, .lead {
 
 .iz-btn-view-all:hover {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
 }
 
 .iz-accordion-container {
@@ -1395,7 +1428,7 @@ p.lead, .lead {
   font-family: var(--font-heading);
   font-size: clamp(1.2rem, 2.8vw, 1.85rem);
   font-weight: 800;
-  color: #111915;
+  color: #101828;
   margin: 0;
   line-height: 1.25;
 }
@@ -1404,7 +1437,7 @@ p.lead, .lead {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #111915;
+  background: #101828;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -1418,7 +1451,7 @@ p.lead, .lead {
 
 .iz-accordion-toggle-circle:hover {
   background: var(--iz-green-primary);
-  color: #111915;
+  color: #101828;
 }
 
 .iz-accordion-body-expanded {
@@ -1463,7 +1496,7 @@ p.lead, .lead {
 .iz-accordion-bullet-item {
   font-size: 0.92rem;
   font-weight: 600;
-  color: #111915;
+  color: #101828;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1514,13 +1547,13 @@ p.lead, .lead {
 .iz-tech-matrix-title {
   font-size: clamp(1.75rem, 3.8vw, 2.85rem);
   font-weight: 900;
-  color: #111915;
+  color: #101828;
   margin-bottom: 8px;
 }
 
 .iz-tech-matrix-sub {
   font-size: clamp(0.92rem, 1.8vw, 1.05rem);
-  color: #64748b;
+  color: #667085;
   margin: 0;
 }
 
@@ -1540,7 +1573,7 @@ p.lead, .lead {
   background: transparent;
   outline: none;
   font-size: 0.9rem;
-  color: #111915;
+  color: #101828;
   width: 100%;
 }
 
@@ -1577,8 +1610,8 @@ p.lead, .lead {
 .iz-stack-tab-pill.active {
   background: var(--iz-green-primary) !important;
   border-color: var(--iz-green-primary) !important;
-  color: #111915 !important;
-  box-shadow: 0 4px 14px rgba(135, 230, 75, 0.4);
+  color: #101828 !important;
+  box-shadow: 0 4px 14px rgba(184, 245, 0, 0.4);
 }
 
 .iz-status-dot {
@@ -1590,7 +1623,7 @@ p.lead, .lead {
 }
 
 .iz-stack-tab-pill.active .iz-status-dot {
-  background: #111915;
+  background: #101828;
 }
 
 .iz-tech-matrix-grid {
@@ -1649,7 +1682,7 @@ p.lead, .lead {
 .iz-tech-tile-name {
   font-size: clamp(0.82rem, 1.5vw, 0.92rem);
   font-weight: 700;
-  color: #111915;
+  color: #101828;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1698,7 +1731,7 @@ p.lead, .lead {
   height: 48px;
   border-radius: var(--radius-lg);
   background: var(--iz-green-tint);
-  border: 1px solid rgba(106, 198, 47, 0.3);
+  border: 1px solid rgba(184, 245, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1806,7 +1839,7 @@ p.lead, .lead {
   height: 44px;
   border-radius: 12px;
   background: var(--iz-green-tint);
-  border: 1px solid rgba(106, 198, 47, 0.3);
+  border: 1px solid rgba(184, 245, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1823,7 +1856,7 @@ p.lead, .lead {
   background: var(--iz-green-badge-bg);
   padding: 4px 10px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(106, 198, 47, 0.25);
+  border: 1px solid rgba(184, 245, 0, 0.25);
   white-space: nowrap;
 }
 
@@ -1927,7 +1960,7 @@ p.lead, .lead {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(17, 25, 21, 0.92);
+  background: rgba(16, 24, 40, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--iz-green-primary);
@@ -1935,7 +1968,7 @@ p.lead, .lead {
   font-weight: 700;
   padding: 5px 12px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(135, 230, 75, 0.4);
+  border: 1px solid rgba(184, 245, 0, 0.4);
   z-index: 2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
@@ -1996,7 +2029,7 @@ a.iz-chip:hover {
   border-color: var(--iz-green-dark);
   color: var(--iz-green-dark) !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(106, 198, 47, 0.2);
+  box-shadow: 0 4px 12px rgba(184, 245, 0, 0.2);
 }
 
 .iz-project-actions {
@@ -2093,9 +2126,9 @@ a.filter-pill-btn.active,
 .iz-process-network-section {
   background: #09150d;
   background-image: 
-    radial-gradient(circle at 50% 40%, rgba(135, 230, 75, 0.18) 0%, transparent 70%),
-    linear-gradient(rgba(135, 230, 75, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(135, 230, 75, 0.08) 1px, transparent 1px);
+    radial-gradient(circle at 50% 40%, rgba(184, 245, 0, 0.18) 0%, transparent 70%),
+    linear-gradient(rgba(184, 245, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 245, 0, 0.08) 1px, transparent 1px);
   background-size: 100% 100%, 36px 36px, 36px 36px;
   color: #ffffff;
   padding: clamp(60px, 7vw, 100px) 0 clamp(70px, 8vw, 110px) 0;
@@ -2138,7 +2171,7 @@ a.filter-pill-btn.active,
   height: 56px;
   border-radius: 50%;
   background: var(--iz-green-primary);
-  color: #111915;
+  color: #101828;
   font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 900;
@@ -2146,13 +2179,13 @@ a.filter-pill-btn.active,
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px auto;
-  box-shadow: 0 0 24px rgba(135, 230, 75, 0.5);
+  box-shadow: 0 0 24px rgba(184, 245, 0, 0.5);
   transition: transform var(--transition-fast);
 }
 
 .iz-process-column:hover .iz-process-badge-lime {
   transform: scale(1.12);
-  background: #9fe870;
+  background: #B8F500;
 }
 
 .iz-process-col-title {
@@ -2174,7 +2207,7 @@ a.filter-pill-btn.active,
 
 .iz-btn-white-pill {
   background: #ffffff;
-  color: #111915 !important;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 800;
@@ -2192,9 +2225,9 @@ a.filter-pill-btn.active,
 
 .iz-btn-white-pill:hover {
   background: var(--iz-green-primary);
-  color: #111915 !important;
+  color: #101828 !important;
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(135, 230, 75, 0.45);
+  box-shadow: 0 12px 30px rgba(184, 245, 0, 0.45);
 }
 
 .iz-process-card {
@@ -2289,7 +2322,7 @@ a.filter-pill-btn.active,
 
 .iz-input:focus {
   border-color: var(--iz-green-dark);
-  box-shadow: 0 0 0 3px rgba(106, 198, 47, 0.15);
+  box-shadow: 0 0 0 3px rgba(184, 245, 0, 0.15);
 }
 
 .iz-textarea {
@@ -2315,7 +2348,7 @@ a.filter-pill-btn.active,
 
 .iz-textarea:focus {
   border-color: var(--iz-green-dark);
-  box-shadow: 0 0 0 3px rgba(106, 198, 47, 0.15);
+  box-shadow: 0 0 0 3px rgba(184, 245, 0, 0.15);
 }
 
 .iz-submit-btn {
@@ -2365,7 +2398,7 @@ a.filter-pill-btn.active,
   height: 42px;
   border-radius: 50%;
   background: var(--iz-green-tint);
-  border: 1px solid rgba(106, 198, 47, 0.3);
+  border: 1px solid rgba(184, 245, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2384,7 +2417,7 @@ a.filter-pill-btn.active,
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #64748b;
+  color: #667085;
   letter-spacing: 0.04em;
   margin-bottom: 2px;
 }
@@ -2426,7 +2459,7 @@ a.filter-pill-btn.active,
    13. InvoZone Multi-Column Footer
    -------------------------------------------------------------------------- */
 .iz-footer {
-  background: #111915;
+  background: #101828;
   color: #cbd5e1;
   padding: clamp(48px, 6vw, 80px) 0 32px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -2554,7 +2587,7 @@ a.filter-pill-btn.active,
 .iz-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(17, 25, 21, 0.85);
+  background: rgba(16, 24, 40, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 2000;
@@ -2590,7 +2623,7 @@ a.filter-pill-btn.active,
 .timeline-flow {
   position: relative;
   padding-left: 28px;
-  border-left: 2px solid rgba(106, 198, 47, 0.4);
+  border-left: 2px solid rgba(184, 245, 0, 0.4);
 }
 
 .timeline-item {

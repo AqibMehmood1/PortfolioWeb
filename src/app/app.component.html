@@ -18,14 +18,9 @@
 <header class="iz-navbar-white">
   <div class="container">
     <div class="iz-navbar-inner">
-      <!-- Brand Logo with square green BA icon -->
-      <a routerLink="/" class="iz-brand-invozone" (click)="closeMobileMenu(); closeMegaMenu()">
-        <div class="iz-logo-icon">
-          <span class="iz-symbol">BA</span>
-        </div>
-        <div class="iz-brand-details">
-          <span class="iz-brand-name">Bilal Ahmad <span class="iz-brand-subtag">| Solutions Architect</span></span>
-        </div>
+      <!-- Brand Logo -->
+      <a routerLink="/" class="iz-brand-invozone" (click)="closeMobileMenu(); closeMegaMenu()" aria-label="NEXVOYS Home">
+        <img src="assets/nexvoys/black-logo.png" alt="NEXVOYS" class="iz-header-logo">
       </a>
 
       <!-- Simplified Navigation Links -->
@@ -161,6 +156,14 @@
 
   <!-- Mobile Drawer Menu -->
   <div class="iz-mobile-drawer-white" [class.open]="mobileMenuOpen">
+    <div class="iz-mobile-drawer-brand d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-light">
+      <a routerLink="/" class="text-decoration-none" (click)="closeMobileMenu()" aria-label="NEXVOYS Home">
+        <img src="assets/nexvoys/black-logo.png" alt="NEXVOYS" class="iz-mobile-logo">
+      </a>
+      <button type="button" class="iz-mobile-drawer-close" (click)="closeMobileMenu()" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
       <i class="fas fa-home me-2 text-green"></i> Home
     </a>
@@ -243,17 +246,13 @@
     <div class="row g-5">
       <!-- Col 1: Brand & Bio -->
       <div class="col-12 col-lg-4 mb-3 mb-lg-0">
-        <div class="d-flex align-items-center gap-3 mb-3">
-          <div class="iz-brand-symbol">
-            <i class="fas fa-cubes"></i>
-          </div>
-          <div>
-            <h4 class="mb-0 text-white fw-bold">Bilal Ahmad</h4>
-            <span class="text-green small fw-bold text-uppercase">Solutions Architect</span>
-          </div>
+        <div class="mb-3">
+          <a routerLink="/" class="d-inline-block text-decoration-none" aria-label="NEXVOYS Home">
+            <img src="assets/nexvoys/white-logo.png" alt="NEXVOYS" class="iz-footer-logo">
+          </a>
         </div>
         <p class="small text-muted mb-4">
-          Helping Startups, SMBs, and Enterprises architect scalable multi-tenant SaaS products, autonomous AI agents, and high-performance cloud applications with 9+ years of proven delivery.
+          NEXVOYS helps Startups, SMBs, and Enterprises architect and scale multi-tenant SaaS platforms, autonomous AI agent pipelines, and high-performance cloud infrastructure with 9+ years of proven delivery.
         </p>
         <div class="d-flex flex-wrap gap-3">
           <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-trust-badge">
@@ -311,8 +310,8 @@
         <h5>Connect</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/contact">Schedule Consultation</a></li>
-          <li><a href="mailto:bilalsoftengr@gmail.com">{{ portfolioService.profile.email }}</a></li>
-          <li><a href="tel:+923456466188">{{ portfolioService.profile.displayPhone }}</a></li>
+          <li><a [href]="'mailto:' + portfolioService.profile.email">{{ portfolioService.profile.email }}</a></li>
+          <li><a [href]="'tel:' + portfolioService.profile.phone">{{ portfolioService.profile.displayPhone }}</a></li>
           <li><a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"><i class="fab fa-whatsapp text-green me-1"></i> WhatsApp Direct</a></li>
         </ul>
       </div>
@@ -321,7 +320,7 @@
     <!-- Bottom Bar -->
     <div class="iz-footer-bottom">
       <div>
-        &copy; 2026 <strong>Bilal Ahmad</strong>. All rights reserved. Enterprise Software Architecture & Advisory.
+        &copy; 2026 <strong>NEXVOYS</strong>. All rights reserved. Enterprise Software Architecture & Advisory.
       </div>
       <div class="d-flex gap-4">
         <span>Lahore, Pakistan · Global Remote</span>

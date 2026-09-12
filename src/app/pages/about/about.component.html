@@ -148,13 +148,13 @@
     <div class="row g-5">
       <!-- Experience Column -->
       <div class="col-lg-7">
-        <h4 class="fw-bold mb-4"><i class="fas fa-briefcase text-green me-2"></i>Professional Experience</h4>
-        <div class="timeline-flow" style="border-left-color: rgba(106, 198, 47, 0.4);">
+        <h4 class="fw-bold mb-4"><i class="fas fa-briefcase text-green me-2"></i>Enterprise Delivery Experience</h4>
+        <div class="timeline-flow" style="border-left-color: rgba(184, 245, 0, 0.45);">
           <div class="timeline-item" *ngFor="let exp of portfolioService.experiences">
-            <div class="timeline-dot" style="background: #6ac62f; box-shadow: 0 0 10px #6ac62f;"></div>
+            <div class="timeline-dot" style="background: #B8F500; box-shadow: 0 0 10px rgba(184, 245, 0, 0.8);"></div>
             <div class="timeline-title-row">
               <h5 class="text-dark fw-bold">{{ exp.title }}</h5>
-              <span class="timeline-period" style="background: #eaf8df; color: #273f2b;">{{ exp.period }}</span>
+              <span class="timeline-period" style="background: #E8FF9E; color: #101828;">{{ exp.period }}</span>
             </div>
             <div class="timeline-company text-green fw-bold">{{ exp.company }} · {{ exp.location }}</div>
             <p class="timeline-desc text-muted">{{ exp.description }}</p>
@@ -168,12 +168,12 @@
       <!-- Education & Certifications Column -->
       <div class="col-lg-5">
         <h4 class="fw-bold mb-4"><i class="fas fa-graduation-cap text-green me-2"></i>Education</h4>
-        <div class="timeline-flow mb-5" style="border-left-color: rgba(106, 198, 47, 0.4);">
+        <div class="timeline-flow mb-5" style="border-left-color: rgba(184, 245, 0, 0.45);">
           <div class="timeline-item" *ngFor="let edu of portfolioService.educations">
-            <div class="timeline-dot" style="background: #6ac62f; box-shadow: 0 0 10px #6ac62f;"></div>
+            <div class="timeline-dot" style="background: #B8F500; box-shadow: 0 0 10px rgba(184, 245, 0, 0.8);"></div>
             <div class="timeline-title-row">
               <h5 class="text-dark fw-bold">{{ edu.degree }}</h5>
-              <span class="timeline-period" style="background: #eaf8df; color: #273f2b;">{{ edu.period }}</span>
+              <span class="timeline-period" style="background: #E8FF9E; color: #101828;">{{ edu.period }}</span>
             </div>
             <div class="timeline-company text-green fw-bold">{{ edu.institution }}</div>
             <p class="timeline-desc text-muted">{{ edu.description }}</p>
@@ -181,12 +181,12 @@
         </div>
 
         <h4 class="fw-bold mb-4"><i class="fas fa-certificate text-green me-2"></i>Certifications</h4>
-        <div class="timeline-flow" style="border-left-color: rgba(106, 198, 47, 0.4);">
+        <div class="timeline-flow" style="border-left-color: rgba(184, 245, 0, 0.45);">
           <div class="timeline-item" *ngFor="let cert of portfolioService.certifications">
-            <div class="timeline-dot" style="background: #6ac62f; box-shadow: 0 0 10px #6ac62f;"></div>
+            <div class="timeline-dot" style="background: #B8F500; box-shadow: 0 0 10px rgba(184, 245, 0, 0.8);"></div>
             <div class="timeline-title-row">
               <h5 class="text-dark fw-bold">{{ cert.title }}</h5>
-              <span class="timeline-period" style="background: #eaf8df; color: #273f2b;">{{ cert.level }}</span>
+              <span class="timeline-period" style="background: #E8FF9E; color: #101828;">{{ cert.level }}</span>
             </div>
             <div class="timeline-company text-green fw-bold">{{ cert.issuer }}</div>
             <p class="timeline-desc text-muted">{{ cert.description }}</p>

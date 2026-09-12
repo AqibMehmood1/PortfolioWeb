@@ -7,11 +7,11 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { ContactComponent } from './pages/contact/contact.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, title: 'Bilal Ahmad | Enterprise Solutions Architect' },
-  { path: 'about', component: AboutComponent, title: 'About Bilal Ahmad | Solutions Architect & Strategy' },
-  { path: 'expertise', component: ExpertiseComponent, title: 'Technical Radar & Architecture Disciplines | Bilal Ahmad' },
-  { path: 'services', component: ServicesComponent, title: 'Services & Solutions Architecture | Bilal Ahmad' },
-  { path: 'projects', component: ProjectsComponent, title: 'Case Studies & Delivered Systems | Bilal Ahmad' },
-  { path: 'contact', component: ContactComponent, title: 'Schedule Architectural Consultation | Bilal Ahmad' },
+  { path: '', component: HomeComponent, title: 'NEXVOYS | Enterprise Technology Partner | SaaS & AI Systems' },
+  { path: 'about', component: AboutComponent, title: 'About NEXVOYS | Technology Partner & Solutions Architecture' },
+  { path: 'expertise', component: ExpertiseComponent, title: 'Technical Radar & Architecture Disciplines | NEXVOYS' },
+  { path: 'services', component: ServicesComponent, title: 'Services & Solutions Architecture | NEXVOYS' },
+  { path: 'projects', component: ProjectsComponent, title: 'Case Studies & Delivered Systems | NEXVOYS' },
+  { path: 'contact', component: ContactComponent, title: 'Schedule Architectural Consultation | NEXVOYS' },
   { path: '**', redirectTo: '' }
 ];

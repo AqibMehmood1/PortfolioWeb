@@ -1,10 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <linearGradient id="baGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#87e64b"/>
-      <stop offset="100%" stop-color="#6ecb2e"/>
+    <linearGradient id="nexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101828"/>
+      <stop offset="100%" stop-color="#0c111d"/>
+    </linearGradient>
+    <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8F500"/>
+      <stop offset="100%" stop-color="#9DE000"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="16" fill="url(#baGrad)"/>
-  <text x="32" y="43" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" text-anchor="middle" fill="#111915" letter-spacing="-2.5">BA</text>
+  <!-- Background Container -->
+  <rect width="64" height="64" rx="16" fill="url(#nexGrad)" stroke="#B8F500" stroke-width="1.5" stroke-opacity="0.3"/>
+  <!-- NEXVOYS Stylized 'N' Icon -->
+  <g transform="translate(13, 13)">
+    <!-- Left Pillar -->
+    <path d="M0 38 L0 0 L8 0 L8 38 Z" fill="#FFFFFF"/>
+    <!-- Diagonal Dynamic Beam -->
+    <path d="M7 0 L30 38 L22 38 L0 3 Z" fill="url(#limeGrad)"/>
+    <!-- Right Pillar -->
+    <path d="M30 0 L30 38 L38 38 L38 0 Z" fill="#FFFFFF"/>
+    <!-- Accent Dot -->
+    <circle cx="34" cy="4" r="3" fill="#B8F500"/>
+  </g>
 </svg>
