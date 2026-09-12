@@ -19,13 +19,11 @@ export class PortfolioService {
     name: 'NEXVOYS',
     tagline: 'Enterprise Technology Partner',
     role: 'Enterprise Technology Partner & Solutions Architecture',
-    email: 'contact@nexvoys.com',
+    email: 'nexvoys@gmail.com',
     phone: '+923456466188',
     displayPhone: '+92 345 6466188',
     location: 'Lahore, Pakistan · Global Remote',
-    linkedinUrl: 'https://www.linkedin.com/company/nexvoys/',
-    upworkUrl: 'https://www.upwork.com/freelancers/~01cf247ced49045c1f?viewMode=1',
-    fiverrUrl: 'https://www.fiverr.com/bilalsoftengr',
+    linkedinUrl: 'https://www.linkedin.com/company/nex-voys/posts/?feedView=all',
     cvPath: 'assets/Bilal_CV.pdf'
   };
 

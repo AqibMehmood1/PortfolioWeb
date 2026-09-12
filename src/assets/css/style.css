@@ -424,14 +424,14 @@ p.lead, .lead {
    3. InvoZone Top Ticker & White Sticky Navbar
    -------------------------------------------------------------------------- */
 .iz-top-ticker-bar {
-  background: linear-gradient(90deg, #381b7a 0%, #4f28a6 50%, #6b21a8 100%);
-  color: #ffffff;
+  background: var(--iz-green-primary);
+  color: #101828;
   padding: 7px 0;
   overflow: hidden;
   position: relative;
   z-index: 1001;
   font-size: clamp(0.74rem, 1.5vw, 0.82rem);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
   width: 100%;
 }

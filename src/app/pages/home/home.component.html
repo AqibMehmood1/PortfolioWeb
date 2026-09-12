@@ -2,19 +2,19 @@
 <section class="iz-hero-origami" id="home">
   <div class="container">
     <!-- Breadcrumbs -->
-    <div class="iz-breadcrumb">
+    <!-- <div class="iz-breadcrumb">
       <a routerLink="/">Home</a>
       <span class="sep">»</span>
       <a routerLink="/services">Solutions Architecture</a>
       <span class="sep">»</span>
       <span class="text-dark fw-bold">Multi-Tenant SaaS & AI Systems</span>
-    </div>
+    </div> -->
 
     <div class="row align-items-center g-5">
       <!-- Left Column: Value Proposition & Hero CTAs -->
       <div class="col-lg-7">
         <!-- InvoZone Social Proof Stack -->
-        <div class="iz-social-proof-origami">
+        <!-- <div class="iz-social-proof-origami">
           <div class="iz-avatar-stack-origami">
             <img src="assets/img/team-1.png" alt="Client 1">
             <img src="assets/img/team-2.jpg" alt="Client 2">
@@ -24,7 +24,7 @@
             <div class="iz-stars mb-0">★★★★★</div>
             <div class="iz-social-proof-text-origami">Trusted By 50+ Tech Leaders Worldwide</div>
           </div>
-        </div>
+        </div> -->
 
         <h1 class="iz-hero-title-main">
           Architect High-Scale <br>
@@ -32,7 +32,9 @@
         </h1>
 
         <p class="iz-hero-sub-origami">
-          Specialized Solutions Architect & Technology Partner helping Startups, SMBs, and Enterprises build, scale, and ship high-performance software with <strong>9+ years of proven delivery</strong> across the US, Canada, and Europe.
+          Specialized Solutions Architect & Technology Partner helping Startups, SMBs, and Enterprises build, scale, and
+          ship high-performance software with <strong>9+ years of proven delivery</strong> across the US, Canada, and
+          Europe.
         </p>
 
         <!-- Dual InvoZone Pill Buttons -->
@@ -48,13 +50,7 @@
         <!-- Trust Badges Strip -->
         <div class="iz-trust-badges-row mt-4">
           <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
-            <i class="fab fa-linkedin text-primary me-1"></i> LinkedIn Verified
-          </a>
-          <a [href]="portfolioService.profile.upworkUrl" target="_blank" rel="noopener" class="iz-chip">
-            <img src="assets/img/upwork.png" alt="Upwork" style="width: 14px; height: 14px; margin-right: 4px;"> Upwork Top Rated
-          </a>
-          <a [href]="portfolioService.profile.fiverrUrl" target="_blank" rel="noopener" class="iz-chip">
-            <img src="assets/img/fiverr.png" alt="Fiverr" style="width: 14px; height: 14px; margin-right: 4px;"> Fiverr Pro
+            <i class="fab fa-linkedin text-primary me-1"></i> LinkedIn Company
           </a>
           <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-chip">
             <i class="fab fa-whatsapp text-green me-1"></i> WhatsApp Direct
@@ -71,16 +67,19 @@
           <form (submit)="submitInquiry(); $event.preventDefault()">
             <div class="row g-2 mb-2">
               <div class="col-12 col-sm-6">
-                <input type="text" class="iz-input-light" [(ngModel)]="inquiryForm.fullName" name="fullName" placeholder="Enter your full name" required>
+                <input type="text" class="iz-input-light" [(ngModel)]="inquiryForm.fullName" name="fullName"
+                  placeholder="Enter your full name" required>
               </div>
               <div class="col-12 col-sm-6">
-                <input type="email" class="iz-input-light" [(ngModel)]="inquiryForm.email" name="email" placeholder="Enter Email *" required>
+                <input type="email" class="iz-input-light" [(ngModel)]="inquiryForm.email" name="email"
+                  placeholder="Enter Email *" required>
               </div>
             </div>
 
             <div class="row g-2 mb-2">
               <div class="col-12 col-sm-6">
-                <input type="tel" class="iz-input-light" [(ngModel)]="inquiryForm.phone" name="phone" placeholder="🇵🇰 +92 | Phone">
+                <input type="tel" class="iz-input-light" [(ngModel)]="inquiryForm.phone" name="phone"
+                  placeholder="🇵🇰 +92 | Phone">
               </div>
               <div class="col-12 col-sm-6">
                 <select class="iz-select-light" [(ngModel)]="inquiryForm.techStack" name="techStack">
@@ -94,12 +93,15 @@
             </div>
 
             <div class="mb-2">
-              <textarea class="iz-textarea-light" rows="3" [(ngModel)]="inquiryForm.message" name="message" placeholder="Help us understand what you require assistance with, the goal of your project, and the problem we're dedicated to solving *" required></textarea>
+              <textarea class="iz-textarea-light" rows="3" [(ngModel)]="inquiryForm.message" name="message"
+                placeholder="Help us understand what you require assistance with, the goal of your project, and the problem we're dedicated to solving *"
+                required></textarea>
             </div>
 
             <div class="iz-checkbox-row">
               <input type="checkbox" id="agreeTerms" [(ngModel)]="inquiryForm.agreed" name="agreed">
-              <label for="agreeTerms">I understand and agree to the <a routerLink="/about" class="text-dark fw-bold">terms & conditions</a>.</label>
+              <label for="agreeTerms">I understand and agree to the <a routerLink="/about"
+                  class="text-dark fw-bold">terms & conditions</a>.</label>
             </div>
 
             <button type="submit" class="iz-submit-lime-btn">
@@ -124,28 +126,32 @@
       <!-- Mint Card 1: Task Automation -->
       <div class="iz-value-mint-card">
         <h3>Task Automation</h3>
-        <p>DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations.</p>
+        <p>DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual
+          operations.</p>
         <div class="iz-triangle-polygon"></div>
       </div>
 
       <!-- Mint Card 2: Agentic Workflows -->
       <div class="iz-value-mint-card">
         <h3>Agentic Workflows</h3>
-        <p>Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines.</p>
+        <p>Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent
+          LLM pipelines.</p>
         <div class="iz-triangle-polygon"></div>
       </div>
 
       <!-- Mint Card 3: Cost Efficiency -->
       <div class="iz-value-mint-card">
         <h3>Cost Efficiency</h3>
-        <p>Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.</p>
+        <p>Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource
+          utilization.</p>
         <div class="iz-triangle-polygon"></div>
       </div>
 
       <!-- Mint Card 4: Resource Efficiency -->
       <div class="iz-value-mint-card">
         <h3>Resource Efficiency</h3>
-        <p>Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.</p>
+        <p>Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with
+          minimal waste.</p>
         <div class="iz-triangle-polygon"></div>
       </div>
     </div>
@@ -180,7 +186,8 @@
             <span class="iz-accordion-index">{{ s.index }}</span>
             <h3 class="iz-accordion-heading">{{ s.title }}</h3>
           </div>
-          <button type="button" class="iz-accordion-toggle-circle" [attr.aria-label]="activeServiceIndex === i ? 'Collapse service' : 'Expand service'">
+          <button type="button" class="iz-accordion-toggle-circle"
+            [attr.aria-label]="activeServiceIndex === i ? 'Collapse service' : 'Expand service'">
             <i class="fas" [ngClass]="activeServiceIndex === i ? 'fa-minus' : 'fa-plus'"></i>
           </button>
         </div>
@@ -195,7 +202,7 @@
             </div>
             <div class="col-md-8">
               <p class="iz-accordion-desc">{{ s.shortDesc }}</p>
-              
+
               <div class="iz-accordion-bullets-grid">
                 <div class="iz-accordion-bullet-item" *ngFor="let bullet of s.bullets">
                   <span class="iz-dot-green-bullet"></span> {{ bullet }}
@@ -239,25 +246,32 @@
 
     <!-- Category Filter Tabs -->
     <div class="iz-stack-tabs-row">
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'ai'" (click)="setStackCategory('ai')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'ai'"
+        (click)="setStackCategory('ai')">
         <span class="iz-status-dot"></span> AI & ML
       </button>
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'frontend'" (click)="setStackCategory('frontend')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'frontend'"
+        (click)="setStackCategory('frontend')">
         <span class="iz-status-dot"></span> Front-End
       </button>
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'backend'" (click)="setStackCategory('backend')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'backend'"
+        (click)="setStackCategory('backend')">
         <span class="iz-status-dot"></span> Back-End
       </button>
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'lownocode'" (click)="setStackCategory('lownocode')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'lownocode'"
+        (click)="setStackCategory('lownocode')">
         <span class="iz-status-dot"></span> Low/No Code
       </button>
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'database'" (click)="setStackCategory('database')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'database'"
+        (click)="setStackCategory('database')">
         <span class="iz-status-dot"></span> Database
       </button>
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'devops'" (click)="setStackCategory('devops')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'devops'"
+        (click)="setStackCategory('devops')">
         <span class="iz-status-dot"></span> DevOps & Cloud
       </button>
-      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'mobile'" (click)="setStackCategory('mobile')">
+      <button type="button" class="iz-stack-tab-pill" [class.active]="activeStackCategory === 'mobile'"
+        (click)="setStackCategory('mobile')">
         <span class="iz-status-dot"></span> Mobile
       </button>
     </div>
@@ -284,7 +298,8 @@
       <div class="iz-tag"><i class="fas fa-network-wired"></i> Industry Domain Mastery</div>
       <h2 class="iz-title">Proven Solutions Across Core Industries</h2>
       <p class="iz-subtitle">
-        Deep domain expertise applied to high-stakes industries where compliance, security, and uptime are mission-critical.
+        Deep domain expertise applied to high-stakes industries where compliance, security, and uptime are
+        mission-critical.
       </p>
     </div>
 
@@ -318,7 +333,8 @@
       <div>
         <div class="iz-tag"><i class="fas fa-laptop-code"></i> Delivered Systems</div>
         <h2 class="iz-title mb-1">Featured Case Studies</h2>
-        <p class="iz-subtitle mb-0">Production web platforms, dynamic estimation engines, and SaaS architectures delivered worldwide.</p>
+        <p class="iz-subtitle mb-0">Production web platforms, dynamic estimation engines, and SaaS architectures
+          delivered worldwide.</p>
       </div>
       <a routerLink="/projects" class="iz-btn-dark">
         View All Case Studies <i class="fas fa-arrow-right ms-2"></i>
@@ -358,7 +374,8 @@
             <button type="button" class="iz-btn-dark py-2 px-3 small" (click)="openProjectModal(project)">
               <i class="fas fa-eye me-1 text-green"></i> Demo Media
             </button>
-            <button type="button" class="iz-btn-copy-link" (click)="copyProjectLink(project)" title="Copy Link" aria-label="Copy Link">
+            <button type="button" class="iz-btn-copy-link" (click)="copyProjectLink(project)" title="Copy Link"
+              aria-label="Copy Link">
               <i class="fas fa-link"></i>
             </button>
           </div>
@@ -459,13 +476,17 @@
         <div class="col-lg-7 iz-form-side">
           <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> Let's Talk</div>
           <h2 class="iz-title mb-2 fs-2">Have a Project in Mind?</h2>
-          <p class="iz-subtitle mb-4 fs-6">Tell us what you're building. Let's discuss how we can help architect and scale your digital products.</p>
+          <p class="iz-subtitle mb-4 fs-6">Tell us what you're building. Let's discuss how we can help architect and
+            scale your digital products.</p>
 
           <form action="#" (submit)="$event.preventDefault()">
             <input type="text" class="iz-input" placeholder="Your Full Name *" required>
             <input type="email" class="iz-input" placeholder="Your Work Email *" required>
-            <input type="text" class="iz-input" placeholder="Subject / Tech Focus (e.g. SaaS Architecture, AI Agents, .NET 9)">
-            <textarea class="iz-textarea" rows="4" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required></textarea>
+            <input type="text" class="iz-input"
+              placeholder="Subject / Tech Focus (e.g. SaaS Architecture, AI Agents, .NET 9)">
+            <textarea class="iz-textarea" rows="4"
+              placeholder="Briefly describe your project requirements, timeline, or architecture challenges..."
+              required></textarea>
             <button type="submit" class="iz-submit-btn">
               Send Message & Request Consultation <i class="fas fa-arrow-right"></i>
             </button>
@@ -483,7 +504,8 @@
               <div class="label">Direct Email</div>
               <div class="value">{{ portfolioService.profile.email }}</div>
             </div>
-            <button type="button" class="channel-copy-btn" (click)="copyEmail()" title="Copy Email" aria-label="Copy Email">
+            <button type="button" class="channel-copy-btn" (click)="copyEmail()" title="Copy Email"
+              aria-label="Copy Email">
               <i class="fas fa-copy"></i>
             </button>
           </div>
@@ -494,7 +516,8 @@
               <div class="label">Direct Phone & WhatsApp</div>
               <div class="value">{{ portfolioService.profile.displayPhone }}</div>
             </div>
-            <button type="button" class="channel-copy-btn" (click)="copyPhone()" title="Copy Phone" aria-label="Copy Phone">
+            <button type="button" class="channel-copy-btn" (click)="copyPhone()" title="Copy Phone"
+              aria-label="Copy Phone">
               <i class="fas fa-copy"></i>
             </button>
           </div>
@@ -508,7 +531,8 @@
           </div>
 
           <div class="d-flex gap-2">
-            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-btn-green w-100 justify-content-center">
+            <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()"
+              class="iz-btn-green w-100 justify-content-center">
               <i class="fab fa-whatsapp"></i> WhatsApp Direct
             </a>
           </div>
