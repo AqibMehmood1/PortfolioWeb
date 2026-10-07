@@ -133,9 +133,22 @@
             <input type="text" [(ngModel)]="currentProject.duration" class="form-control" placeholder="e.g. 6 Months (Q3-Q4 2025)" />
           </div>
 
-          <div class="form-group">
-            <label>Thumbnail Image URL</label>
-            <input type="text" [(ngModel)]="currentProject.thumbnailUrl" class="form-control" />
+          <div class="form-group full-span">
+            <app-image-picker
+              label="Thumbnail Cover Image (URL / Upload)"
+              [(imageUrl)]="currentProject.thumbnailUrl"
+              placeholder="e.g. assets/img/ODTool.png or https://... or upload local file"
+              hint="Upload an image file from your computer or specify an image URL / asset path."
+            ></app-image-picker>
+          </div>
+
+          <div class="form-group full-span">
+            <app-image-picker
+              label="Animated GIF / Interactive Demo (URL / Upload)"
+              [(imageUrl)]="currentProject.gif"
+              placeholder="e.g. assets/img/OdooTools.gif or upload local file"
+              hint="Upload an animated GIF / recorded demonstration or specify a GIF asset path."
+            ></app-image-picker>
           </div>
 
           <div class="form-group">

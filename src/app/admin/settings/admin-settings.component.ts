@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, WebsiteSettingDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ImagePickerComponent } from '../components/image-picker/image-picker.component';
 
 @Component({
   selector: 'app-admin-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ImagePickerComponent],
   templateUrl: './admin-settings.component.html',
   styleUrl: './admin-settings.component.css'
 })

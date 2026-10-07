@@ -16,6 +16,7 @@ export class AdminLoginComponent {
   username = '';
   password = '';
   loading = false;
+  showPassword = false;
   errorMessage = '';
   private errorTimeout: any = null;
 
@@ -27,6 +28,10 @@ export class AdminLoginComponent {
     if (this.adminApi.isAuthenticated()) {
       this.router.navigate(['/admin/dashboard']);
     }
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit(): void {

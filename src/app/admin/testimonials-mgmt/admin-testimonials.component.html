@@ -146,9 +146,13 @@
             <label>Testimonial Quote *</label>
             <textarea rows="4" [(ngModel)]="currentTestimonial.quote" class="form-control"></textarea>
           </div>
-          <div class="form-group">
-            <label>Avatar Image URL</label>
-            <input type="text" [(ngModel)]="currentTestimonial.avatarUrl" class="form-control" />
+          <div class="form-group full-span">
+            <app-image-picker
+              label="Avatar / Client Photo (URL / Upload)"
+              [(imageUrl)]="currentTestimonial.avatarUrl"
+              placeholder="e.g. assets/testimonials/avatar1.jpg or upload client photo"
+              hint="Upload an avatar image from your PC or enter an image URL / asset path."
+            ></app-image-picker>
           </div>
           <div class="form-group">
             <label>Star Rating (1-5)</label>

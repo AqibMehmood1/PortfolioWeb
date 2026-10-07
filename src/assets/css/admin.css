@@ -504,6 +504,133 @@
 }
 
 /* ==========================================================================
+   Admin Table Pagination Footer
+   ========================================================================== */
+.pagination-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: rgba(8, 13, 26, 0.6);
+  border-top: 1px solid var(--admin-border, rgba(255, 255, 255, 0.08));
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.pagination-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.84rem;
+  color: var(--admin-text-muted, #8da2be);
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.pagination-info strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.page-badge {
+  font-family: var(--admin-font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--admin-border, rgba(255, 255, 255, 0.1));
+  color: var(--admin-lime, #B8F500);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--admin-border, rgba(255, 255, 255, 0.1));
+  color: var(--admin-text-body, #e2e8f0);
+  font-family: var(--admin-font-heading, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.btn-page:hover:not(:disabled) {
+  background: var(--admin-lime-dim, rgba(184, 245, 0, 0.12));
+  border-color: var(--admin-lime, #B8F500);
+  color: var(--admin-lime, #B8F500);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184, 245, 0, 0.2);
+}
+
+.btn-page:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.04);
+  color: var(--admin-text-dim, #64748b);
+  transform: none;
+  box-shadow: none;
+}
+
+.page-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--admin-font-mono, monospace);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(11, 17, 30, 0.8);
+  border: 1px solid var(--admin-border, rgba(255, 255, 255, 0.06));
+  color: #94a3b8;
+}
+
+.page-indicator .current-page {
+  color: var(--admin-lime, #B8F500);
+}
+
+.page-indicator .divider {
+  color: #475569;
+}
+
+.page-indicator .total-page {
+  color: #ffffff;
+}
+
+@media (max-width: 576px) {
+  .pagination-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 0.85rem;
+    padding: 1rem;
+  }
+  .pagination-info {
+    justify-content: center;
+  }
+  .pagination-buttons {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
    Filter Bars, Search, and Tabs
    ========================================================================== */
 .filter-bar,

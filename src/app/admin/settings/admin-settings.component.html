@@ -54,22 +54,34 @@
           <span class="field-hint">e.g. Enterprise Technology Partner & Solutions Architecture</span>
         </div>
 
-        <div class="form-group">
-          <label>Favicon Icon Path</label>
-          <input type="text" [ngModel]="getVal('Favicon')" (ngModelChange)="setVal('Favicon', $event, 'Media', 'Favicon path')" class="form-control" />
-          <span class="field-hint">e.g. assets/nexvoys/nex-fav.png</span>
+        <div class="form-group full-span">
+          <app-image-picker
+            label="Favicon Icon (URL / Upload)"
+            [imageUrl]="getVal('Favicon')"
+            (imageUrlChange)="setVal('Favicon', $event, 'Media', 'Favicon path')"
+            placeholder="e.g. assets/nexvoys/nex-fav.png or upload .png/.ico"
+            hint="Upload browser tab icon (PNG or ICO format) or enter asset path."
+          ></app-image-picker>
         </div>
 
-        <div class="form-group">
-          <label>Dark Header Logo Path</label>
-          <input type="text" [ngModel]="getVal('LogoDark')" (ngModelChange)="setVal('LogoDark', $event, 'Media', 'Dark header logo')" class="form-control" />
-          <span class="field-hint">e.g. assets/nexvoys/black-logo.png</span>
+        <div class="form-group full-span">
+          <app-image-picker
+            label="Dark Header Logo (URL / Upload)"
+            [imageUrl]="getVal('LogoDark')"
+            (imageUrlChange)="setVal('LogoDark', $event, 'Media', 'Dark header logo')"
+            placeholder="e.g. assets/nexvoys/black-logo.png or upload image"
+            hint="Upload header brand logo or enter asset path."
+          ></app-image-picker>
         </div>
 
-        <div class="form-group">
-          <label>White Footer Logo Path</label>
-          <input type="text" [ngModel]="getVal('LogoLight')" (ngModelChange)="setVal('LogoLight', $event, 'Media', 'White footer logo')" class="form-control" />
-          <span class="field-hint">e.g. assets/nexvoys/white-logo.png</span>
+        <div class="form-group full-span">
+          <app-image-picker
+            label="White Footer Logo (URL / Upload)"
+            [imageUrl]="getVal('LogoLight')"
+            (imageUrlChange)="setVal('LogoLight', $event, 'Media', 'White footer logo')"
+            placeholder="e.g. assets/nexvoys/white-logo.png or upload image"
+            hint="Upload white/light footer logo or enter asset path."
+          ></app-image-picker>
         </div>
       </div>
     </div>

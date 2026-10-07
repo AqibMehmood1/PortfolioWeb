@@ -1,4 +1,4 @@
-$body = '{"username":"admin","password":"Admin@123456Secure!"}'
+$body = '{"username":"bilalsoftengr@gmail.com","password":"Admin@12345"}'
 $login = Invoke-RestMethod -Uri 'http://localhost:5175/api/auth/login' -Method POST -Body $body -ContentType 'application/json'
 
 Write-Host "Login Success: $($login.success)"

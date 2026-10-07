@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { AdminApiService, ProjectDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
+import { ImagePickerComponent } from '../components/image-picker/image-picker.component';
 
 @Component({
   selector: 'app-admin-projects',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ImagePickerComponent],
   templateUrl: './admin-projects.component.html',
   styleUrl: './admin-projects.component.css'
 })
@@ -64,6 +65,8 @@ export class AdminProjectsComponent implements OnInit {
       duration: '',
       role: '',
       thumbnailUrl: '/assets/projects/default.png',
+      image: '/assets/projects/default.png',
+      gif: '',
       liveUrl: '',
       githubUrl: '',
       featured: false,
@@ -94,7 +97,11 @@ export class AdminProjectsComponent implements OnInit {
   }
 
   openEdit(proj: ProjectDto): void {
-    this.currentProject = { ...proj };
+    this.currentProject = { 
+      ...proj, 
+      thumbnailUrl: proj.thumbnailUrl || (proj as any).image || '',
+      gif: proj.gif || ''
+    };
     this.isEdit = true;
     this.showModal = true;
   }
@@ -108,6 +115,8 @@ export class AdminProjectsComponent implements OnInit {
     if (!this.currentProject.slug) {
       this.currentProject.slug = this.currentProject.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     }
+
+    this.currentProject.image = this.currentProject.thumbnailUrl;
 
     if (this.isEdit && this.currentProject.id) {
       this.adminApi.updateProject(this.currentProject.id, this.currentProject).subscribe({

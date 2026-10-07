@@ -19,15 +19,8 @@
         <label for="username">Username or Email</label>
         <div class="input-container">
           <i class="fas fa-user-circle input-icon"></i>
-          <input 
-            type="text" 
-            id="username" 
-            name="username" 
-            [(ngModel)]="username" 
-            placeholder="admin or email" 
-            required 
-            autocomplete="username"
-            [disabled]="loading" />
+          <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="admin or email" required
+            autocomplete="username" [disabled]="loading" />
         </div>
       </div>
 
@@ -35,15 +28,12 @@
         <label for="password">Password</label>
         <div class="input-container">
           <i class="fas fa-key input-icon"></i>
-          <input 
-            type="password" 
-            id="password" 
-            name="password" 
-            [(ngModel)]="password" 
-            placeholder="••••••••••••" 
-            required 
-            autocomplete="current-password"
-            [disabled]="loading" />
+          <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" [(ngModel)]="password"
+            placeholder="••••••••••••" required autocomplete="current-password" [disabled]="loading" />
+          <button type="button" class="btn-toggle-pw" (click)="togglePasswordVisibility()"
+            [title]="showPassword ? 'Hide password' : 'Show password'" aria-label="Toggle password visibility">
+            <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
         </div>
       </div>
 
@@ -58,7 +48,8 @@
 
       <div class="login-footer-info">
         <p class="credential-tip">
-          <i class="fas fa-info-circle"></i> Default SuperAdmin: <code>admin</code> / <code>Admin@123456Secure!</code>
+          <i class="fas fa-info-circle"></i> Default SuperAdmin: <code>bilalsoftengr@gmail.com</code> /
+          <code>Test123*</code>
         </p>
         <a href="/" class="back-link">
           <i class="fas fa-arrow-left"></i> Return to Public Site

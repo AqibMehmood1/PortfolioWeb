@@ -62,11 +62,28 @@
     </table>
 
     <!-- Pagination Footer -->
-    <div class="pagination-footer">
-      <span class="pagination-info">Showing {{ logs.length }} of {{ totalItems }} records (Page {{ page }} of {{ totalPages }})</span>
+    <div class="pagination-footer" *ngIf="totalItems > 0">
+      <div class="pagination-info">
+        <span>Showing <strong class="text-white">{{ (page - 1) * pageSize + 1 }} - {{ (page - 1) * pageSize + logs.length }}</strong> of <strong class="text-white">{{ totalItems }}</strong> records</span>
+        <span class="page-badge">Page {{ page }} of {{ totalPages }}</span>
+      </div>
+
       <div class="pagination-buttons">
-        <button class="btn-page" (click)="prevPage()" [disabled]="page <= 1">Previous</button>
-        <button class="btn-page" (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
+        <button type="button" class="btn-page" (click)="prevPage()" [disabled]="page <= 1" title="Previous Page">
+          <i class="fas fa-chevron-left"></i>
+          <span>Previous</span>
+        </button>
+
+        <div class="page-indicator">
+          <span class="current-page">{{ page }}</span>
+          <span class="divider">/</span>
+          <span class="total-page">{{ totalPages }}</span>
+        </div>
+
+        <button type="button" class="btn-page" (click)="nextPage()" [disabled]="page >= totalPages" title="Next Page">
+          <span>Next</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </div>
   </div>

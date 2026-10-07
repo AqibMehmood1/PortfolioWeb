@@ -74,7 +74,7 @@ A production-ready, database-driven Content Management System (CMS) and Portfoli
 
 - **URL**: `http://localhost:4200/admin/login`
 - **Username**: `admin`
-- **Password**: `Admin@123456Secure!`
+- **Password**: `Test123*6Secure!`
 - **Role**: `SuperAdmin`
 
 ---

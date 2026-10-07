@@ -1,0 +1,170 @@
+<div class="image-picker-container" [class.full-span]="fullSpan">
+  <div class="picker-header">
+    <label class="picker-label">{{ label }}</label>
+    <div class="picker-badges">
+      <span class="picker-badge"><i class="fas fa-file-image"></i> Local / URL</span>
+    </div>
+  </div>
+
+  <div class="picker-input-row">
+    <div class="picker-input-wrapper">
+      <i class="fas fa-link input-prefix-icon"></i>
+      <input 
+        type="text" 
+        [ngModel]="imageUrl" 
+        (ngModelChange)="onInputChange($event)" 
+        [placeholder]="placeholder" 
+        [disabled]="disabled || uploading"
+        class="form-control picker-text-input"
+      />
+    </div>
+
+    <div class="picker-buttons">
+      <!-- Upload local image file -->
+      <button 
+        type="button" 
+        class="btn-picker-action btn-picker-upload" 
+        (click)="fileInput.click()" 
+        [disabled]="disabled || uploading"
+        title="Upload Image from Local Computer"
+      >
+        <i class="fas" [ngClass]="uploading ? 'fa-spinner fa-spin' : 'fa-cloud-upload-alt'"></i>
+        <span class="btn-picker-text">{{ uploading ? 'Uploading...' : 'Upload Image' }}</span>
+      </button>
+      <input 
+        type="file" 
+        #fileInput 
+        (change)="onFileSelected($event)" 
+        [accept]="accept" 
+        style="display: none;" 
+      />
+
+      <!-- Pick from Media Library -->
+      <button 
+        *ngIf="allowMediaLibrary"
+        type="button" 
+        class="btn-picker-action btn-picker-library" 
+        (click)="openMediaLibrary()" 
+        [disabled]="disabled || uploading"
+        title="Select from Media Library"
+      >
+        <i class="fas fa-photo-video"></i>
+        <span class="btn-picker-text">Media Assets</span>
+      </button>
+    </div>
+  </div>
+
+  <span class="field-hint" *ngIf="hint">{{ hint }}</span>
+
+  <!-- Live Image Preview Card -->
+  <div class="picker-preview-card" *ngIf="imageUrl">
+    <div class="preview-thumb-box">
+      <img 
+        *ngIf="!imageError" 
+        [src]="imageUrl" 
+        [alt]="label" 
+        (error)="onImgError()" 
+        (load)="onImgLoad()" 
+        class="preview-img" 
+      />
+      <div *ngIf="imageError" class="preview-error">
+        <i class="fas fa-image-slash"></i>
+      </div>
+    </div>
+
+    <div class="preview-meta">
+      <div class="preview-status">
+        <span class="status-indicator" [class.status-valid]="!imageError" [class.status-error]="imageError">
+          <i class="fas" [ngClass]="!imageError ? 'fa-check-circle' : 'fa-exclamation-circle'"></i>
+          {{ !imageError ? 'Image Loaded' : 'Preview Unavailable' }}
+        </span>
+      </div>
+      <div class="preview-url-text" [title]="imageUrl">{{ imageUrl }}</div>
+    </div>
+
+    <div class="preview-actions">
+      <button 
+        type="button" 
+        class="btn-preview-btn" 
+        (click)="copyUrl()" 
+        title="Copy Image URL / Path"
+      >
+        <i class="fas fa-copy"></i>
+      </button>
+      <a 
+        [href]="imageUrl" 
+        target="_blank" 
+        class="btn-preview-btn" 
+        title="Open Full Image in New Tab"
+      >
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <button 
+        type="button" 
+        class="btn-preview-btn btn-preview-clear" 
+        (click)="clearImage()" 
+        title="Clear Image"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Media Library Modal Selector -->
+  <div class="picker-modal-backdrop" *ngIf="showMediaModal" (click)="showMediaModal = false">
+    <div class="picker-modal-content" (click)="$event.stopPropagation()">
+      <div class="picker-modal-header">
+        <div class="modal-title-box">
+          <div class="modal-icon-badge"><i class="fas fa-photo-video"></i></div>
+          <div>
+            <h3>Select from Media Library</h3>
+            <p>Choose an uploaded asset to use for this field</p>
+          </div>
+        </div>
+        <button class="btn-modal-close" (click)="showMediaModal = false"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="picker-modal-body">
+        <div class="media-modal-filter">
+          <i class="fas fa-search"></i>
+          <input 
+            type="text" 
+            [(ngModel)]="mediaSearchTerm" 
+            placeholder="Search media files by name or alt text..." 
+            class="form-control"
+          />
+        </div>
+
+        <div *ngIf="loadingMedia" class="media-loading">
+          <i class="fas fa-circle-notch fa-spin"></i> Loading assets from library...
+        </div>
+
+        <div *ngIf="!loadingMedia && filteredMediaFiles.length === 0" class="media-empty">
+          <i class="fas fa-images"></i>
+          <p>No media files found. You can upload a new one directly.</p>
+        </div>
+
+        <div *ngIf="!loadingMedia && filteredMediaFiles.length > 0" class="media-grid-picker">
+          <div 
+            *ngFor="let m of filteredMediaFiles" 
+            class="media-item-card" 
+            [class.active-selected]="imageUrl === m.url || imageUrl === m.filePath"
+            (click)="selectMediaFile(m)"
+          >
+            <div class="media-item-thumb">
+              <img [src]="m.url || m.filePath" [alt]="m.altText || m.fileName" (error)="$any($event.target).src = '/assets/nexvoys/black-logo.png'" />
+            </div>
+            <div class="media-item-info">
+              <div class="media-item-name" [title]="m.originalFileName || m.fileName">{{ m.originalFileName || m.fileName }}</div>
+              <div class="media-item-path">{{ m.filePath }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="picker-modal-footer">
+        <button type="button" class="btn-cancel" (click)="showMediaModal = false">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

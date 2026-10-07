@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { AdminApiService, TestimonialDto, IndustryDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
+import { ImagePickerComponent } from '../components/image-picker/image-picker.component';
 
 @Component({
   selector: 'app-admin-testimonials',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ImagePickerComponent],
   templateUrl: './admin-testimonials.component.html',
   styleUrl: './admin-testimonials.component.css'
 })

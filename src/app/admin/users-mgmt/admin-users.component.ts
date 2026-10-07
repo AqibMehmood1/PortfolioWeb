@@ -17,6 +17,7 @@ export class AdminUsersComponent implements OnInit {
   loading: boolean = true;
   showModal: boolean = false;
   isEdit: boolean = false;
+  showPassword: boolean = false;
 
   userForm = {
     id: 0,
@@ -27,6 +28,10 @@ export class AdminUsersComponent implements OnInit {
     password: '',
     isActive: true
   };
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
 
   constructor(
     private adminApi: AdminApiService,

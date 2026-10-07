@@ -137,6 +137,8 @@ export interface ProjectDto {
   duration: string;
   role: string;
   thumbnailUrl: string;
+  image: string;
+  gif: string;
   liveUrl: string;
   githubUrl: string;
   featured: boolean;
@@ -252,6 +254,7 @@ export interface MediaFileDto {
   id?: number;
   fileName: string;
   originalFileName: string;
+  filePath?: string;
   contentType: string;
   fileSizeBytes: number;
   url: string;

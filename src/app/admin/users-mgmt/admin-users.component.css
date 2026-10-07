@@ -51,3 +51,37 @@
   width: 17px;
   height: 17px;
 }
+
+.password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-input-wrap .form-control {
+  width: 100%;
+  padding-right: 2.85rem;
+}
+
+.btn-toggle-pw-modal {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: var(--admin-text-dim, #64748b);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-toggle-pw-modal:hover {
+  color: var(--admin-lime, #B8F500);
+  background: rgba(255, 255, 255, 0.06);
+}
+

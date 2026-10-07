@@ -130,7 +130,7 @@
 
 .input-container input {
   width: 100%;
-  padding: 0.85rem 1rem 0.85rem 2.85rem;
+  padding: 0.85rem 3.2rem 0.85rem 2.85rem;
   background: var(--admin-bg-input, #0a1120);
   border: 1.5px solid var(--admin-border, rgba(255, 255, 255, 0.1));
   border-radius: 12px;
@@ -139,12 +139,35 @@
   font-family: inherit;
   transition: all 0.2s ease;
   outline: none;
+  box-sizing: border-box;
 }
 
 .input-container input:focus {
   border-color: var(--admin-lime, #B8F500);
   background: #0d1628;
   box-shadow: 0 0 0 3px rgba(184, 245, 0, 0.16);
+}
+
+.btn-toggle-pw {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.btn-toggle-pw:hover {
+  color: var(--admin-lime, #B8F500);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .btn-login {
