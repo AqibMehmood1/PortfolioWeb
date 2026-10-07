@@ -583,14 +583,6 @@ export class PortfolioService {
     this.showToast(`${label} copied to clipboard! ✨`);
   }
 
-  downloadCV(): void {
-    const link = document.createElement('a');
-    link.href = this.profile.cvPath;
-    link.download = 'NEXVOYS_Enterprise_Capabilities.pdf';
-    link.click();
-    this.showToast('Downloading NEXVOYS Company Profile... 📄');
-  }
-
   openWhatsApp(): void {
     const msg = encodeURIComponent(`Hi NEXVOYS team, I reviewed your enterprise solutions architecture services and would like to discuss a project roadmap.`);
     window.open(`https://wa.me/${this.profile.phone}?text=${msg}`, '_blank');

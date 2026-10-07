@@ -4,11 +4,12 @@ import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PortfolioService } from './services/portfolio.service';
 import { ProjectItem } from './models/portfolio.model';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ChatbotComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

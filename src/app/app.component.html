@@ -336,3 +336,6 @@
 <button type="button" class="back-to-top" (click)="scrollToTop()" aria-label="Scroll back to top">
   <i class="fas fa-arrow-up"></i>
 </button>
+
+<!-- ==================== AI CHATBOT PUBLIC WIDGET ==================== -->
+<app-chatbot *ngIf="!isAdminRoute"></app-chatbot>

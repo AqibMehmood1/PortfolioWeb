@@ -686,3 +686,59 @@ public class AuditLogDto
     public string? IpAddress { get; set; }
     public DateTime CreatedAt { get; set; }
 }
+
+// --- Chatbot DTOs ---
+public class ChatRequestDto
+{
+    [Required]
+    public string Message { get; set; } = string.Empty;
+    public string? SessionId { get; set; }
+    public List<ChatMessageHistoryDto>? History { get; set; }
+}
+
+public class ChatMessageHistoryDto
+{
+    public string Role { get; set; } = "user"; // "user" or "assistant"
+    public string Content { get; set; } = string.Empty;
+}
+
+public class ChatActionLinkDto
+{
+    public string Label { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
+    public string Type { get; set; } = "internal"; // internal, external, action
+    public string? Icon { get; set; }
+}
+
+public class ChatResponseDto
+{
+    public string Reply { get; set; } = string.Empty;
+    public List<string> SuggestedActions { get; set; } = new();
+    public List<ChatActionLinkDto> Links { get; set; } = new();
+    public bool IsLeadCapturePrompt { get; set; }
+}
+
+public class SubmitChatInquiryDto
+{
+    [Required]
+    [MaxLength(100)]
+    public string Name { get; set; } = string.Empty;
+
+    [Required]
+    [EmailAddress]
+    [MaxLength(150)]
+    public string Email { get; set; } = string.Empty;
+
+    [MaxLength(50)]
+    public string? Phone { get; set; }
+
+    [MaxLength(150)]
+    public string? Company { get; set; }
+
+    [MaxLength(200)]
+    public string? Topic { get; set; }
+
+    [Required]
+    [MaxLength(4000)]
+    public string Message { get; set; } = string.Empty;
+}

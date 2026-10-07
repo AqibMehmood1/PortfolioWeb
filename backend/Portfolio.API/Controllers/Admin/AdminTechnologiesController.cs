@@ -66,15 +66,16 @@ public class AdminTechnologiesController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest(ApiResponse.Fail("Invalid data."));
 
-        var cat = await _context.TechnologyCategories.FirstOrDefaultAsync(c => c.Key == dto.CategoryKey);
+        var catKey = dto.CategoryKey ?? string.Empty;
+        var cat = await _context.TechnologyCategories.FirstOrDefaultAsync(c => c.Key == catKey);
 
         var entity = new Technology
         {
-            CategoryKey = dto.CategoryKey,
+            CategoryKey = catKey,
             CategoryId = cat?.Id,
-            Name = dto.Name.Trim(),
-            Icon = dto.Icon.Trim(),
-            Color = dto.Color.Trim(),
+            Name = (dto.Name ?? string.Empty).Trim(),
+            Icon = (dto.Icon ?? string.Empty).Trim(),
+            Color = (dto.Color ?? string.Empty).Trim(),
             DisplayOrder = dto.DisplayOrder,
             IsActive = dto.IsActive,
             CreatedAt = DateTime.UtcNow
@@ -88,7 +89,7 @@ public class AdminTechnologiesController : ControllerBase
         var resultDto = new TechnologyDto
         {
             Id = entity.Id,
-            CategoryKey = entity.CategoryKey,
+            CategoryKey = entity.CategoryKey ?? string.Empty,
             Name = entity.Name,
             Icon = entity.Icon,
             Color = entity.Color,
@@ -105,13 +106,14 @@ public class AdminTechnologiesController : ControllerBase
         var entity = await _context.Technologies.FindAsync(id);
         if (entity == null) return NotFound(ApiResponse.Fail("Technology not found."));
 
-        var cat = await _context.TechnologyCategories.FirstOrDefaultAsync(c => c.Key == dto.CategoryKey);
+        var catKey = dto.CategoryKey ?? string.Empty;
+        var cat = await _context.TechnologyCategories.FirstOrDefaultAsync(c => c.Key == catKey);
 
-        entity.CategoryKey = dto.CategoryKey;
+        entity.CategoryKey = catKey;
         entity.CategoryId = cat?.Id;
-        entity.Name = dto.Name.Trim();
-        entity.Icon = dto.Icon.Trim();
-        entity.Color = dto.Color.Trim();
+        entity.Name = (dto.Name ?? string.Empty).Trim();
+        entity.Icon = (dto.Icon ?? string.Empty).Trim();
+        entity.Color = (dto.Color ?? string.Empty).Trim();
         entity.DisplayOrder = dto.DisplayOrder;
         entity.IsActive = dto.IsActive;
         entity.UpdatedAt = DateTime.UtcNow;
@@ -122,7 +124,7 @@ public class AdminTechnologiesController : ControllerBase
         var resultDto = new TechnologyDto
         {
             Id = entity.Id,
-            CategoryKey = entity.CategoryKey,
+            CategoryKey = entity.CategoryKey ?? string.Empty,
             Name = entity.Name,
             Icon = entity.Icon,
             Color = entity.Color,
@@ -165,7 +167,7 @@ public class AdminTechnologiesController : ControllerBase
             Technologies = c.Technologies.OrderBy(t => t.DisplayOrder).Select(t => new TechnologyDto
             {
                 Id = t.Id,
-                CategoryKey = t.CategoryKey,
+                CategoryKey = t.CategoryKey ?? string.Empty,
                 Name = t.Name,
                 Icon = t.Icon,
                 Color = t.Color,
@@ -182,10 +184,13 @@ public class AdminTechnologiesController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest(ApiResponse.Fail("Invalid category data."));
 
+        var key = (dto.Key ?? dto.Slug ?? dto.Name ?? "category").Trim().ToLower();
+        var label = (dto.Label ?? dto.Name ?? dto.Key ?? "Category").Trim();
+
         var entity = new TechnologyCategory
         {
-            Key = dto.Key.Trim().ToLower(),
-            Label = dto.Label.Trim(),
+            Key = key,
+            Label = label,
             DisplayOrder = dto.DisplayOrder,
             CreatedAt = DateTime.UtcNow
         };
@@ -210,8 +215,11 @@ public class AdminTechnologiesController : ControllerBase
         var entity = await _context.TechnologyCategories.FindAsync(id);
         if (entity == null) return NotFound(ApiResponse.Fail("Category not found."));
 
-        entity.Key = dto.Key.Trim().ToLower();
-        entity.Label = dto.Label.Trim();
+        var key = (dto.Key ?? dto.Slug ?? dto.Name ?? entity.Key).Trim().ToLower();
+        var label = (dto.Label ?? dto.Name ?? dto.Key ?? entity.Label).Trim();
+
+        entity.Key = key;
+        entity.Label = label;
         entity.DisplayOrder = dto.DisplayOrder;
         entity.UpdatedAt = DateTime.UtcNow;
 

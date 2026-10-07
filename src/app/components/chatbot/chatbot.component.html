@@ -1,0 +1,295 @@
+<!-- ==================== FLOATING CHATBOT WIDGET ==================== -->
+<div class="chatbot-container" [class.chat-open]="isOpen">
+
+  <!-- 1. Floating Teaser Callout Bubble (Initial attention grabber) -->
+  <div class="chat-teaser-bubble animate-bounce-subtle" *ngIf="showTeaser && !isOpen" (click)="toggleChat()">
+    <div class="teaser-avatar">
+      <div class="bot-icon-glow">
+        <i class="fas fa-robot"></i>
+      </div>
+      <span class="teaser-pulse-dot"></span>
+    </div>
+    <div class="teaser-content">
+      <span class="teaser-title">Have Architecture Questions?</span>
+      <p class="teaser-text">Ask our AI Assistant about SaaS, GenAI agents, tech stack & pricing!</p>
+    </div>
+    <button type="button" class="teaser-close-btn" (click)="dismissTeaser($event)" aria-label="Dismiss">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- 2. Floating Action Button (Toggle Trigger) -->
+  <button 
+    type="button" 
+    class="chatbot-fab" 
+    [class.active]="isOpen" 
+    (click)="toggleChat()" 
+    aria-label="Toggle AI Chatbot"
+    title="Chat with NEXVOYS AI Architect"
+  >
+    <div class="fab-glow-ring"></div>
+    <div class="fab-icon-wrapper">
+      <i class="fas" [ngClass]="isOpen ? 'fa-times' : 'fa-brain'"></i>
+    </div>
+    <span class="fab-status-badge" *ngIf="!isOpen">
+      <span class="status-dot-inner"></span>
+    </span>
+  </button>
+
+  <!-- 3. Interactive Chatbot Modal Window -->
+  <div class="chatbot-window" *ngIf="isOpen">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="bot-header-avatar">
+          <i class="fas fa-robot"></i>
+          <span class="avatar-online-dot"></span>
+        </div>
+        <div class="bot-header-info">
+          <div class="bot-header-title-row">
+            <h4 class="bot-name">NEXVOYS AI</h4>
+            <span class="bot-badge">Solutions Architect</span>
+          </div>
+          <div class="bot-status-row">
+            <span class="status-indicator"></span>
+            <span class="status-text">Online • Trained on 9+ Yrs Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-header-actions">
+        <!-- Quick Consultation Trigger -->
+        <button 
+          type="button" 
+          class="header-btn" 
+          (click)="openInquiryModal()" 
+          title="Schedule Technical Consultation"
+        >
+          <i class="fas fa-calendar-plus"></i>
+        </button>
+        <!-- Reset / Clear -->
+        <button 
+          type="button" 
+          class="header-btn" 
+          (click)="clearChat()" 
+          title="Reset Conversation"
+        >
+          <i class="fas fa-redo-alt"></i>
+        </button>
+        <!-- Close -->
+        <button 
+          type="button" 
+          class="header-btn close-btn" 
+          (click)="closeChat()" 
+          title="Close Chat"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Body -->
+    <div class="chat-messages-container" #messagesScroll>
+      <!-- Message history -->
+      <div 
+        *ngFor="let msg of messages; let i = index" 
+        class="message-wrapper" 
+        [ngClass]="msg.role === 'user' ? 'message-user' : 'message-bot'"
+      >
+        <!-- Bot Avatar -->
+        <div class="message-avatar" *ngIf="msg.role === 'assistant'">
+          <i class="fas fa-robot"></i>
+        </div>
+
+        <div class="message-body-wrapper">
+          <!-- Message Bubble -->
+          <div class="message-bubble" [ngClass]="msg.role === 'user' ? 'bubble-user' : 'bubble-bot'">
+            <div *ngIf="msg.role === 'user'" class="user-text">{{ msg.content }}</div>
+            <div *ngIf="msg.role === 'assistant'" class="bot-formatted-text" [innerHTML]="msg.formattedContent"></div>
+          </div>
+
+          <!-- Action Link Pills (Interactive deep-linking) -->
+          <div class="action-links-container" *ngIf="msg.links && msg.links.length > 0">
+            <button 
+              *ngFor="let link of msg.links" 
+              type="button" 
+              class="action-pill-btn"
+              (click)="navigateAction(link, $event)"
+            >
+              <i *ngIf="link.icon" [class]="link.icon + ' me-1 text-green'"></i>
+              <span>{{ link.label }}</span>
+              <i class="fas fa-arrow-right pill-arrow"></i>
+            </button>
+          </div>
+
+          <!-- Inline Lead Capture Trigger inside message if suggested -->
+          <div class="inline-lead-prompt" *ngIf="msg.showLeadForm">
+            <button type="button" class="btn-inline-inquiry" (click)="openInquiryModal(msg.leadFormType || 'Direct Consultation')">
+              <i class="fas fa-paper-plane me-1"></i> Submit Project Requirements
+            </button>
+          </div>
+
+          <span class="message-time">
+            {{ msg.timestamp | date:'shortTime' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="message-wrapper message-bot typing-indicator-wrapper" *ngIf="isLoading">
+        <div class="message-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="typing-bubble">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggested Quick Question Pills -->
+    <div class="suggested-pills-bar" *ngIf="suggestedPills.length > 0 && !isLoading">
+      <div class="pills-scroll-track">
+        <button 
+          *ngFor="let pill of suggestedPills" 
+          type="button" 
+          class="suggestion-chip"
+          (click)="selectPrompt(pill)"
+        >
+          {{ pill }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Input Footer -->
+    <div class="chat-footer">
+      <form class="chat-input-form" (ngSubmit)="sendMessage()">
+        <input 
+          #messageInput
+          type="text" 
+          class="chat-input" 
+          placeholder="Ask anything about SaaS, AI, .NET, pricing..." 
+          [(ngModel)]="userInput" 
+          name="chatQuery"
+          [disabled]="isLoading"
+          autocomplete="off"
+        />
+        <button 
+          type="submit" 
+          class="chat-send-btn" 
+          [disabled]="!userInput.trim() || isLoading"
+          aria-label="Send message"
+        >
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+      <div class="chat-footer-brand">
+        <span>Powered by <strong>NEXVOYS AI Architecture</strong></span>
+      </div>
+    </div>
+
+    <!-- 4. INLINE INQUIRY / CONSULTATION MODAL (Direct Lead Capture) -->
+    <div class="inquiry-overlay" *ngIf="showInquiryModal">
+      <div class="inquiry-modal-card">
+        <div class="inquiry-header">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-paper-plane text-green"></i>
+            <h5 class="inquiry-title">Request Architecture Advisory</h5>
+          </div>
+          <button type="button" class="inquiry-close" (click)="closeInquiryModal()" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <p class="inquiry-subtitle">
+          Directly reach our Lead Solutions Architect. We'll reply within 24 hours.
+        </p>
+
+        <form (ngSubmit)="submitInquiry()" class="inquiry-form">
+          <div class="inquiry-form-group">
+            <label>Your Name *</label>
+            <input 
+              type="text" 
+              class="inquiry-input" 
+              placeholder="e.g. Alex Morgan" 
+              [(ngModel)]="inquiryForm.name" 
+              name="inqName" 
+              required
+            />
+          </div>
+
+          <div class="inquiry-form-group">
+            <label>Work Email *</label>
+            <input 
+              type="email" 
+              class="inquiry-input" 
+              placeholder="e.g. alex@company.com" 
+              [(ngModel)]="inquiryForm.email" 
+              name="inqEmail" 
+              required
+            />
+          </div>
+
+          <div class="row g-2">
+            <div class="col-6 inquiry-form-group">
+              <label>Company / Org</label>
+              <input 
+                type="text" 
+                class="inquiry-input" 
+                placeholder="Acme Corp" 
+                [(ngModel)]="inquiryForm.company" 
+                name="inqCompany"
+              />
+            </div>
+            <div class="col-6 inquiry-form-group">
+              <label>Phone / WhatsApp</label>
+              <input 
+                type="text" 
+                class="inquiry-input" 
+                placeholder="+1 (555) 019-2834" 
+                [(ngModel)]="inquiryForm.phone" 
+                name="inqPhone"
+              />
+            </div>
+          </div>
+
+          <div class="inquiry-form-group">
+            <label>Engagement Focus</label>
+            <select class="inquiry-select" [(ngModel)]="inquiryForm.interest" name="inqInterest">
+              <option value="SaaS Multi-Tenancy Architecture">SaaS Multi-Tenancy Architecture</option>
+              <option value="Autonomous AI Agents & GenAI">Autonomous AI Agents & GenAI</option>
+              <option value="Legacy .NET 9 Migration">Legacy .NET 9 Modernization</option>
+              <option value="Cloud Cost & Scale Optimization">Cloud Cost & Scale Optimization</option>
+              <option value="Fractional CTO & Architecture Audit">Fractional CTO & Architecture Audit</option>
+              <option value="Custom Enterprise Development">Custom Enterprise Development</option>
+            </select>
+          </div>
+
+          <div class="inquiry-form-group">
+            <label>Project Details / Timelines *</label>
+            <textarea 
+              class="inquiry-textarea" 
+              rows="3" 
+              placeholder="Tell us about your current stack, users, challenges, or goals..." 
+              [(ngModel)]="inquiryForm.message" 
+              name="inqMessage"
+              required
+            ></textarea>
+          </div>
+
+          <div class="inquiry-actions">
+            <button type="button" class="btn-cancel-inquiry" (click)="closeInquiryModal()" [disabled]="isSubmittingInquiry">
+              Cancel
+            </button>
+            <button type="submit" class="btn-submit-inquiry" [disabled]="isSubmittingInquiry">
+              <span *ngIf="!isSubmittingInquiry"><i class="fas fa-paper-plane me-1"></i> Send Request</span>
+              <span *ngIf="isSubmittingInquiry"><i class="fas fa-spinner fa-spin me-1"></i> Routing...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

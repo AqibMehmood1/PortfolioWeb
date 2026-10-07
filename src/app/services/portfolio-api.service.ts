@@ -173,4 +173,52 @@ export class PortfolioApiService {
   getSeoByRoute(route: string): Observable<ApiResponse<SeoMetadataDto>> {
     return this.http.get<ApiResponse<SeoMetadataDto>>(`${this.baseUrl}/seo/by-route?route=${encodeURIComponent(route)}`);
   }
+
+  sendChatMessage(request: ChatRequestDto): Observable<ApiResponse<ChatResponseDto>> {
+    return this.http.post<ApiResponse<ChatResponseDto>>(`${this.baseUrl}/chat`, request);
+  }
+
+  submitChatInquiry(dto: SubmitChatInquiryDto): Observable<ApiResponse<any>> {
+    return this.http.post<ApiResponse<any>>(`${this.baseUrl}/chat/inquiry`, dto);
+  }
+}
+
+export interface ChatMessageHistoryDto {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  timestamp?: string;
+}
+
+export interface ChatActionLinkDto {
+  label: string;
+  url: string;
+  isExternal?: boolean;
+  icon?: string;
+}
+
+export interface ChatRequestDto {
+  message: string;
+  history?: ChatMessageHistoryDto[];
+  userContext?: string;
+}
+
+export interface ChatResponseDto {
+  reply: string;
+  suggestedQuestions?: string[];
+  suggestedActions?: string[];
+  links: ChatActionLinkDto[];
+  intent?: string;
+  showLeadForm?: boolean;
+  isLeadCapturePrompt?: boolean;
+  leadFormType?: string;
+}
+
+export interface SubmitChatInquiryDto {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  interest?: string;
+  message: string;
+  chatTranscriptSummary?: string;
 }
