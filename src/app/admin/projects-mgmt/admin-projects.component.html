@@ -1,0 +1,182 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Projects & Case Studies</h1>
+      <p class="page-subtitle">Manage portfolio works, architecture details, metrics, and technology tags</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="openCreate()">
+        <i class="fas fa-plus"></i>
+        <span>Add New Project</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search & Filters -->
+  <div class="filter-bar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search by project name, tech, or description..." />
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading projects from SQL Server...
+  </div>
+
+  <!-- Projects Table -->
+  <div *ngIf="!loading" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Thumbnail</th>
+          <th>Project Title</th>
+          <th>Category</th>
+          <th>Client / Role</th>
+          <th>Featured</th>
+          <th>Published</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proj of filteredProjects">
+          <td>{{ proj.displayOrder }}</td>
+          <td>
+            <img [src]="proj.thumbnailUrl" class="table-thumb" (error)="proj.thumbnailUrl = '/assets/projects/default.png'" />
+          </td>
+          <td>
+            <div class="font-bold">{{ proj.title }}</div>
+            <div class="text-muted text-xs"><code>{{ proj.slug }}</code></div>
+          </td>
+          <td><span class="badge badge-accent">{{ proj.category }}</span></td>
+          <td class="text-muted">{{ proj.client || 'Proprietary' }} • {{ proj.role || 'Architect' }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="proj.featured" [class.badge-inactive]="!proj.featured">
+              {{ proj.featured ? 'FEATURED' : 'STANDARD' }}
+            </span>
+          </td>
+          <td>
+            <span class="badge" [class.badge-active]="proj.isPublished" [class.badge-inactive]="!proj.isPublished">
+              {{ proj.isPublished ? 'PUBLISHED' : 'DRAFT' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEdit(proj)" title="Edit Project">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteProject(proj)" title="Delete Project">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="filteredProjects.length === 0">
+          <td colspan="8" class="text-center text-muted py-4">No projects match the current search.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Project Edit Modal -->
+  <div class="modal-backdrop" *ngIf="showModal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3>{{ isEdit ? 'Edit Case Study / Project' : 'Create New Project' }}</h3>
+        <button class="btn-close" (click)="showModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Project Title *</label>
+            <input type="text" [(ngModel)]="currentProject.title" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Slug (URL key)</label>
+            <input type="text" [(ngModel)]="currentProject.slug" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" [(ngModel)]="currentProject.category" class="form-control" placeholder="e.g. Enterprise Cloud & .NET" />
+          </div>
+
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" [(ngModel)]="currentProject.subtitle" class="form-control" placeholder="Short tagline" />
+          </div>
+
+          <div class="form-group full-span">
+            <label>Short Description (Card Summary)</label>
+            <textarea rows="2" [(ngModel)]="currentProject.description" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group full-span">
+            <label>Full Case Study Description</label>
+            <textarea rows="4" [(ngModel)]="currentProject.longDescription" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Client Organization</label>
+            <input type="text" [(ngModel)]="currentProject.client" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Role in Project</label>
+            <input type="text" [(ngModel)]="currentProject.role" class="form-control" placeholder="e.g. Lead Architect & Full Stack Engineer" />
+          </div>
+
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" [(ngModel)]="currentProject.duration" class="form-control" placeholder="e.g. 6 Months (Q3-Q4 2025)" />
+          </div>
+
+          <div class="form-group">
+            <label>Thumbnail Image URL</label>
+            <input type="text" [(ngModel)]="currentProject.thumbnailUrl" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Live Demo / Platform URL</label>
+            <input type="text" [(ngModel)]="currentProject.liveUrl" class="form-control" placeholder="https://..." />
+          </div>
+
+          <div class="form-group">
+            <label>GitHub Repository URL</label>
+            <input type="text" [(ngModel)]="currentProject.githubUrl" class="form-control" placeholder="https://github.com/..." />
+          </div>
+
+          <div class="form-group full-span">
+            <label>Technologies Used (JSON Array of strings)</label>
+            <input type="text" [(ngModel)]="currentProject.technologiesJson" class="form-control" placeholder='[".NET 9", "Angular 18", "SQL Server", "Docker"]' />
+          </div>
+
+          <div class="form-group full-span">
+            <label>Key Impact Metrics (JSON Array of objects)</label>
+            <input type="text" [(ngModel)]="currentProject.impactMetricsJson" class="form-control" placeholder='[{"value": "99.99%", "label": "Uptime"}, {"value": "4.8x", "label": "Speedup"}]' />
+          </div>
+
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentProject.displayOrder" class="form-control" />
+          </div>
+
+          <div class="form-group flex-row">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentProject.featured" /> Featured on Homepage
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentProject.isPublished" /> Published (Public)
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveProject()">Save Case Study</button>
+      </div>
+    </div>
+  </div>
+</div>

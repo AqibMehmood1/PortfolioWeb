@@ -1,0 +1,86 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">System Audit Trails & Security Log</h1>
+      <p class="page-subtitle">Track immutable admin modifications, entity updates, logins, and timestamps</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-refresh" (click)="loadLogs()" [disabled]="loading">
+        <i class="fas fa-sync-alt" [class.fa-spin]="loading"></i> Refresh Logs
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" placeholder="Search logs by action, entity, username, or IP..." />
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Querying audit trails...
+  </div>
+
+  <!-- Audit Table -->
+  <div *ngIf="!loading" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Timestamp (UTC)</th>
+          <th>Admin User</th>
+          <th>Action</th>
+          <th>Entity Name</th>
+          <th>Entity ID</th>
+          <th>IP Address</th>
+          <th class="text-right">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td class="text-muted text-xs">{{ log.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td class="font-bold text-cyan">{{ log.username }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="log.action.includes('Create')" [class.badge-accent]="log.action.includes('Update')" [class.badge-inactive]="log.action.includes('Delete')">
+              {{ log.action }}
+            </span>
+          </td>
+          <td><code>{{ log.entityName }}</code></td>
+          <td class="text-muted">{{ log.entityId || '—' }}</td>
+          <td class="text-muted text-xs">{{ log.ipAddress || '127.0.0.1' }}</td>
+          <td class="text-right">
+            <button class="btn-icon" (click)="selectedLog = log" title="View Payload" *ngIf="log.changes">
+              <i class="fas fa-eye text-cyan"></i>
+            </button>
+            <span class="text-muted text-xs" *ngIf="!log.changes">—</span>
+          </td>
+        </tr>
+        <tr *ngIf="logs.length === 0">
+          <td colspan="7" class="text-center text-muted py-4">No audit logs recorded matching search.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination Footer -->
+    <div class="pagination-footer">
+      <span class="pagination-info">Showing {{ logs.length }} of {{ totalItems }} records (Page {{ page }} of {{ totalPages }})</span>
+      <div class="pagination-buttons">
+        <button class="btn-page" (click)="prevPage()" [disabled]="page <= 1">Previous</button>
+        <button class="btn-page" (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-backdrop" *ngIf="selectedLog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Audit Log Payload</h3>
+        <button class="btn-close" (click)="selectedLog = null"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <pre class="json-payload">{{ selectedLog.changes }}</pre>
+      </div>
+    </div>
+  </div>
+</div>

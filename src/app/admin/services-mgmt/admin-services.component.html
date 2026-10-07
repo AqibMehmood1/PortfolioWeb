@@ -1,0 +1,229 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Services & Engineering Pillars</h1>
+      <p class="page-subtitle">Manage architectural capabilities, tech stacks, accordion pillars, and deliverables</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="activeTab === 'services' ? openCreateService() : openCreateAccordion()">
+        <i class="fas fa-plus"></i>
+        <span>{{ activeTab === 'services' ? 'Add Core Service' : 'Add Accordion Pillar' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sub Navigation Tabs -->
+  <div class="settings-tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'services'" (click)="activeTab = 'services'">
+      <i class="fas fa-cubes"></i> Core Services ({{ services.length }})
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'accordion'" (click)="activeTab = 'accordion'">
+      <i class="fas fa-stream"></i> Interactive Pillars & Accordion ({{ accordionItems.length }})
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading services from database...
+  </div>
+
+  <!-- Tab 1: Core Services List -->
+  <div *ngIf="!loading && activeTab === 'services'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Icon</th>
+          <th>Service Title</th>
+          <th>Slug</th>
+          <th>Subtitle</th>
+          <th>Featured</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let srv of services">
+          <td>{{ srv.displayOrder }}</td>
+          <td><i [class]="srv.icon + ' text-cyan'"></i></td>
+          <td class="font-bold">{{ srv.title }}</td>
+          <td><code>{{ srv.slug }}</code></td>
+          <td class="text-muted">{{ srv.subtitle }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="srv.isFeatured" [class.badge-inactive]="!srv.isFeatured">
+              {{ srv.isFeatured ? 'YES' : 'NO' }}
+            </span>
+          </td>
+          <td>
+            <span class="badge" [class.badge-active]="srv.isActive" [class.badge-inactive]="!srv.isActive">
+              {{ srv.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditService(srv)" title="Edit Service">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteService(srv)" title="Delete Service">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="services.length === 0">
+          <td colspan="8" class="text-center text-muted py-4">No services defined yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tab 2: Accordion Pillars List -->
+  <div *ngIf="!loading && activeTab === 'accordion'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Num</th>
+          <th>Category</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of accordionItems">
+          <td><code>{{ item.num }}</code></td>
+          <td><span class="badge badge-accent">{{ item.category }}</span></td>
+          <td class="font-bold">{{ item.title }}</td>
+          <td class="text-muted truncate-text">{{ item.description }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="item.isActive" [class.badge-inactive]="!item.isActive">
+              {{ item.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditAccordion(item)" title="Edit Pillar">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteAccordion(item)" title="Delete Pillar">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="accordionItems.length === 0">
+          <td colspan="6" class="text-center text-muted py-4">No accordion pillars defined yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Service Edit Modal -->
+  <div class="modal-backdrop" *ngIf="showServiceModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditService ? 'Edit Service' : 'Create New Service' }}</h3>
+        <button class="btn-close" (click)="showServiceModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Service Title *</label>
+            <input type="text" [(ngModel)]="currentService.title" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Slug (URL key)</label>
+            <input type="text" [(ngModel)]="currentService.slug" class="form-control" placeholder="e.g. cloud-native-architecture" />
+          </div>
+          <div class="form-group">
+            <label>Subtitle / Category</label>
+            <input type="text" [(ngModel)]="currentService.subtitle" class="form-control" placeholder="e.g. Scalable, Resilient Microservices" />
+          </div>
+          <div class="form-group">
+            <label>FontAwesome Icon Class</label>
+            <input type="text" [(ngModel)]="currentService.icon" class="form-control" placeholder="fas fa-server" />
+          </div>
+          <div class="form-group full-span">
+            <label>Description</label>
+            <textarea rows="3" [(ngModel)]="currentService.description" class="form-control"></textarea>
+          </div>
+          <div class="form-group full-span">
+            <label>Features (JSON Array of strings)</label>
+            <input type="text" [(ngModel)]="currentService.featuresJson" class="form-control" placeholder='["Microservices", "Event-Driven", "Docker/K8s"]' />
+          </div>
+          <div class="form-group full-span">
+            <label>Deliverables (JSON Array of strings)</label>
+            <input type="text" [(ngModel)]="currentService.deliverablesJson" class="form-control" placeholder='["Production Ready API", "IaC Scripts"]' />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentService.displayOrder" class="form-control" />
+          </div>
+          <div class="form-group flex-row">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentService.isActive" /> Active on Public Site
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentService.isFeatured" /> Featured Service
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showServiceModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveService()">Save Service</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion Edit Modal -->
+  <div class="modal-backdrop" *ngIf="showAccordionModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditAccordion ? 'Edit Interactive Pillar' : 'Create New Pillar' }}</h3>
+        <button class="btn-close" (click)="showAccordionModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Number Badge</label>
+            <input type="text" [(ngModel)]="currentAccordion.num" class="form-control" placeholder="01" />
+          </div>
+          <div class="form-group">
+            <label>Category Label</label>
+            <input type="text" [(ngModel)]="currentAccordion.category" class="form-control" placeholder="ARCHITECTURE" />
+          </div>
+          <div class="form-group full-span">
+            <label>Pillar Title *</label>
+            <input type="text" [(ngModel)]="currentAccordion.title" class="form-control" />
+          </div>
+          <div class="form-group full-span">
+            <label>Description</label>
+            <textarea rows="3" [(ngModel)]="currentAccordion.description" class="form-control"></textarea>
+          </div>
+          <div class="form-group full-span">
+            <label>Details Points (JSON Array)</label>
+            <input type="text" [(ngModel)]="currentAccordion.detailsJson" class="form-control" placeholder='["Zero Downtime", "Fault Isolation"]' />
+          </div>
+          <div class="form-group full-span">
+            <label>Tags (JSON Array)</label>
+            <input type="text" [(ngModel)]="currentAccordion.tagsJson" class="form-control" placeholder='[".NET 9", "Clean Arch", "RabbitMQ"]' />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentAccordion.displayOrder" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentAccordion.isActive" /> Active on Public Site
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showAccordionModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveAccordion()">Save Pillar</button>
+      </div>
+    </div>
+  </div>
+</div>

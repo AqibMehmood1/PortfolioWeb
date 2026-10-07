@@ -165,3 +165,6 @@ D:\github\PortfolioWeb\backend\Portfolio.API\obj\Debug\net9.0\refint\Portfolio.A
 D:\github\PortfolioWeb\backend\Portfolio.API\obj\Debug\net9.0\Portfolio.API.pdb
 D:\github\PortfolioWeb\backend\Portfolio.API\obj\Debug\net9.0\Portfolio.API.genruntimeconfig.cache
 D:\github\PortfolioWeb\backend\Portfolio.API\obj\Debug\net9.0\ref\Portfolio.API.dll
+D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\BCrypt.Net-Next.dll
+D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\Portfolio.API.staticwebassets.runtime.json

@@ -1,0 +1,69 @@
+<div class="login-wrapper">
+  <div class="login-bg-glow"></div>
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-badge">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h1 class="login-title">NEXVOYS CMS</h1>
+      <p class="login-subtitle">Sign in to manage portfolio content & dynamic assets</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="login-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>{{ errorMessage }}</span>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="username">Username or Email</label>
+        <div class="input-container">
+          <i class="fas fa-user-circle input-icon"></i>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            [(ngModel)]="username" 
+            placeholder="admin or email" 
+            required 
+            autocomplete="username"
+            [disabled]="loading" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-container">
+          <i class="fas fa-key input-icon"></i>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            [(ngModel)]="password" 
+            placeholder="••••••••••••" 
+            required 
+            autocomplete="current-password"
+            [disabled]="loading" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login" [disabled]="loading">
+        <span *ngIf="!loading">
+          <i class="fas fa-sign-in-alt"></i> Authenticate & Enter
+        </span>
+        <span *ngIf="loading" class="spinner-container">
+          <i class="fas fa-spinner fa-spin"></i> Authenticating...
+        </span>
+      </button>
+
+      <div class="login-footer-info">
+        <p class="credential-tip">
+          <i class="fas fa-info-circle"></i> Default SuperAdmin: <code>admin</code> / <code>Admin@123456Secure!</code>
+        </p>
+        <a href="/" class="back-link">
+          <i class="fas fa-arrow-left"></i> Return to Public Site
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Homepage & Hero Section</h1>
+      <p class="page-subtitle">Configure hero banner titles, dynamic headline highlights, rotating typed strings, and key impact metrics</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="saveHome()" [disabled]="saving || loading">
+        <i class="fas fa-save" [class.fa-spin]="saving"></i>
+        <span>{{ saving ? 'Saving Changes...' : 'Save Homepage Content' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading homepage content from database...
+  </div>
+
+  <div *ngIf="!loading" class="home-form-container">
+    <!-- Hero Headlines -->
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-meteor text-cyan"></i> Hero Banner & Headlines</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group full-span">
+            <label>Hero Main Headline</label>
+            <input type="text" [(ngModel)]="homeContent.headline" class="form-control" placeholder="e.g. Enterprise Solutions Architect & Technology Partner" />
+          </div>
+
+          <div class="form-group full-span">
+            <label>Hero Subtitle Narrative</label>
+            <textarea rows="3" [(ngModel)]="homeContent.subtitle" class="form-control" placeholder="Enter introductory hero pitch..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotating Typed Strings -->
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-terminal text-cyan"></i> Dynamic Rotating Sub-Headlines (Typed.js)</h3>
+      </div>
+      <div class="card-body">
+        <div class="add-bullet-row mb-3 d-flex gap-2">
+          <input type="text" [(ngModel)]="newTypedString" class="form-control" placeholder="e.g. Autonomous AI Agents & GenAI" (keyup.enter)="addTypedString()" />
+          <button class="btn-secondary" (click)="addTypedString()"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div class="bullet-list">
+          <div *ngFor="let str of homeContent.typedStrings; let i = index" class="bullet-item d-flex align-items-center justify-content-between p-2 mb-2 bg-dark-alt rounded">
+            <div class="d-flex align-items-center gap-2 flex-grow-1">
+              <i class="fas fa-code text-cyan"></i>
+              <input type="text" [(ngModel)]="homeContent.typedStrings[i]" class="form-control form-control-sm" />
+            </div>
+            <button class="btn-icon text-danger ms-2" (click)="removeTypedString(i)" title="Remove"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Stats -->
+    <div class="section-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-tachometer-alt text-cyan"></i> Verified Impact Statistics</h3>
+        <button class="btn-secondary btn-sm" (click)="addStat()"><i class="fas fa-plus"></i> Add Stat</button>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div *ngFor="let stat of homeContent.stats; let i = index" class="col-md-6 col-lg-3">
+            <div class="sub-card p-3 border rounded">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <input type="text" [(ngModel)]="stat.value" class="form-control form-control-sm fw-bold text-accent" placeholder="9+" />
+                <button class="btn-icon text-danger" (click)="removeStat(i)" title="Delete Stat"><i class="fas fa-trash"></i></button>
+              </div>
+              <div class="form-group mb-2">
+                <label class="small text-muted">Label</label>
+                <input type="text" [(ngModel)]="stat.label" class="form-control form-control-sm" placeholder="Years Architecture" />
+              </div>
+              <div class="form-group mb-0">
+                <label class="small text-muted">Icon Class</label>
+                <input type="text" [(ngModel)]="stat.icon" class="form-control form-control-sm" placeholder="fas fa-history" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

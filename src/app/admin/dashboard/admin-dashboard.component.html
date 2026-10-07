@@ -1,0 +1,152 @@
+<div class="dashboard-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Executive Dashboard</h1>
+      <p class="page-subtitle">Overview of CMS assets, inquiries, projects, and recent activity</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-refresh" (click)="loadDashboardData()" [disabled]="loading">
+        <i class="fas fa-sync-alt" [class.fa-spin]="loading"></i> Refresh
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="dashboard-alert">
+    <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+  </div>
+
+  <div *ngIf="loading" class="dashboard-loading">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading live statistics from SQL Server...
+  </div>
+
+  <div *ngIf="!loading && stats" class="dashboard-content">
+    <!-- Stat Cards Grid -->
+    <div class="stats-grid">
+      <div class="stat-card" routerLink="/admin/projects">
+        <div class="stat-icon icon-projects">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Projects</span>
+          <div class="stat-value">{{ stats.totalProjects }}</div>
+          <span class="stat-subtext">{{ stats.publishedProjects }} Published</span>
+        </div>
+      </div>
+
+      <div class="stat-card" routerLink="/admin/services">
+        <div class="stat-icon icon-services">
+          <i class="fas fa-cubes"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Services & Pillars</span>
+          <div class="stat-value">{{ stats.totalServices }}</div>
+          <span class="stat-subtext">Active Core Capabilities</span>
+        </div>
+      </div>
+
+      <div class="stat-card" routerLink="/admin/technologies">
+        <div class="stat-icon icon-tech">
+          <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Technologies</span>
+          <div class="stat-value">{{ stats.totalTechnologies }}</div>
+          <span class="stat-subtext">Across All Categories</span>
+        </div>
+      </div>
+
+      <div class="stat-card" routerLink="/admin/inquiries">
+        <div class="stat-icon icon-inquiries" [class.has-new]="stats.newInquiries > 0">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Inquiries / Leads</span>
+          <div class="stat-value">{{ stats.totalInquiries }}</div>
+          <span class="stat-subtext text-accent">{{ stats.newInquiries }} New / Unread</span>
+        </div>
+      </div>
+
+      <div class="stat-card" routerLink="/admin/testimonials">
+        <div class="stat-icon icon-testimonials">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Testimonials</span>
+          <div class="stat-value">{{ stats.totalTestimonials }}</div>
+          <span class="stat-subtext">Client Endorsements</span>
+        </div>
+      </div>
+
+      <div class="stat-card" routerLink="/admin/media">
+        <div class="stat-icon icon-media">
+          <i class="fas fa-photo-video"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Media Files</span>
+          <div class="stat-value">{{ stats.totalMediaFiles }}</div>
+          <span class="stat-subtext">In Storage Abstraction</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Sections Grid -->
+    <div class="dash-columns">
+      <!-- Recent Inquiries -->
+      <div class="dash-card">
+        <div class="card-head">
+          <h3 class="card-title"><i class="fas fa-inbox text-accent"></i> Recent Inquiries</h3>
+          <a routerLink="/admin/inquiries" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card-body">
+          <div *ngIf="stats.recentInquiries.length === 0" class="empty-state">
+            <i class="fas fa-check-circle"></i> No inquiries received yet.
+          </div>
+          <div *ngIf="stats.recentInquiries.length > 0" class="inquiry-list">
+            <div *ngFor="let inq of stats.recentInquiries" class="inquiry-item">
+              <div class="inquiry-left">
+                <div class="inquiry-name">{{ inq.name }}</div>
+                <div class="inquiry-subject">{{ inq.subject || 'Portfolio Inquiry' }}</div>
+                <div class="inquiry-meta">
+                  <span><i class="fas fa-envelope"></i> {{ inq.email }}</span>
+                  <span *ngIf="inq.company"> • {{ inq.company }}</span>
+                </div>
+              </div>
+              <div class="inquiry-right">
+                <span class="badge-status" [ngClass]="inq.status.toLowerCase()">{{ inq.status }}</span>
+                <span class="inquiry-time">{{ inq.createdAt | date:'shortDate' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Audit Logs -->
+      <div class="dash-card">
+        <div class="card-head">
+          <h3 class="card-title"><i class="fas fa-history text-cyan"></i> Recent Audit Activity</h3>
+          <a routerLink="/admin/audit-logs" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card-body">
+          <div *ngIf="(stats.recentActivity || stats.recentActivities || []).length === 0" class="empty-state">
+            <i class="fas fa-info-circle"></i> No recent audit logs recorded.
+          </div>
+          <div *ngIf="(stats.recentActivity || stats.recentActivities || []).length > 0" class="activity-timeline">
+            <div *ngFor="let act of (stats.recentActivity || stats.recentActivities || [])" class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="activity-action">{{ act.action }}</span>
+                  <span class="activity-entity">{{ act.entityName }}</span>
+                </div>
+                <div class="timeline-meta">
+                  <span>By {{ act.username }}</span> • <span>{{ act.createdAt | date:'short' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

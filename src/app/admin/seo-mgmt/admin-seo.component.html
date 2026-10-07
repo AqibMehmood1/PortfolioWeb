@@ -1,0 +1,87 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">SEO & Open Graph Meta Tags</h1>
+      <p class="page-subtitle">Configure search engine titles, meta descriptions, canonical URLs, and Open Graph previews</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="saveCurrent()" [disabled]="saving || !selectedSeo">
+        <i class="fas fa-save" [class.fa-spin]="saving"></i>
+        <span>Save SEO Settings</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading SEO entries...
+  </div>
+
+  <div *ngIf="!loading" class="seo-layout">
+    <!-- Route Selection Sidebar -->
+    <div class="seo-route-list">
+      <div class="list-title">PAGE ROUTES</div>
+      <div *ngFor="let s of seoList" 
+           class="route-item" 
+           [class.active]="selectedSeo?.id === s.id" 
+           (click)="selectRoute(s)">
+        <i class="fas fa-file-code"></i>
+        <div class="route-info">
+          <span class="route-path">{{ s.pageRoute }}</span>
+          <span class="route-title-preview">{{ s.metaTitle }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Editor Form -->
+    <div class="seo-editor" *ngIf="selectedSeo">
+      <div class="section-card">
+        <div class="card-header">
+          <h3 class="card-title"><i class="fas fa-search text-cyan"></i> Search Meta for <code>{{ selectedSeo.pageRoute }}</code></h3>
+        </div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group full-span">
+              <label>Meta Title (Browser & Search Snippet)</label>
+              <input type="text" [(ngModel)]="selectedSeo.metaTitle" class="form-control" />
+            </div>
+
+            <div class="form-group full-span">
+              <label>Meta Description</label>
+              <textarea rows="3" [(ngModel)]="selectedSeo.metaDescription" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group full-span">
+              <label>Keywords (Comma-separated)</label>
+              <input type="text" [(ngModel)]="selectedSeo.metaKeywords" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label>Canonical URL</label>
+              <input type="text" [(ngModel)]="selectedSeo.canonicalUrl" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label>Robots Directive</label>
+              <input type="text" [(ngModel)]="selectedSeo.robots" class="form-control" placeholder="index, follow" />
+            </div>
+
+            <div class="form-group">
+              <label>Open Graph Title (OG Title)</label>
+              <input type="text" [(ngModel)]="selectedSeo.ogTitle" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label>Open Graph Image URL</label>
+              <input type="text" [(ngModel)]="selectedSeo.ogImageUrl" class="form-control" />
+            </div>
+
+            <div class="form-group full-span">
+              <label>Open Graph Description</label>
+              <textarea rows="2" [(ngModel)]="selectedSeo.ogDescription" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

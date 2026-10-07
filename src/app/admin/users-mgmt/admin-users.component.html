@@ -1,0 +1,109 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Admin Users & Access Control</h1>
+      <p class="page-subtitle">Manage administrative team credentials, role-based authorization, and account states</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="openCreate()">
+        <i class="fas fa-user-plus"></i>
+        <span>Add Admin User</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading users...
+  </div>
+
+  <!-- Users Table -->
+  <div *ngIf="!loading" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Last Login</th>
+          <th>Status</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td class="font-bold">
+            <i class="fas fa-user-shield text-cyan mr-2"></i> {{ u.username }}
+          </td>
+          <td>{{ u.fullName || '—' }}</td>
+          <td class="text-muted">{{ u.email }}</td>
+          <td>
+            <span class="badge" [class.badge-super]="u.role === 'SuperAdmin'" [class.badge-accent]="u.role !== 'SuperAdmin'">
+              {{ u.role }}
+            </span>
+          </td>
+          <td class="text-muted text-xs">{{ u.lastLoginAt ? (u.lastLoginAt | date:'short') : 'Never' }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="u.isActive" [class.badge-inactive]="!u.isActive">
+              {{ u.isActive ? 'ACTIVE' : 'LOCKED' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEdit(u)" title="Edit User"><i class="fas fa-edit text-cyan"></i></button>
+              <button class="btn-icon" (click)="deleteUser(u)" [disabled]="u.role === 'SuperAdmin'" title="Delete User">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- User Modal -->
+  <div class="modal-backdrop" *ngIf="showModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEdit ? 'Edit Admin User' : 'Create New Admin User' }}</h3>
+        <button class="btn-close" (click)="showModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group" *ngIf="!isEdit">
+            <label>Username *</label>
+            <input type="text" [(ngModel)]="userForm.username" class="form-control" placeholder="username" />
+          </div>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" [(ngModel)]="userForm.fullName" class="form-control" placeholder="Jane Doe" />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" [(ngModel)]="userForm.email" class="form-control" placeholder="admin@domain.com" />
+          </div>
+          <div class="form-group">
+            <label>Authorization Role</label>
+            <select [(ngModel)]="userForm.role" class="form-control">
+              <option value="Admin">Admin (Content Manager)</option>
+              <option value="SuperAdmin">SuperAdmin (Full Permissions)</option>
+            </select>
+          </div>
+          <div class="form-group full-span">
+            <label>{{ isEdit ? 'New Password (leave blank to keep existing)' : 'Initial Password *' }}</label>
+            <input type="password" [(ngModel)]="userForm.password" class="form-control" placeholder="••••••••••••" />
+          </div>
+          <div class="form-group" *ngIf="isEdit">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="userForm.isActive" /> Account Active
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveUser()">Save User</button>
+      </div>
+    </div>
+  </div>
+</div>

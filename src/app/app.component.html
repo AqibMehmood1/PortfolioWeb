@@ -1,5 +1,5 @@
 <!-- ==================== 0. INVOZONE TOP TICKER BAR ==================== -->
-<div class="iz-top-ticker-bar">
+<div class="iz-top-ticker-bar" *ngIf="!isAdminRoute">
   <div class="iz-ticker-track">
     <div class="iz-ticker-content">
       <span>• We're available for Q2/Q3 Architectural Advisory & Scale! Come connect with us!</span>
@@ -15,7 +15,7 @@
 </div>
 
 <!-- ==================== 1. INVOZONE PURE-WHITE NAVBAR ==================== -->
-<header class="iz-navbar-white">
+<header class="iz-navbar-white" *ngIf="!isAdminRoute">
   <div class="container">
     <div class="iz-navbar-inner">
       <!-- Brand Logo -->
@@ -241,7 +241,7 @@
 </div>
 
 <!-- ==================== INVOZONE MULTI-COLUMN FOOTER ==================== -->
-<footer class="iz-footer">
+<footer class="iz-footer" *ngIf="!isAdminRoute">
   <div class="container">
     <div class="row g-5">
       <!-- Col 1: Brand & Bio -->

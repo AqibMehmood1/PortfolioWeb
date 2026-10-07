@@ -1,0 +1,138 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Website Global Settings</h1>
+      <p class="page-subtitle">Manage branding, personal info, contact channels, social URLs, and footer content</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="saveAll()" [disabled]="saving || loading">
+        <i class="fas fa-save" [class.fa-spin]="saving"></i>
+        <span>{{ saving ? 'Saving Changes...' : 'Save All Settings' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading settings from SQL Server...
+  </div>
+
+  <div *ngIf="!loading" class="settings-container">
+    <!-- Tabs Header -->
+    <div class="settings-tabs">
+      <button class="tab-btn" [class.active]="activeTab === 'general'" (click)="activeTab = 'general'">
+        <i class="fas fa-id-badge"></i> General Branding & Profile
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'contact'" (click)="activeTab = 'contact'">
+        <i class="fas fa-address-book"></i> Contact Channels & Links
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'social'" (click)="activeTab = 'social'">
+        <i class="fas fa-share-alt"></i> Social Media & Networks
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'footer'" (click)="activeTab = 'footer'">
+        <i class="fas fa-shoe-prints"></i> Footer, Bio & Copyright
+      </button>
+    </div>
+
+    <!-- Tab 1: General Branding -->
+    <div class="tab-content" *ngIf="activeTab === 'general'">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Company / Brand Name</label>
+          <input type="text" [ngModel]="getVal('CompanyName')" (ngModelChange)="setVal('CompanyName', $event, 'Profile', 'Company or brand name')" class="form-control" />
+          <span class="field-hint">e.g. NEXVOYS</span>
+        </div>
+
+        <div class="form-group">
+          <label>Header Tagline</label>
+          <input type="text" [ngModel]="getVal('Tagline')" (ngModelChange)="setVal('Tagline', $event, 'Profile', 'Header tagline')" class="form-control" />
+          <span class="field-hint">e.g. Enterprise Technology Partner</span>
+        </div>
+
+        <div class="form-group full-span">
+          <label>Professional Role / Capability Title</label>
+          <input type="text" [ngModel]="getVal('Role')" (ngModelChange)="setVal('Role', $event, 'Profile', 'Primary professional role')" class="form-control" />
+          <span class="field-hint">e.g. Enterprise Technology Partner & Solutions Architecture</span>
+        </div>
+
+        <div class="form-group">
+          <label>CV / Capabilities PDF Brochure Path</label>
+          <input type="text" [ngModel]="getVal('CvPath')" (ngModelChange)="setVal('CvPath', $event, 'Profile', 'CV file download path')" class="form-control" />
+          <span class="field-hint">e.g. assets/Bilal_CV.pdf</span>
+        </div>
+
+        <div class="form-group">
+          <label>Favicon Icon Path</label>
+          <input type="text" [ngModel]="getVal('Favicon')" (ngModelChange)="setVal('Favicon', $event, 'Media', 'Favicon path')" class="form-control" />
+          <span class="field-hint">e.g. assets/nexvoys/nex-fav.png</span>
+        </div>
+
+        <div class="form-group">
+          <label>Dark Header Logo Path</label>
+          <input type="text" [ngModel]="getVal('LogoDark')" (ngModelChange)="setVal('LogoDark', $event, 'Media', 'Dark header logo')" class="form-control" />
+          <span class="field-hint">e.g. assets/nexvoys/black-logo.png</span>
+        </div>
+
+        <div class="form-group">
+          <label>White Footer Logo Path</label>
+          <input type="text" [ngModel]="getVal('LogoLight')" (ngModelChange)="setVal('LogoLight', $event, 'Media', 'White footer logo')" class="form-control" />
+          <span class="field-hint">e.g. assets/nexvoys/white-logo.png</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Contact -->
+    <div class="tab-content" *ngIf="activeTab === 'contact'">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Contact Email Address</label>
+          <input type="email" [ngModel]="getVal('Email')" (ngModelChange)="setVal('Email', $event, 'Contact', 'Primary contact email')" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number (E.164 format for WhatsApp)</label>
+          <input type="text" [ngModel]="getVal('Phone')" (ngModelChange)="setVal('Phone', $event, 'Contact', 'Phone (E.164)')" class="form-control" />
+          <span class="field-hint">e.g. +923456466188</span>
+        </div>
+
+        <div class="form-group">
+          <label>Display Phone Number (Formatted)</label>
+          <input type="text" [ngModel]="getVal('DisplayPhone')" (ngModelChange)="setVal('DisplayPhone', $event, 'Contact', 'Display phone')" class="form-control" />
+          <span class="field-hint">e.g. +92 345 6466188</span>
+        </div>
+
+        <div class="form-group">
+          <label>Location / Headquarters</label>
+          <input type="text" [ngModel]="getVal('Location')" (ngModelChange)="setVal('Location', $event, 'Contact', 'Location')" class="form-control" />
+          <span class="field-hint">e.g. Lahore, Pakistan · Global Remote</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Social Networks -->
+    <div class="tab-content" *ngIf="activeTab === 'social'">
+      <div class="form-grid">
+        <div class="form-group full-span">
+          <label><i class="fab fa-linkedin text-primary"></i> LinkedIn Profile / Company URL</label>
+          <input type="text" [ngModel]="getVal('LinkedinUrl')" (ngModelChange)="setVal('LinkedinUrl', $event, 'Social', 'LinkedIn company URL')" class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Footer & Marquee -->
+    <div class="tab-content" *ngIf="activeTab === 'footer'">
+      <div class="form-grid full-width-fields">
+        <div class="form-group">
+          <label>Footer Short Bio / Value Proposition</label>
+          <textarea rows="3" [ngModel]="getVal('FooterBio')" (ngModelChange)="setVal('FooterBio', $event, 'Footer', 'Footer short bio')" class="form-control"></textarea>
+          <span class="field-hint">Brief introductory paragraph displayed in the website footer.</span>
+        </div>
+
+        <div class="form-group">
+          <label>Copyright Notice Text</label>
+          <input type="text" [ngModel]="getVal('CopyrightText')" (ngModelChange)="setVal('CopyrightText', $event, 'Footer', 'Copyright notice')" class="form-control" />
+          <span class="field-hint">e.g. © 2026 NEXVOYS. All rights reserved. Enterprise Software Architecture & Advisory.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

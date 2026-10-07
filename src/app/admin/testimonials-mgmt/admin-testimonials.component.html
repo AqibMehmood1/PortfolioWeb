@@ -1,0 +1,215 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Client Testimonials & Industry Impact</h1>
+      <p class="page-subtitle">Manage verified stakeholder reviews, star ratings, and industry domain tracks</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="activeTab === 'testimonials' ? openCreateTestimonial() : openCreateIndustry()">
+        <i class="fas fa-plus"></i>
+        <span>Add {{ activeTab === 'testimonials' ? 'Testimonial' : 'Industry Focus' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="settings-tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'testimonials'" (click)="activeTab = 'testimonials'">
+      <i class="fas fa-quote-right"></i> Client Reviews ({{ testimonials.length }})
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'industries'" (click)="activeTab = 'industries'">
+      <i class="fas fa-industry"></i> Industry Domains ({{ industries.length }})
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading endorsements from database...
+  </div>
+
+  <!-- Testimonials List -->
+  <div *ngIf="!loading && activeTab === 'testimonials'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Avatar</th>
+          <th>Client Name</th>
+          <th>Company / Role</th>
+          <th>Rating</th>
+          <th>Project</th>
+          <th>Featured</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of testimonials">
+          <td>{{ t.displayOrder }}</td>
+          <td>
+            <img [src]="t.avatarUrl" class="avatar-sm" (error)="t.avatarUrl = '/assets/testimonials/avatar1.jpg'" />
+          </td>
+          <td class="font-bold">{{ t.author }}</td>
+          <td class="text-muted">{{ t.company }} • {{ t.role }}</td>
+          <td>
+            <span class="text-rating">
+              <i class="fas fa-star" *ngFor="let s of [1,2,3,4,5]"></i>
+            </span>
+          </td>
+          <td class="text-cyan">{{ t.projectDelivered || 'General Architecture' }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="t.isFeatured" [class.badge-inactive]="!t.isFeatured">
+              {{ t.isFeatured ? 'YES' : 'NO' }}
+            </span>
+          </td>
+          <td>
+            <span class="badge" [class.badge-active]="t.isActive" [class.badge-inactive]="!t.isActive">
+              {{ t.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditTestimonial(t)" title="Edit Review">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteTestimonial(t)" title="Delete Review">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Industries List -->
+  <div *ngIf="!loading && activeTab === 'industries'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Icon</th>
+          <th>Domain Name</th>
+          <th>Description</th>
+          <th>Delivered Count</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ind of industries">
+          <td>{{ ind.displayOrder }}</td>
+          <td><i [class]="ind.icon + ' text-cyan'"></i></td>
+          <td class="font-bold">{{ ind.name }}</td>
+          <td class="text-muted">{{ ind.description }}</td>
+          <td><span class="badge badge-accent">{{ ind.systemsCount }}</span></td>
+          <td>
+            <span class="badge" [class.badge-active]="ind.isActive" [class.badge-inactive]="!ind.isActive">
+              {{ ind.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditIndustry(ind)"><i class="fas fa-edit text-cyan"></i></button>
+              <button class="btn-icon" (click)="deleteIndustry(ind)"><i class="fas fa-trash text-danger"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Testimonial Modal -->
+  <div class="modal-backdrop" *ngIf="showTestimonialModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditTestimonial ? 'Edit Client Review' : 'Add Client Review' }}</h3>
+        <button class="btn-close" (click)="showTestimonialModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Author / Client Name *</label>
+            <input type="text" [(ngModel)]="currentTestimonial.author" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Designation / Role</label>
+            <input type="text" [(ngModel)]="currentTestimonial.role" class="form-control" placeholder="CTO / Head of Engineering" />
+          </div>
+          <div class="form-group">
+            <label>Company / Organization</label>
+            <input type="text" [(ngModel)]="currentTestimonial.company" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Project Delivered Reference</label>
+            <input type="text" [(ngModel)]="currentTestimonial.projectDelivered" class="form-control" placeholder="Enterprise Cloud Migration" />
+          </div>
+          <div class="form-group full-span">
+            <label>Testimonial Quote *</label>
+            <textarea rows="4" [(ngModel)]="currentTestimonial.quote" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Avatar Image URL</label>
+            <input type="text" [(ngModel)]="currentTestimonial.avatarUrl" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Star Rating (1-5)</label>
+            <input type="number" [(ngModel)]="currentTestimonial.rating" min="1" max="5" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentTestimonial.displayOrder" class="form-control" />
+          </div>
+          <div class="form-group flex-row">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentTestimonial.isFeatured" /> Featured
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentTestimonial.isActive" /> Active
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showTestimonialModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveTestimonial()">Save Review</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Industry Modal -->
+  <div class="modal-backdrop" *ngIf="showIndustryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditIndustry ? 'Edit Industry Domain' : 'Add Industry Domain' }}</h3>
+        <button class="btn-close" (click)="showIndustryModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Industry Name *</label>
+            <input type="text" [(ngModel)]="currentIndustry.name" class="form-control" placeholder="e.g. Fintech & High Frequency" />
+          </div>
+          <div class="form-group">
+            <label>FontAwesome Icon</label>
+            <input type="text" [(ngModel)]="currentIndustry.icon" class="form-control" placeholder="fas fa-chart-line" />
+          </div>
+          <div class="form-group full-span">
+            <label>Description</label>
+            <textarea rows="3" [(ngModel)]="currentIndustry.description" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Delivered Track (e.g. 4 Systems)</label>
+            <input type="text" [(ngModel)]="currentIndustry.systemsCount" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentIndustry.displayOrder" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showIndustryModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveIndustry()">Save Industry</button>
+      </div>
+    </div>
+  </div>
+</div>

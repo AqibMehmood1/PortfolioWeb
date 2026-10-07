@@ -1,0 +1,53 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Media Storage & Asset Vault</h1>
+      <p class="page-subtitle">Upload, inspect, copy direct URLs, and organize project screenshots and icons</p>
+    </div>
+    <div class="header-actions">
+      <label class="btn-primary file-upload-btn">
+        <i class="fas fa-cloud-upload-alt" [class.fa-spin]="uploading"></i>
+        <span>{{ uploading ? 'Uploading...' : 'Upload Media' }}</span>
+        <input type="file" (change)="onFileInput($event)" accept="image/*,application/pdf" [disabled]="uploading" style="display: none;" />
+      </label>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search media files by name..." />
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading media library...
+  </div>
+
+  <!-- Media Grid -->
+  <div *ngIf="!loading" class="media-grid">
+    <div *ngFor="let file of filteredMedia" class="media-card" (click)="selectedFile = file" [class.selected]="selectedFile?.id === file.id">
+      <div class="media-thumb">
+        <img [src]="file.url" (error)="file.url = '/assets/projects/default.png'" [alt]="file.fileName" />
+      </div>
+      <div class="media-details">
+        <span class="media-name" [title]="file.fileName">{{ file.fileName }}</span>
+        <div class="media-meta">
+          <span>{{ formatBytes(file.fileSizeBytes) }}</span>
+          <span>{{ file.createdAt | date:'shortDate' }}</span>
+        </div>
+      </div>
+      <div class="media-actions">
+        <button class="btn-action-icon" (click)="copyUrl(file.url); $event.stopPropagation()" title="Copy URL">
+          <i class="fas fa-link"></i>
+        </button>
+        <button class="btn-action-icon" (click)="deleteMedia(file); $event.stopPropagation()" title="Delete">
+          <i class="fas fa-trash text-danger"></i>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="filteredMedia.length === 0" class="empty-media full-span">
+      <i class="fas fa-images"></i> No media files found. Upload some assets!
+    </div>
+  </div>
+</div>

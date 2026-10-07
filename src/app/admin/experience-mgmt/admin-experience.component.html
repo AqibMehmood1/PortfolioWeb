@@ -1,0 +1,291 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Experience, Education & Certifications</h1>
+      <p class="page-subtitle">Manage professional career history, educational background, and verified credentials</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="activeTab === 'exp' ? openCreateExp() : (activeTab === 'edu' ? openCreateEdu() : openCreateCert())">
+        <i class="fas fa-plus"></i>
+        <span>Add {{ activeTab === 'exp' ? 'Experience' : (activeTab === 'edu' ? 'Education' : 'Certification') }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="settings-tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'exp'" (click)="activeTab = 'exp'">
+      <i class="fas fa-briefcase"></i> Work Experience ({{ experiences.length }})
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'edu'" (click)="activeTab = 'edu'">
+      <i class="fas fa-graduation-cap"></i> Education ({{ educations.length }})
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'cert'" (click)="activeTab = 'cert'">
+      <i class="fas fa-certificate"></i> Certifications ({{ certifications.length }})
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading career records...
+  </div>
+
+  <!-- Tab 1: Experience -->
+  <div *ngIf="!loading && activeTab === 'exp'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Role / Title</th>
+          <th>Company</th>
+          <th>Period</th>
+          <th>Location</th>
+          <th>Current</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exp of experiences">
+          <td>{{ exp.displayOrder }}</td>
+          <td class="font-bold">{{ exp.role }}</td>
+          <td><span class="badge badge-accent">{{ exp.company }}</span></td>
+          <td class="text-muted">{{ exp.period }}</td>
+          <td class="text-muted">{{ exp.location }} ({{ exp.type }})</td>
+          <td>
+            <span class="badge" [class.badge-active]="exp.isCurrent" [class.badge-inactive]="!exp.isCurrent">
+              {{ exp.isCurrent ? 'CURRENT' : 'PAST' }}
+            </span>
+          </td>
+          <td>
+            <span class="badge" [class.badge-active]="exp.isActive" [class.badge-inactive]="!exp.isActive">
+              {{ exp.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditExp(exp)" title="Edit Experience">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteExp(exp)" title="Delete Experience">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tab 2: Education -->
+  <div *ngIf="!loading && activeTab === 'edu'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Degree / Certificate</th>
+          <th>Institution</th>
+          <th>Field of Study</th>
+          <th>Period</th>
+          <th>Honor</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let edu of educations">
+          <td>{{ edu.displayOrder }}</td>
+          <td class="font-bold">{{ edu.degree }}</td>
+          <td><span class="badge badge-accent">{{ edu.institution }}</span></td>
+          <td class="text-muted">{{ edu.fieldOfStudy }}</td>
+          <td class="text-muted">{{ edu.period }}</td>
+          <td class="text-cyan">{{ edu.gradeOrHonor }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="edu.isActive" [class.badge-inactive]="!edu.isActive">
+              {{ edu.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditEdu(edu)"><i class="fas fa-edit text-cyan"></i></button>
+              <button class="btn-icon" (click)="deleteEdu(edu)"><i class="fas fa-trash text-danger"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tab 3: Certifications -->
+  <div *ngIf="!loading && activeTab === 'cert'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Badge</th>
+          <th>Certification Title</th>
+          <th>Issuer</th>
+          <th>Issue Date</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cert of certifications">
+          <td>{{ cert.displayOrder }}</td>
+          <td><i [class]="cert.badgeIcon + ' text-cyan'"></i></td>
+          <td class="font-bold">{{ cert.title }}</td>
+          <td><span class="badge badge-accent">{{ cert.issuingOrganization }}</span></td>
+          <td class="text-muted">{{ cert.issueDate }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="cert.isActive" [class.badge-inactive]="!cert.isActive">
+              {{ cert.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditCert(cert)"><i class="fas fa-edit text-cyan"></i></button>
+              <button class="btn-icon" (click)="deleteCert(cert)"><i class="fas fa-trash text-danger"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Exp Modal -->
+  <div class="modal-backdrop" *ngIf="showExpModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditExp ? 'Edit Experience' : 'Add Experience' }}</h3>
+        <button class="btn-close" (click)="showExpModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Role / Position Title *</label>
+            <input type="text" [(ngModel)]="currentExp.role" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Company / Organization *</label>
+            <input type="text" [(ngModel)]="currentExp.company" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Period</label>
+            <input type="text" [(ngModel)]="currentExp.period" class="form-control" placeholder="2023 — Present" />
+          </div>
+          <div class="form-group">
+            <label>Location & Type</label>
+            <input type="text" [(ngModel)]="currentExp.location" class="form-control" placeholder="Remote / Islamabad" />
+          </div>
+          <div class="form-group full-span">
+            <label>Short Description</label>
+            <textarea rows="2" [(ngModel)]="currentExp.description" class="form-control"></textarea>
+          </div>
+          <div class="form-group full-span">
+            <label>Responsibilities (JSON Array)</label>
+            <input type="text" [(ngModel)]="currentExp.responsibilitiesJson" class="form-control" placeholder='["Architected microservices", "Led sprint cycles"]' />
+          </div>
+          <div class="form-group full-span">
+            <label>Technologies Used (JSON Array)</label>
+            <input type="text" [(ngModel)]="currentExp.technologiesJson" class="form-control" placeholder='[".NET 9", "Angular", "Docker"]' />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentExp.displayOrder" class="form-control" />
+          </div>
+          <div class="form-group flex-row">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentExp.isCurrent" /> Current Job
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentExp.isActive" /> Active
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showExpModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveExp()">Save Experience</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edu Modal -->
+  <div class="modal-backdrop" *ngIf="showEduModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditEdu ? 'Edit Education' : 'Add Education' }}</h3>
+        <button class="btn-close" (click)="showEduModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Degree / Qualification *</label>
+            <input type="text" [(ngModel)]="currentEdu.degree" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Institution *</label>
+            <input type="text" [(ngModel)]="currentEdu.institution" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Field of Study</label>
+            <input type="text" [(ngModel)]="currentEdu.fieldOfStudy" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Period</label>
+            <input type="text" [(ngModel)]="currentEdu.period" class="form-control" placeholder="2019 — 2023" />
+          </div>
+          <div class="form-group">
+            <label>Honors / Grade</label>
+            <input type="text" [(ngModel)]="currentEdu.gradeOrHonor" class="form-control" placeholder="First Class Honors / 3.8 GPA" />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentEdu.displayOrder" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showEduModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveEdu()">Save Education</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cert Modal -->
+  <div class="modal-backdrop" *ngIf="showCertModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditCert ? 'Edit Certification' : 'Add Certification' }}</h3>
+        <button class="btn-close" (click)="showCertModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Certification Title *</label>
+            <input type="text" [(ngModel)]="currentCert.title" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Issuing Organization</label>
+            <input type="text" [(ngModel)]="currentCert.issuingOrganization" class="form-control" placeholder="Microsoft / AWS / Google" />
+          </div>
+          <div class="form-group">
+            <label>Issue Date</label>
+            <input type="text" [(ngModel)]="currentCert.issueDate" class="form-control" placeholder="2024" />
+          </div>
+          <div class="form-group">
+            <label>Badge Icon</label>
+            <input type="text" [(ngModel)]="currentCert.badgeIcon" class="form-control" placeholder="fas fa-certificate" />
+          </div>
+          <div class="form-group full-span">
+            <label>Verification / Credential URL</label>
+            <input type="text" [(ngModel)]="currentCert.credentialUrl" class="form-control" placeholder="https://..." />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showCertModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveCert()">Save Certification</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,84 @@
-@Portfolio.API_HostAddress = http://localhost:5175
+@Host = https://localhost:7163
 
-GET {{Portfolio.API_HostAddress}}/api/health
+### 1. Health & Database Check
+GET {{Host}}/api/health/db-check
 Accept: application/json
 
-###
-
-GET {{Portfolio.API_HostAddress}}/api/health/db-check
+### 2. Public Settings
+GET {{Host}}/api/settings
 Accept: application/json
 
-###
-
-GET {{Portfolio.API_HostAddress}}/weatherforecast/
+### 3. Public Home
+GET {{Host}}/api/home
 Accept: application/json
 
-###
+### 4. Public About
+GET {{Host}}/api/about
+Accept: application/json
+
+### 5. Public Services
+GET {{Host}}/api/services
+Accept: application/json
+
+### 6. Public Accordion Services
+GET {{Host}}/api/services/accordion
+Accept: application/json
+
+### 7. Public Projects
+GET {{Host}}/api/projects
+Accept: application/json
+
+### 8. Public Technologies Grouped
+GET {{Host}}/api/technologies
+Accept: application/json
+
+### 9. Public Technologies Categories
+GET {{Host}}/api/technologies/categories
+Accept: application/json
+
+### 10. Public Experience
+GET {{Host}}/api/experience
+Accept: application/json
+
+### 11. Public Education
+GET {{Host}}/api/experience/education
+Accept: application/json
+
+### 12. Public Certifications
+GET {{Host}}/api/experience/certifications
+Accept: application/json
+
+### 13. Public Testimonials
+GET {{Host}}/api/testimonials
+Accept: application/json
+
+### 14. Public Industries
+GET {{Host}}/api/testimonials/industries
+Accept: application/json
+
+### 15. Public Contact Inquiry Submit
+POST {{Host}}/api/contact
+Content-Type: application/json
+
+{
+  "name": "Sarah Connor",
+  "email": "sarah@cyberdyne.io",
+  "phone": "+1 555 123 4567",
+  "company": "Cyberdyne Systems",
+  "subject": "Topic: SaaS Architecture & Scale",
+  "techStack": "Multi-Tenant SaaS Architecture",
+  "message": "We need architectural advisory for a high-concurrency multi-tenant SaaS application."
+}
+
+### 16. Public SEO for Home
+GET {{Host}}/api/seo/by-route?route=/
+Accept: application/json
+
+### 17. Admin Login
+POST {{Host}}/api/admin/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin@123456Secure!"
+}

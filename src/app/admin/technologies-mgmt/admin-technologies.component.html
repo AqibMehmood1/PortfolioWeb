@@ -1,0 +1,219 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Technologies & Tech Radar</h1>
+      <p class="page-subtitle">Manage programming languages, frameworks, cloud stacks, and tech radar categories</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="activeTab === 'tech' ? openCreateTech() : openCreateCat()">
+        <i class="fas fa-plus"></i>
+        <span>{{ activeTab === 'tech' ? 'Add Technology' : 'Add Category' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="settings-tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'tech'" (click)="activeTab = 'tech'">
+      <i class="fas fa-code"></i> Technologies ({{ technologies.length }})
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'categories'" (click)="activeTab = 'categories'">
+      <i class="fas fa-layer-group"></i> Radar Categories ({{ categories.length }})
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading technology registry...
+  </div>
+
+  <!-- Tech List -->
+  <div *ngIf="!loading && activeTab === 'tech'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Icon</th>
+          <th>Technology</th>
+          <th>Category</th>
+          <th>Proficiency Level</th>
+          <th>Proficiency %</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tech of technologies">
+          <td>{{ tech.displayOrder }}</td>
+          <td><i [class]="tech.icon + ' text-cyan'"></i></td>
+          <td>
+            <div class="font-bold">{{ tech.name }}</div>
+            <div class="text-muted text-xs"><code>{{ tech.slug }}</code></div>
+          </td>
+          <td><span class="badge badge-accent">{{ tech.categoryName || getCategoryName(tech.categoryId) }}</span></td>
+          <td class="text-muted">{{ tech.level }}</td>
+          <td>
+            <div class="progress-bar-container">
+              <div class="progress-bar" [style.width.%]="tech.proficiencyPercentage"></div>
+              <span class="progress-label">{{ tech.proficiencyPercentage }}%</span>
+            </div>
+          </td>
+          <td>
+            <span class="badge" [class.badge-active]="tech.isActive" [class.badge-inactive]="!tech.isActive">
+              {{ tech.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditTech(tech)" title="Edit Tech">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteTech(tech)" title="Delete Tech">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Categories List -->
+  <div *ngIf="!loading && activeTab === 'categories'" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Icon</th>
+          <th>Category Name</th>
+          <th>Slug</th>
+          <th>Subtitle / Domain</th>
+          <th>Active</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cat of categories">
+          <td>{{ cat.displayOrder }}</td>
+          <td><i [class]="cat.icon + ' text-cyan'"></i></td>
+          <td class="font-bold">{{ cat.name }}</td>
+          <td><code>{{ cat.slug }}</code></td>
+          <td class="text-muted">{{ cat.subtitle }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="cat.isActive" [class.badge-inactive]="!cat.isActive">
+              {{ cat.isActive ? 'ACTIVE' : 'INACTIVE' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="openEditCat(cat)" title="Edit Category">
+                <i class="fas fa-edit text-cyan"></i>
+              </button>
+              <button class="btn-icon" (click)="deleteCat(cat)" title="Delete Category">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tech Modal -->
+  <div class="modal-backdrop" *ngIf="showTechModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditTech ? 'Edit Technology' : 'Add New Technology' }}</h3>
+        <button class="btn-close" (click)="showTechModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Technology Name *</label>
+            <input type="text" [(ngModel)]="currentTech.name" class="form-control" placeholder="e.g. .NET 9" />
+          </div>
+          <div class="form-group">
+            <label>Slug</label>
+            <input type="text" [(ngModel)]="currentTech.slug" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select [(ngModel)]="currentTech.categoryId" class="form-control">
+              <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>FontAwesome Icon Class</label>
+            <input type="text" [(ngModel)]="currentTech.icon" class="form-control" placeholder="fab fa-angular" />
+          </div>
+          <div class="form-group">
+            <label>Proficiency Level</label>
+            <input type="text" [(ngModel)]="currentTech.level" class="form-control" placeholder="Expert / Advanced / Proficient" />
+          </div>
+          <div class="form-group">
+            <label>Proficiency Percentage (0-100)</label>
+            <input type="number" [(ngModel)]="currentTech.proficiencyPercentage" class="form-control" />
+          </div>
+          <div class="form-group full-span">
+            <label>Description / Context</label>
+            <textarea rows="2" [(ngModel)]="currentTech.description" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentTech.displayOrder" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentTech.isActive" /> Active
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showTechModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveTech()">Save Technology</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Modal -->
+  <div class="modal-backdrop" *ngIf="showCatModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditCat ? 'Edit Category' : 'Add New Category' }}</h3>
+        <button class="btn-close" (click)="showCatModal = false"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Category Name *</label>
+            <input type="text" [(ngModel)]="currentCat.name" class="form-control" placeholder="e.g. Backend Architecture" />
+          </div>
+          <div class="form-group">
+            <label>Slug</label>
+            <input type="text" [(ngModel)]="currentCat.slug" class="form-control" />
+          </div>
+          <div class="form-group full-span">
+            <label>Subtitle / Domain Focus</label>
+            <input type="text" [(ngModel)]="currentCat.subtitle" class="form-control" placeholder="Scalable APIs & Event Engines" />
+          </div>
+          <div class="form-group">
+            <label>FontAwesome Icon</label>
+            <input type="text" [(ngModel)]="currentCat.icon" class="form-control" placeholder="fas fa-server" />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" [(ngModel)]="currentCat.displayOrder" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="currentCat.isActive" /> Active
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="showCatModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveCat()">Save Category</button>
+      </div>
+    </div>
+  </div>
+</div>

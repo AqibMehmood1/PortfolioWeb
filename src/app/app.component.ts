@@ -17,6 +17,7 @@ export class AppComponent implements AfterViewInit {
   activeMegaMenu: 'hire' | 'services' | 'industries' | 'company' | null = null;
   selectedProject: ProjectItem | null = null;
   toastMessage: string | null = null;
+  isAdminRoute: boolean = false;
   private hoverTimeout: any = null;
 
   constructor(public portfolioService: PortfolioService, private router: Router) {
@@ -30,9 +31,10 @@ export class AppComponent implements AfterViewInit {
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+    ).subscribe((event: any) => {
       this.closeMobileMenu();
       this.closeMegaMenu();
+      this.isAdminRoute = event.urlAfterRedirects ? event.urlAfterRedirects.startsWith('/admin') : event.url.startsWith('/admin');
     });
   }
 

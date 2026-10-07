@@ -1,0 +1,164 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">About & Strategy Content</h1>
+      <p class="page-subtitle">Manage company vision, executive philosophy, 4-step framework, and business value drivers</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="saveAbout()" [disabled]="saving || loading">
+        <i class="fas fa-save" [class.fa-spin]="saving"></i>
+        <span>{{ saving ? 'Saving Changes...' : 'Save About Content' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading About content from database...
+  </div>
+
+  <div *ngIf="!loading" class="home-form-container">
+    <!-- Header info -->
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-user-shield text-cyan"></i> About Page Banner</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group full-span">
+            <label>Headline</label>
+            <input type="text" [(ngModel)]="aboutContent.headline" class="form-control" placeholder="e.g. Architectural Philosophy & Strategy" />
+          </div>
+          <div class="form-group full-span">
+            <label>Subtitle / Executive Pitch</label>
+            <textarea rows="3" [(ngModel)]="aboutContent.subtitle" class="form-control" placeholder="Introductory narrative..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision & Philosophy -->
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-compass text-cyan"></i> Engineering Vision & Philosophy</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-grid full-width-fields">
+          <div class="form-group">
+            <label>Vision Headline</label>
+            <input type="text" [(ngModel)]="aboutContent.visionHeadline" class="form-control" placeholder="Technology Decisions Must Directly Drive Revenue & Velocity" />
+          </div>
+          <div class="form-group">
+            <label>Vision Lead Statement (Highlighted paragraph)</label>
+            <textarea rows="3" [(ngModel)]="aboutContent.visionLead" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Vision Detailed Philosophy Description</label>
+            <textarea rows="4" [(ngModel)]="aboutContent.visionDescription" class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Focus Areas (Bullets) -->
+    <div class="section-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-check-circle text-cyan"></i> Core Focus Areas ({{ aboutContent.focusAreas.length }})</h3>
+      </div>
+      <div class="card-body">
+        <div class="add-bullet-row mb-3 d-flex gap-2">
+          <input type="text" [(ngModel)]="newFocusArea" class="form-control" placeholder="Add new architectural focus bullet..." (keyup.enter)="addFocusArea()" />
+          <button class="btn-secondary" (click)="addFocusArea()"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div class="bullet-list">
+          <div *ngFor="let bullet of aboutContent.focusAreas; let i = index" class="bullet-item d-flex align-items-center justify-content-between p-2 mb-2 bg-dark-alt rounded">
+            <div class="d-flex align-items-center gap-2 flex-grow-1">
+              <i class="fas fa-check-circle text-accent"></i>
+              <input type="text" [(ngModel)]="aboutContent.focusAreas[i]" class="form-control form-control-sm" />
+            </div>
+            <button class="btn-icon text-danger ms-2" (click)="removeFocusArea(i)" title="Remove"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Step Execution Framework -->
+    <div class="section-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-project-diagram text-cyan"></i> 4-Step Execution Framework</h3>
+        <button class="btn-secondary btn-sm" (click)="addExecutionStep()"><i class="fas fa-plus"></i> Add Step</button>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div *ngFor="let step of aboutContent.executionSteps; let i = index" class="col-md-6">
+            <div class="sub-card p-3 border rounded">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <input type="text" [(ngModel)]="step.step" class="form-control form-control-sm fw-bold w-25" placeholder="01" />
+                <button class="btn-icon text-danger" (click)="removeExecutionStep(i)" title="Delete Step"><i class="fas fa-trash"></i></button>
+              </div>
+              <div class="form-group mb-2">
+                <label class="small text-muted">Title</label>
+                <input type="text" [(ngModel)]="step.title" class="form-control form-control-sm font-bold" />
+              </div>
+              <div class="form-group mb-0">
+                <label class="small text-muted">Description</label>
+                <textarea rows="2" [(ngModel)]="step.description" class="form-control form-control-sm"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Value Proposition Cards -->
+    <div class="section-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-cubes text-cyan"></i> Business Value Pillars</h3>
+        <button class="btn-secondary btn-sm" (click)="addValueCard()"><i class="fas fa-plus"></i> Add Value Card</button>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div *ngFor="let card of aboutContent.valueCards; let i = index" class="col-md-6">
+            <div class="sub-card p-3 border rounded">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <input type="text" [(ngModel)]="card.title" class="form-control form-control-sm fw-bold" placeholder="Pillar Title" />
+                <button class="btn-icon text-danger ms-2" (click)="removeValueCard(i)" title="Delete"><i class="fas fa-trash"></i></button>
+              </div>
+              <div class="form-group mb-0">
+                <label class="small text-muted">Description</label>
+                <textarea rows="2" [(ngModel)]="card.description" class="form-control form-control-sm"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Step Process -->
+    <div class="section-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-list-ol text-cyan"></i> 3-Step Onboarding Process</h3>
+        <button class="btn-secondary btn-sm" (click)="addThreeStep()"><i class="fas fa-plus"></i> Add Process Step</button>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div *ngFor="let p of aboutContent.threeStepProcess; let i = index" class="col-md-4">
+            <div class="sub-card p-3 border rounded">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <input type="text" [(ngModel)]="p.step" class="form-control form-control-sm fw-bold w-25" placeholder="01" />
+                <button class="btn-icon text-danger" (click)="removeThreeStep(i)" title="Delete"><i class="fas fa-trash"></i></button>
+              </div>
+              <div class="form-group mb-2">
+                <label class="small text-muted">Title</label>
+                <input type="text" [(ngModel)]="p.title" class="form-control form-control-sm font-bold" />
+              </div>
+              <div class="form-group mb-0">
+                <label class="small text-muted">Description</label>
+                <textarea rows="2" [(ngModel)]="p.description" class="form-control form-control-sm"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

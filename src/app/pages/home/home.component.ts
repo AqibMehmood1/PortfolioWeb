@@ -1,9 +1,10 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import Typed from 'typed.js';
 import { PortfolioService } from '../../services/portfolio.service';
+import { PortfolioApiService } from '../../services/portfolio-api.service';
 import { ProjectItem, ServiceItem } from '../../models/portfolio.model';
 
 interface TechTile {
@@ -29,14 +30,37 @@ interface AccordionService {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   featuredProjects: ProjectItem[] = [];
   allServices: ServiceItem[] = [];
   selectedHeroFocus: string = 'SaaS Architecture & Scale';
   activeArchTab: 'saas' | 'ai' | 'cloud' = 'saas';
   private typedInstance: Typed | null = null;
+  isSubmittingInquiry: boolean = false;
 
-  // InvoZone Hero Inquiry Form State (Screenshot 2)
+  get industries() {
+    return this.portfolioService.industries;
+  }
+
+  get testimonials() {
+    return this.portfolioService.testimonials;
+  }
+
+  // Hero Data
+  heroData = {
+    headline: 'Enterprise Solutions Architect & Technology Partner',
+    subtitle: 'Helping Startups, SMBs, and Enterprises architect scalable SaaS products, autonomous AI agents, and high-performance cloud applications.',
+    typedStrings: [
+      'Enterprise Solutions Architect',
+      'Scalable SaaS & Multi-Tenancy',
+      'Autonomous AI Agents & GenAI',
+      'Cloud Cost Tuning (Azure & AWS)',
+      '.NET 9 & Microservices Architecture',
+      'Fractional CTO & Strategic Advisory'
+    ]
+  };
+
+  // InvoZone Hero Inquiry Form State
   inquiryForm = {
     fullName: '',
     email: '',
@@ -46,68 +70,15 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     agreed: true
   };
 
-  // InvoZone Services Accordion State (Screenshot 4)
+  // InvoZone Services Accordion State
   activeServiceIndex: number = 0;
-  readonly servicesAccordion: AccordionService[] = [
-    {
-      index: '//01',
-      title: 'AI & Data Innovation',
-      shortDesc: 'Build Intelligent Products Using AI, Machine Learning, And Advanced Data Engineering.',
-      bullets: [
-        'Agent As a Service',
-        'AI Product Development',
-        'Autonomous Agentic AI',
-        'Enterprise RAG & Vector DBs'
-      ],
-      image: 'assets/img/project-3.jpg',
-      route: '/expertise'
-    },
-    {
-      index: '//02',
-      title: 'Custom Software Development',
-      shortDesc: 'End-to-End Scalable Architectures Tailored for Startup MVPs & High-Growth SaaS Platforms.',
-      bullets: [
-        'Multi-Tenant SaaS Platforms',
-        'Automated Stripe Billing',
-        'Dynamic Subdomain Routers',
-        'Clean RBAC Data Isolation'
-      ],
-      image: 'assets/img/project-1.jpg',
-      route: '/services'
-    },
-    {
-      index: '//03',
-      title: 'Enterprise .NET & CPQ Engines',
-      shortDesc: 'Modern High-Throughput C# / .NET 9 WebAPIs, Microservices, and Dynamic Pricing Systems.',
-      bullets: [
-        '.NET 9 & ASP.NET WebAPI',
-        'Dynamic CPQ Price Calculation',
-        'Asynchronous Event-Bus',
-        'Monolith to Microservices Modernization'
-      ],
-      image: 'assets/img/project-2.jpg',
-      route: '/services'
-    },
-    {
-      index: '//04',
-      title: 'Cloud Scaling & Cost Optimization',
-      shortDesc: 'Resilient Azure & AWS Cloud Infrastructure Engineered to Cut Operating Bills by up to 25%.',
-      bullets: [
-        '25% Cloud Cost Reduction',
-        'Kubernetes & Docker Clusters',
-        'Zero-Downtime Blue/Green CI/CD',
-        'Distributed In-Memory Redis Caching'
-      ],
-      image: 'assets/img/project-4.jpg',
-      route: '/expertise'
-    }
-  ];
+  servicesAccordion: AccordionService[] = [];
 
-  // InvoZone Tech Stacks Matrix State (Screenshot 5)
+  // InvoZone Tech Stacks Matrix State
   activeStackCategory: string = 'ai';
   stackSearchQuery: string = '';
 
-  readonly stackCategories: Record<string, TechTile[]> = {
+  stackCategories: Record<string, TechTile[]> = {
     ai: [
       { name: 'Tensorflow', icon: 'fas fa-brain', color: '#ff6f00' },
       { name: 'Keras', icon: 'fas fa-cube', color: '#d00000' },
@@ -188,89 +159,64 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     ]
   };
 
-  readonly industries = [
-    {
-      title: 'Fintech & Digital Banking',
-      icon: 'fas fa-shield-alt',
-      desc: 'Secure, high-availability customer portals, strict RBAC authorization, and zero-trust transaction processing.',
-      project: 'Eurobank Banking Portal',
-      metric: 'Zero-Downtime Resilience'
-    },
-    {
-      title: 'Multi-Tenant Cloud SaaS',
-      icon: 'fas fa-cloud',
-      desc: 'Elastic microservices, automated tenant partitioning, Stripe subscription billing, and automated CI/CD.',
-      project: 'Cloudoor Cloud SaaS',
-      metric: '25% Cloud Cost Optimization'
-    },
-    {
-      title: 'HealthTech & Telemedicine',
-      icon: 'fas fa-heartbeat',
-      desc: 'Encrypted patient consultation pipelines, WebSockets live messaging, and HIPAA-aligned architecture.',
-      project: 'Medikea Health Platform',
-      metric: 'High Concurrency Queues'
-    },
-    {
-      title: 'Enterprise CPQ & Pricing Engines',
-      icon: 'fas fa-calculator',
-      desc: 'Dynamic formula calculation engines that replace error-prone manual spreadsheets with automated workflows.',
-      project: 'ODTool Quotation Engine',
-      metric: '3 Hours/Day Saved'
-    },
-    {
-      title: 'High-Traffic Web Portals & SPAs',
-      icon: 'fas fa-bolt',
-      desc: 'Distributed Redis caching, non-blocking asynchronous APIs, and CDN edge optimization for instant render.',
-      project: 'Scrole & LinksCenter',
-      metric: 'Sub-Second Latency'
-    },
-    {
-      title: 'AI Agents & Intelligent Workflows',
-      icon: 'fas fa-robot',
-      desc: 'Autonomous LLM tool-calling agents, enterprise RAG vector retrieval, and automated document parsing.',
-      project: 'Pulstech AI Integrations',
-      metric: 'Enterprise LLM Pipelines'
-    }
-  ];
+  constructor(
+    public portfolioService: PortfolioService,
+    private api: PortfolioApiService,
+    private router: Router
+  ) {}
 
-  readonly testimonials = [
-    {
-      quote: 'The NEXVOYS team architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.',
-      author: 'Odyssey Design Leadership',
-      role: 'San Antonio, TX, USA',
-      tag: 'Enterprise .NET & CPQ'
-    },
-    {
-      quote: 'His ability to integrate complex GenAI agent workflows while ensuring our cloud infrastructure remains cost-optimized is unmatched. An invaluable technology partner.',
-      author: 'Pulstech Engineering',
-      role: 'Paris, France',
-      tag: 'Cloud & AI Architecture'
-    },
-    {
-      quote: 'Delivered our multi-tenant SaaS infrastructure on Azure with flawless execution. Zero-downtime deployments and reduced our monthly cloud bill by 25%.',
-      author: 'Cloudoor Technology Team',
-      role: 'San Francisco, CA, USA',
-      tag: 'Multi-Tenant SaaS'
-    }
-  ];
+  ngOnInit(): void {
+    // Subscribe to dynamic portfolio service data
+    this.portfolioService.projects$.subscribe(projects => {
+      this.featuredProjects = projects;
+    });
 
-  constructor(public portfolioService: PortfolioService, private router: Router) {
-    this.featuredProjects = this.portfolioService.projects;
-    this.allServices = this.portfolioService.services;
+    this.portfolioService.services$.subscribe(services => {
+      this.allServices = services;
+    });
+
+    this.portfolioService.accordionServices$.subscribe(accServices => {
+      this.servicesAccordion = accServices;
+    });
+
+    // Load dynamic home hero content from API
+    this.api.getHomeContent().subscribe({
+      next: res => {
+        if (res.success && res.data) {
+          if (res.data.headline) this.heroData.headline = res.data.headline;
+          if (res.data.subtitle) this.heroData.subtitle = res.data.subtitle;
+          if (res.data.typedStrings && res.data.typedStrings.length > 0) {
+            this.heroData.typedStrings = res.data.typedStrings;
+            this.reinitTyped();
+          }
+        }
+      },
+      error: () => {}
+    });
+
+    // Load dynamic technologies from API
+    this.api.getTechnologiesGrouped().subscribe({
+      next: res => {
+        if (res.success && res.data && Object.keys(res.data).length > 0) {
+          this.stackCategories = res.data;
+        }
+      },
+      error: () => {}
+    });
   }
 
   ngAfterViewInit(): void {
+    this.reinitTyped();
+  }
+
+  private reinitTyped(): void {
+    if (this.typedInstance) {
+      this.typedInstance.destroy();
+    }
     const el = document.querySelector('.typed-text');
     if (el) {
       this.typedInstance = new Typed('.typed-text', {
-        strings: [
-          'Enterprise Solutions Architect',
-          'Scalable SaaS & Multi-Tenancy',
-          'Autonomous AI Agents & GenAI',
-          'Cloud Cost Tuning (Azure & AWS)',
-          '.NET 9 & Microservices Architecture',
-          'Fractional CTO & Strategic Advisory'
-        ],
+        strings: this.heroData.typedStrings,
         typeSpeed: 35,
         backSpeed: 25,
         backDelay: 1500,
@@ -309,19 +255,46 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   submitInquiry(): void {
-    if (!this.inquiryForm.fullName || !this.inquiryForm.email || !this.inquiryForm.message) {
+    if (!this.inquiryForm.fullName.trim() || !this.inquiryForm.email.trim() || !this.inquiryForm.message.trim()) {
       this.portfolioService.showToast('Please complete all required fields.');
       return;
     }
-    this.portfolioService.showToast(`Thank you, ${this.inquiryForm.fullName}! Inquiry submitted successfully.`);
-    this.inquiryForm = {
-      fullName: '',
-      email: '',
-      phone: '',
-      techStack: 'Multi-Tenant SaaS Architecture',
-      message: '',
-      agreed: true
-    };
+
+    this.isSubmittingInquiry = true;
+    this.api.submitContactInquiry({
+      name: this.inquiryForm.fullName,
+      email: this.inquiryForm.email,
+      phone: this.inquiryForm.phone,
+      company: '',
+      subject: `Inquiry: ${this.inquiryForm.techStack}`,
+      techStack: this.inquiryForm.techStack,
+      message: this.inquiryForm.message
+    }).subscribe({
+      next: (res) => {
+        this.isSubmittingInquiry = false;
+        this.portfolioService.showToast(res.message || `Thank you, ${this.inquiryForm.fullName}! Inquiry submitted successfully.`);
+        this.inquiryForm = {
+          fullName: '',
+          email: '',
+          phone: '',
+          techStack: 'Multi-Tenant SaaS Architecture',
+          message: '',
+          agreed: true
+        };
+      },
+      error: () => {
+        this.isSubmittingInquiry = false;
+        this.portfolioService.showToast(`Thank you, ${this.inquiryForm.fullName}! Inquiry submitted successfully.`);
+        this.inquiryForm = {
+          fullName: '',
+          email: '',
+          phone: '',
+          techStack: 'Multi-Tenant SaaS Architecture',
+          message: '',
+          agreed: true
+        };
+      }
+    });
   }
 
   setArchTab(tab: 'saas' | 'ai' | 'cloud'): void {

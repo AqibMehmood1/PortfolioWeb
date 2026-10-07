@@ -1,0 +1,79 @@
+<div class="admin-wrapper" [class.sidebar-collapsed]="!sidebarOpen">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="brand-container">
+        <span class="brand-logo-icon"><i class="fas fa-shield-alt"></i></span>
+        <div class="brand-text">
+          <span class="brand-name">NEXVOYS</span>
+          <span class="brand-badge">CMS ADMIN</span>
+        </div>
+      </div>
+      <button class="btn-toggle-sidebar" (click)="toggleSidebar()" title="Toggle Sidebar">
+        <i class="fas" [class.fa-bars]="!sidebarOpen" [class.fa-times]="sidebarOpen"></i>
+      </button>
+    </div>
+
+    <div class="sidebar-user-pill">
+      <div class="user-avatar">
+        <i class="fas fa-user-astronaut"></i>
+      </div>
+      <div class="user-info" *ngIf="sidebarOpen">
+        <span class="user-name">{{ currentUser?.fullName || currentUser?.username || 'Admin User' }}</span>
+        <span class="user-role">{{ currentUser?.role || 'SuperAdmin' }}</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title" *ngIf="sidebarOpen">NAVIGATION</div>
+      <ul>
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.route" routerLinkActive="active" [title]="item.label">
+            <i [class]="item.icon"></i>
+            <span class="nav-label" *ngIf="sidebarOpen">{{ item.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer" *ngIf="sidebarOpen">
+      <a href="/" target="_blank" class="btn-preview-site">
+        <i class="fas fa-external-link-alt"></i> View Public Site
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="admin-main">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="mobile-toggle" (click)="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h2 class="topbar-title">Content Management System</h2>
+      </div>
+
+      <div class="topbar-right">
+        <a href="/" target="_blank" class="topbar-link-btn" title="View Public Website">
+          <i class="fas fa-globe"></i>
+          <span>Live Site</span>
+        </a>
+        <div class="topbar-divider"></div>
+        <div class="user-dropdown">
+          <span class="badge-role">{{ currentUser?.role || 'SuperAdmin' }}</span>
+          <span class="username-display">{{ currentUser?.username }}</span>
+          <button class="btn-logout" (click)="logout()" title="Sign Out">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Router Outlet -->
+    <div class="admin-content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

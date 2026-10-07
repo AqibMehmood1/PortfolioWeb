@@ -1,0 +1,129 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Client Inquiries & Direct Leads</h1>
+      <p class="page-subtitle">Track incoming consultations, manage client leads, write admin notes, and follow up</p>
+    </div>
+  </div>
+
+  <!-- Filter & Search Bar -->
+  <div class="inquiry-toolbar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search by name, email, company, or message..." />
+    </div>
+    <div class="status-tabs">
+      <button class="status-tab" [class.active]="statusFilter === 'ALL'" (click)="statusFilter = 'ALL'">All</button>
+      <button class="status-tab" [class.active]="statusFilter === 'NEW'" (click)="statusFilter = 'NEW'">New</button>
+      <button class="status-tab" [class.active]="statusFilter === 'READ'" (click)="statusFilter = 'READ'">Read</button>
+      <button class="status-tab" [class.active]="statusFilter === 'CONTACTED'" (click)="statusFilter = 'CONTACTED'">Contacted</button>
+      <button class="status-tab" [class.active]="statusFilter === 'CLOSED'" (click)="statusFilter = 'CLOSED'">Closed</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Loading client leads from database...
+  </div>
+
+  <div *ngIf="!loading" class="inquiry-layout">
+    <!-- Inquiries Table -->
+    <div class="table-card inquiry-table-pane">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Subject / Preview</th>
+            <th>Received</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let inq of filteredInquiries" (click)="viewInquiry(inq)" [class.selected-row]="selectedInquiry?.id === inq.id" class="clickable-row">
+            <td>
+              <span class="badge" [ngClass]="'badge-' + inq.status.toLowerCase()">
+                {{ inq.status }}
+              </span>
+            </td>
+            <td class="font-bold">{{ inq.name }}</td>
+            <td class="text-muted">{{ inq.company || 'Individual' }}</td>
+            <td>
+              <div class="subject-line">{{ inq.subject || 'Portfolio Inquiry' }}</div>
+              <div class="text-muted truncate-msg">{{ inq.message }}</div>
+            </td>
+            <td class="text-muted text-xs">{{ inq.createdAt | date:'short' }}</td>
+            <td class="text-right" (click)="$event.stopPropagation()">
+              <button class="btn-icon" (click)="deleteInquiry(inq)" title="Delete Lead">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredInquiries.length === 0">
+            <td colspan="6" class="text-center text-muted py-4">No inquiries found matching criteria.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Inquiry Detail View Pane -->
+    <div class="inquiry-detail-pane" *ngIf="selectedInquiry">
+      <div class="detail-card">
+        <div class="detail-head">
+          <div class="detail-title-group">
+            <h3>{{ selectedInquiry.name }}</h3>
+            <span class="badge" [ngClass]="'badge-' + selectedInquiry.status.toLowerCase()">{{ selectedInquiry.status }}</span>
+          </div>
+          <button class="btn-close-pane" (click)="selectedInquiry = null"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="detail-body">
+          <div class="detail-meta-grid">
+            <div>
+              <span class="meta-label">Email:</span>
+              <a [href]="'mailto:' + selectedInquiry.email" class="meta-val text-cyan">{{ selectedInquiry.email }}</a>
+            </div>
+            <div *ngIf="selectedInquiry.phone">
+              <span class="meta-label">Phone:</span>
+              <span class="meta-val">{{ selectedInquiry.phone }}</span>
+            </div>
+            <div *ngIf="selectedInquiry.company">
+              <span class="meta-label">Company:</span>
+              <span class="meta-val">{{ selectedInquiry.company }}</span>
+            </div>
+            <div>
+              <span class="meta-label">Received:</span>
+              <span class="meta-val">{{ selectedInquiry.createdAt | date:'medium' }}</span>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <span class="meta-label">Subject:</span>
+            <div class="subject-full">{{ selectedInquiry.subject || 'No Subject Specified' }}</div>
+          </div>
+
+          <div class="detail-section">
+            <span class="meta-label">Message Payload:</span>
+            <div class="message-box">{{ selectedInquiry.message }}</div>
+          </div>
+
+          <div class="status-action-row">
+            <span class="meta-label">Set Status:</span>
+            <div class="btn-group">
+              <button class="btn-status" [class.btn-active]="selectedInquiry.status === 'New'" (click)="updateStatus(selectedInquiry.id!, 'New')">New</button>
+              <button class="btn-status" [class.btn-active]="selectedInquiry.status === 'Read'" (click)="updateStatus(selectedInquiry.id!, 'Read')">Read</button>
+              <button class="btn-status" [class.btn-active]="selectedInquiry.status === 'Contacted'" (click)="updateStatus(selectedInquiry.id!, 'Contacted')">Contacted</button>
+              <button class="btn-status" [class.btn-active]="selectedInquiry.status === 'Closed'" (click)="updateStatus(selectedInquiry.id!, 'Closed')">Closed</button>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <span class="meta-label">Internal Admin Notes:</span>
+            <textarea rows="3" [(ngModel)]="selectedInquiry.adminNotes" class="form-control" placeholder="Write internal notes about client meeting, estimation, or budget..."></textarea>
+            <button class="btn-save-notes" (click)="saveNotes()">Save Notes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
