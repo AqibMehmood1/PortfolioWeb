@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, TestimonialDto, IndustryDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-testimonials',
@@ -30,6 +31,7 @@ export class AdminTestimonialsComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -134,17 +136,28 @@ export class AdminTestimonialsComponent implements OnInit {
     }
   }
 
-  deleteTestimonial(testi: TestimonialDto): void {
+  async deleteTestimonial(testi: TestimonialDto): Promise<void> {
     if (!testi.id) return;
-    if (confirm(`Delete testimonial from ${testi.author}?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Client Testimonial',
+      message: 'Are you sure you want to delete the testimonial endorsement from',
+      itemHighlight: `${testi.author} (${testi.company})`,
+      confirmText: 'Delete Testimonial',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-star'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteTestimonial(testi.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Testimonial deleted.');
+            this.portfolioService.showToast('Testimonial deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete testimonial.')
       });
     }
   }
@@ -193,17 +206,28 @@ export class AdminTestimonialsComponent implements OnInit {
     }
   }
 
-  deleteIndustry(ind: IndustryDto): void {
+  async deleteIndustry(ind: IndustryDto): Promise<void> {
     if (!ind.id) return;
-    if (confirm(`Delete industry "${ind.name}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Industry Focus',
+      message: 'Are you sure you want to delete industry sector',
+      itemHighlight: ind.name,
+      confirmText: 'Delete Industry',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-building'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteIndustry(ind.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Industry deleted.');
+            this.portfolioService.showToast('Industry deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete industry.')
       });
     }
   }

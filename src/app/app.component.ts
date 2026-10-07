@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -21,13 +21,22 @@ export class AppComponent implements AfterViewInit {
   isAdminRoute: boolean = false;
   private hoverTimeout: any = null;
 
-  constructor(public portfolioService: PortfolioService, private router: Router) {
+  constructor(
+    public portfolioService: PortfolioService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
+  ) {
     this.portfolioService.selectedProject$.subscribe(project => {
       this.selectedProject = project;
+      this.cdr.markForCheck();
     });
 
     this.portfolioService.toast$.subscribe(msg => {
-      this.toastMessage = msg;
+      this.ngZone.run(() => {
+        this.toastMessage = msg;
+        this.cdr.detectChanges();
+      });
     });
 
     this.router.events.pipe(
@@ -36,6 +45,7 @@ export class AppComponent implements AfterViewInit {
       this.closeMobileMenu();
       this.closeMegaMenu();
       this.isAdminRoute = event.urlAfterRedirects ? event.urlAfterRedirects.startsWith('/admin') : event.url.startsWith('/admin');
+      this.cdr.markForCheck();
     });
   }
 

@@ -325,10 +325,13 @@
 </footer>
 
 <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
-<div class="toast-container-custom" *ngIf="toastMessage">
+<div class="toast-container-custom" *ngIf="toastMessage" (click)="portfolioService.clearToast()">
   <div class="custom-toast">
     <i class="fas fa-check-circle text-green"></i>
     <span>{{ toastMessage }}</span>
+    <button type="button" class="toast-close-btn" (click)="portfolioService.clearToast(); $event.stopPropagation()" aria-label="Close notification">
+      <i class="fas fa-times"></i>
+    </button>
   </div>
 </div>
 

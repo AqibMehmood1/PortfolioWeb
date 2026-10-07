@@ -181,7 +181,8 @@
           [disabled]="!userInput.trim() || isLoading"
           aria-label="Send message"
         >
-          <i class="fas fa-paper-plane"></i>
+          <i class="fas fa-paper-plane" *ngIf="!isLoading"></i>
+          <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
         </button>
       </form>
       <div class="chat-footer-brand">
@@ -197,7 +198,7 @@
             <i class="fas fa-paper-plane text-green"></i>
             <h5 class="inquiry-title">Request Architecture Advisory</h5>
           </div>
-          <button type="button" class="inquiry-close" (click)="closeInquiryModal()" aria-label="Close">
+          <button type="button" class="inquiry-close" (click)="closeInquiryModal()" aria-label="Close" [disabled]="isSubmittingInquiry">
             <i class="fas fa-times"></i>
           </button>
         </div>
@@ -205,6 +206,16 @@
         <p class="inquiry-subtitle">
           Directly reach our Lead Solutions Architect. We'll reply within 24 hours.
         </p>
+
+        <!-- Modal Success / Error Feedback (5s auto-dismiss) -->
+        <div class="iz-form-alert iz-form-alert-success mb-3" *ngIf="modalSuccessMsg">
+          <i class="fas fa-check-circle"></i>
+          <span>{{ modalSuccessMsg }}</span>
+        </div>
+        <div class="iz-form-alert iz-form-alert-error mb-3" *ngIf="modalErrorMsg">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>{{ modalErrorMsg }}</span>
+        </div>
 
         <form (ngSubmit)="submitInquiry()" class="inquiry-form">
           <div class="inquiry-form-group">
@@ -216,6 +227,7 @@
               [(ngModel)]="inquiryForm.name" 
               name="inqName" 
               required
+              [disabled]="isSubmittingInquiry"
             />
           </div>
 
@@ -228,6 +240,7 @@
               [(ngModel)]="inquiryForm.email" 
               name="inqEmail" 
               required
+              [disabled]="isSubmittingInquiry"
             />
           </div>
 
@@ -240,6 +253,7 @@
                 placeholder="Acme Corp" 
                 [(ngModel)]="inquiryForm.company" 
                 name="inqCompany"
+                [disabled]="isSubmittingInquiry"
               />
             </div>
             <div class="col-6 inquiry-form-group">
@@ -250,13 +264,14 @@
                 placeholder="+1 (555) 019-2834" 
                 [(ngModel)]="inquiryForm.phone" 
                 name="inqPhone"
+                [disabled]="isSubmittingInquiry"
               />
             </div>
           </div>
 
           <div class="inquiry-form-group">
             <label>Engagement Focus</label>
-            <select class="inquiry-select" [(ngModel)]="inquiryForm.interest" name="inqInterest">
+            <select class="inquiry-select" [(ngModel)]="inquiryForm.interest" name="inqInterest" [disabled]="isSubmittingInquiry">
               <option value="SaaS Multi-Tenancy Architecture">SaaS Multi-Tenancy Architecture</option>
               <option value="Autonomous AI Agents & GenAI">Autonomous AI Agents & GenAI</option>
               <option value="Legacy .NET 9 Migration">Legacy .NET 9 Modernization</option>
@@ -275,6 +290,7 @@
               [(ngModel)]="inquiryForm.message" 
               name="inqMessage"
               required
+              [disabled]="isSubmittingInquiry"
             ></textarea>
           </div>
 

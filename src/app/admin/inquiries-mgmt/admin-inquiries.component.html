@@ -119,8 +119,11 @@
 
           <div class="detail-section">
             <span class="meta-label">Internal Admin Notes:</span>
-            <textarea rows="3" [(ngModel)]="selectedInquiry.adminNotes" class="form-control" placeholder="Write internal notes about client meeting, estimation, or budget..."></textarea>
-            <button class="btn-save-notes" (click)="saveNotes()">Save Notes</button>
+            <textarea rows="3" [(ngModel)]="selectedInquiry.adminNotes" class="form-control" placeholder="Write internal notes about client meeting, estimation, or budget..." [disabled]="savingNotes"></textarea>
+            <button class="btn-save-notes" (click)="saveNotes()" [disabled]="savingNotes">
+              <span *ngIf="!savingNotes"><i class="fas fa-save me-1"></i> Save Notes</span>
+              <span *ngIf="savingNotes"><i class="fas fa-spinner fa-spin me-1"></i> Saving...</span>
+            </button>
           </div>
         </div>
       </div>

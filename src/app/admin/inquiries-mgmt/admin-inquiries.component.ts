@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, ContactInquiryDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-inquiries',
@@ -14,6 +15,7 @@ import { PortfolioService } from '../../services/portfolio.service';
 export class AdminInquiriesComponent implements OnInit {
   inquiries: ContactInquiryDto[] = [];
   loading: boolean = true;
+  savingNotes: boolean = false;
   selectedInquiry: ContactInquiryDto | null = null;
   statusFilter: string = 'ALL';
   searchTerm: string = '';
@@ -21,6 +23,7 @@ export class AdminInquiriesComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -84,32 +87,51 @@ export class AdminInquiriesComponent implements OnInit {
 
   saveNotes(): void {
     if (!this.selectedInquiry || !this.selectedInquiry.id) return;
+    this.savingNotes = true;
     this.adminApi.updateInquiryStatus(
       this.selectedInquiry.id,
       this.selectedInquiry.status,
       this.selectedInquiry.adminNotes
     ).subscribe({
       next: (res) => {
+        this.savingNotes = false;
         if (res.success) {
-          this.portfolioService.showToast('Admin notes saved.');
+          this.portfolioService.showToast('Admin notes saved successfully.');
           const item = this.inquiries.find(x => x.id === this.selectedInquiry!.id);
           if (item) item.adminNotes = this.selectedInquiry!.adminNotes;
         }
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.savingNotes = false;
+        this.portfolioService.showToast('Failed to save notes.');
+        this.cdr.detectChanges();
       }
     });
   }
 
-  deleteInquiry(inq: ContactInquiryDto): void {
+  async deleteInquiry(inq: ContactInquiryDto): Promise<void> {
     if (!inq.id) return;
-    if (confirm(`Delete message from ${inq.name}?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Inquiry',
+      message: 'Are you sure you want to delete the message from',
+      itemHighlight: inq.name,
+      confirmText: 'Delete Message',
+      cancelText: 'Keep Message',
+      type: 'danger',
+      icon: 'fas fa-trash-alt'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteInquiry(inq.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Inquiry deleted.');
+            this.portfolioService.showToast('Inquiry deleted successfully.');
             if (this.selectedInquiry?.id === inq.id) this.selectedInquiry = null;
             this.loadInquiries();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete inquiry.')
       });
     }
   }

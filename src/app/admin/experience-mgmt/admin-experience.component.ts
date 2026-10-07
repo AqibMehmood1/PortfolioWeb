@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, ExperienceDto, EducationDto, CertificationDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-experience',
@@ -36,6 +37,7 @@ export class AdminExperienceComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -163,17 +165,28 @@ export class AdminExperienceComponent implements OnInit {
     }
   }
 
-  deleteExp(exp: ExperienceDto): void {
+  async deleteExp(exp: ExperienceDto): Promise<void> {
     if (!exp.id) return;
-    if (confirm(`Delete experience at ${exp.company}?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Career Experience',
+      message: 'Are you sure you want to delete experience position at',
+      itemHighlight: `${exp.role} @ ${exp.company}`,
+      confirmText: 'Delete Experience',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-briefcase'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteExperience(exp.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Experience deleted.');
+            this.portfolioService.showToast('Experience deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete experience.')
       });
     }
   }
@@ -222,17 +235,28 @@ export class AdminExperienceComponent implements OnInit {
     }
   }
 
-  deleteEdu(edu: EducationDto): void {
+  async deleteEdu(edu: EducationDto): Promise<void> {
     if (!edu.id) return;
-    if (confirm(`Delete education "${edu.degree}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Academic Degree',
+      message: 'Are you sure you want to delete education credential',
+      itemHighlight: `${edu.degree} (${edu.institution})`,
+      confirmText: 'Delete Education',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-graduation-cap'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteEducation(edu.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Education deleted.');
+            this.portfolioService.showToast('Education deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete education.')
       });
     }
   }
@@ -281,17 +305,28 @@ export class AdminExperienceComponent implements OnInit {
     }
   }
 
-  deleteCert(cert: CertificationDto): void {
+  async deleteCert(cert: CertificationDto): Promise<void> {
     if (!cert.id) return;
-    if (confirm(`Delete certification "${cert.title}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Certification',
+      message: 'Are you sure you want to delete verified credential',
+      itemHighlight: `${cert.title} (${cert.issuingOrganization})`,
+      confirmText: 'Delete Certificate',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-certificate'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteCertification(cert.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Certification deleted.');
+            this.portfolioService.showToast('Certification deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete certification.')
       });
     }
   }

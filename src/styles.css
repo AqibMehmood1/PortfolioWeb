@@ -1,5 +1,6 @@
 /* Global Styles & InvoZone Design System Root */
 @import "./assets/css/style.css";
+@import "./assets/css/admin.css";
 
 /* Base HTML & Body Settings */
 :root {

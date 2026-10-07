@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, MediaFileDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-media',
@@ -21,6 +22,7 @@ export class AdminMediaComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -82,17 +84,28 @@ export class AdminMediaComponent implements OnInit {
     });
   }
 
-  deleteMedia(file: MediaFileDto): void {
+  async deleteMedia(file: MediaFileDto): Promise<void> {
     if (!file.id) return;
-    if (confirm(`Delete file "${file.fileName}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Media Asset',
+      message: 'Are you sure you want to permanently delete file asset',
+      itemHighlight: file.fileName,
+      confirmText: 'Delete File',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-photo-video'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteMedia(file.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('File deleted.');
+            this.portfolioService.showToast('File deleted successfully.');
             if (this.selectedFile?.id === file.id) this.selectedFile = null;
             this.loadMedia();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete file.')
       });
     }
   }

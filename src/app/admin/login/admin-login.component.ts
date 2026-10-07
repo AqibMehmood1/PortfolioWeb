@@ -17,6 +17,7 @@ export class AdminLoginComponent {
   password = '';
   loading = false;
   errorMessage = '';
+  private errorTimeout: any = null;
 
   constructor(
     private adminApi: AdminApiService,
@@ -29,8 +30,13 @@ export class AdminLoginComponent {
   }
 
   onSubmit(): void {
+    if (this.errorTimeout) clearTimeout(this.errorTimeout);
+
     if (!this.username.trim() || !this.password) {
       this.errorMessage = 'Please enter both username/email and password.';
+      this.errorTimeout = setTimeout(() => {
+        this.errorMessage = '';
+      }, 4000);
       return;
     }
 
@@ -45,11 +51,17 @@ export class AdminLoginComponent {
           this.router.navigate(['/admin/dashboard']);
         } else {
           this.errorMessage = res.message || 'Login failed. Please check your credentials.';
+          this.errorTimeout = setTimeout(() => {
+            this.errorMessage = '';
+          }, 4000);
         }
       },
       error: (err) => {
         this.loading = false;
         this.errorMessage = err.error?.message || 'Invalid username or password. Please try again.';
+        this.errorTimeout = setTimeout(() => {
+          this.errorMessage = '';
+        }, 4000);
       }
     });
   }

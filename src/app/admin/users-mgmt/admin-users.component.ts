@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, AdminUserDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -30,6 +31,7 @@ export class AdminUsersComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -125,15 +127,26 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-  deleteUser(u: AdminUserDto): void {
-    if (confirm(`Are you sure you want to deactivate/delete ${u.username}?`)) {
+  async deleteUser(u: AdminUserDto): Promise<void> {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Deactivate Admin Account',
+      message: 'Are you sure you want to permanently revoke privileges for',
+      itemHighlight: `${u.username} (${u.email})`,
+      confirmText: 'Deactivate User',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-user-slash'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteAdminUser(u.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('User deleted.');
+            this.portfolioService.showToast('User deactivated/deleted successfully.');
             this.loadUsers();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete user.')
       });
     }
   }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { 
   ProjectItem, 
@@ -83,7 +83,10 @@ export class PortfolioService {
   testimonials$: Observable<TestimonialItem[]> = this.testimonialsSubject.asObservable();
   get testimonials(): TestimonialItem[] { return this.testimonialsSubject.value; }
 
-  constructor(private api: PortfolioApiService) {
+  constructor(
+    private api: PortfolioApiService,
+    private ngZone: NgZone
+  ) {
     this.initDefaultData();
     this.loadDynamicData();
   }
@@ -551,14 +554,30 @@ export class PortfolioService {
     this.loadDynamicData();
   }
 
-  showToast(message: string): void {
+  showToast(message: string, durationMs: number = 3000): void {
     if (this.toastTimeout) {
       clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
     }
-    this.toastSubject.next(message);
+    this.ngZone.run(() => {
+      this.toastSubject.next(message);
+    });
     this.toastTimeout = setTimeout(() => {
+      this.ngZone.run(() => {
+        this.toastSubject.next(null);
+      });
+      this.toastTimeout = null;
+    }, durationMs);
+  }
+
+  clearToast(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+    this.ngZone.run(() => {
       this.toastSubject.next(null);
-    }, 3500);
+    });
   }
 
   copyText(text: string, label: string): void {

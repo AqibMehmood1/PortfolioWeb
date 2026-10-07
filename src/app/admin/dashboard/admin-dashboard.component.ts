@@ -14,6 +14,7 @@ export class AdminDashboardComponent implements OnInit {
   stats: DashboardStatsDto | null = null;
   loading: boolean = true;
   errorMessage: string = '';
+  private errorTimeout: any = null;
 
   constructor(
     private adminApi: AdminApiService,
@@ -25,6 +26,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   loadDashboardData(): void {
+    if (this.errorTimeout) clearTimeout(this.errorTimeout);
     this.loading = true;
     this.errorMessage = '';
 
@@ -35,12 +37,20 @@ export class AdminDashboardComponent implements OnInit {
           this.stats = res.data;
         } else {
           this.errorMessage = res.message || 'Failed to load dashboard statistics.';
+          this.errorTimeout = setTimeout(() => {
+            this.errorMessage = '';
+            this.cdr.detectChanges();
+          }, 4000);
         }
         this.cdr.detectChanges();
       },
       error: (err) => {
         this.loading = false;
         this.errorMessage = err.error?.message || 'Server error loading dashboard stats.';
+        this.errorTimeout = setTimeout(() => {
+          this.errorMessage = '';
+          this.cdr.detectChanges();
+        }, 4000);
         this.cdr.detectChanges();
       }
     });

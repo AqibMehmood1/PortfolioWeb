@@ -38,23 +38,38 @@
             </div>
           </div>
 
+          <!-- Success / Error Alert Feedback (5-sec auto-dismiss) -->
+          <div class="iz-form-alert iz-form-alert-success" *ngIf="successMessage">
+            <i class="fas fa-check-circle"></i>
+            <span>{{ successMessage }}</span>
+          </div>
+          <div class="iz-form-alert iz-form-alert-error" *ngIf="errorMessage">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>{{ errorMessage }}</span>
+          </div>
+
           <form (submit)="submitContactForm(); $event.preventDefault()">
             <div class="row g-3">
               <div class="col-md-6">
-                <input type="text" class="iz-input" [(ngModel)]="contactForm.name" name="name" placeholder="Your Full Name *" required>
+                <input type="text" class="iz-input" [(ngModel)]="contactForm.name" name="name" placeholder="Your Full Name *" required [disabled]="isSubmitting">
               </div>
               <div class="col-md-6">
-                <input type="email" class="iz-input" [(ngModel)]="contactForm.email" name="email" placeholder="Your Work Email *" required>
+                <input type="email" class="iz-input" [(ngModel)]="contactForm.email" name="email" placeholder="Your Work Email *" required [disabled]="isSubmitting">
               </div>
               <div class="col-12">
-                <input type="text" class="iz-input" [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject / Focus">
+                <input type="text" class="iz-input" [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject / Focus" [disabled]="isSubmitting">
               </div>
               <div class="col-12">
-                <textarea class="iz-textarea" rows="4" [(ngModel)]="contactForm.message" name="message" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required></textarea>
+                <textarea class="iz-textarea" rows="4" [(ngModel)]="contactForm.message" name="message" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required [disabled]="isSubmitting"></textarea>
               </div>
               <div class="col-12">
-                <button type="submit" class="iz-submit-btn">
-                  Send Message & Request Consultation <i class="fas fa-arrow-right"></i>
+                <button type="submit" class="iz-submit-btn" [disabled]="isSubmitting">
+                  <span *ngIf="!isSubmitting">
+                    Send Message & Request Consultation <i class="fas fa-arrow-right ms-1"></i>
+                  </span>
+                  <span *ngIf="isSubmitting">
+                    <i class="fas fa-spinner fa-spin me-2"></i> Sending Message & Request...
+                  </span>
                 </button>
               </div>
             </div>

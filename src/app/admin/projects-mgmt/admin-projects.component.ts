@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, ProjectDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-projects',
@@ -25,6 +26,7 @@ export class AdminProjectsComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -134,17 +136,28 @@ export class AdminProjectsComponent implements OnInit {
     }
   }
 
-  deleteProject(proj: ProjectDto): void {
+  async deleteProject(proj: ProjectDto): Promise<void> {
     if (!proj.id) return;
-    if (confirm(`Are you sure you want to delete "${proj.title}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Project Study',
+      message: 'Are you sure you want to permanently delete project',
+      itemHighlight: proj.title,
+      confirmText: 'Delete Project',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-laptop-code'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteProject(proj.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Project deleted.');
+            this.portfolioService.showToast('Project deleted successfully.');
             this.loadProjects();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete project.')
       });
     }
   }

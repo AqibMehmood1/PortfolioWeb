@@ -1222,10 +1222,17 @@ p.lead, .lead {
   min-height: 48px;
 }
 
-.iz-submit-lime-btn:hover {
+.iz-submit-lime-btn:hover:not(:disabled) {
   background: #101828;
   color: #ffffff;
   transform: translateY(-2px);
+}
+
+.iz-submit-lime-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -2370,12 +2377,76 @@ a.filter-pill-btn.active,
   min-height: 48px;
 }
 
-.iz-submit-btn:hover {
+.iz-submit-btn:hover:not(:disabled) {
   background: #1a2c1e;
+}
+
+.iz-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
 .iz-submit-btn i {
   color: var(--iz-green-primary);
+}
+
+/* ==========================================================================
+   Interactive Form Feedback Alerts (Success / Error Banners)
+   ========================================================================== */
+.iz-form-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 16px;
+  width: 100%;
+  animation: izAlertFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.iz-form-alert i {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.iz-form-alert span {
+  flex: 1;
+}
+
+.iz-form-alert-success {
+  background: #f4fce3;
+  color: #2b5405;
+  border: 1.5px solid #d8f5a2;
+}
+
+.iz-form-alert-success i {
+  color: #37b24d;
+}
+
+.iz-form-alert-error {
+  background: #fff5f5;
+  color: #c92a2a;
+  border: 1.5px solid #ffc9c9;
+}
+
+.iz-form-alert-error i {
+  color: #fa5252;
+}
+
+@keyframes izAlertFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .direct-channel-card {
@@ -2706,21 +2777,59 @@ a.filter-pill-btn.active,
 
 .toast-container-custom {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 2100;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999999;
+  cursor: pointer;
+  animation: toastSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .custom-toast {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--iz-dark-hero);
-  border: 1.5px solid var(--iz-green-primary);
-  border-radius: var(--radius-pill);
-  padding: 12px 24px;
+  background: #0d1527;
+  border: 1.5px solid var(--iz-green-primary, #B8F500);
+  border-radius: var(--radius-pill, 9999px);
+  padding: 10px 16px 10px 16px;
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(184, 245, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.custom-toast:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(184, 245, 0, 0.3);
+}
+
+.toast-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 2px 5px;
+  margin-left: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.toast-close-btn:hover {
+  color: #ffffff;
 }

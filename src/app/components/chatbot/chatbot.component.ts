@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
@@ -24,7 +24,7 @@ interface DisplayChatMessage {
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css']
 })
-export class ChatbotComponent implements OnInit, AfterViewChecked {
+export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('messagesScroll') private messagesScrollContainer!: ElementRef;
   @ViewChild('messageInput') private messageInputElement!: ElementRef;
 
@@ -46,6 +46,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   };
   isSubmittingInquiry: boolean = false;
   inquirySubmittedSuccess: boolean = false;
+  modalErrorMsg: string | null = null;
+  modalSuccessMsg: string | null = null;
+  private modalMsgTimeout: any = null;
 
   suggestedPills: string[] = [
     '💡 What architecture services do you provide?',
@@ -202,14 +205,32 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.cdr.detectChanges();
   }
 
+  ngOnDestroy(): void {
+    if (this.modalMsgTimeout) {
+      clearTimeout(this.modalMsgTimeout);
+    }
+  }
+
   closeInquiryModal(): void {
+    if (this.modalMsgTimeout) clearTimeout(this.modalMsgTimeout);
+    this.modalErrorMsg = null;
+    this.modalSuccessMsg = null;
     this.showInquiryModal = false;
     this.cdr.detectChanges();
   }
 
   submitInquiry(): void {
-    if (!this.inquiryForm.name || !this.inquiryForm.email || !this.inquiryForm.message) {
-      alert('Please provide your name, email, and a brief description of your project.');
+    if (this.modalMsgTimeout) clearTimeout(this.modalMsgTimeout);
+    this.modalErrorMsg = null;
+    this.modalSuccessMsg = null;
+
+    if (!this.inquiryForm.name?.trim() || !this.inquiryForm.email?.trim() || !this.inquiryForm.message?.trim()) {
+      this.modalErrorMsg = 'Please provide your name, work email, and project details.';
+      this.modalMsgTimeout = setTimeout(() => {
+        this.modalErrorMsg = null;
+        this.cdr.detectChanges();
+      }, 5000);
+      this.cdr.detectChanges();
       return;
     }
 
@@ -224,14 +245,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
     this.inquiryForm.chatTranscriptSummary = recentQueries || 'Direct Chatbot Lead Form Submission';
 
-    this.apiService.submitChatInquiry(this.inquiryForm).subscribe({
+    this.apiService.submitChatInquiry({
+      name: this.inquiryForm.name.trim(),
+      email: this.inquiryForm.email.trim(),
+      phone: this.inquiryForm.phone?.trim() || '',
+      company: this.inquiryForm.company?.trim() || '',
+      interest: this.inquiryForm.interest || 'Enterprise Architecture Consulting',
+      message: this.inquiryForm.message.trim(),
+      chatTranscriptSummary: this.inquiryForm.chatTranscriptSummary
+    }).subscribe({
       next: (res) => {
         this.isSubmittingInquiry = false;
         this.inquirySubmittedSuccess = true;
+        const sender = this.inquiryForm.name.trim();
+        const email = this.inquiryForm.email.trim();
+        const interest = this.inquiryForm.interest;
+
         this.showInquiryModal = false;
         
         this.addBotMessage(
-          `🎉 **Inquiry Received!**\n\nThank you **${this.inquiryForm.name}**! Your technical inquiry regarding *"${this.inquiryForm.interest}"* has been routed to our Principal Solutions Architect.\n\nWe will review your requirements and follow up via **${this.inquiryForm.email}** within 24 business hours.`,
+          `🎉 **Inquiry Received!**\n\nThank you **${sender}**! Your technical inquiry regarding *"${interest}"* has been routed to our Principal Solutions Architect.\n\nWe will review your requirements and follow up via **${email}** within 24 business hours.`,
           [{ label: 'Explore More Case Studies', url: '/projects', isExternal: false, icon: 'fas fa-layer-group' }]
         );
 
@@ -247,9 +280,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         this.shouldScrollBottom = true;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: () => {
         this.isSubmittingInquiry = false;
-        alert('Could not submit inquiry at this moment. Please try again or visit our Contact page.');
+        this.modalErrorMsg = 'Could not submit inquiry at this moment. Please try again or visit our Contact page.';
+        this.modalMsgTimeout = setTimeout(() => {
+          this.modalErrorMsg = null;
+          this.cdr.detectChanges();
+        }, 5000);
         this.cdr.detectChanges();
       }
     });

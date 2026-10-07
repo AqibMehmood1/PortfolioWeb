@@ -37,6 +37,21 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   activeArchTab: 'saas' | 'ai' | 'cloud' = 'saas';
   private typedInstance: Typed | null = null;
   isSubmittingInquiry: boolean = false;
+  heroSuccessMsg: string | null = null;
+  heroErrorMsg: string | null = null;
+  private heroMsgTimeout: any = null;
+
+  // Bottom Contact Hub Form State
+  bottomContactForm = {
+    fullName: '',
+    email: '',
+    subject: '',
+    message: ''
+  };
+  isSubmittingBottom: boolean = false;
+  bottomSuccessMsg: string | null = null;
+  bottomErrorMsg: string | null = null;
+  private bottomMsgTimeout: any = null;
 
   get industries() {
     return this.portfolioService.industries;
@@ -231,6 +246,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.typedInstance) {
       this.typedInstance.destroy();
     }
+    if (this.heroMsgTimeout) {
+      clearTimeout(this.heroMsgTimeout);
+    }
+    if (this.bottomMsgTimeout) {
+      clearTimeout(this.bottomMsgTimeout);
+    }
   }
 
   toggleServiceAccordion(index: number): void {
@@ -255,24 +276,35 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   submitInquiry(): void {
+    if (this.heroMsgTimeout) clearTimeout(this.heroMsgTimeout);
+    this.heroSuccessMsg = null;
+    this.heroErrorMsg = null;
+
     if (!this.inquiryForm.fullName.trim() || !this.inquiryForm.email.trim() || !this.inquiryForm.message.trim()) {
-      this.portfolioService.showToast('Please complete all required fields.');
+      this.heroErrorMsg = 'Please complete all required fields (Name, Work Email, and Message).';
+      this.heroMsgTimeout = setTimeout(() => {
+        this.heroErrorMsg = null;
+      }, 5000);
       return;
     }
 
     this.isSubmittingInquiry = true;
     this.api.submitContactInquiry({
-      name: this.inquiryForm.fullName,
-      email: this.inquiryForm.email,
-      phone: this.inquiryForm.phone,
+      name: this.inquiryForm.fullName.trim(),
+      email: this.inquiryForm.email.trim(),
+      phone: this.inquiryForm.phone.trim(),
       company: '',
       subject: `Inquiry: ${this.inquiryForm.techStack}`,
       techStack: this.inquiryForm.techStack,
-      message: this.inquiryForm.message
+      message: this.inquiryForm.message.trim()
     }).subscribe({
       next: (res) => {
         this.isSubmittingInquiry = false;
-        this.portfolioService.showToast(res.message || `Thank you, ${this.inquiryForm.fullName}! Inquiry submitted successfully.`);
+        const sender = this.inquiryForm.fullName;
+        this.heroSuccessMsg = res.message || `Thank you, ${sender}! Your inquiry has been sent successfully. We will follow up shortly.`;
+        this.portfolioService.showToast(`Thank you, ${sender}! Inquiry submitted successfully. 🚀`);
+        
+        // Clear the form fields on success
         this.inquiryForm = {
           fullName: '',
           email: '',
@@ -281,18 +313,67 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           message: '',
           agreed: true
         };
+
+        // Auto-dismiss message after 5 seconds
+        this.heroMsgTimeout = setTimeout(() => {
+          this.heroSuccessMsg = null;
+        }, 5000);
       },
       error: () => {
         this.isSubmittingInquiry = false;
-        this.portfolioService.showToast(`Thank you, ${this.inquiryForm.fullName}! Inquiry submitted successfully.`);
-        this.inquiryForm = {
+        this.heroErrorMsg = 'Unable to submit your inquiry at this moment. Please check your connection or contact directly via Email / WhatsApp.';
+        this.heroMsgTimeout = setTimeout(() => {
+          this.heroErrorMsg = null;
+        }, 5000);
+      }
+    });
+  }
+
+  submitBottomContact(): void {
+    if (this.bottomMsgTimeout) clearTimeout(this.bottomMsgTimeout);
+    this.bottomSuccessMsg = null;
+    this.bottomErrorMsg = null;
+
+    if (!this.bottomContactForm.fullName.trim() || !this.bottomContactForm.email.trim() || !this.bottomContactForm.message.trim()) {
+      this.bottomErrorMsg = 'Please complete all required fields (Full Name, Work Email, and Message).';
+      this.bottomMsgTimeout = setTimeout(() => {
+        this.bottomErrorMsg = null;
+      }, 5000);
+      return;
+    }
+
+    this.isSubmittingBottom = true;
+    this.api.submitContactInquiry({
+      name: this.bottomContactForm.fullName.trim(),
+      email: this.bottomContactForm.email.trim(),
+      subject: this.bottomContactForm.subject.trim() || 'General Consultation & Architecture Inquiry',
+      message: this.bottomContactForm.message.trim()
+    }).subscribe({
+      next: (res) => {
+        this.isSubmittingBottom = false;
+        const sender = this.bottomContactForm.fullName;
+        this.bottomSuccessMsg = res.message || `Thank you, ${sender}! Your consultation request has been received. We will respond within 24 hours.`;
+        this.portfolioService.showToast(`Thank you, ${sender}! Consultation request submitted. 🚀`);
+
+        // Clear bottom form fields on success
+        this.bottomContactForm = {
           fullName: '',
           email: '',
-          phone: '',
-          techStack: 'Multi-Tenant SaaS Architecture',
-          message: '',
-          agreed: true
+          subject: '',
+          message: ''
         };
+
+        // Auto-dismiss message after 5 seconds
+        this.bottomMsgTimeout = setTimeout(() => {
+          this.bottomSuccessMsg = null;
+        }, 5000);
+      },
+      error: () => {
+        this.isSubmittingBottom = false;
+        this.bottomErrorMsg = 'Failed to submit consultation request. Please try again or reach out directly via Email / WhatsApp.';
+        this.bottomMsgTimeout = setTimeout(() => {
+          this.bottomErrorMsg = null;
+        }, 5000);
       }
     });
   }

@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { AdminApiService, AdminUserDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ConfirmDialogComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent implements OnInit {
   sidebarOpen: boolean = true;
+  isMobile: boolean = false;
   currentUser: AdminUserDto | null = null;
 
   navItems = [
@@ -39,13 +42,45 @@ export class AdminLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkScreenSize();
+
     this.adminApi.currentUser$.subscribe(user => {
       this.currentUser = user;
     });
+
+    // Auto-close drawer on route navigation on mobile screens
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      if (this.isMobile) {
+        this.sidebarOpen = false;
+      }
+    });
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize(): void {
+    if (typeof window !== 'undefined') {
+      const mobile = window.innerWidth < 992;
+      if (mobile !== this.isMobile) {
+        this.isMobile = mobile;
+        this.sidebarOpen = !mobile;
+      }
+    }
   }
 
   toggleSidebar(): void {
     this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  closeSidebarOnMobile(): void {
+    if (this.isMobile) {
+      this.sidebarOpen = false;
+    }
   }
 
   logout(): void {

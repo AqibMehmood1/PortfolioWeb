@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, TechnologyCategoryDto, TechnologyDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-technologies',
@@ -30,6 +31,7 @@ export class AdminTechnologiesComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -148,17 +150,28 @@ export class AdminTechnologiesComponent implements OnInit {
     }
   }
 
-  deleteTech(tech: TechnologyDto): void {
+  async deleteTech(tech: TechnologyDto): Promise<void> {
     if (!tech.id) return;
-    if (confirm(`Delete technology "${tech.name}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Technology Entry',
+      message: 'Are you sure you want to delete technology stack item',
+      itemHighlight: tech.name,
+      confirmText: 'Delete Tech',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-layer-group'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteTechnology(tech.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Technology deleted.');
+            this.portfolioService.showToast('Technology deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete technology.')
       });
     }
   }
@@ -211,17 +224,28 @@ export class AdminTechnologiesComponent implements OnInit {
     }
   }
 
-  deleteCat(cat: TechnologyCategoryDto): void {
+  async deleteCat(cat: TechnologyCategoryDto): Promise<void> {
     if (!cat.id) return;
-    if (confirm(`Delete category "${cat.name}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Tech Category',
+      message: 'Are you sure you want to delete technology radar category',
+      itemHighlight: cat.name,
+      confirmText: 'Delete Category',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-tags'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteTechCategory(cat.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Category deleted.');
+            this.portfolioService.showToast('Category deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete category.')
       });
     }
   }

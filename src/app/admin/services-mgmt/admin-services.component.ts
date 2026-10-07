@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminApiService, ServiceDto, AccordionItemDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-services',
@@ -29,6 +30,7 @@ export class AdminServicesComponent implements OnInit {
   constructor(
     private adminApi: AdminApiService,
     private portfolioService: PortfolioService,
+    private confirmDialog: ConfirmDialogService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -142,17 +144,28 @@ export class AdminServicesComponent implements OnInit {
     }
   }
 
-  deleteService(srv: ServiceDto): void {
+  async deleteService(srv: ServiceDto): Promise<void> {
     if (!srv.id) return;
-    if (confirm(`Are you sure you want to delete service "${srv.title}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Architecture Service',
+      message: 'Are you sure you want to permanently delete service',
+      itemHighlight: srv.title,
+      confirmText: 'Delete Service',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-cubes'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteService(srv.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Service deleted.');
+            this.portfolioService.showToast('Service deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete service.')
       });
     }
   }
@@ -201,17 +214,28 @@ export class AdminServicesComponent implements OnInit {
     }
   }
 
-  deleteAccordion(item: AccordionItemDto): void {
+  async deleteAccordion(item: AccordionItemDto): Promise<void> {
     if (!item.id) return;
-    if (confirm(`Are you sure you want to delete "${item.title}"?`)) {
+    const confirmed = await this.confirmDialog.confirm({
+      title: 'Delete Solution Pillar',
+      message: 'Are you sure you want to delete capability pillar',
+      itemHighlight: item.title,
+      confirmText: 'Delete Pillar',
+      cancelText: 'Cancel',
+      type: 'danger',
+      icon: 'fas fa-layer-group'
+    });
+
+    if (confirmed) {
       this.adminApi.deleteAccordionItem(item.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Pillar deleted.');
+            this.portfolioService.showToast('Pillar deleted successfully.');
             this.loadData();
             this.portfolioService.refreshData();
           }
-        }
+        },
+        error: () => this.portfolioService.showToast('Failed to delete pillar.')
       });
     }
   }
