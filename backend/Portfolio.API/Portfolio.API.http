@@ -1,0 +1,16 @@
+@Portfolio.API_HostAddress = http://localhost:5175
+
+GET {{Portfolio.API_HostAddress}}/api/health
+Accept: application/json
+
+###
+
+GET {{Portfolio.API_HostAddress}}/api/health/db-check
+Accept: application/json
+
+###
+
+GET {{Portfolio.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
