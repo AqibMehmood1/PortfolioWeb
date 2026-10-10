@@ -61,6 +61,18 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.contactForm.subject = `Topic: ${topic}`;
   }
 
+  isSectionVisible(sectionKey: string): boolean {
+    return this.portfolioService.isSectionVisible('contact', sectionKey);
+  }
+
+  getSection(sectionKey: string) {
+    return this.portfolioService.getSection('contact', sectionKey);
+  }
+
+  get customSections() {
+    return this.portfolioService.getCustomSections('contact');
+  }
+
   copyEmail(): void {
     this.portfolioService.copyText(this.portfolioService.profile.email, 'Email address');
   }

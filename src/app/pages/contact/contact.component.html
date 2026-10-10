@@ -1,29 +1,30 @@
 <!-- ==================== INVOZONE CONTACT HEADER ==================== -->
-<section class="iz-page-hero">
-  <div class="container text-center max-w-860 mx-auto">
+<section class="iz-page-hero" *ngIf="isSectionVisible('contact-hero')">
+  <div *ngIf="getSection('contact-hero')?.customHtml" [innerHTML]="getSection('contact-hero')?.customHtml"></div>
+  <div class="container text-center max-w-860 mx-auto" *ngIf="!getSection('contact-hero')?.customHtml">
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">»</span>
-      <span class="text-dark fw-bold">Contact & Consultation</span>
+      <span class="text-dark fw-bold">{{ getSection('contact-hero')?.subtitle || 'Contact & Consultation' }}</span>
     </div>
-    <div class="iz-tag"><i class="fas fa-handshake"></i> Let's Collaborate</div>
-    <h1 class="iz-hero-headline">Schedule an <span class="text-green-invo">Architectural Consultation</span></h1>
-    <p class="iz-hero-sub mx-auto">
-      Whether you're scoping a new SaaS product, integrating autonomous AI agents, or modernizing legacy infrastructure, let's map out the right strategy.
+    <div class="iz-tag"><i class="fas fa-handshake"></i> {{ getSection('contact-hero')?.subtitle || "Let's Collaborate" }}</div>
+    <h1 class="iz-hero-headline">{{ getSection('contact-hero')?.title || 'Schedule an Architectural Consultation' }}</h1>
+    <p class="iz-hero-sub mx-auto" *ngIf="getSection('contact-hero')?.description">
+      {{ getSection('contact-hero')?.description }}
     </p>
   </div>
 </section>
 
 <!-- ==================== INVOZONE 2-COLUMN CONTACT HUB ==================== -->
-<section class="iz-section">
+<section class="iz-section" *ngIf="isSectionVisible('contact-form') || isSectionVisible('contact-channels')">
   <div class="container">
     <div class="iz-contact-box">
       <div class="row g-0">
         <!-- Form Side -->
-        <div class="col-lg-7 iz-form-side">
-          <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> Book Strategy Call</div>
-          <h2 class="iz-title mb-2 fs-2">Request Architecture Session</h2>
-          <p class="iz-subtitle mb-4 fs-6">Select your primary objective so I can prepare relevant case studies and technical options:</p>
+        <div [class]="isSectionVisible('contact-channels') ? 'col-lg-7 iz-form-side' : 'col-12 iz-form-side'" *ngIf="isSectionVisible('contact-form')">
+          <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> {{ getSection('contact-form')?.subtitle || 'Book Strategy Call' }}</div>
+          <h2 class="iz-title mb-2 fs-2">{{ getSection('contact-form')?.title || 'Request Architecture Session' }}</h2>
+          <p class="iz-subtitle mb-4 fs-6">{{ getSection('contact-form')?.description || 'Select your primary objective so I can prepare relevant case studies and technical options:' }}</p>
 
           <!-- Interactive Topic Selector -->
           <div class="topic-selector-container mb-4">
@@ -77,9 +78,9 @@
         </div>
 
         <!-- Direct Channels & Trust Side -->
-        <div class="col-lg-5 iz-stats-side">
-          <h4 class="fw-bold mb-3">Direct Channels</h4>
-          <p class="small text-muted mb-4">I collaborate with clients across US, Canada, Europe, and worldwide.</p>
+        <div [class]="isSectionVisible('contact-form') ? 'col-lg-5 iz-stats-side' : 'col-12 iz-stats-side'" *ngIf="isSectionVisible('contact-channels')">
+          <h4 class="fw-bold mb-3">{{ getSection('contact-channels')?.title || 'Direct Channels' }}</h4>
+          <p class="small text-muted mb-4">{{ getSection('contact-channels')?.description || 'I collaborate with clients across US, Canada, Europe, and worldwide.' }}</p>
 
           <div class="direct-channel-card">
             <div class="channel-icon"><i class="fas fa-envelope text-green"></i></div>
@@ -255,4 +256,18 @@
     </div>
   </div>
 </section>
+
+<!-- Custom Dynamic Sections Added from Admin CMS -->
+<ng-container *ngFor="let s of customSections">
+  <section class="iz-section iz-custom-section" [id]="s.sectionKey" *ngIf="s.isVisible">
+    <div class="container">
+      <div class="iz-section-header" *ngIf="s.title || s.subtitle">
+        <div class="iz-tag" *ngIf="s.subtitle"><i class="fas fa-layer-group"></i> {{ s.subtitle }}</div>
+        <h2 class="iz-title" *ngIf="s.title">{{ s.title }}</h2>
+        <p class="iz-subtitle" *ngIf="s.description">{{ s.description }}</p>
+      </div>
+      <div [innerHTML]="s.customHtml" *ngIf="s.customHtml"></div>
+    </div>
+  </section>
+</ng-container>
 

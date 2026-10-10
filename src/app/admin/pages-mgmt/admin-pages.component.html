@@ -1,0 +1,609 @@
+<div class="admin-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-info">
+      <h1 class="page-title">Pages & Sections CMS Architecture</h1>
+      <p class="page-subtitle">Granularly control site navigation, page visibility, add custom pages, and toggle any section component</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-primary" (click)="openCreatePage()">
+        <i class="fas fa-plus"></i>
+        <span>Add New Page</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI / Stats Summary Row -->
+  <div class="stats-row">
+    <div class="stat-pill">
+      <div class="stat-icon"><i class="fas fa-layer-group text-cyan"></i></div>
+      <div class="stat-data">
+        <span class="stat-number">{{ pages.length }}</span>
+        <span class="stat-label">Total Pages</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon"><i class="fas fa-eye text-success"></i></div>
+      <div class="stat-data">
+        <span class="stat-number">{{ visiblePagesCount }}</span>
+        <span class="stat-label">Active Published</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon"><i class="fas fa-eye-slash text-warning"></i></div>
+      <div class="stat-data">
+        <span class="stat-number">{{ pages.length - visiblePagesCount }}</span>
+        <span class="stat-label">Hidden Pages</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon"><i class="fas fa-cubes text-lime"></i></div>
+      <div class="stat-data">
+        <span class="stat-number">{{ totalSectionsCount }}</span>
+        <span class="stat-label">Live Sections</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search & Filter Bar -->
+  <div class="filter-bar">
+    <div class="search-input-wrap">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        placeholder="Search pages by name, slug, or title..." 
+        class="admin-search-input" />
+    </div>
+    <div class="filter-info text-muted">
+      Showing {{ filteredPages.length }} of {{ pages.length }} pages
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="loading-state">
+    <i class="fas fa-circle-notch fa-spin"></i> Synchronizing site pages and section tree...
+  </div>
+
+  <!-- Main Pages Table Card -->
+  <div *ngIf="!loading" class="table-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Page Title & Route</th>
+          <th>Type</th>
+          <th>Page Visibility</th>
+          <th>Navbar</th>
+          <th>Footer</th>
+          <th>Sections</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of filteredPages" [class.row-hidden]="!p.isVisible">
+          <!-- Order -->
+          <td class="font-mono text-muted">#{{ p.displayOrder }}</td>
+
+          <!-- Title & Route -->
+          <td>
+            <div class="page-title-cell">
+              <span class="font-bold">{{ p.title }}</span>
+              <span class="route-badge">
+                <i class="fas fa-link me-1"></i>
+                {{ p.slug === '' ? '/' : (p.isSystem ? '/' + p.slug : '/p/' + p.slug) }}
+              </span>
+            </div>
+            <div class="text-xs text-muted" *ngIf="p.navTitle && p.navTitle !== p.title">
+              Nav Label: {{ p.navTitle }}
+            </div>
+          </td>
+
+          <!-- Type -->
+          <td>
+            <span class="badge" [ngClass]="p.isSystem ? 'badge-system' : 'badge-custom'">
+              <i [class]="p.isSystem ? 'fas fa-shield-alt' : 'fas fa-sparkles'"></i>
+              {{ p.isSystem ? 'SYSTEM' : 'CUSTOM' }}
+            </span>
+          </td>
+
+          <!-- Visibility Toggle -->
+          <td>
+            <button 
+              type="button" 
+              class="toggle-switch-btn" 
+              [class.active]="p.isVisible" 
+              (click)="togglePageVisibility(p, $event)" 
+              [title]="p.isVisible ? 'Page is LIVE (Click to Hide)' : 'Page is HIDDEN (Click to Show)'">
+              <span class="toggle-indicator"></span>
+              <span class="toggle-text">{{ p.isVisible ? 'VISIBLE' : 'HIDDEN' }}</span>
+            </button>
+          </td>
+
+          <!-- Navbar Toggle -->
+          <td>
+            <button 
+              type="button" 
+              class="icon-toggle-btn" 
+              [class.active]="p.showInNav" 
+              (click)="togglePageNav(p, $event)" 
+              [title]="p.showInNav ? 'Shown in Navbar (Click to Hide)' : 'Hidden from Navbar (Click to Show)'">
+              <i class="fas fa-compass"></i>
+              <span>{{ p.showInNav ? 'IN NAV' : 'HIDDEN' }}</span>
+            </button>
+          </td>
+
+          <!-- Footer Toggle -->
+          <td>
+            <button 
+              type="button" 
+              class="icon-toggle-btn" 
+              [class.active]="p.showInFooter" 
+              (click)="togglePageFooter(p, $event)" 
+              [title]="p.showInFooter ? 'Shown in Footer' : 'Hidden from Footer'">
+              <i class="fas fa-shoe-prints"></i>
+              <span>{{ p.showInFooter ? 'IN FOOTER' : 'HIDDEN' }}</span>
+            </button>
+          </td>
+
+          <!-- Sections Count & Open Drawer -->
+          <td>
+            <button class="sections-count-pill" (click)="openSectionsDrawer(p)">
+              <i class="fas fa-layer-group text-lime me-1"></i>
+              <span>{{ p.sections ? p.sections.length : 0 }} Sections</span>
+              <i class="fas fa-chevron-right ms-2 arrow-icon"></i>
+            </button>
+          </td>
+
+          <!-- Actions -->
+          <td class="text-right">
+            <div class="action-buttons">
+              <button 
+                class="btn-icon" 
+                title="Manage Sections" 
+                (click)="openSectionsDrawer(p)" 
+                style="color: var(--admin-lime, #B8F500);">
+                <i class="fas fa-cubes"></i>
+              </button>
+              <button 
+                class="btn-icon" 
+                title="Edit Page Info" 
+                (click)="openEditPage(p, $event)">
+                <i class="fas fa-pen"></i>
+              </button>
+              <button 
+                class="btn-icon text-danger" 
+                title="Delete Page" 
+                [disabled]="p.isSystem" 
+                (click)="deletePage(p, $event)" 
+                [style.opacity]="p.isSystem ? '0.3' : '1'">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr *ngIf="filteredPages.length === 0">
+          <td colspan="8" class="text-center py-5 text-muted">
+            <i class="fas fa-search fa-2x mb-3 text-muted"></i>
+            <p>No pages match the search criteria "{{ searchQuery }}".</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== SECTIONS DRAWER MODAL ==================== -->
+  <div class="sections-drawer-overlay" *ngIf="selectedPageForSections" (click)="closeSectionsDrawer()">
+    <div class="sections-drawer-card" (click)="$event.stopPropagation()">
+      <!-- Drawer Header -->
+      <div class="drawer-header">
+        <div>
+          <div class="drawer-tag">
+            <i class="fas fa-layer-group text-lime me-1"></i>
+            PAGE SECTIONS ARCHITECTURE
+          </div>
+          <h2 class="drawer-title">
+            {{ selectedPageForSections.title }}
+            <span class="route-badge ms-2">
+              {{ selectedPageForSections.slug === '' ? '/' : (selectedPageForSections.isSystem ? '/' + selectedPageForSections.slug : '/p/' + selectedPageForSections.slug) }}
+            </span>
+          </h2>
+          <p class="drawer-subtitle">
+            Toggle visibility or reorder any section on this page. Changes take effect on the live website immediately.
+          </p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn-primary btn-sm" (click)="openCreateSection()">
+            <i class="fas fa-plus"></i>
+            <span>Add Section</span>
+          </button>
+          <button class="drawer-close-btn" (click)="closeSectionsDrawer()" aria-label="Close drawer">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sections List -->
+      <div class="drawer-body">
+        <div class="sections-list" *ngIf="selectedPageForSections.sections && selectedPageForSections.sections.length > 0; else noSections">
+          <div 
+            class="section-item-card" 
+            *ngFor="let sec of selectedPageForSections.sections; let idx = index"
+            [class.section-hidden]="!sec.isVisible">
+            
+            <!-- Reorder Controls -->
+            <div class="reorder-col">
+              <button 
+                type="button" 
+                class="reorder-arrow" 
+                [disabled]="idx === 0" 
+                (click)="moveSection(idx, 'up')" 
+                title="Move Up">
+                <i class="fas fa-chevron-up"></i>
+              </button>
+              <span class="reorder-idx">#{{ idx + 1 }}</span>
+              <button 
+                type="button" 
+                class="reorder-arrow" 
+                [disabled]="idx === selectedPageForSections.sections.length - 1" 
+                (click)="moveSection(idx, 'down')" 
+                title="Move Down">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <!-- Identity & Details -->
+            <div class="section-info-col">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="section-key-chip">
+                  <i class="fas fa-hashtag me-1"></i>{{ sec.sectionKey }}
+                </span>
+                <span class="badge" [ngClass]="sec.isSystem ? 'badge-system' : 'badge-custom'">
+                  {{ sec.isSystem ? 'BUILT-IN' : (sec.sectionType | uppercase) }}
+                </span>
+              </div>
+              <h4 class="section-card-title">{{ sec.title }}</h4>
+              <p class="section-card-subtitle" *ngIf="sec.subtitle">{{ sec.subtitle }}</p>
+              <p class="section-card-desc text-xs text-muted text-truncate mb-0" *ngIf="sec.description" style="max-width: 480px;">{{ sec.description }}</p>
+            </div>
+
+            <!-- Visibility Toggle Switch -->
+            <div class="section-toggle-col">
+              <button 
+                type="button" 
+                class="toggle-switch-btn" 
+                [class.active]="sec.isVisible" 
+                (click)="toggleSectionVisibility(sec)" 
+                [title]="sec.isVisible ? 'Section is VISIBLE on public site' : 'Section is HIDDEN from public site'">
+                <span class="toggle-indicator"></span>
+                <span class="toggle-text">{{ sec.isVisible ? 'SHOW' : 'HIDE' }}</span>
+              </button>
+            </div>
+
+            <!-- Actions -->
+            <div class="section-actions-col">
+              <button 
+                class="btn-icon" 
+                title="Edit Section Details" 
+                (click)="openEditSection(sec)">
+                <i class="fas fa-pen"></i>
+              </button>
+              <button 
+                class="btn-icon text-danger" 
+                title="Delete Section" 
+                (click)="deleteSection(sec)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #noSections>
+          <div class="empty-sections-state text-center py-5">
+            <i class="fas fa-layer-group fa-3x text-muted mb-3"></i>
+            <h3>No Sections Found</h3>
+            <p class="text-muted mb-4">This page currently has no registered sections. Click below to add a section component or custom HTML block.</p>
+            <button class="btn-primary" (click)="openCreateSection()">
+              <i class="fas fa-plus"></i> Add First Section
+            </button>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="drawer-footer">
+        <span class="text-muted text-xs">
+          <i class="fas fa-info-circle me-1"></i> Toggling sections or updating visibility immediately reflects on the live public site.
+        </span>
+        <button class="btn-secondary btn-sm" (click)="closeSectionsDrawer()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ADD / EDIT PAGE MODAL ==================== -->
+  <div class="admin-modal-backdrop" *ngIf="showPageModal" (click)="showPageModal = false">
+    <div class="admin-modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <i class="fas" [ngClass]="isEditPage ? 'fa-pen text-cyan' : 'fa-plus text-lime'"></i>
+          {{ isEditPage ? 'Edit Page Configuration' : 'Create New Site Page' }}
+        </h3>
+        <button class="btn-close" (click)="showPageModal = false"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-grid">
+          <!-- Page Title -->
+          <div class="form-group">
+            <label class="form-label">Page Title <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [(ngModel)]="pageForm.title" 
+              placeholder="e.g., AI Engineering Advisory" 
+              required />
+          </div>
+
+          <!-- Nav Title -->
+          <div class="form-group">
+            <label class="form-label">Navbar Title / Short Label</label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [(ngModel)]="pageForm.navTitle" 
+              placeholder="e.g., AI Advisory (used in menu)" />
+          </div>
+
+          <!-- Slug -->
+          <div class="form-group full-width">
+            <label class="form-label">URL Slug <span class="text-danger">*</span></label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">/p/</span>
+              <input 
+                type="text" 
+                class="form-input with-prefix" 
+                [(ngModel)]="pageForm.slug" 
+                placeholder="ai-engineering-advisory" 
+                [disabled]="isEditPage && pages[0]?.isSystem && pageForm.slug === ''" />
+            </div>
+            <span class="form-hint">Unique URL path segment (lowercase, hyphens allowed).</span>
+          </div>
+
+          <!-- Display Order -->
+          <div class="form-group">
+            <label class="form-label">Display Order</label>
+            <input 
+              type="number" 
+              class="form-input" 
+              [(ngModel)]="pageForm.displayOrder" 
+              min="1" />
+          </div>
+
+          <!-- Toggles Row -->
+          <div class="form-group full-width">
+            <div class="toggles-cluster">
+              <label class="checkbox-label">
+                <input type="checkbox" [(ngModel)]="pageForm.isVisible" />
+                <span>Publish Page (Is Visible)</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" [(ngModel)]="pageForm.showInNav" />
+                <span>Show in Top Navigation Bar</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" [(ngModel)]="pageForm.showInFooter" />
+                <span>Show in Footer Links</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Meta Title -->
+          <div class="form-group full-width">
+            <label class="form-label">SEO Meta Title</label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [(ngModel)]="pageForm.metaTitle" 
+              placeholder="Page Title | NEXVOYS Enterprise Architecture" />
+          </div>
+
+          <!-- Meta Description -->
+          <div class="form-group full-width">
+            <label class="form-label">SEO Meta Description</label>
+            <textarea 
+              class="form-textarea" 
+              rows="3" 
+              [(ngModel)]="pageForm.metaDescription" 
+              placeholder="Provide a concise description for search engines and social cards..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" (click)="showPageModal = false">Cancel</button>
+        <button class="btn-primary" (click)="savePage()">
+          <i class="fas fa-check"></i>
+          <span>{{ isEditPage ? 'Save Changes' : 'Create Page' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ADD / EDIT SECTION MODAL ==================== -->
+  <div class="admin-modal-backdrop" *ngIf="showSectionModal" (click)="showSectionModal = false">
+    <div class="admin-modal-card modal-lg" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <i class="fas" [ngClass]="isEditSection ? 'fa-pen text-cyan' : 'fa-plus text-lime'"></i>
+          {{ isEditSection ? 'Edit Section Component' : 'Add New Section' }}
+        </h3>
+        <button class="btn-close" (click)="showSectionModal = false"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-grid">
+          <!-- Section Key -->
+          <div class="form-group">
+            <label class="form-label">Section Key / HTML ID <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              class="form-input font-mono" 
+              [(ngModel)]="sectionForm.sectionKey" 
+              placeholder="e.g., custom-banner, pricing-table" 
+              required />
+            <span class="form-hint">Anchor identifier (lowercase, hyphens allowed).</span>
+          </div>
+
+          <!-- Section Type -->
+          <div class="form-group">
+            <label class="form-label">Section Type</label>
+            <select class="form-input" [(ngModel)]="sectionForm.sectionType">
+              <option value="custom-html">Custom HTML & Rich Content</option>
+              <option value="banner">Call-to-Action Banner</option>
+              <option value="built-in">Built-In Layout Component</option>
+            </select>
+          </div>
+
+          <!-- Title -->
+          <div class="form-group">
+            <label class="form-label">Section Headline / Title <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [(ngModel)]="sectionForm.title" 
+              placeholder="e.g., Enterprise Architecture Assessment" 
+              required />
+          </div>
+
+          <!-- Subtitle / Tag -->
+          <div class="form-group">
+            <label class="form-label">Subtitle / Category Tag</label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [(ngModel)]="sectionForm.subtitle" 
+              placeholder="e.g., Verified Methodology" />
+          </div>
+
+          <!-- Display Order -->
+          <div class="form-group">
+            <label class="form-label">Display Order</label>
+            <input 
+              type="number" 
+              class="form-input" 
+              [(ngModel)]="sectionForm.displayOrder" 
+              min="1" />
+          </div>
+
+          <!-- Visibility Toggle -->
+          <div class="form-group">
+            <label class="form-label">Visibility Status</label>
+            <div class="pt-2">
+              <label class="checkbox-label">
+                <input type="checkbox" [(ngModel)]="sectionForm.isVisible" />
+                <span>Published (Visible on site)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Section Description / Body Content -->
+          <div class="form-group full-width">
+            <label class="form-label">
+              <span>Section Description / Lead Paragraph</span>
+              <span class="text-xs text-muted ms-2">(Editable body text for built-in or custom sections)</span>
+            </label>
+            <textarea 
+              class="form-textarea" 
+              rows="3" 
+              [(ngModel)]="sectionForm.description" 
+              placeholder="Provide the primary narrative, introductory text, or paragraph for this section..."></textarea>
+          </div>
+
+          <!-- Interactive Section Cards & Items Builder -->
+          <div class="form-group full-width">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label class="form-label mb-0">
+                <i class="fas fa-th-large text-lime me-1"></i>
+                <span>Section Cards & Interactive Items</span>
+                <span class="badge badge-system ms-2" *ngIf="sectionCards.length > 0">{{ sectionCards.length }} Cards</span>
+              </label>
+              <button type="button" class="btn-primary btn-sm py-1 px-2" (click)="addSectionCard()">
+                <i class="fas fa-plus me-1"></i> Add Card
+              </button>
+            </div>
+            <p class="form-hint mb-3">
+              Add, edit, or delete individual cards for this section (such as the Value Proposition mint cards, process step pods, etc.).
+            </p>
+
+            <div class="section-cards-builder-container" *ngIf="sectionCards.length > 0; else noCardsHint">
+              <div class="card-editor-item" *ngFor="let card of sectionCards; let cIdx = index">
+                <div class="card-editor-header">
+                  <span class="card-editor-badge">
+                    <i class="fas fa-grip-vertical me-1"></i> Card #{{ cIdx + 1 }}
+                  </span>
+                  <button type="button" class="btn-icon text-danger btn-sm" (click)="removeSectionCard(cIdx)" title="Delete Card">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+                <div class="row g-2 mb-2">
+                  <div class="col-8">
+                    <input 
+                      type="text" 
+                      class="form-input" 
+                      [(ngModel)]="card.title" 
+                      placeholder="Card Title (e.g., Task Automation, Fast Shipping)" />
+                  </div>
+                  <div class="col-4">
+                    <input 
+                      type="text" 
+                      class="form-input font-mono" 
+                      [(ngModel)]="card.badge" 
+                      placeholder="Badge / Step # (e.g., 01)" />
+                  </div>
+                </div>
+                <div>
+                  <textarea 
+                    class="form-textarea" 
+                    rows="2" 
+                    [(ngModel)]="card.description" 
+                    placeholder="Card description / content body..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #noCardsHint>
+              <div class="empty-cards-box text-center p-3 border border-secondary rounded-2" style="background: rgba(255,255,255,0.02); border-style: dashed !important;">
+                <p class="text-muted small mb-2">No individual cards configured for this section yet.</p>
+                <button type="button" class="btn-secondary btn-sm" (click)="addSectionCard()">
+                  <i class="fas fa-plus me-1"></i> Add First Card
+                </button>
+              </div>
+            </ng-template>
+          </div>
+
+          <!-- Custom HTML Body -->
+          <div class="form-group full-width">
+            <label class="form-label">
+              <span>Custom HTML Override</span>
+              <span class="text-xs text-muted ms-2">(Optional override - supports Bootstrap 5, FontAwesome & custom classes)</span>
+            </label>
+            <textarea 
+              class="form-textarea font-mono code-editor" 
+              rows="8" 
+              [(ngModel)]="sectionForm.customHtml" 
+              placeholder="<div class='iz-stat-card p-4'>\n  <h3>Custom Content</h3>\n</div>"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" (click)="showSectionModal = false">Cancel</button>
+        <button class="btn-primary" (click)="saveSection()">
+          <i class="fas fa-check"></i>
+          <span>{{ isEditSection ? 'Save Section' : 'Create Section' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

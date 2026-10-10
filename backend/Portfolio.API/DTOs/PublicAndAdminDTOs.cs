@@ -742,3 +742,147 @@ public class SubmitChatInquiryDto
     [MaxLength(4000)]
     public string Message { get; set; } = string.Empty;
 }
+
+// --- Dynamic Site Pages & Sections DTOs ---
+public class SitePageDto
+{
+    public int Id { get; set; }
+    public string Slug { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public string NavTitle { get; set; } = string.Empty;
+    public bool IsVisible { get; set; } = true;
+    public bool ShowInNav { get; set; } = true;
+    public bool ShowInFooter { get; set; } = true;
+    public bool IsSystem { get; set; }
+    public int DisplayOrder { get; set; }
+    public string? MetaTitle { get; set; }
+    public string? MetaDescription { get; set; }
+    public int SectionCount { get; set; }
+    public List<SiteSectionDto> Sections { get; set; } = new();
+}
+
+public class SiteSectionDto
+{
+    public int Id { get; set; }
+    public int PageId { get; set; }
+    public string PageSlug { get; set; } = string.Empty;
+    public string SectionKey { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public string? Subtitle { get; set; }
+    public string? Description { get; set; }
+    public string SectionType { get; set; } = "built-in";
+    public bool IsVisible { get; set; } = true;
+    public bool IsSystem { get; set; }
+    public int DisplayOrder { get; set; }
+    public string? ContentJson { get; set; }
+    public string? CustomHtml { get; set; }
+}
+
+public class CreateSitePageDto
+{
+    [Required]
+    [MaxLength(100)]
+    public string Slug { get; set; } = string.Empty;
+
+    [Required]
+    [MaxLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [MaxLength(100)]
+    public string? NavTitle { get; set; }
+
+    public bool IsVisible { get; set; } = true;
+    public bool ShowInNav { get; set; } = true;
+    public bool ShowInFooter { get; set; } = true;
+    public int DisplayOrder { get; set; }
+
+    [MaxLength(300)]
+    public string? MetaTitle { get; set; }
+
+    [MaxLength(1000)]
+    public string? MetaDescription { get; set; }
+}
+
+public class UpdateSitePageDto
+{
+    [Required]
+    [MaxLength(100)]
+    public string Slug { get; set; } = string.Empty;
+
+    [Required]
+    [MaxLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [MaxLength(100)]
+    public string? NavTitle { get; set; }
+
+    public bool IsVisible { get; set; } = true;
+    public bool ShowInNav { get; set; } = true;
+    public bool ShowInFooter { get; set; } = true;
+    public int DisplayOrder { get; set; }
+
+    [MaxLength(300)]
+    public string? MetaTitle { get; set; }
+
+    [MaxLength(1000)]
+    public string? MetaDescription { get; set; }
+}
+
+public class CreateSiteSectionDto
+{
+    [Required]
+    public int PageId { get; set; }
+
+    [Required]
+    [MaxLength(100)]
+    public string SectionKey { get; set; } = string.Empty;
+
+    [Required]
+    [MaxLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [MaxLength(500)]
+    public string? Subtitle { get; set; }
+
+    [MaxLength(4000)]
+    public string? Description { get; set; }
+
+    [MaxLength(50)]
+    public string SectionType { get; set; } = "built-in";
+
+    public bool IsVisible { get; set; } = true;
+    public int DisplayOrder { get; set; }
+    public string? ContentJson { get; set; }
+    public string? CustomHtml { get; set; }
+}
+
+public class UpdateSiteSectionDto
+{
+    [Required]
+    [MaxLength(100)]
+    public string SectionKey { get; set; } = string.Empty;
+
+    [Required]
+    [MaxLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [MaxLength(500)]
+    public string? Subtitle { get; set; }
+
+    [MaxLength(4000)]
+    public string? Description { get; set; }
+
+    [MaxLength(50)]
+    public string SectionType { get; set; } = "built-in";
+
+    public bool IsVisible { get; set; } = true;
+    public int DisplayOrder { get; set; }
+    public string? ContentJson { get; set; }
+    public string? CustomHtml { get; set; }
+}
+
+public class ReorderItemDto
+{
+    public int Id { get; set; }
+    public int DisplayOrder { get; set; }
+}

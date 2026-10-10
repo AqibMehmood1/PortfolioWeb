@@ -180,6 +180,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router
   ) {}
 
+  isSectionVisible(sectionKey: string): boolean {
+    return this.portfolioService.isSectionVisible('', sectionKey);
+  }
+
+  getSection(sectionKey: string) {
+    return this.portfolioService.getSection('', sectionKey);
+  }
+
+  getSectionCards(sectionKey: string) {
+    return this.portfolioService.getSectionCards('', sectionKey);
+  }
+
+  get customSections() {
+    return this.portfolioService.getCustomSections('');
+  }
+
   ngOnInit(): void {
     // Subscribe to dynamic portfolio service data
     this.portfolioService.projects$.subscribe(projects => {

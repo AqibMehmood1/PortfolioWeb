@@ -142,6 +142,18 @@ export class ExpertiseComponent {
 
   constructor(public portfolioService: PortfolioService) {}
 
+  isSectionVisible(sectionKey: string): boolean {
+    return this.portfolioService.isSectionVisible('expertise', sectionKey);
+  }
+
+  getSection(sectionKey: string) {
+    return this.portfolioService.getSection('expertise', sectionKey);
+  }
+
+  get customSections() {
+    return this.portfolioService.getCustomSections('expertise');
+  }
+
   get displayedTechTiles(): TechTile[] {
     let list = this.techTiles.filter(t => t.category === this.activeStackCategory);
     if (this.stackSearchQuery.trim()) {

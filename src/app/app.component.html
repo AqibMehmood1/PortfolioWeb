@@ -23,30 +23,51 @@
         <img src="assets/nexvoys/black-logo.png" alt="NEXVOYS" class="iz-header-logo">
       </a>
 
-      <!-- Simplified Navigation Links -->
+      <!-- Dynamic Navigation Links -->
       <ul class="iz-nav-links-white">
-        <li (mouseenter)="closeMegaMenu()">
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMegaMenu()">Home</a>
-        </li>
-        <li class="iz-nav-item-dropdown" (mouseenter)="onMouseEnterServices()" (mouseleave)="onMouseLeaveDropdown()">
-          <a routerLink="/services" class="iz-nav-link-btn" [class.active]="activeMegaMenu === 'services'" (click)="toggleMegaMenu('services')">
-            Services <i class="fas fa-chevron-down iz-nav-chevron"></i>
-          </a>
-        </li>
-        <li (mouseenter)="closeMegaMenu()">
-          <a routerLink="/expertise" routerLinkActive="active" (click)="closeMegaMenu()">Expertise</a>
-        </li>
-        <li (mouseenter)="closeMegaMenu()">
-          <a routerLink="/projects" routerLinkActive="active" (click)="closeMegaMenu()">Portfolio</a>
-        </li>
-        <li (mouseenter)="closeMegaMenu()">
-          <a routerLink="/about" routerLinkActive="active" (click)="closeMegaMenu()">About</a>
-        </li>
+        <ng-container *ngIf="navPages && navPages.length > 0; else fallbackNav">
+          <ng-container *ngFor="let p of navPages">
+            <!-- Services Dropdown Item -->
+            <li *ngIf="p.slug === 'services'" class="iz-nav-item-dropdown" (mouseenter)="onMouseEnterServices()" (mouseleave)="onMouseLeaveDropdown()">
+              <a [routerLink]="getNavPageLink(p)" class="iz-nav-link-btn" [class.active]="activeMegaMenu === 'services'" (click)="toggleMegaMenu('services')">
+                {{ p.navTitle || p.title }} <i class="fas fa-chevron-down iz-nav-chevron"></i>
+              </a>
+            </li>
+
+            <!-- Standard Nav Item (exclude Contact since it has its own prominent CTA button on the right) -->
+            <li *ngIf="p.slug !== 'services' && p.slug !== 'contact'" (mouseenter)="closeMegaMenu()">
+              <a [routerLink]="getNavPageLink(p)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: p.slug === '' || p.slug === 'home'}" (click)="closeMegaMenu()">
+                {{ p.navTitle || p.title }}
+              </a>
+            </li>
+          </ng-container>
+        </ng-container>
+
+        <!-- Static Fallback Template (Guarantees nav is never blank during initialization) -->
+        <ng-template #fallbackNav>
+          <li (mouseenter)="closeMegaMenu()">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMegaMenu()">Home</a>
+          </li>
+          <li class="iz-nav-item-dropdown" (mouseenter)="onMouseEnterServices()" (mouseleave)="onMouseLeaveDropdown()">
+            <a routerLink="/services" class="iz-nav-link-btn" [class.active]="activeMegaMenu === 'services'" (click)="toggleMegaMenu('services')">
+              Services <i class="fas fa-chevron-down iz-nav-chevron"></i>
+            </a>
+          </li>
+          <li (mouseenter)="closeMegaMenu()">
+            <a routerLink="/expertise" routerLinkActive="active" (click)="closeMegaMenu()">Expertise</a>
+          </li>
+          <li (mouseenter)="closeMegaMenu()">
+            <a routerLink="/projects" routerLinkActive="active" (click)="closeMegaMenu()">Portfolio</a>
+          </li>
+          <li (mouseenter)="closeMegaMenu()">
+            <a routerLink="/about" routerLinkActive="active" (click)="closeMegaMenu()">About</a>
+          </li>
+        </ng-template>
       </ul>
 
       <!-- Right CTA & Mobile Toggle -->
       <div class="d-flex align-items-center gap-3">
-        <a routerLink="/contact" class="iz-btn-contact-top" (click)="closeMegaMenu()" (mouseenter)="closeMegaMenu()">
+        <a *ngIf="portfolioService.isPageVisible('contact')" routerLink="/contact" class="iz-btn-contact-top" (click)="closeMegaMenu()" (mouseenter)="closeMegaMenu()">
           Contact Us <span class="iz-arrow-up-right">↗</span>
         </a>
         <button type="button" class="iz-mobile-toggle-dark" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
@@ -164,25 +185,32 @@
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
-      <i class="fas fa-home me-2 text-green"></i> Home
-    </a>
-    <a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-cubes me-2 text-green"></i> Services
-    </a>
-    <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-layer-group me-2 text-green"></i> Industries & Stacks
-    </a>
-    <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-laptop-code me-2 text-green"></i> Portfolio
-    </a>
-    <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-user-shield me-2 text-green"></i> Company & About
-    </a>
-    <a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">
-      <i class="fas fa-envelope me-2 text-green"></i> Contact Us
-    </a>
-    <div class="pt-3 mt-2 border-top border-light d-flex gap-2">
+    <ng-container *ngIf="navPages && navPages.length > 0; else fallbackMobileNav">
+      <ng-container *ngFor="let p of navPages">
+        <a [routerLink]="getNavPageLink(p)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: p.slug === '' || p.slug === 'home'}" (click)="closeMobileMenu()">
+          <i [class]="getPageIcon(p.slug) + ' me-2 text-green'"></i> {{ p.navTitle || p.title }}
+        </a>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #fallbackMobileNav>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
+        <i class="fas fa-home me-2 text-green"></i> Home
+      </a>
+      <a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()">
+        <i class="fas fa-cubes me-2 text-green"></i> Services
+      </a>
+      <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()">
+        <i class="fas fa-layer-group me-2 text-green"></i> Industries & Stacks
+      </a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">
+        <i class="fas fa-laptop-code me-2 text-green"></i> Portfolio
+      </a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">
+        <i class="fas fa-user-shield me-2 text-green"></i> Company & About
+      </a>
+    </ng-template>
+    <div class="pt-3 mt-2 border-top border-light d-flex gap-2" *ngIf="portfolioService.isPageVisible('contact')">
       <a routerLink="/contact" (click)="closeMobileMenu()" class="iz-btn-green w-100 justify-content-center py-2">
         Contact Us <span class="ms-1">↗</span>
       </a>
@@ -262,7 +290,7 @@
       </div>
 
       <!-- Col 2: Services -->
-      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2" *ngIf="portfolioService.isPageVisible('services')">
         <h5>Services</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/services">SaaS Multi-Tenancy</a></li>
@@ -274,7 +302,7 @@
       </div>
 
       <!-- Col 3: Case Studies -->
-      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2" *ngIf="portfolioService.isPageVisible('projects')">
         <h5>Case Studies</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/projects">Scrole Platform</a></li>
@@ -287,7 +315,7 @@
       </div>
 
       <!-- Col 4: Technologies -->
-      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2" *ngIf="portfolioService.isPageVisible('expertise')">
         <h5>Tech Radar</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/expertise">.NET 9 / C#</a></li>
@@ -300,7 +328,7 @@
       </div>
 
       <!-- Col 5: Connect -->
-      <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-2" *ngIf="portfolioService.isPageVisible('contact')">
         <h5>Connect</h5>
         <ul class="iz-footer-links">
           <li><a routerLink="/contact">Schedule Consultation</a></li>

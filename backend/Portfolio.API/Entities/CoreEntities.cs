@@ -441,3 +441,64 @@ public class SeoMetadata : BaseEntity
     [MaxLength(100)]
     public string Robots { get; set; } = "index, follow";
 }
+
+public class SitePage : BaseEntity
+{
+    [Required]
+    [MaxLength(100)]
+    public string Slug { get; set; } = string.Empty;
+
+    [Required]
+    [MaxLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [MaxLength(100)]
+    public string NavTitle { get; set; } = string.Empty;
+
+    public bool IsVisible { get; set; } = true;
+
+    public bool ShowInNav { get; set; } = true;
+
+    public bool ShowInFooter { get; set; } = true;
+
+    public bool IsSystem { get; set; } = false;
+
+    [MaxLength(300)]
+    public string? MetaTitle { get; set; }
+
+    [MaxLength(1000)]
+    public string? MetaDescription { get; set; }
+
+    public ICollection<SiteSection> Sections { get; set; } = new List<SiteSection>();
+}
+
+public class SiteSection : BaseEntity
+{
+    public int PageId { get; set; }
+    public SitePage? Page { get; set; }
+
+    [Required]
+    [MaxLength(100)]
+    public string SectionKey { get; set; } = string.Empty;
+
+    [Required]
+    [MaxLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [MaxLength(500)]
+    public string? Subtitle { get; set; }
+
+    [MaxLength(4000)]
+    public string? Description { get; set; }
+
+    [MaxLength(50)]
+    public string SectionType { get; set; } = "built-in"; // built-in, custom-html, custom-cards, custom-banner
+
+    public bool IsVisible { get; set; } = true;
+
+    public bool IsSystem { get; set; } = false;
+
+    public string? ContentJson { get; set; }
+
+    public string? CustomHtml { get; set; }
+}

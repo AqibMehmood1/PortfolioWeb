@@ -87,6 +87,38 @@ export interface SeoMetadataDto {
   robots: string;
 }
 
+export interface SiteSectionDto {
+  id: number;
+  pageId: number;
+  pageSlug: string;
+  sectionKey: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  sectionType: string;
+  isVisible: boolean;
+  isSystem: boolean;
+  displayOrder: number;
+  contentJson?: string;
+  customHtml?: string;
+}
+
+export interface SitePageDto {
+  id: number;
+  slug: string;
+  title: string;
+  navTitle: string;
+  isVisible: boolean;
+  showInNav: boolean;
+  showInFooter: boolean;
+  isSystem: boolean;
+  displayOrder: number;
+  metaTitle?: string;
+  metaDescription?: string;
+  sectionCount: number;
+  sections: SiteSectionDto[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -172,6 +204,14 @@ export class PortfolioApiService {
 
   getSeoByRoute(route: string): Observable<ApiResponse<SeoMetadataDto>> {
     return this.http.get<ApiResponse<SeoMetadataDto>>(`${this.baseUrl}/seo/by-route?route=${encodeURIComponent(route)}`);
+  }
+
+  getPages(): Observable<ApiResponse<SitePageDto[]>> {
+    return this.http.get<ApiResponse<SitePageDto[]>>(`${this.baseUrl}/pages`);
+  }
+
+  getPageBySlug(slug: string): Observable<ApiResponse<SitePageDto>> {
+    return this.http.get<ApiResponse<SitePageDto>>(`${this.baseUrl}/pages/${slug}`);
   }
 
   sendChatMessage(request: ChatRequestDto): Observable<ApiResponse<ChatResponseDto>> {

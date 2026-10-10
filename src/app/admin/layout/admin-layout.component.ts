@@ -20,6 +20,7 @@ export class AdminLayoutComponent implements OnInit {
 
   navItems = [
     { label: 'Dashboard', icon: 'fas fa-chart-pie', route: '/admin/dashboard' },
+    { label: 'Pages & Sections', icon: 'fas fa-sitemap', route: '/admin/pages' },
     { label: 'Website Settings', icon: 'fas fa-sliders-h', route: '/admin/settings' },
     { label: 'Homepage Content', icon: 'fas fa-home', route: '/admin/home' },
     { label: 'About & Philosophy', icon: 'fas fa-user-tie', route: '/admin/about' },

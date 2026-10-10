@@ -5,12 +5,14 @@ import { ExpertiseComponent } from './pages/expertise/expertise.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { DynamicPageComponent } from './pages/dynamic-page/dynamic-page.component';
 
 // Admin imports
 import { authGuard } from './core/guards/auth.guard';
 import { AdminLoginComponent } from './admin/login/admin-login.component';
 import { AdminLayoutComponent } from './admin/layout/admin-layout.component';
 import { AdminDashboardComponent } from './admin/dashboard/admin-dashboard.component';
+import { AdminPagesComponent } from './admin/pages-mgmt/admin-pages.component';
 import { AdminSettingsComponent } from './admin/settings/admin-settings.component';
 import { AdminHomeComponent } from './admin/home-mgmt/admin-home.component';
 import { AdminAboutComponent } from './admin/about-mgmt/admin-about.component';
@@ -33,6 +35,7 @@ export const routes: Routes = [
   { path: 'services', component: ServicesComponent, title: 'Services & Solutions Architecture | NEXVOYS' },
   { path: 'projects', component: ProjectsComponent, title: 'Case Studies & Delivered Systems | NEXVOYS' },
   { path: 'contact', component: ContactComponent, title: 'Schedule Architectural Consultation | NEXVOYS' },
+  { path: 'p/:slug', component: DynamicPageComponent, title: 'NEXVOYS Platform' },
 
   // Admin Authentication
   { path: 'admin/login', component: AdminLoginComponent, title: 'Admin Authentication | NEXVOYS CMS' },
@@ -45,6 +48,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent, title: 'CMS Dashboard | NEXVOYS' },
+      { path: 'pages', component: AdminPagesComponent, title: 'Pages & Sections Architecture | NEXVOYS CMS' },
       { path: 'settings', component: AdminSettingsComponent, title: 'Website Settings | NEXVOYS CMS' },
       { path: 'home', component: AdminHomeComponent, title: 'Homepage Content | NEXVOYS CMS' },
       { path: 'about', component: AdminAboutComponent, title: 'About Content | NEXVOYS CMS' },

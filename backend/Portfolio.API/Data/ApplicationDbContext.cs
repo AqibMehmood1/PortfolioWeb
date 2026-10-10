@@ -29,6 +29,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
     public DbSet<MediaFile> MediaFiles => Set<MediaFile>();
     public DbSet<SeoMetadata> SeoMetadata => Set<SeoMetadata>();
+    public DbSet<SitePage> SitePages => Set<SitePage>();
+    public DbSet<SiteSection> SiteSections => Set<SiteSection>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -71,7 +73,21 @@ public class ApplicationDbContext : DbContext
             .HasIndex(s => s.PageRoute)
             .IsUnique();
 
+        modelBuilder.Entity<SitePage>()
+            .HasIndex(p => p.Slug)
+            .IsUnique();
+
+        modelBuilder.Entity<SiteSection>()
+            .HasIndex(s => new { s.PageId, s.SectionKey })
+            .IsUnique();
+
         // Relationships
+        modelBuilder.Entity<SiteSection>()
+            .HasOne(s => s.Page)
+            .WithMany(p => p.Sections)
+            .HasForeignKey(s => s.PageId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Technology>()
             .HasOne(t => t.Category)
             .WithMany(c => c.Technologies)

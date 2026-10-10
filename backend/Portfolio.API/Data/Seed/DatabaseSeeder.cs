@@ -20,6 +20,7 @@ public static class DatabaseSeeder
             await IndustriesTestimonialsSeeder.SeedAsync(context, logger);
             await SeoSeeder.SeedAsync(context, logger);
             await MediaSeeder.SeedAsync(context, logger);
+            await SitePagesSeeder.SeedAsync(context, logger);
 
             logger.LogInformation("Database seeding completed successfully.");
         }

@@ -16,6 +16,18 @@ export class ProjectsComponent {
 
   constructor(public portfolioService: PortfolioService) {}
 
+  isSectionVisible(sectionKey: string): boolean {
+    return this.portfolioService.isSectionVisible('projects', sectionKey);
+  }
+
+  getSection(sectionKey: string) {
+    return this.portfolioService.getSection('projects', sectionKey);
+  }
+
+  get customSections() {
+    return this.portfolioService.getCustomSections('projects');
+  }
+
   get filteredProjects(): ProjectItem[] {
     if (this.activeFilter === 'all') {
       return this.portfolioService.projects;

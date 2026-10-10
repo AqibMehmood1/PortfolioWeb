@@ -1,28 +1,33 @@
 <!-- ==================== INVOZONE ABOUT HEADER ==================== -->
-<section class="iz-page-hero">
-  <div class="container text-center max-w-860 mx-auto">
+<section class="iz-page-hero" *ngIf="isSectionVisible('about-hero')">
+  <div *ngIf="getSection('about-hero')?.customHtml" [innerHTML]="getSection('about-hero')?.customHtml"></div>
+  <div class="container text-center max-w-860 mx-auto" *ngIf="!getSection('about-hero')?.customHtml">
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">»</span>
-      <span class="text-dark fw-bold">Company & Strategy</span>
+      <span class="text-dark fw-bold">{{ getSection('about-hero')?.subtitle || 'Company & Strategy' }}</span>
     </div>
-    <div class="iz-tag"><i class="fas fa-user-shield"></i> About & Leadership</div>
-    <h1 class="iz-hero-headline">Architectural Philosophy & <span class="text-green-invo">Strategy</span></h1>
-    <p class="iz-hero-sub mx-auto">
-      Enterprise Solutions Architect & Technology Partner helping Startups, SMBs, and Enterprises architect scalable SaaS products, autonomous AI agents, and high-performance cloud applications.
+    <div class="iz-tag"><i class="fas fa-user-shield"></i> {{ getSection('about-hero')?.subtitle || 'About & Leadership' }}</div>
+    <h1 class="iz-hero-headline">{{ getSection('about-hero')?.title || 'Architectural Philosophy & Strategy' }}</h1>
+    <p class="iz-hero-sub mx-auto" *ngIf="getSection('about-hero')?.description">
+      {{ getSection('about-hero')?.description }}
     </p>
   </div>
 </section>
 
 <!-- ==================== EXECUTIVE PHILOSOPHY ==================== -->
-<section class="iz-section">
-  <div class="container">
+<section class="iz-section" *ngIf="isSectionVisible('vision')">
+  <div *ngIf="getSection('vision')?.customHtml" [innerHTML]="getSection('vision')?.customHtml"></div>
+  <div class="container" *ngIf="!getSection('vision')?.customHtml">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="iz-tag"><i class="fas fa-compass"></i> Engineering Vision</div>
-        <h2 class="iz-title mb-4">Technology Decisions Must Directly Drive Revenue & Velocity</h2>
+        <div class="iz-tag"><i class="fas fa-compass"></i> {{ getSection('vision')?.subtitle || 'Engineering Vision' }}</div>
+        <h2 class="iz-title mb-4">{{ getSection('vision')?.title || 'Technology Decisions Must Directly Drive Revenue & Velocity' }}</h2>
         
-        <p class="lead text-dark mb-3">
+        <p class="lead text-dark mb-3" *ngIf="getSection('vision')?.description">
+          {{ getSection('vision')?.description }}
+        </p>
+        <p class="lead text-dark mb-3" *ngIf="!getSection('vision')?.description">
           With <strong>9+ years of international software delivery</strong> across the US, Canada, and Europe, 
           I partner with founders, CEOs, and CTOs to design secure, scalable, and high-performance software.
         </p>
@@ -95,39 +100,18 @@
 </section>
 
 <!-- ==================== VALUE PROPOSITION SECTION ==================== -->
-<section class="iz-dark-value-section">
-  <div class="container">
+<section class="iz-dark-value-section" *ngIf="isSectionVisible('execution')">
+  <div *ngIf="getSection('execution')?.customHtml" [innerHTML]="getSection('execution')?.customHtml"></div>
+  <div class="container" *ngIf="!getSection('execution')?.customHtml">
     <div class="iz-dark-value-header">
-      <h2>How Solutions Architecture Delivers Value To Your Business ?</h2>
-      <p>Choosing the right architecture partner changes everything. Here is what you need to know about us.</p>
+      <h2>{{ getSection('execution')?.title || 'How Solutions Architecture Delivers Value To Your Business ?' }}</h2>
+      <p>{{ getSection('execution')?.description || 'Choosing the right architecture partner changes everything. Here is what you need to know about us.' }}</p>
     </div>
 
     <div class="iz-value-cards-grid">
-      <!-- Mint Card 1: Task Automation -->
-      <div class="iz-value-mint-card">
-        <h3>Task Automation</h3>
-        <p>DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations.</p>
-        <div class="iz-triangle-polygon"></div>
-      </div>
-
-      <!-- Mint Card 2: Agentic Workflows -->
-      <div class="iz-value-mint-card">
-        <h3>Agentic Workflows</h3>
-        <p>Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines.</p>
-        <div class="iz-triangle-polygon"></div>
-      </div>
-
-      <!-- Mint Card 3: Cost Efficiency -->
-      <div class="iz-value-mint-card">
-        <h3>Cost Efficiency</h3>
-        <p>Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.</p>
-        <div class="iz-triangle-polygon"></div>
-      </div>
-
-      <!-- Mint Card 4: Resource Efficiency -->
-      <div class="iz-value-mint-card">
-        <h3>Resource Efficiency</h3>
-        <p>Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.</p>
+      <div class="iz-value-mint-card" *ngFor="let card of getSectionCards('execution')">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.description }}</p>
         <div class="iz-triangle-polygon"></div>
       </div>
     </div>
@@ -135,13 +119,14 @@
 </section>
 
 <!-- ==================== CAREER TRACK RECORD TIMELINE ==================== -->
-<section class="iz-section iz-section-sage">
-  <div class="container">
+<section class="iz-section iz-section-sage" *ngIf="isSectionVisible('milestones')">
+  <div *ngIf="getSection('milestones')?.customHtml" [innerHTML]="getSection('milestones')?.customHtml"></div>
+  <div class="container" *ngIf="!getSection('milestones')?.customHtml">
     <div class="iz-section-header">
-      <div class="iz-tag"><i class="fas fa-history"></i> Track Record</div>
-      <h2 class="iz-title">Verified Career Journey</h2>
+      <div class="iz-tag"><i class="fas fa-history"></i> {{ getSection('milestones')?.subtitle || 'Track Record' }}</div>
+      <h2 class="iz-title">{{ getSection('milestones')?.title || 'Verified Career Journey' }}</h2>
       <p class="iz-subtitle">
-        Over 9 years of dedicated software engineering and solutions architecture across international technology companies.
+        {{ getSection('milestones')?.description || 'Over 9 years of dedicated software engineering and solutions architecture across international technology companies.' }}
       </p>
     </div>
 
@@ -198,43 +183,22 @@
 </section>
 
 <!-- ==================== 3-STEP PROCESS ==================== -->
-<section class="iz-process-network-section" id="process">
-  <div class="container text-center">
+<section class="iz-process-network-section" id="process" *ngIf="isSectionVisible('credentials')">
+  <div *ngIf="getSection('credentials')?.customHtml" [innerHTML]="getSection('credentials')?.customHtml"></div>
+  <div class="container text-center" *ngIf="!getSection('credentials')?.customHtml">
     <div class="iz-process-headline-wrap mb-5">
-      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
-      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+      <h2 class="iz-process-title-white">{{ getSection('credentials')?.title || "Three Steps. That's All It Takes." }}</h2>
+      <h2 class="iz-process-title-green">{{ getSection('credentials')?.subtitle || 'Simple Process. Serious Results.' }}</h2>
+      <p class="text-white-50 mt-2" *ngIf="getSection('credentials')?.description">{{ getSection('credentials')?.description }}</p>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
-      <!-- Step 1 -->
-      <div class="col-md-4">
+      <div class="col-md-4" *ngFor="let step of getSectionCards('credentials'); let idx = index">
         <div class="iz-process-column">
-          <div class="iz-process-badge-lime">01</div>
-          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <div class="iz-process-badge-lime">{{ step.badge || ('0' + (idx + 1)) }}</div>
+          <h4 class="iz-process-col-title">{{ step.title }}</h4>
           <p class="iz-process-col-desc">
-            One quick conversation. Tell us about your team, tech stack, and goals.
-          </p>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="col-md-4">
-        <div class="iz-process-column">
-          <div class="iz-process-badge-lime">02</div>
-          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
-          <p class="iz-process-col-desc">
-            We match AI developers to your stack and workflow. You review them.
-          </p>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="col-md-4">
-        <div class="iz-process-column">
-          <div class="iz-process-badge-lime">03</div>
-          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
-          <p class="iz-process-col-desc">
-            Your engineer is embedded, onboarded and contributing.
+            {{ step.description }}
           </p>
         </div>
       </div>
@@ -249,12 +213,13 @@
 </section>
 
 <!-- ==================== CLIENT TESTIMONIALS ==================== -->
-<section class="iz-section" id="testimonials">
-  <div class="container">
+<section class="iz-section" id="testimonials" *ngIf="isSectionVisible('testimonials')">
+  <div *ngIf="getSection('testimonials')?.customHtml" [innerHTML]="getSection('testimonials')?.customHtml"></div>
+  <div class="container" *ngIf="!getSection('testimonials')?.customHtml">
     <div class="iz-section-header">
-      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
-      <h2 class="iz-title">Trusted by International Technology Teams</h2>
-      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> {{ getSection('testimonials')?.subtitle || 'Client Endorsements' }}</div>
+      <h2 class="iz-title">{{ getSection('testimonials')?.title || 'Trusted by International Technology Teams' }}</h2>
+      <p class="iz-subtitle">{{ getSection('testimonials')?.description || 'Real feedback from founders and engineering leaders across the US and Europe.' }}</p>
     </div>
 
     <div class="row g-4">
@@ -280,13 +245,14 @@
 </section>
 
 <!-- ==================== CALL TO ACTION ==================== -->
-<section class="iz-section iz-section-sage">
-  <div class="container text-center">
+<section class="iz-section iz-section-sage" *ngIf="isSectionVisible('focus-areas')">
+  <div *ngIf="getSection('focus-areas')?.customHtml" [innerHTML]="getSection('focus-areas')?.customHtml"></div>
+  <div class="container text-center" *ngIf="!getSection('focus-areas')?.customHtml">
     <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
-      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-handshake"></i> Let's Collaborate</div>
-      <h2 class="text-white fw-bold mb-3">Looking for Senior Architecture Leadership?</h2>
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-handshake"></i> {{ getSection('focus-areas')?.subtitle || "Let's Collaborate" }}</div>
+      <h2 class="text-white fw-bold mb-3">{{ getSection('focus-areas')?.title || 'Looking for Senior Architecture Leadership?' }}</h2>
       <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
-        Whether you need a full system architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session.
+        {{ getSection('focus-areas')?.description || "Whether you need a full system architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session." }}
       </p>
       <a routerLink="/contact" class="iz-btn-green py-3 px-4">
         Schedule Strategy Session <i class="fas fa-arrow-right ms-2"></i>
@@ -295,3 +261,16 @@
   </div>
 </section>
 
+<!-- ==================== DYNAMIC CUSTOM SECTIONS (MANAGED FROM ADMIN) ==================== -->
+<ng-container *ngFor="let sec of customSections">
+  <section class="iz-section iz-custom-section" [id]="sec.sectionKey" *ngIf="sec.isVisible">
+    <div class="container">
+      <div class="iz-section-header" *ngIf="sec.title || sec.subtitle">
+        <div class="iz-tag" *ngIf="sec.subtitle"><i class="fas fa-layer-group"></i> {{ sec.subtitle }}</div>
+        <h2 class="iz-title" *ngIf="sec.title">{{ sec.title }}</h2>
+        <p class="iz-subtitle" *ngIf="sec.description">{{ sec.description }}</p>
+      </div>
+      <div *ngIf="sec.customHtml" [innerHTML]="sec.customHtml"></div>
+    </div>
+  </section>
+</ng-container>

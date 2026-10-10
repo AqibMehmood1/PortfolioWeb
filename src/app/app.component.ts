@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PortfolioService } from './services/portfolio.service';
+import { SitePageDto } from './services/portfolio-api.service';
 import { ProjectItem } from './models/portfolio.model';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
@@ -21,12 +22,47 @@ export class AppComponent implements AfterViewInit {
   isAdminRoute: boolean = false;
   private hoverTimeout: any = null;
 
+  getNavPageLink(page: SitePageDto): any[] {
+    if (!page.slug || page.slug === 'home') return ['/'];
+    if (page.isSystem) return ['/' + page.slug];
+    return ['/p', page.slug];
+  }
+
+  getPageIcon(slug: string): string {
+    switch ((slug || '').toLowerCase()) {
+      case '':
+      case 'home':
+        return 'fas fa-home';
+      case 'services':
+        return 'fas fa-cubes';
+      case 'expertise':
+        return 'fas fa-layer-group';
+      case 'projects':
+        return 'fas fa-laptop-code';
+      case 'about':
+        return 'fas fa-user-shield';
+      case 'contact':
+        return 'fas fa-envelope';
+      default:
+        return 'fas fa-file-alt';
+    }
+  }
+
+  navPages: SitePageDto[] = [];
+
   constructor(
     public portfolioService: PortfolioService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone
   ) {
+    this.navPages = this.portfolioService.navPages;
+
+    this.portfolioService.pages$.subscribe(pages => {
+      this.navPages = pages.filter(p => p.isVisible && p.showInNav);
+      this.cdr.markForCheck();
+    });
+
     this.portfolioService.selectedProject$.subscribe(project => {
       this.selectedProject = project;
       this.cdr.markForCheck();

@@ -10,7 +10,7 @@ import {
   IndustryItem, 
   TestimonialItem 
 } from '../models/portfolio.model';
-import { PortfolioApiService, WebsiteSettingsData } from './portfolio-api.service';
+import { PortfolioApiService, WebsiteSettingsData, SitePageDto, SiteSectionDto } from './portfolio-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -83,15 +83,193 @@ export class PortfolioService {
   testimonials$: Observable<TestimonialItem[]> = this.testimonialsSubject.asObservable();
   get testimonials(): TestimonialItem[] { return this.testimonialsSubject.value; }
 
+  private pagesSubject = new BehaviorSubject<SitePageDto[]>([]);
+  pages$: Observable<SitePageDto[]> = this.pagesSubject.asObservable();
+  get pages(): SitePageDto[] { return this.pagesSubject.value; }
+
+  get navPages(): SitePageDto[] {
+    return this.pages.filter(p => p.isVisible && p.showInNav);
+  }
+
+  get footerPages(): SitePageDto[] {
+    return this.pages.filter(p => p.isVisible && p.showInFooter);
+  }
+
+  isPageVisible(slug: string): boolean {
+    const cleanSlug = (slug || '').trim().toLowerCase();
+    const page = this.pages.find(p => p.slug.toLowerCase() === cleanSlug || (cleanSlug === 'home' && p.slug === ''));
+    return page ? page.isVisible : true;
+  }
+
+  isSectionVisible(pageSlug: string, sectionKey: string): boolean {
+    const cleanPage = (pageSlug || '').trim().toLowerCase();
+    const cleanKey = (sectionKey || '').trim().toLowerCase();
+    const page = this.pages.find(p => p.slug.toLowerCase() === cleanPage || (cleanPage === 'home' && p.slug === ''));
+    if (!page || !page.sections || page.sections.length === 0) {
+      return true;
+    }
+    if (!page.isVisible) return false;
+    const section = page.sections.find(s => s.sectionKey.toLowerCase() === cleanKey);
+    return section ? section.isVisible : true;
+  }
+
+  getSection(pageSlug: string, sectionKey: string): SiteSectionDto | undefined {
+    const cleanPage = (pageSlug || '').trim().toLowerCase();
+    const cleanKey = (sectionKey || '').trim().toLowerCase();
+    const page = this.pages.find(p => p.slug.toLowerCase() === cleanPage || (cleanPage === 'home' && p.slug === ''));
+    if (!page || !page.sections) return undefined;
+    return page.sections.find(s => s.sectionKey.toLowerCase() === cleanKey);
+  }
+
+  getPageSections(pageSlug: string): SiteSectionDto[] {
+    const cleanPage = (pageSlug || '').trim().toLowerCase();
+    const page = this.pages.find(p => p.slug.toLowerCase() === cleanPage || (cleanPage === 'home' && p.slug === ''));
+    return page && page.sections ? page.sections.filter(s => s.isVisible) : [];
+  }
+
+  getCustomSections(pageSlug: string): SiteSectionDto[] {
+    const cleanPage = (pageSlug || '').trim().toLowerCase();
+    const page = this.pages.find(p => p.slug.toLowerCase() === cleanPage || (cleanPage === 'home' && p.slug === ''));
+    return page && page.sections ? page.sections.filter(s => s.isVisible && !s.isSystem) : [];
+  }
+
+  getSectionCards(pageSlug: string, sectionKey: string): { title: string; description: string; badge?: string; icon?: string }[] {
+    const sec = this.getSection(pageSlug, sectionKey);
+    if (sec && sec.contentJson) {
+      try {
+        const parsed = JSON.parse(sec.contentJson);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        } else if (parsed && parsed.items && Array.isArray(parsed.items) && parsed.items.length > 0) {
+          return parsed.items;
+        }
+      } catch (e) {}
+    }
+    // Fallback defaults for value / execution
+    if (sectionKey === 'value' || sectionKey === 'execution' || sectionKey === 'engagement') {
+      return [
+        { title: 'Task Automation', description: 'DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations.' },
+        { title: 'Agentic Workflows', description: 'Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines.' },
+        { title: 'Cost Efficiency', description: 'Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.' },
+        { title: 'Resource Efficiency', description: 'Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.' }
+      ];
+    }
+    // Fallback defaults for process / credentials
+    if (sectionKey === 'process' || sectionKey === 'credentials') {
+      return [
+        { title: 'Tell Us What You Need', description: 'One quick conversation. Tell us about your team, tech stack, and goals.', badge: '01' },
+        { title: 'Build Your Match Within 24 Hours', description: 'We match AI developers to your stack and workflow. You review them.', badge: '02' },
+        { title: 'Start Shipping Immediately', description: 'Your engineer is embedded, onboarded and contributing.', badge: '03' }
+      ];
+    }
+    return [];
+  }
+
+  refreshPages(): void {
+    this.api.getPages().subscribe({
+      next: res => {
+        if (res.success && res.data && res.data.length > 0) {
+          this.ngZone.run(() => {
+            this.pagesSubject.next(res.data);
+          });
+        }
+      },
+      error: () => {}
+    });
+  }
+
   constructor(
     private api: PortfolioApiService,
     private ngZone: NgZone
   ) {
     this.initDefaultData();
     this.loadDynamicData();
+    this.refreshPages();
   }
 
   private initDefaultData(): void {
+    // Initial fallback pages matching seeded data
+    this.pagesSubject.next([
+      {
+        id: 1,
+        slug: '',
+        title: 'Home',
+        navTitle: 'Home',
+        isVisible: true,
+        showInNav: true,
+        showInFooter: true,
+        isSystem: true,
+        displayOrder: 1,
+        sectionCount: 9,
+        sections: []
+      },
+      {
+        id: 3,
+        slug: 'services',
+        title: 'Services & Pillars',
+        navTitle: 'Services',
+        isVisible: true,
+        showInNav: true,
+        showInFooter: true,
+        isSystem: true,
+        displayOrder: 2,
+        sectionCount: 5,
+        sections: []
+      },
+      {
+        id: 4,
+        slug: 'expertise',
+        title: 'Technical Radar & Stacks',
+        navTitle: 'Expertise',
+        isVisible: true,
+        showInNav: true,
+        showInFooter: true,
+        isSystem: true,
+        displayOrder: 3,
+        sectionCount: 4,
+        sections: []
+      },
+      {
+        id: 5,
+        slug: 'projects',
+        title: 'Portfolio & Case Studies',
+        navTitle: 'Portfolio',
+        isVisible: true,
+        showInNav: true,
+        showInFooter: true,
+        isSystem: true,
+        displayOrder: 4,
+        sectionCount: 4,
+        sections: []
+      },
+      {
+        id: 2,
+        slug: 'about',
+        title: 'About NEXVOYS',
+        navTitle: 'About',
+        isVisible: true,
+        showInNav: true,
+        showInFooter: true,
+        isSystem: true,
+        displayOrder: 5,
+        sectionCount: 6,
+        sections: []
+      },
+      {
+        id: 6,
+        slug: 'contact',
+        title: 'Consultation & Contact',
+        navTitle: 'Contact Us',
+        isVisible: true,
+        showInNav: true,
+        showInFooter: true,
+        isSystem: true,
+        displayOrder: 6,
+        sectionCount: 3,
+        sections: []
+      }
+    ]);
+
     // Initial fallback data matching seeded static data
     this.projectsSubject.next([
       {

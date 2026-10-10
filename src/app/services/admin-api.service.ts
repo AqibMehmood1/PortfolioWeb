@@ -647,4 +647,128 @@ export class AdminApiService {
   deleteSeo(id: number): Observable<ApiResponse<any>> {
     return this.http.delete<ApiResponse<any>>(`${this.baseUrl}/seo/${id}`);
   }
+
+  // --- Pages & Sections Management ---
+  getAllPages(): Observable<ApiResponse<SitePageDto[]>> {
+    return this.http.get<ApiResponse<SitePageDto[]>>(`${this.baseUrl}/pages`);
+  }
+  getPageById(id: number): Observable<ApiResponse<SitePageDto>> {
+    return this.http.get<ApiResponse<SitePageDto>>(`${this.baseUrl}/pages/${id}`);
+  }
+  createPage(dto: CreateSitePageDto): Observable<ApiResponse<SitePageDto>> {
+    return this.http.post<ApiResponse<SitePageDto>>(`${this.baseUrl}/pages`, dto);
+  }
+  updatePage(id: number, dto: UpdateSitePageDto): Observable<ApiResponse<SitePageDto>> {
+    return this.http.put<ApiResponse<SitePageDto>>(`${this.baseUrl}/pages/${id}`, dto);
+  }
+  deletePage(id: number): Observable<ApiResponse<boolean>> {
+    return this.http.delete<ApiResponse<boolean>>(`${this.baseUrl}/pages/${id}`);
+  }
+  togglePageVisibility(id: number): Observable<ApiResponse<boolean>> {
+    return this.http.patch<ApiResponse<boolean>>(`${this.baseUrl}/pages/${id}/toggle-visibility`, {});
+  }
+  togglePageNav(id: number): Observable<ApiResponse<boolean>> {
+    return this.http.patch<ApiResponse<boolean>>(`${this.baseUrl}/pages/${id}/toggle-nav`, {});
+  }
+  createSection(pageId: number, dto: CreateSiteSectionDto): Observable<ApiResponse<SiteSectionDto>> {
+    return this.http.post<ApiResponse<SiteSectionDto>>(`${this.baseUrl}/pages/${pageId}/sections`, dto);
+  }
+  updateSection(sectionId: number, dto: UpdateSiteSectionDto): Observable<ApiResponse<SiteSectionDto>> {
+    return this.http.put<ApiResponse<SiteSectionDto>>(`${this.baseUrl}/pages/sections/${sectionId}`, dto);
+  }
+  deleteSection(sectionId: number): Observable<ApiResponse<boolean>> {
+    return this.http.delete<ApiResponse<boolean>>(`${this.baseUrl}/pages/sections/${sectionId}`);
+  }
+  toggleSectionVisibility(sectionId: number): Observable<ApiResponse<boolean>> {
+    return this.http.patch<ApiResponse<boolean>>(`${this.baseUrl}/pages/sections/${sectionId}/toggle-visibility`, {});
+  }
+  reorderSections(items: ReorderItemDto[]): Observable<ApiResponse<boolean>> {
+    return this.http.post<ApiResponse<boolean>>(`${this.baseUrl}/pages/sections/reorder`, items);
+  }
+}
+
+export interface SiteSectionDto {
+  id: number;
+  pageId: number;
+  pageSlug: string;
+  sectionKey: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  sectionType: string;
+  isVisible: boolean;
+  isSystem: boolean;
+  displayOrder: number;
+  contentJson?: string;
+  customHtml?: string;
+}
+
+export interface SitePageDto {
+  id: number;
+  slug: string;
+  title: string;
+  navTitle: string;
+  isVisible: boolean;
+  showInNav: boolean;
+  showInFooter: boolean;
+  isSystem: boolean;
+  displayOrder: number;
+  metaTitle?: string;
+  metaDescription?: string;
+  sectionCount: number;
+  sections: SiteSectionDto[];
+}
+
+export interface CreateSitePageDto {
+  slug: string;
+  title: string;
+  navTitle?: string;
+  isVisible: boolean;
+  showInNav: boolean;
+  showInFooter: boolean;
+  displayOrder: number;
+  metaTitle?: string;
+  metaDescription?: string;
+}
+
+export interface UpdateSitePageDto {
+  slug: string;
+  title: string;
+  navTitle?: string;
+  isVisible: boolean;
+  showInNav: boolean;
+  showInFooter: boolean;
+  displayOrder: number;
+  metaTitle?: string;
+  metaDescription?: string;
+}
+
+export interface CreateSiteSectionDto {
+  pageId: number;
+  sectionKey: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  sectionType: string;
+  isVisible: boolean;
+  displayOrder: number;
+  contentJson?: string;
+  customHtml?: string;
+}
+
+export interface UpdateSiteSectionDto {
+  sectionKey: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  sectionType: string;
+  isVisible: boolean;
+  displayOrder: number;
+  contentJson?: string;
+  customHtml?: string;
+}
+
+export interface ReorderItemDto {
+  id: number;
+  displayOrder: number;
 }

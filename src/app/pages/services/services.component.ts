@@ -80,6 +80,22 @@ export class ServicesComponent {
 
   constructor(public portfolioService: PortfolioService, private router: Router) {}
 
+  isSectionVisible(sectionKey: string): boolean {
+    return this.portfolioService.isSectionVisible('services', sectionKey);
+  }
+
+  getSection(sectionKey: string) {
+    return this.portfolioService.getSection('services', sectionKey);
+  }
+
+  get customSections() {
+    return this.portfolioService.getCustomSections('services');
+  }
+
+  getSectionCards(sectionKey: string) {
+    return this.portfolioService.getSectionCards('services', sectionKey);
+  }
+
   toggleServiceAccordion(index: number): void {
     this.activeServiceIndex = this.activeServiceIndex === index ? -1 : index;
   }

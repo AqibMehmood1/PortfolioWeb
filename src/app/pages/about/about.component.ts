@@ -12,4 +12,20 @@ import { PortfolioService } from '../../services/portfolio.service';
 })
 export class AboutComponent {
   constructor(public portfolioService: PortfolioService) {}
+
+  isSectionVisible(sectionKey: string): boolean {
+    return this.portfolioService.isSectionVisible('about', sectionKey);
+  }
+
+  getSection(sectionKey: string) {
+    return this.portfolioService.getSection('about', sectionKey);
+  }
+
+  get customSections() {
+    return this.portfolioService.getCustomSections('about');
+  }
+
+  getSectionCards(sectionKey: string) {
+    return this.portfolioService.getSectionCards('about', sectionKey);
+  }
 }

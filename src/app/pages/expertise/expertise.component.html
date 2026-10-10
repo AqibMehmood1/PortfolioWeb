@@ -1,29 +1,31 @@
 <!-- ==================== INVOZONE EXPERTISE HEADER ==================== -->
-<section class="iz-page-hero">
-  <div class="container text-center max-w-860 mx-auto">
+<section class="iz-page-hero" *ngIf="isSectionVisible('expertise-hero')">
+  <div *ngIf="getSection('expertise-hero')?.customHtml" [innerHTML]="getSection('expertise-hero')?.customHtml"></div>
+  <div class="container text-center max-w-860 mx-auto" *ngIf="!getSection('expertise-hero')?.customHtml">
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">»</span>
-      <span class="text-dark fw-bold">Industries & Tech Radar</span>
+      <span class="text-dark fw-bold">{{ getSection('expertise-hero')?.subtitle || 'Industries & Tech Radar' }}</span>
     </div>
-    <div class="iz-tag"><i class="fas fa-layer-group"></i> Technical Competencies</div>
-    <h1 class="iz-hero-headline">Architectural Disciplines & <span class="text-green-invo">Tech Radar</span></h1>
-    <p class="iz-hero-sub mx-auto">
-      Comprehensive architectural mastery across distributed cloud systems, autonomous AI agents, enterprise .NET, modern web SPAs, and high-throughput data layers.
+    <div class="iz-tag"><i class="fas fa-layer-group"></i> {{ getSection('expertise-hero')?.subtitle || 'Technical Competencies' }}</div>
+    <h1 class="iz-hero-headline">{{ getSection('expertise-hero')?.title || 'Architectural Disciplines & Tech Radar' }}</h1>
+    <p class="iz-hero-sub mx-auto" *ngIf="getSection('expertise-hero')?.description">
+      {{ getSection('expertise-hero')?.description }}
     </p>
   </div>
 </section>
 
 <!-- ==================== 1. INVOZONE "ENGINEERS FOR EVERY STACK" TECH MATRIX ==================== -->
-<section class="iz-tech-matrix-section" id="tech-matrix">
-  <div class="container">
+<section class="iz-tech-matrix-section" id="tech-matrix" *ngIf="isSectionVisible('radar')">
+  <div *ngIf="getSection('radar')?.customHtml" [innerHTML]="getSection('radar')?.customHtml"></div>
+  <div class="container" *ngIf="!getSection('radar')?.customHtml">
     <div class="iz-tech-matrix-header">
       <div>
         <h2 class="iz-tech-matrix-title">
-          Yes. We Have Expertise <span class="text-green-invo">For Every Stack.</span>
+          {{ getSection('radar')?.title || 'Yes. We Have Expertise For Every Stack.' }}
         </h2>
         <p class="iz-tech-matrix-sub">
-          9+ years of hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines.
+          {{ getSection('radar')?.description || '9+ years of hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines.' }}
         </p>
       </div>
 
@@ -313,12 +315,13 @@
 </section>
 
 <!-- ==================== CLIENT TESTIMONIALS ==================== -->
-<section class="iz-section" id="testimonials">
-  <div class="container">
+<section class="iz-section" id="testimonials" *ngIf="isSectionVisible('certifications')">
+  <div *ngIf="getSection('certifications')?.customHtml" [innerHTML]="getSection('certifications')?.customHtml"></div>
+  <div class="container" *ngIf="!getSection('certifications')?.customHtml">
     <div class="iz-section-header">
-      <div class="iz-tag"><i class="fas fa-star text-green"></i> Client Endorsements</div>
-      <h2 class="iz-title">Trusted by International Technology Teams</h2>
-      <p class="iz-subtitle">Real feedback from founders and engineering leaders across the US and Europe.</p>
+      <div class="iz-tag"><i class="fas fa-star text-green"></i> {{ getSection('certifications')?.subtitle || 'Client Endorsements' }}</div>
+      <h2 class="iz-title">{{ getSection('certifications')?.title || 'Trusted by International Technology Teams' }}</h2>
+      <p class="iz-subtitle">{{ getSection('certifications')?.description || 'Real feedback from founders and engineering leaders across the US and Europe.' }}</p>
     </div>
 
     <div class="row g-4">
@@ -344,13 +347,14 @@
 </section>
 
 <!-- ==================== CALL TO ACTION ==================== -->
-<section class="iz-section iz-section-sage">
-  <div class="container text-center">
+<section class="iz-section iz-section-sage" *ngIf="isSectionVisible('expertise-cta')">
+  <div *ngIf="getSection('expertise-cta')?.customHtml" [innerHTML]="getSection('expertise-cta')?.customHtml"></div>
+  <div class="container text-center" *ngIf="!getSection('expertise-cta')?.customHtml">
     <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
-      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-cogs"></i> Technical Architecture</div>
-      <h2 class="text-white fw-bold mb-3">Need Guidance on Your Tech Stack?</h2>
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-cogs"></i> {{ getSection('expertise-cta')?.subtitle || 'Technical Architecture' }}</div>
+      <h2 class="text-white fw-bold mb-3">{{ getSection('expertise-cta')?.title || 'Need Guidance on Your Tech Stack?' }}</h2>
       <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
-        Let's review your product roadmap, compare architectural trade-offs (.NET vs Node vs Python, Azure vs AWS), and design the right system.
+        {{ getSection('expertise-cta')?.description || 'Let\'s review your product roadmap, compare architectural trade-offs (.NET vs Node vs Python, Azure vs AWS), and design the right system.' }}
       </p>
       <a routerLink="/contact" class="iz-btn-green py-3 px-4">
         Request Technical Stack Audit <i class="fas fa-arrow-right ms-2"></i>
@@ -358,4 +362,18 @@
     </div>
   </div>
 </section>
+
+<!-- Custom Dynamic Sections Added from Admin CMS -->
+<ng-container *ngFor="let s of customSections">
+  <section class="iz-section iz-custom-section" [id]="s.sectionKey" *ngIf="s.isVisible">
+    <div class="container">
+      <div class="iz-section-header" *ngIf="s.title || s.subtitle">
+        <div class="iz-tag" *ngIf="s.subtitle"><i class="fas fa-layer-group"></i> {{ s.subtitle }}</div>
+        <h2 class="iz-title" *ngIf="s.title">{{ s.title }}</h2>
+        <p class="iz-subtitle" *ngIf="s.description">{{ s.description }}</p>
+      </div>
+      <div [innerHTML]="s.customHtml" *ngIf="s.customHtml"></div>
+    </div>
+  </section>
+</ng-container>
 
