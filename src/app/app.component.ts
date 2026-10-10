@@ -33,10 +33,8 @@ export class AppComponent implements AfterViewInit {
     });
 
     this.portfolioService.toast$.subscribe(msg => {
-      this.ngZone.run(() => {
-        this.toastMessage = msg;
-        this.cdr.detectChanges();
-      });
+      this.toastMessage = msg;
+      this.cdr.markForCheck();
     });
 
     this.router.events.pipe(

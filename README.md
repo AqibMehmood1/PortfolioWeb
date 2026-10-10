@@ -73,8 +73,8 @@ A production-ready, database-driven Content Management System (CMS) and Portfoli
 ## 🔐 Default Admin Credentials
 
 - **URL**: `http://localhost:4200/admin/login`
-- **Username**: `admin`
-- **Password**: `Test123*6Secure!`
+- **Username**: `bilalsoftengr@gmail.com`
+- **Password**: `Test123*`
 - **Role**: `SuperAdmin`
 
 ---

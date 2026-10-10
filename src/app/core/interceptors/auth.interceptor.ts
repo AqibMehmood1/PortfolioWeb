@@ -8,7 +8,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('nexvoys_admin_token');
 
   let authReq = req;
-  if (token && (req.url.includes('/admin') || req.url.includes('/api/'))) {
+  if (token && !req.url.includes('/auth/login') && (req.url.includes('/admin') || req.url.includes('/api/'))) {
     authReq = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`

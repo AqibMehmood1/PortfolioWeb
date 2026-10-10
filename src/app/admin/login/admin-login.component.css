@@ -86,13 +86,32 @@
   align-items: center;
   gap: 0.75rem;
   background: rgba(244, 63, 94, 0.15);
-  border: 1px solid rgba(244, 63, 94, 0.35);
+  border: 1px solid rgba(244, 63, 94, 0.4);
   color: #fca5a5;
   padding: 0.85rem 1.15rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
+  animation: loginAlertPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.15);
+}
+
+.login-alert i {
+  color: #f43f5e;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+@keyframes loginAlertPop {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .login-form {
@@ -209,20 +228,6 @@
   gap: 0.85rem;
 }
 
-.credential-tip {
-  font-size: 0.76rem;
-  color: var(--admin-text-dim, #64748b);
-  margin: 0;
-}
-
-.credential-tip code {
-  color: var(--admin-lime, #B8F500);
-  background: rgba(184, 245, 0, 0.1);
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
-  font-family: var(--admin-font-mono, monospace);
-  font-size: 0.8rem;
-}
 
 .back-link {
   color: var(--admin-text-muted, #8da2be);
