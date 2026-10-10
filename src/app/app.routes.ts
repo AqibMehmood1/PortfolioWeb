@@ -6,6 +6,9 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DynamicPageComponent } from './pages/dynamic-page/dynamic-page.component';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
+import { TermsComponent } from './pages/terms/terms.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 // Admin imports
 import { authGuard } from './core/guards/auth.guard';
@@ -29,13 +32,15 @@ import { AdminAuditLogsComponent } from './admin/audit-logs-mgmt/admin-audit-log
 
 export const routes: Routes = [
   // Public Portfolio Routes
-  { path: '', component: HomeComponent, title: 'NEXVOYS | Enterprise Technology Partner | SaaS & AI Systems' },
-  { path: 'about', component: AboutComponent, title: 'About NEXVOYS | Technology Partner & Solutions Architecture' },
-  { path: 'expertise', component: ExpertiseComponent, title: 'Technical Radar & Architecture Disciplines | NEXVOYS' },
-  { path: 'services', component: ServicesComponent, title: 'Services & Solutions Architecture | NEXVOYS' },
-  { path: 'projects', component: ProjectsComponent, title: 'Case Studies & Delivered Systems | NEXVOYS' },
-  { path: 'contact', component: ContactComponent, title: 'Schedule Architectural Consultation | NEXVOYS' },
-  { path: 'p/:slug', component: DynamicPageComponent, title: 'NEXVOYS Platform' },
+  { path: '', component: HomeComponent, title: 'Nexvoys — SaaS & AI Architecture Partner for Startups and SMBs' },
+  { path: 'about', component: AboutComponent, title: 'About Nexvoys | Founder-Led Architecture Partner' },
+  { path: 'expertise', component: ExpertiseComponent, title: 'Technical Radar & Architecture Disciplines | Nexvoys' },
+  { path: 'services', component: ServicesComponent, title: 'Services & Solutions Architecture | Nexvoys' },
+  { path: 'projects', component: ProjectsComponent, title: 'Case Studies & Selected Work | Nexvoys' },
+  { path: 'contact', component: ContactComponent, title: 'Book an Architecture Call | Nexvoys' },
+  { path: 'privacy', component: PrivacyComponent, title: 'Privacy Policy | Nexvoys' },
+  { path: 'terms', component: TermsComponent, title: 'Terms of Service | Nexvoys' },
+  { path: 'p/:slug', component: DynamicPageComponent, title: 'Nexvoys Platform' },
 
   // Admin Authentication
   { path: 'admin/login', component: AdminLoginComponent, title: 'Admin Authentication | NEXVOYS CMS' },
@@ -66,5 +71,5 @@ export const routes: Routes = [
     ]
   },
 
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent, title: '404 - Page Not Found | Nexvoys' }
 ];

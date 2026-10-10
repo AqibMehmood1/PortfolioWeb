@@ -28,4 +28,13 @@ export class AboutComponent {
   getSectionCards(sectionKey: string) {
     return this.portfolioService.getSectionCards('about', sectionKey);
   }
+
+  get companyMilestones() {
+    return this.getSectionCards('milestones');
+  }
+
+  get companyStandards() {
+    return this.getSectionCards('credentials');
+  }
 }
+

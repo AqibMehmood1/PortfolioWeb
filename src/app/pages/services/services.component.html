@@ -53,8 +53,9 @@
         <div class="iz-accordion-body-expanded" *ngIf="activeServiceIndex === i">
           <div class="row align-items-center g-4 pt-3">
             <div class="col-md-4">
-              <div class="iz-accordion-media-box">
-                <img [src]="s.image" [alt]="s.title">
+              <div class="p-4 rounded-4 text-center" style="background: #152b1b; color: #b8f500; min-height: 160px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <i class="fas fa-layer-group fa-3x mb-2 text-green"></i>
+                <span class="fw-bold text-white small text-uppercase">{{ s.title }}</span>
               </div>
             </div>
             <div class="col-md-8">
@@ -77,19 +78,30 @@
   </div>
 </section>
 
-<!-- ==================== 2. DARK FOREST VALUE PROPOSITION SECTION ==================== -->
-<section class="iz-dark-value-section">
+<!-- ==================== PRODUCTISED ENTRY OFFER ==================== -->
+<section class="py-5" style="background: linear-gradient(135deg, #0b1a10 0%, #152b1b 100%); color: #ffffff;">
   <div class="container">
-    <div class="iz-dark-value-header">
-      <h2>How Solutions Architecture Delivers Value To Your Business ?</h2>
-      <p>Choosing the right architecture partner changes everything. Here is what you need to know about us.</p>
-    </div>
-
-    <div class="iz-value-cards-grid">
-      <div class="iz-value-mint-card" *ngFor="let card of getSectionCards('value')">
-        <h3>{{ card.title }}</h3>
-        <p>{{ card.description }}</p>
-        <div class="iz-triangle-polygon"></div>
+    <div class="row align-items-center g-4 p-4 p-lg-5 rounded-4" style="border: 1px solid rgba(184, 245, 0, 0.2); background: rgba(255, 255, 255, 0.03);">
+      <div class="col-lg-8">
+        <div class="badge px-3 py-2 mb-3 fw-bold" style="background-color: #b8f500 !important; color: #101828 !important;">
+          <i class="fas fa-bolt me-1"></i> Low-Risk Starting Point
+        </div>
+        <h2 class="fw-bold text-white mb-2" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
+          Architecture & Cloud Cost Audit
+        </h2>
+        <p class="text-white-50 lead mb-3 fs-6">
+          Before committing to months of engineering, get a clear diagnostic of your architecture, cloud costs, database bottlenecks, and technical debt.
+        </p>
+        <div class="d-flex flex-wrap gap-3 text-white small">
+          <div><i class="fas fa-check-circle text-green me-1"></i> <strong>From $2,500</strong> fixed fee</div>
+          <div><i class="fas fa-check-circle text-green me-1"></i> <strong>2 weeks turnaround</strong></div>
+          <div><i class="fas fa-check-circle text-green me-1"></i> <strong>Prioritized 90-day action plan</strong></div>
+        </div>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a routerLink="/contact" class="iz-btn-green px-4 py-3 text-decoration-none d-inline-flex align-items-center justify-content-center fw-bold fs-6">
+          Request Diagnostic <i class="fas fa-arrow-right ms-2"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -145,61 +157,70 @@
       <div class="col-lg-4">
         <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
           <div>
-            <div class="iz-tag mb-3"><i class="fas fa-search"></i> Advisory & Audit</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="iz-tag mb-0"><i class="fas fa-search"></i> Advisory & Diagnostic</div>
+              <span class="badge bg-dark text-white">From $2,500</span>
+            </div>
             <h3 class="mb-2 fw-bold">Architecture Audit</h3>
-            <p class="text-muted small mb-4">Ideal for startups preparing for scale, investor due diligence, or tackling performance/cost bottlenecks.</p>
+            <p class="text-muted small mb-4">A 2-week, fixed-fee diagnostic for founders preparing for scale, investor due diligence, or reducing runaway cloud costs.</p>
             <ul class="iz-deliverables-list mb-4">
-              <li><i class="fas fa-check text-green"></i> In-depth codebase & cloud architecture audit</li>
-              <li><i class="fas fa-check text-green"></i> Bottleneck & cost optimization report</li>
-              <li><i class="fas fa-check text-green"></i> Modernization roadmap & risk assessment</li>
+              <li><i class="fas fa-check text-green"></i> Deep codebase & Azure/AWS infrastructure review</li>
+              <li><i class="fas fa-check text-green"></i> Cloud cost breakdown & bottleneck analysis</li>
+              <li><i class="fas fa-check text-green"></i> Prioritized 90-day remediation roadmap</li>
             </ul>
           </div>
-          <a routerLink="/contact" class="iz-btn-dark w-100 justify-content-center">Request Audit</a>
+          <a routerLink="/contact" class="iz-btn-dark w-100 justify-content-center">Request Audit ($2,500)</a>
         </div>
       </div>
 
       <div class="col-lg-4">
         <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4" style="border: 2px solid var(--iz-green-dark); box-shadow: var(--shadow-iz-hover);">
           <div>
-            <div class="iz-tag mb-3" style="background: var(--iz-green-dark); color: #ffffff;"><i class="fas fa-star"></i> Most Popular</div>
-            <h3 class="mb-2 fw-bold">Project Architecture</h3>
-            <p class="text-muted small mb-4">End-to-end design and scalable delivery of a new SaaS product, AI integration, or microservices migration.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="iz-tag mb-0" style="background: var(--iz-green-dark); color: #ffffff;"><i class="fas fa-star"></i> Core Delivery</div>
+              <span class="badge text-dark fw-bold" style="background: #b8f500;">$10k – $35k</span>
+            </div>
+            <h3 class="mb-2 fw-bold">Project Architecture & Build</h3>
+            <p class="text-muted small mb-4">End-to-end architecture design and core engineering for a new SaaS product, AI pipeline, or microservices migration.</p>
             <ul class="iz-deliverables-list mb-4">
-              <li><i class="fas fa-check text-green"></i> Full multi-tenant system architecture blueprint</li>
-              <li><i class="fas fa-check text-green"></i> Hands-on core backend & API development</li>
-              <li><i class="fas fa-check text-green"></i> Automated CI/CD deployment pipelines</li>
-              <li><i class="fas fa-check text-green"></i> Comprehensive documentation & handover</li>
+              <li><i class="fas fa-check text-green"></i> Full multi-tenant blueprint & domain data models</li>
+              <li><i class="fas fa-check text-green"></i> Core .NET 9 API & agent orchestrations built</li>
+              <li><i class="fas fa-check text-green"></i> Automated CI/CD & infrastructure-as-code</li>
+              <li><i class="fas fa-check text-green"></i> Architecture runbooks & engineering handover</li>
             </ul>
           </div>
-          <a routerLink="/contact" class="iz-btn-green w-100 justify-content-center">Start Project</a>
+          <a routerLink="/contact" class="iz-btn-green w-100 justify-content-center">Start Project Build</a>
         </div>
       </div>
 
       <div class="col-lg-4">
         <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
           <div>
-            <div class="iz-tag mb-3"><i class="fas fa-user-tie"></i> Executive Lead</div>
-            <h3 class="mb-2 fw-bold">Fractional Architect</h3>
-            <p class="text-muted small mb-4">Ongoing strategic technical leadership and code governance on a predictable monthly retainer.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="iz-tag mb-0"><i class="fas fa-user-tie"></i> Executive Partner</div>
+              <span class="badge bg-dark text-white">From $3,500/mo</span>
+            </div>
+            <h3 class="mb-2 fw-bold">Fractional Principal Architect</h3>
+            <p class="text-muted small mb-4">High-impact technical leadership and architectural governance on a predictable monthly retainer for growing engineering teams.</p>
             <ul class="iz-deliverables-list mb-4">
-              <li><i class="fas fa-check text-green"></i> Weekly architectural reviews & sprint guidance</li>
-              <li><i class="fas fa-check text-green"></i> Technical hiring & candidate interviews</li>
-              <li><i class="fas fa-check text-green"></i> Direct advisory for Founder / CEO / CTO</li>
+              <li><i class="fas fa-check text-green"></i> Weekly architectural reviews & sprint governance</li>
+              <li><i class="fas fa-check text-green"></i> Technical vetting, candidate interviews & mentoring</li>
+              <li><i class="fas fa-check text-green"></i> Direct roadmap advisory with Founder / CEO / CTO</li>
             </ul>
           </div>
-          <a routerLink="/contact" class="iz-btn-dark w-100 justify-content-center">Inquire Fractional</a>
+          <a routerLink="/contact" class="iz-btn-dark w-100 justify-content-center">Inquire Fractional Lead</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== 3-STEP PROCESS ==================== -->
+<!-- ==================== 3-STEP ARCHITECTURE ENGAGEMENT PROCESS ==================== -->
 <section class="iz-process-network-section" id="process">
   <div class="container text-center">
     <div class="iz-process-headline-wrap mb-5">
-      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
-      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+      <h2 class="iz-process-title-white">Three Steps. Serious Results.</h2>
+      <h2 class="iz-process-title-green">Transparent Architecture Delivery</h2>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
@@ -207,9 +228,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">01</div>
-          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <h4 class="iz-process-col-title">Diagnostic & Blueprint</h4>
           <p class="iz-process-col-desc">
-            One quick conversation. Tell us about your team, tech stack, and goals.
+            We review your codebase, telemetry, and cloud spend. You receive an architectural blueprint, risk register, and timeline before code is written.
           </p>
         </div>
       </div>
@@ -218,9 +239,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">02</div>
-          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <h4 class="iz-process-col-title">Sprint Delivery & Governance</h4>
           <p class="iz-process-col-desc">
-            We match AI developers to your stack and workflow. You review them.
+            Bi-weekly releases with clean architecture, CI/CD pipelines, and pull request reviews. You work directly with Principal Architect Bilal.
           </p>
         </div>
       </div>
@@ -229,9 +250,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">03</div>
-          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <h4 class="iz-process-col-title">Hardening & Handover</h4>
           <p class="iz-process-col-desc">
-            Your engineer is embedded, onboarded and contributing.
+            Load testing, cloud FinOps cost tuning, telemetry dashboards, and complete runbooks so your in-house team owns and operates the platform.
           </p>
         </div>
       </div>

@@ -151,6 +151,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors("AllowPortfolioApp");
+
 var staticFileTypeProvider = new FileExtensionContentTypeProvider();
 staticFileTypeProvider.Mappings[".jfif"] = "image/jpeg";
 staticFileTypeProvider.Mappings[".pjpeg"] = "image/jpeg";
@@ -162,15 +164,19 @@ staticFileTypeProvider.Mappings[".svg"] = "image/svg+xml";
 
 app.UseStaticFiles(new StaticFileOptions
 {
-    ContentTypeProvider = staticFileTypeProvider
+    ContentTypeProvider = staticFileTypeProvider,
+    OnPrepareResponse = ctx =>
+    {
+        ctx.Context.Response.Headers["Access-Control-Allow-Origin"] = "*";
+        ctx.Context.Response.Headers["Access-Control-Allow-Headers"] = "*";
+        ctx.Context.Response.Headers["Access-Control-Allow-Methods"] = "GET, OPTIONS";
+    }
 });
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
-
-app.UseCors("AllowPortfolioApp");
 
 app.UseAuthentication();
 app.UseAuthorization();

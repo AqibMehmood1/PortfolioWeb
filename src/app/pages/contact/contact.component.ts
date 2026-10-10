@@ -32,8 +32,11 @@ export class ContactComponent implements OnInit, OnDestroy {
     email: '',
     phone: '',
     company: '',
+    timeline: 'Within 2-4 weeks',
+    budgetRange: '$10k - $25k',
     subject: 'Topic: SaaS Architecture & Scale',
-    message: ''
+    message: '',
+    agreed: false
   };
 
   constructor(
@@ -94,7 +97,17 @@ export class ContactComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (!this.contactForm.agreed) {
+      this.errorMessage = 'Please agree to the privacy policy to proceed.';
+      this.msgTimeout = setTimeout(() => {
+        this.errorMessage = null;
+      }, 5000);
+      return;
+    }
+
     this.isSubmitting = true;
+    const formattedMessage = `[Timeline: ${this.contactForm.timeline} | Budget: ${this.contactForm.budgetRange}]\n\n${this.contactForm.message.trim()}`;
+
     this.api.submitContactInquiry({
       name: this.contactForm.name.trim(),
       email: this.contactForm.email.trim(),
@@ -102,12 +115,12 @@ export class ContactComponent implements OnInit, OnDestroy {
       company: this.contactForm.company.trim(),
       subject: this.contactForm.subject.trim(),
       techStack: this.selectedTopic,
-      message: this.contactForm.message.trim()
+      message: formattedMessage
     }).subscribe({
       next: (res) => {
         this.isSubmitting = false;
         const sender = this.contactForm.name.trim();
-        this.successMessage = res.message || `Thank you, ${sender}! Your message has been received. I will respond within 24 hours. 🚀`;
+        this.successMessage = res.message || `Thank you, ${sender}! Your message has been received. Principal Architect Bilal will respond within 24 hours. 🚀`;
         this.portfolioService.showToast(`Thank you, ${sender}! Message sent successfully. 🚀`);
         
         // Clear all form fields on success
@@ -116,8 +129,11 @@ export class ContactComponent implements OnInit, OnDestroy {
           email: '',
           phone: '',
           company: '',
+          timeline: 'Within 2-4 weeks',
+          budgetRange: '$10k - $25k',
           subject: `Topic: ${this.selectedTopic}`,
-          message: ''
+          message: '',
+          agreed: false
         };
 
         // Auto-dismiss alert message after 5 seconds

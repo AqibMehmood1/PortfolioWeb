@@ -547,19 +547,26 @@
                   </button>
                 </div>
                 <div class="row g-2 mb-2">
-                  <div class="col-8">
+                  <div class="col-12 col-md-5">
                     <input 
                       type="text" 
                       class="form-input" 
                       [(ngModel)]="card.title" 
-                      placeholder="Card Title (e.g., Task Automation, Fast Shipping)" />
+                      placeholder="Card Title (e.g., Cloud Costs Outpacing Revenue)" />
                   </div>
-                  <div class="col-4">
+                  <div class="col-6 col-md-3">
                     <input 
                       type="text" 
                       class="form-input font-mono" 
                       [(ngModel)]="card.badge" 
-                      placeholder="Badge / Step # (e.g., 01)" />
+                      placeholder="Badge / Value / Color (e.g. 9+, amber, 01)" />
+                  </div>
+                  <div class="col-6 col-md-4">
+                    <input 
+                      type="text" 
+                      class="form-input font-mono" 
+                      [(ngModel)]="card.icon" 
+                      placeholder="Icon class (e.g. fas fa-chart-line)" />
                   </div>
                 </div>
                 <div>

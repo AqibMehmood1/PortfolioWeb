@@ -11,27 +11,22 @@ public static class WebsiteSettingsSeeder
         var defaultSettings = new List<WebsiteSetting>
         {
             new() { Key = "CompanyName", Value = "NEXVOYS", Group = "Profile", Description = "Company / Brand Name" },
-            new() { Key = "Tagline", Value = "Enterprise Technology Partner", Group = "Profile", Description = "Header Tagline" },
-            new() { Key = "Role", Value = "Enterprise Technology Partner & Solutions Architecture", Group = "Profile", Description = "Primary Professional Role" },
-            new() { Key = "Email", Value = "nexvoys@gmail.com", Group = "Contact", Description = "Primary Email Address" },
-            new() { Key = "Phone", Value = "+923456466188", Group = "Contact", Description = "Phone Number (E.164 format)" },
+            new() { Key = "Tagline", Value = "Founder-led Architecture Partner for Startups & SMBs", Group = "Profile", Description = "Header Tagline" },
+            new() { Key = "Role", Value = "Principal Solutions Architect & Founder", Group = "Profile", Description = "Primary Professional Role" },
+            new() { Key = "Email", Value = "hello@nexvoys.com", Group = "Contact", Description = "Primary Email Address" },
+            new() { Key = "Phone", Value = "+92 345 6466188", Group = "Contact", Description = "Phone Number (International format)" },
             new() { Key = "DisplayPhone", Value = "+92 345 6466188", Group = "Contact", Description = "Formatted Display Phone" },
-            new() { Key = "Location", Value = "Lahore, Pakistan · Global Remote", Group = "Contact", Description = "Primary Office Location" },
+            new() { Key = "Location", Value = "Lahore HQ · Serving clients in US, Canada, Singapore & Cyprus", Group = "Contact", Description = "Primary Office Location" },
             new() { Key = "LinkedinUrl", Value = "https://www.linkedin.com/company/nex-voys/posts/?feedView=all", Group = "Social", Description = "LinkedIn Profile / Company URL" },
             new() { Key = "CvPath", Value = "assets/Bilal_CV.pdf", Group = "Profile", Description = "Downloadable CV / Brochure Path" },
             new() { Key = "LogoDark", Value = "assets/nexvoys/black-logo.png", Group = "Media", Description = "Dark Header Logo" },
             new() { Key = "LogoLight", Value = "assets/nexvoys/white-logo.png", Group = "Media", Description = "White Footer Logo" },
             new() { Key = "Favicon", Value = "assets/nexvoys/nex-fav.png", Group = "Media", Description = "Favicon URL" },
-            new() { Key = "FooterBio", Value = "NEXVOYS helps Startups, SMBs, and Enterprises architect and scale multi-tenant SaaS platforms, autonomous AI agent pipelines, and high-performance cloud infrastructure with 9+ years of proven delivery.", Group = "Footer", Description = "Footer Bio Text" },
-            new() { Key = "CopyrightText", Value = "© 2026 NEXVOYS. All rights reserved. Enterprise Software Architecture & Advisory.", Group = "Footer", Description = "Copyright notice" },
+            new() { Key = "FooterBio", Value = "Nexvoys is a founder-led architecture and engineering partner for startups and SMBs building SaaS and AI products. Senior-only execution with zero junior handoffs.", Group = "Footer", Description = "Footer Bio Text" },
+            new() { Key = "CopyrightText", Value = "© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.", Group = "Footer", Description = "Copyright notice" },
             new() { 
                 Key = "TickerTexts", 
-                Value = JsonSerializer.Serialize(new[] {
-                    "• We're available for Q2/Q3 Architectural Advisory & Scale! Come connect with us!",
-                    "• 9+ Years Enterprise Solutions Architecture & Cloud Engineering",
-                    "• Multi-Tenant SaaS, Autonomous AI Agents & High-Concurrency Systems",
-                    "• Trusted by Tech Leaders across US, Canada, Europe & Worldwide"
-                }), 
+                Value = JsonSerializer.Serialize(new string[] {}), 
                 Group = "General", 
                 Description = "Top Ticker Marquee items" 
             }
@@ -39,9 +34,15 @@ public static class WebsiteSettingsSeeder
 
         foreach (var setting in defaultSettings)
         {
-            if (!await context.WebsiteSettings.AnyAsync(s => s.Key == setting.Key))
+            var existing = await context.WebsiteSettings.FirstOrDefaultAsync(s => s.Key == setting.Key);
+            if (existing == null)
             {
                 await context.WebsiteSettings.AddAsync(setting);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(existing.Group)) existing.Group = setting.Group;
+                if (string.IsNullOrEmpty(existing.Description)) existing.Description = setting.Description;
             }
         }
 

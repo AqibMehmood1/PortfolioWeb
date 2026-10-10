@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   heroSuccessMsg: string | null = null;
   heroErrorMsg: string | null = null;
   private heroMsgTimeout: any = null;
+  homeStats: any[] = [];
 
   // Bottom Contact Hub Form State
   bottomContactForm = {
@@ -63,15 +64,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Hero Data
   heroData = {
-    headline: 'Enterprise Solutions Architect & Technology Partner',
-    subtitle: 'Helping Startups, SMBs, and Enterprises architect scalable SaaS products, autonomous AI agents, and high-performance cloud applications.',
+    headline: 'Senior architecture for SaaS and AI products that need to scale.',
+    subtitle: 'Nexvoys is an elite architecture and engineering partner for startups, scale-ups, and enterprises worldwide. You collaborate directly with principal architects with 9+ years shipping .NET, Azure and AI systems — from first blueprint to production.',
     typedStrings: [
-      'Enterprise Solutions Architect',
+      'Senior Solutions Architecture',
       'Scalable SaaS & Multi-Tenancy',
       'Autonomous AI Agents & GenAI',
-      'Cloud Cost Tuning (Azure & AWS)',
-      '.NET 9 & Microservices Architecture',
-      'Fractional CTO & Strategic Advisory'
+      'Azure & AWS Cloud Cost Tuning',
+      '.NET 9 & Microservices Modernization',
+      'Fractional Principal Architect'
     ]
   };
 
@@ -82,7 +83,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     phone: '',
     techStack: 'Multi-Tenant SaaS Architecture',
     message: '',
-    agreed: true
+    agreed: false
   };
 
   // InvoZone Services Accordion State
@@ -196,6 +197,55 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.portfolioService.getCustomSections('');
   }
 
+  get proofCards() {
+    const cards = this.getSectionCards('proof-strip');
+    if (cards && cards.length > 0) return cards;
+    return [
+      { badge: '9+ Years', title: 'Shipping Production Systems', description: 'Shipping Production Systems' },
+      { badge: '4 Key Markets', title: 'Clients in US, CA, SG & CY', description: 'Clients in US, CA, SG & CY' },
+      { badge: '< 30 Seconds', title: 'CPQ Turnaround (from 3 hrs)', description: 'CPQ Turnaround (from 3 hrs)' },
+      { badge: 'Up to 25%', title: 'Cloud Cost Optimization', description: 'Cloud Cost Optimization' }
+    ];
+  }
+
+  get problemCards() {
+    const cards = this.getSectionCards('problems');
+    if (cards && cards.length > 0) return cards;
+    return [
+      { title: 'Cloud Costs Outpacing Revenue', description: 'Unoptimized Azure and AWS compute eating into margins. We identify waste, right-size infrastructure, and cut cloud spend by up to 25% without sacrificing throughput.', badge: 'amber', icon: 'fas fa-chart-line' },
+      { title: 'Monolithic Bottlenecks', description: 'Legacy .NET codebases holding back release velocity. We re-architect incrementally to clean .NET 9 and event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
+      { title: 'AI Pipelines Failing in Production', description: 'Prototypes that hit latency and hallucination walls. We build enterprise RAG pipelines with deterministic guardrails and scalable vector search.', badge: 'blue', icon: 'fas fa-robot' },
+      { title: 'Missing Senior Tech Lead', description: 'Startups needing strategic architectural governance without the $250k+ full-time CTO overhead. We serve as fractional principal architects guiding your engineers.', badge: 'green', icon: 'fas fa-user-shield' }
+    ];
+  }
+
+  get auditCards() {
+    const cards = this.getSectionCards('diagnostic-audit');
+    if (cards && cards.length > 0) return cards;
+    return [
+      { title: 'Fixed fee', description: 'from $2,500', icon: 'fas fa-check-circle' },
+      { title: 'Delivery', description: '10 business days', icon: 'fas fa-check-circle' },
+      { title: 'Deliverables', description: 'FinOps savings breakdown + 90-day prioritized remediation roadmap', icon: 'fas fa-check-circle' }
+    ];
+  }
+
+  getProblemIconStyle(badge?: string): { [key: string]: string } {
+    const b = (badge || '').toLowerCase().trim();
+    if (b === 'amber' || b === 'yellow' || b === 'warning') {
+      return { 'background': 'rgba(234, 179, 8, 0.12)', 'color': '#d97706' };
+    }
+    if (b === 'red' || b === 'coral' || b === 'danger') {
+      return { 'background': 'rgba(239, 68, 68, 0.12)', 'color': '#dc2626' };
+    }
+    if (b === 'blue' || b === 'info') {
+      return { 'background': 'rgba(59, 130, 246, 0.12)', 'color': '#2563eb' };
+    }
+    if (b === 'green' || b === 'emerald' || b === 'success') {
+      return { 'background': 'rgba(34, 197, 94, 0.12)', 'color': '#16a34a' };
+    }
+    return { 'background': 'rgba(16, 185, 129, 0.12)', 'color': '#059669' };
+  }
+
   ngOnInit(): void {
     // Subscribe to dynamic portfolio service data
     this.portfolioService.projects$.subscribe(projects => {
@@ -219,6 +269,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           if (res.data.typedStrings && res.data.typedStrings.length > 0) {
             this.heroData.typedStrings = res.data.typedStrings;
             this.reinitTyped();
+          }
+          if (res.data.stats && res.data.stats.length > 0) {
+            this.homeStats = res.data.stats;
           }
         }
       },
@@ -304,6 +357,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
+    if (!this.inquiryForm.agreed) {
+      this.heroErrorMsg = 'Please agree to the privacy policy to proceed.';
+      this.heroMsgTimeout = setTimeout(() => {
+        this.heroErrorMsg = null;
+      }, 5000);
+      return;
+    }
+
     this.isSubmittingInquiry = true;
     this.api.submitContactInquiry({
       name: this.inquiryForm.fullName.trim(),
@@ -327,7 +388,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           phone: '',
           techStack: 'Multi-Tenant SaaS Architecture',
           message: '',
-          agreed: true
+          agreed: false
         };
 
         // Auto-dismiss message after 5 seconds

@@ -22,8 +22,8 @@ public static class ProjectsSeeder
                 Problem = "The client needed a responsive, dynamic web portal capable of smooth animation flows and rapid interaction without compromising page load speeds.",
                 Architecture = "Engineered with Angular and clean TypeScript components, utilizing reactive state management and CDN edge caching to ensure ultra-fast response times.",
                 TechnologiesJson = JsonSerializer.Serialize(new[] { "Angular", "TypeScript", "Node.js", "REST APIs", "Cloud CDN" }),
-                HighlightsJson = JsonSerializer.Serialize(new[] { "Sub-second latency", "Modern UX Architecture", "Responsive Multi-Device Support" }),
-                LiveUrl = "https://scrole.com",
+                HighlightsJson = JsonSerializer.Serialize(new[] { "Sub-second response time", "Modern reactive TypeScript state", "Global CDN edge caching" }),
+                LiveUrl = "",
                 DisplayOrder = 1,
                 IsFeatured = true,
                 IsPublished = true
@@ -36,12 +36,12 @@ public static class ProjectsSeeder
                 FilterCategory = "dotnet",
                 Image = "assets/img/ODTool.png",
                 Gif = "assets/img/OdooTools.gif",
-                Description = "Custom quotation engine and dynamic cost estimation platform engineered for Odyssey Design San Antonio client workflows.",
-                Problem = "Sales teams spent over 3 hours daily on manual spreadsheet quotation calculations, resulting in calculation inconsistencies and deal latency.",
-                Architecture = "Developed an automated calculation engine powered by .NET Core, C#, SQL Server, and an Angular frontend with granular role-based permissions.",
+                Description = "Custom quotation calculation engine replacing spreadsheet pricing workflows with an automated system delivering quotes in under 30 seconds.",
+                Problem = "Sales and estimation teams spent over 3 hours daily calculating complex custom equipment quotes in spreadsheets with calculation drift and quote turnaround delays.",
+                Architecture = "Engineered an automated calculation engine powered by .NET Core, C#, SQL Server, and an Angular frontend with granular role-based permissions.",
                 TechnologiesJson = JsonSerializer.Serialize(new[] { ".NET Core", "C#", "SQL Server", "Angular", "Azure App Services" }),
-                HighlightsJson = JsonSerializer.Serialize(new[] { "Automated 3hr daily manual quoting", "Real-time price calculation", "Enterprise Role Permissions" }),
-                LiveUrl = "https://quote.odysseydesignco.com/home",
+                HighlightsJson = JsonSerializer.Serialize(new[] { "Turnaround: 3 hrs to under 30 seconds", "Automated pricing formula engine", "Granular RBAC & audit logging" }),
+                LiveUrl = "",
                 DisplayOrder = 2,
                 IsFeatured = true,
                 IsPublished = true
@@ -50,16 +50,16 @@ public static class ProjectsSeeder
             {
                 Slug = "eurobank",
                 Title = "Eurobank Banking Portal",
-                Category = "Fintech & Secure Banking Platform",
+                Category = "Secure Banking & Customer Portal",
                 FilterCategory = "dotnet",
                 Image = "assets/img/Eurobank.png",
                 Gif = "assets/img/EUROBank.gif",
-                Description = "Secure, high-availability banking portal engineered with enterprise authentication, strict compliance, and reliable account workflows.",
-                Problem = "Required a bulletproof, compliant digital banking customer portal with high concurrency handling and strict zero-trust security standards.",
+                Description = "High-security banking customer portal engineered with enterprise authentication, role-based authorization, and resilient account workflows.",
+                Problem = "Required a secure digital banking customer portal with high concurrency handling, OAuth2/JWT security boundaries, and reliable audit records.",
                 Architecture = "Built on ASP.NET Core with microservices backend, Entity Framework Core, SQL Server clustering, and encrypted OAuth2/JWT security barriers.",
                 TechnologiesJson = JsonSerializer.Serialize(new[] { "ASP.NET Core", "C#", "Security / RBAC", "SQL Server", "Microservices" }),
-                HighlightsJson = JsonSerializer.Serialize(new[] { "Enterprise Security Architecture", "High Concurrency", "Zero-Downtime Resilience" }),
-                LiveUrl = "https://ssp.eurobank.com.cy/account/login",
+                HighlightsJson = JsonSerializer.Serialize(new[] { "Enterprise OAuth2/JWT Security", "High Concurrency Resilience", "Role-Based Access Control" }),
+                LiveUrl = "",
                 DisplayOrder = 3,
                 IsFeatured = true,
                 IsPublished = true
@@ -76,8 +76,8 @@ public static class ProjectsSeeder
                 Problem = "Rising cloud overhead and lack of unified multi-tenant automation across Azure resources for fast-growing US technology clients.",
                 Architecture = "Architected containerized microservices in Docker on Azure, integrating automated resource rightsizing rules and automated billing pipelines.",
                 TechnologiesJson = JsonSerializer.Serialize(new[] { "Azure Cloud", ".NET Core", "Docker", "Angular", "Microservices" }),
-                HighlightsJson = JsonSerializer.Serialize(new[] { "25% Cloud Cost Reduction", "Multi-Tenant Isolation", "Automated CI/CD Pipelines" }),
-                LiveUrl = "https://cloudoor.com",
+                HighlightsJson = JsonSerializer.Serialize(new[] { "25% Cloud Cost Reduction", "Multi-Tenant Data Isolation", "Automated CI/CD Pipelines" }),
+                LiveUrl = "",
                 DisplayOrder = 4,
                 IsFeatured = true,
                 IsPublished = true
@@ -90,12 +90,12 @@ public static class ProjectsSeeder
                 FilterCategory = "health",
                 Image = "assets/img/Medikea.png",
                 Gif = "assets/img/Medikea.gif",
-                Description = "Comprehensive telemedicine and health portal streamlining patient appointments, consultations, and digital health records.",
+                Description = "Telemedicine and health portal streamlining patient appointments, remote consultations, and digital health records.",
                 Problem = "Healthcare providers lacked a unified digital portal to manage patient appointments, video consultations, and real-time electronic records.",
                 Architecture = "Engineered a secure React and Node.js platform with PostgreSQL and WebSockets for encrypted doctor-patient interactions and appointment queues.",
                 TechnologiesJson = JsonSerializer.Serialize(new[] { "React", "Node.js", "PostgreSQL", "Cloud Infrastructure", "WebSockets" }),
-                HighlightsJson = JsonSerializer.Serialize(new[] { "HIPAA-compliant principles", "Real-time messaging", "High scalability" }),
-                LiveUrl = "https://www.medikea.co.tz",
+                HighlightsJson = JsonSerializer.Serialize(new[] { "Health-grade technical safeguards", "Encrypted doctor-patient messaging", "WebSockets consultation queues" }),
+                LiveUrl = "",
                 DisplayOrder = 5,
                 IsFeatured = true,
                 IsPublished = true
@@ -108,12 +108,12 @@ public static class ProjectsSeeder
                 FilterCategory = "web",
                 Image = "assets/img/linkcenter2.png",
                 Gif = "assets/img/LinksWeb.gif",
-                Description = "High-volume link curation and discovery portal optimized for sub-second query speeds, SEO indexing, and high concurrent user loads.",
+                Description = "High-volume link curation and discovery portal optimized with .NET Core and distributed Redis caching to sustain high concurrency traffic spikes.",
                 Problem = "High concurrency traffic spikes caused slow database queries, impacting SEO rankings and user retention metrics.",
                 Architecture = "Refactored backend data access in .NET Core with Redis distributed caching layer and Cloudflare edge CDN, lowering page loads by 40%.",
                 TechnologiesJson = JsonSerializer.Serialize(new[] { ".NET Core", "SQL Server", "Redis Caching", "Bootstrap 5", "Cloudflare" }),
-                HighlightsJson = JsonSerializer.Serialize(new[] { "40% Page Load Improvement", "Redis Distributed Caching", "High Concurrency Throughput" }),
-                LiveUrl = "http://www.links.center",
+                HighlightsJson = JsonSerializer.Serialize(new[] { "Distributed Redis caching layer", "High-concurrency query optimization", "40% response time improvement" }),
+                LiveUrl = "",
                 DisplayOrder = 6,
                 IsFeatured = true,
                 IsPublished = true
@@ -122,9 +122,23 @@ public static class ProjectsSeeder
 
         foreach (var p in projects)
         {
-            if (!await context.Projects.AnyAsync(x => x.Slug == p.Slug))
+            var existing = await context.Projects.FirstOrDefaultAsync(x => x.Slug == p.Slug);
+            if (existing == null)
             {
                 await context.Projects.AddAsync(p);
+            }
+            else
+            {
+                existing.Title = p.Title;
+                existing.Category = p.Category;
+                existing.FilterCategory = p.FilterCategory;
+                existing.Description = p.Description;
+                existing.Problem = p.Problem;
+                existing.Architecture = p.Architecture;
+                existing.TechnologiesJson = p.TechnologiesJson;
+                existing.HighlightsJson = p.HighlightsJson;
+                existing.LiveUrl = p.LiveUrl;
+                existing.DisplayOrder = p.DisplayOrder;
             }
         }
 

@@ -83,9 +83,9 @@ public static class IndustriesTestimonialsSeeder
         {
             new()
             {
-                Quote = "The NEXVOYS team architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround time from 3 hours to under 30 seconds. Extraordinary technical mastery.",
+                Quote = "Bilal architected our dynamic CPQ calculation engine from the ground up. His architectural leadership cut our quotation turnaround from 3 hours to under 30 seconds.",
                 Author = "Odyssey Design Leadership",
-                Role = "San Antonio, TX, USA",
+                Role = "San Antonio, TX · Contract Engagement",
                 Tag = "Enterprise .NET & CPQ",
                 Rating = 5,
                 DisplayOrder = 1,
@@ -93,9 +93,9 @@ public static class IndustriesTestimonialsSeeder
             },
             new()
             {
-                Quote = "NEXVOYS has an exceptional ability to integrate complex GenAI agent workflows while ensuring cloud infrastructure remains cost-optimized. An invaluable technology partner.",
-                Author = "Pulstech Engineering",
-                Role = "Paris, France",
+                Quote = "Nexvoys provided principal-level architecture for our AI agent workflows and cloud infrastructure in Paris. Deep technical discipline with zero overhead.",
+                Author = "Pulstech Engineering Leadership",
+                Role = "Paris, France · Contract Engagement",
                 Tag = "Cloud & AI Architecture",
                 Rating = 5,
                 DisplayOrder = 2,
@@ -103,9 +103,9 @@ public static class IndustriesTestimonialsSeeder
             },
             new()
             {
-                Quote = "Delivered our multi-tenant SaaS infrastructure on Azure with flawless execution. Zero-downtime deployments and reduced our monthly cloud bill by 25%.",
+                Quote = "Architected our multi-tenant SaaS infrastructure on Azure with clean data isolation and reduced our monthly cloud bill by 25%.",
                 Author = "Cloudoor Technology Team",
-                Role = "San Francisco, CA, USA",
+                Role = "San Francisco, CA · Contract Engagement",
                 Tag = "Multi-Tenant SaaS",
                 Rating = 5,
                 DisplayOrder = 3,
@@ -115,9 +115,17 @@ public static class IndustriesTestimonialsSeeder
 
         foreach (var t in testimonials)
         {
-            if (!await context.Testimonials.AnyAsync(x => x.Author == t.Author && x.Tag == t.Tag))
+            var existing = await context.Testimonials.FirstOrDefaultAsync(x => x.DisplayOrder == t.DisplayOrder);
+            if (existing == null)
             {
                 await context.Testimonials.AddAsync(t);
+            }
+            else
+            {
+                existing.Quote = t.Quote;
+                existing.Author = t.Author;
+                existing.Role = t.Role;
+                existing.Tag = t.Tag;
             }
         }
 

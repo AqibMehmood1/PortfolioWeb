@@ -12,66 +12,66 @@ public static class SeoSeeder
             new()
             {
                 PageRoute = "/",
-                Title = "NEXVOYS | Enterprise Technology Partner | SaaS & AI Systems",
-                Description = "Helping Startups, SMBs, and Enterprises architect scalable SaaS products, autonomous AI agents, and high-performance cloud applications with 9+ years of delivery.",
-                Keywords = "Solutions Architect, SaaS Architecture, AI Agents, .NET 9, Cloud Optimization, Azure, Multi-Tenancy",
-                OgTitle = "NEXVOYS | Enterprise Technology Partner",
-                OgDescription = "Architecting scalable SaaS products, autonomous AI agents, and high-performance cloud applications.",
+                Title = "Nexvoys — SaaS & AI Architecture Partner for Startups and SMBs",
+                Description = "Founder-led architecture and engineering for SaaS and AI products. .NET, Azure and AI agents. Serving the US, Canada, Singapore and Cyprus.",
+                Keywords = "Solutions Architect, SaaS Architecture, AI Agents, .NET 9, Cloud Cost Optimization, Azure, Multi-Tenancy, Fractional CTO",
+                OgTitle = "Nexvoys — Senior Architecture for SaaS & AI Products",
+                OgDescription = "Founder-led architecture partner for startups and SMBs in the US, Canada, Singapore and Cyprus.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },
             new()
             {
                 PageRoute = "/about",
-                Title = "About NEXVOYS | Technology Partner & Solutions Architecture",
-                Description = "9+ years of international software delivery across the US, Canada, and Europe, designing secure, scalable, and high-performance software systems.",
-                Keywords = "Software Architecture, Solutions Architect, Engineering Vision, Enterprise Track Record",
-                OgTitle = "About NEXVOYS | Technology Partner",
-                OgDescription = "Engineering philosophy, verified career journey, and architecture framework.",
+                Title = "About Nexvoys | Founder-Led Architecture Partner",
+                Description = "Led by principal solutions architect Bilal with 9+ years shipping .NET, Azure, and AI systems for companies in the US, Europe, and Asia.",
+                Keywords = "Software Architecture, Solutions Architect, Founder-Led Engineering, .NET Azure AI Track Record",
+                OgTitle = "About Nexvoys | Senior Architecture Partner",
+                OgDescription = "Founder-led engineering philosophy and verified production delivery record.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },
             new()
             {
                 PageRoute = "/services",
-                Title = "Services & Solutions Architecture | NEXVOYS",
-                Description = "Multi-Tenant SaaS, Autonomous AI Agents, Cloud Migration & Cost Optimization, Legacy .NET Modernization, Fractional CTO.",
-                Keywords = "SaaS Multi-Tenancy, Autonomous AI Agents, Cloud Cost Optimization, .NET Modernization, Fractional Architect",
-                OgTitle = "Architectural Services | NEXVOYS",
-                OgDescription = "Explore the 5 core architectural service pillars and engagement models.",
+                Title = "Services & Solutions Architecture | Nexvoys",
+                Description = "SaaS Product Architecture, AI Agents & Automation, Cloud Cost Optimization, .NET Modernization, Fractional CTO.",
+                Keywords = "SaaS Product Architecture, AI Agents, Cloud Cost Optimization, .NET Modernization, Fractional CTO",
+                OgTitle = "Architectural Services & Pillars | Nexvoys",
+                OgDescription = "Explore the 5 core architectural service pillars and transparent engagement models.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },
             new()
             {
                 PageRoute = "/projects",
-                Title = "Case Studies & Delivered Systems | NEXVOYS",
-                Description = "Explore production case studies including Scrole, ODTool Quotation Engine, Eurobank Banking Portal, Cloudoor Cloud SaaS, and Medikea.",
-                Keywords = "Portfolio, Case Studies, Delivered Systems, CPQ Engine, Banking Portal, Cloud SaaS",
-                OgTitle = "Case Studies & Delivered Systems | NEXVOYS",
-                OgDescription = "Real-world production platforms and architecture blueprints delivered for global clients.",
+                Title = "Case Studies & Selected Work | Nexvoys",
+                Description = "Production case studies including ODTool CPQ calculation engine, Cloudoor multi-tenant SaaS, and secure financial portals.",
+                Keywords = "Portfolio, Case Studies, Delivered Systems, CPQ Engine, SaaS Architecture, Cloud Optimization",
+                OgTitle = "Case Studies & Selected Work | Nexvoys",
+                OgDescription = "Real-world production architectures delivered for international clients.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },
             new()
             {
                 PageRoute = "/expertise",
-                Title = "Technical Radar & Architecture Disciplines | NEXVOYS",
-                Description = "Comprehensive technical mastery across AI/ML, Frontend, Backend, Databases, DevOps, and Mobile stacks.",
-                Keywords = "Tech Radar, AI, .NET 9, Angular, React, Azure, AWS, SQL Server, Redis, Kubernetes",
-                OgTitle = "Technical Radar & Disciplines | NEXVOYS",
-                OgDescription = "Explore hands-on expertise across leading enterprise frameworks and cloud stacks.",
+                Title = "Technical Radar & Architecture Disciplines | Nexvoys",
+                Description = "Core specialist stack: .NET 9, C#, Microsoft Azure, AWS, Angular, React, Redis, and LangChain/Semantic Kernel AI pipelines.",
+                Keywords = "Tech Radar, .NET 9, C#, Microsoft Azure, Angular, Redis, LangChain, Semantic Kernel",
+                OgTitle = "Technical Radar & Disciplines | Nexvoys",
+                OgDescription = "Core technical competencies and specialist architecture stack.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },
             new()
             {
                 PageRoute = "/contact",
-                Title = "Schedule Architectural Consultation | NEXVOYS",
-                Description = "Schedule a consultation for SaaS Architecture, AI Agents, Cloud Optimization, or Fractional CTO advisory.",
-                Keywords = "Contact Solutions Architect, Schedule Consultation, Tech Advisory, Architecture Audit",
-                OgTitle = "Schedule Consultation | NEXVOYS",
-                OgDescription = "Connect directly with our solutions architecture leadership to discuss your roadmap.",
+                Title = "Book an Architecture Call | Nexvoys",
+                Description = "Book a 30-minute architecture strategy call directly with the principal architect. NDA on request.",
+                Keywords = "Book Architecture Call, Schedule Consultation, Solutions Architect, Architecture Audit",
+                OgTitle = "Book an Architecture Call | Nexvoys",
+                OgDescription = "Connect directly with our principal solutions architect to evaluate your technical roadmap.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             }
@@ -79,9 +79,18 @@ public static class SeoSeeder
 
         foreach (var s in seoList)
         {
-            if (!await context.SeoMetadata.AnyAsync(x => x.PageRoute == s.PageRoute))
+            var existing = await context.SeoMetadata.FirstOrDefaultAsync(x => x.PageRoute == s.PageRoute);
+            if (existing == null)
             {
                 await context.SeoMetadata.AddAsync(s);
+            }
+            else
+            {
+                existing.Title = s.Title;
+                existing.Description = s.Description;
+                existing.Keywords = s.Keywords;
+                existing.OgTitle = s.OgTitle;
+                existing.OgDescription = s.OgDescription;
             }
         }
 

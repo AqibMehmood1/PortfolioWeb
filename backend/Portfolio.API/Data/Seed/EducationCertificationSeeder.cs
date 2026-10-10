@@ -13,27 +13,32 @@ public static class EducationCertificationSeeder
             {
                 Degree = "Bachelor of Science in Computer Software Engineering",
                 Period = "2014 - 2018",
-                Institution = "Superior University / Superior College · Lahore, Pakistan",
+                Institution = "Superior University · Lahore, Pakistan",
                 Description = "Comprehensive curriculum covering Distributed Computing, Software Architecture, Advanced Data Structures, Relational Database Systems, Object-Oriented Design, and Software Quality Assurance.",
                 DisplayOrder = 1,
-                IsActive = true
-            },
-            new()
-            {
-                Degree = "Higher Secondary Intermediate (FSc Pre-Engineering)",
-                Period = "2012 - 2014",
-                Institution = "Nibs College",
-                Description = "Concentrations in Mathematics, Physics, Logic, and Analytical Reasoning.",
-                DisplayOrder = 2,
                 IsActive = true
             }
         };
 
+        // Remove any old intermediate / secondary school entries
+        var oldSecondary = await context.Educations.Where(e => e.Institution.Contains("Nibs")).ToListAsync();
+        if (oldSecondary.Any())
+        {
+            context.Educations.RemoveRange(oldSecondary);
+        }
+
         foreach (var edu in educations)
         {
-            if (!await context.Educations.AnyAsync(e => e.Institution == edu.Institution && e.Degree == edu.Degree))
+            var existing = await context.Educations.FirstOrDefaultAsync(e => e.Degree == edu.Degree);
+            if (existing == null)
             {
                 await context.Educations.AddAsync(edu);
+            }
+            else
+            {
+                existing.Institution = edu.Institution;
+                existing.Period = edu.Period;
+                existing.Description = edu.Description;
             }
         }
 
@@ -41,37 +46,37 @@ public static class EducationCertificationSeeder
         {
             new()
             {
-                Title = "Solutions Architecture & AI/GenAI Integration",
-                Level = "Executive Level Competency",
-                Issuer = "SaaS & Cloud Platforms",
-                Description = "Architectural competency in multi-tenant SaaS engineering, LLM orchestration, autonomous agent design, and distributed cloud computing.",
+                Title = "Microsoft Azure Solutions Architecture",
+                Level = "Cloud Architecture",
+                Issuer = "Microsoft Azure Ecosystem",
+                Description = "Architecture of scalable multi-tenant cloud systems, microservices isolation, containerized workloads, and Azure PaaS services.",
                 DisplayOrder = 1,
                 IsActive = true
             },
             new()
             {
-                Title = "Enterprise C# & .NET Core Architecture",
-                Level = "Professional Mastery",
-                Issuer = "Microsoft Technology Stack",
-                Description = "Deep mastery in modern C# asynchronous patterns, memory optimization, Dependency Injection, and microservices architecture.",
+                Title = "Enterprise C# & .NET 9 Core Architecture",
+                Level = "Backend Systems",
+                Issuer = "Microsoft .NET Stack",
+                Description = "High-throughput asynchronous programming, memory optimization, Dependency Injection, and microservices architecture.",
                 DisplayOrder = 2,
                 IsActive = true
             },
             new()
             {
-                Title = "ASP.NET Core WebAPI & Entity Framework Core",
-                Level = "Enterprise Specialization",
-                Issuer = "Enterprise Web & Backend Systems",
-                Description = "RESTful API design, database connection pooling, query optimization, and RBAC authentication security.",
+                Title = "ASP.NET Core WebAPI & Distributed Systems",
+                Level = "High-Throughput APIs",
+                Issuer = "Distributed Web Systems",
+                Description = "RESTful API design, database connection pooling, distributed caching with Redis, and OAuth2/JWT security.",
                 DisplayOrder = 3,
                 IsActive = true
             },
             new()
             {
-                Title = "Scrum & Agile Business Delivery",
-                Level = "SDLC Leadership",
-                Issuer = "Agile Software Development",
-                Description = "Sprint management, technical backlog governance, architectural roadmapping, and continuous integration delivery.",
+                Title = "Agile Architecture & Systems Governance",
+                Level = "Systems Leadership",
+                Issuer = "Agile Engineering Leadership",
+                Description = "Architecture roadmapping, technical debt governance, continuous integration, and secure code review standards.",
                 DisplayOrder = 4,
                 IsActive = true
             }
@@ -79,9 +84,17 @@ public static class EducationCertificationSeeder
 
         foreach (var cert in certifications)
         {
-            if (!await context.Certifications.AnyAsync(c => c.Title == cert.Title))
+            var existing = await context.Certifications.FirstOrDefaultAsync(c => c.DisplayOrder == cert.DisplayOrder);
+            if (existing == null)
             {
                 await context.Certifications.AddAsync(cert);
+            }
+            else
+            {
+                existing.Title = cert.Title;
+                existing.Level = cert.Level;
+                existing.Issuer = cert.Issuer;
+                existing.Description = cert.Description;
             }
         }
 

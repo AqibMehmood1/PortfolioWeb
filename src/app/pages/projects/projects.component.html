@@ -65,11 +65,17 @@
           </div>
 
           <div class="iz-project-actions">
-            <a [href]="project.liveUrl" target="_blank" rel="noopener" class="iz-btn-green py-2 px-3 small">
+            <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" rel="noopener" class="iz-btn-green py-2 px-3 small">
               Live Site <i class="fas fa-external-link-alt ms-1"></i>
             </a>
+            <span *ngIf="!project.liveUrl" class="iz-chip py-2 px-2 small border" style="background: #f1f5f9; font-size: 0.78rem;">
+              <i class="fas fa-lock text-green me-1"></i> Under NDA
+            </span>
+            <a *ngIf="!project.liveUrl" routerLink="/contact" class="iz-btn-green py-2 px-3 small">
+              Request Walkthrough <i class="fas fa-calendar-alt ms-1"></i>
+            </a>
             <button type="button" class="iz-btn-dark py-2 px-3 small" (click)="openProjectModal(project)">
-              <i class="fas fa-eye me-1 text-green"></i> Demo Media
+              <i class="fas fa-eye me-1 text-green"></i> Architecture Demo
             </button>
             <button type="button" class="iz-btn-copy-link" (click)="copyProjectLink(project)" title="Copy Link" aria-label="Copy Link">
               <i class="fas fa-link"></i>
@@ -115,12 +121,12 @@
   </div>
 </section>
 
-<!-- ==================== 3-STEP PROCESS ==================== -->
+<!-- ==================== 3-STEP ARCHITECTURE PROCESS ==================== -->
 <section class="iz-process-network-section" id="process">
   <div class="container text-center">
     <div class="iz-process-headline-wrap mb-5">
-      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
-      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+      <h2 class="iz-process-title-white">Three Steps. Serious Results.</h2>
+      <h2 class="iz-process-title-green">Transparent Architecture Delivery</h2>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
@@ -128,9 +134,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">01</div>
-          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <h4 class="iz-process-col-title">Diagnostic & Blueprint</h4>
           <p class="iz-process-col-desc">
-            One quick conversation. Tell us about your team, tech stack, and goals.
+            We review your codebase, telemetry, and cloud spend. You receive an architectural blueprint, risk register, and timeline before code is written.
           </p>
         </div>
       </div>
@@ -139,9 +145,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">02</div>
-          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <h4 class="iz-process-col-title">Sprint Delivery & Governance</h4>
           <p class="iz-process-col-desc">
-            We match AI developers to your stack and workflow. You review them.
+            Bi-weekly releases with clean architecture, CI/CD pipelines, and pull request reviews. You work directly with Principal Architect Bilal.
           </p>
         </div>
       </div>
@@ -150,9 +156,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">03</div>
-          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <h4 class="iz-process-col-title">Hardening & Handover</h4>
           <p class="iz-process-col-desc">
-            Your engineer is embedded, onboarded and contributing.
+            Load testing, cloud FinOps cost tuning, telemetry dashboards, and complete runbooks so your in-house team owns and operates the platform.
           </p>
         </div>
       </div>

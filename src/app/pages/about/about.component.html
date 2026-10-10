@@ -1,94 +1,94 @@
-<!-- ==================== INVOZONE ABOUT HEADER ==================== -->
+<!-- ==================== NEXVOYS ABOUT HEADER ==================== -->
 <section class="iz-page-hero" *ngIf="isSectionVisible('about-hero')">
   <div *ngIf="getSection('about-hero')?.customHtml" [innerHTML]="getSection('about-hero')?.customHtml"></div>
   <div class="container text-center max-w-860 mx-auto" *ngIf="!getSection('about-hero')?.customHtml">
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">»</span>
-      <span class="text-dark fw-bold">{{ getSection('about-hero')?.subtitle || 'Company & Strategy' }}</span>
+      <span class="text-dark fw-bold">{{ getSection('about-hero')?.subtitle || 'Company & Leadership' }}</span>
     </div>
-    <div class="iz-tag"><i class="fas fa-user-shield"></i> {{ getSection('about-hero')?.subtitle || 'About & Leadership' }}</div>
-    <h1 class="iz-hero-headline">{{ getSection('about-hero')?.title || 'Architectural Philosophy & Strategy' }}</h1>
+    <div class="iz-tag"><i class="fas fa-building text-green"></i> {{ getSection('about-hero')?.subtitle || 'Company & Architecture Leadership' }}</div>
+    <h1 class="iz-hero-headline">{{ getSection('about-hero')?.title || 'Engineering Systems That Power High-Scale Growth' }}</h1>
     <p class="iz-hero-sub mx-auto" *ngIf="getSection('about-hero')?.description">
       {{ getSection('about-hero')?.description }}
     </p>
   </div>
 </section>
 
-<!-- ==================== EXECUTIVE PHILOSOPHY ==================== -->
+<!-- ==================== EXECUTIVE PHILOSOPHY & OPERATING MODEL ==================== -->
 <section class="iz-section" *ngIf="isSectionVisible('vision')">
   <div *ngIf="getSection('vision')?.customHtml" [innerHTML]="getSection('vision')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('vision')?.customHtml">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <div class="iz-tag"><i class="fas fa-compass"></i> {{ getSection('vision')?.subtitle || 'Engineering Vision' }}</div>
-        <h2 class="iz-title mb-4">{{ getSection('vision')?.title || 'Technology Decisions Must Directly Drive Revenue & Velocity' }}</h2>
+        <div class="iz-tag"><i class="fas fa-compass text-green"></i> {{ getSection('vision')?.subtitle || 'Our Operating Model' }}</div>
+        <h2 class="iz-title mb-4">{{ getSection('vision')?.title || 'Architectural Rigor, Direct Access, Zero Delegation Bloat' }}</h2>
         
-        <p class="lead text-dark mb-3" *ngIf="getSection('vision')?.description">
-          {{ getSection('vision')?.description }}
+        <p class="lead text-dark mb-3">
+          <strong>NEXVOYS</strong> operates as a principal-led software engineering and solutions architecture consultancy. We eliminate agency overhead and sales intermediaries — you collaborate directly with senior practitioners who architect, test, and ship production systems.
         </p>
-        <p class="lead text-dark mb-3" *ngIf="!getSection('vision')?.description">
-          With <strong>9+ years of international software delivery</strong> across the US, Canada, and Europe, 
-          I partner with founders, CEOs, and CTOs to design secure, scalable, and high-performance software.
+
+        <p class="mb-3 text-muted">
+          Our engineering practice is built on over <strong>9 years of production delivery</strong> for enterprise clients, scale-ups, and technology leaders worldwide. We partner with founders and CTOs who cannot afford architecture rework, vendor lock-in, or unchecked cloud waste.
         </p>
 
         <p class="mb-4 text-muted">
-          I believe successful software starts with understanding unit economics, user growth projections, and business workflows before choosing technologies. The right architecture simplifies ongoing development, reduces cloud bills, and prevents catastrophic rewrites.
+          We believe resilient software starts with business domain models, unit economics, and data isolation before choosing libraries. Disciplined system design accelerates release velocity, protects margins, and scales smoothly under peak transaction loads.
         </p>
 
-        <div class="iz-stat-card text-start p-4 mb-4" style="background: var(--iz-green-sage);">
-          <h5 class="fw-bold mb-3"><i class="fas fa-check-circle text-green me-2"></i>Core Focus Areas:</h5>
+        <div class="iz-stat-card text-start p-4 mb-4 border" style="background: #ffffff; border-color: var(--iz-border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border-radius: 14px;">
+          <h5 class="fw-bold mb-3 text-dark"><i class="fas fa-layer-group text-green me-2"></i>Core Architectural Pillars:</h5>
           <ul class="iz-deliverables-list mb-0">
-            <li><i class="fas fa-check-circle text-green"></i> <span>Designing multi-tenant SaaS foundations with clean data isolation from day one.</span></li>
+            <li><i class="fas fa-check-circle text-green"></i> <span>Designing multi-tenant SaaS foundations with clean schema and data isolation.</span></li>
             <li><i class="fas fa-check-circle text-green"></i> <span>Refactoring legacy monolithic .NET systems into modular, high-velocity microservices.</span></li>
-            <li><i class="fas fa-check-circle text-green"></i> <span>Integrating autonomous AI agents and enterprise RAG pipelines that automate complex manual work.</span></li>
-            <li><i class="fas fa-check-circle text-green"></i> <span>Auditing and optimizing Azure/AWS cloud infrastructures to cut operational costs by up to 25%.</span></li>
+            <li><i class="fas fa-check-circle text-green"></i> <span>Engineering deterministic AI agent pipelines and production RAG with enterprise guardrails.</span></li>
+            <li><i class="fas fa-check-circle text-green"></i> <span>Auditing Azure and AWS environments to cut cloud operational waste by up to 25%.</span></li>
           </ul>
         </div>
 
         <div class="d-flex flex-wrap gap-3">
           <a routerLink="/contact" class="iz-btn-green">
-            Schedule Strategy Session <i class="fas fa-arrow-right ms-1"></i>
+            Schedule Architecture Session <i class="fas fa-arrow-right ms-1"></i>
           </a>
           <a routerLink="/projects" class="iz-btn-dark">
-            <i class="fas fa-laptop-code text-green me-1"></i> Explore Case Studies
+            <i class="fas fa-briefcase text-green me-1"></i> Explore Production Case Studies
           </a>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <div class="iz-stat-card p-4 text-start">
-          <h4 class="fw-bold mb-4"><i class="fas fa-shield-alt text-green me-2"></i>4-Step Execution Framework</h4>
+        <div class="iz-stat-card p-4 text-start border" style="background: #ffffff; border-color: var(--iz-border-light); box-shadow: 0 6px 24px rgba(0,0,0,0.04); border-radius: 16px;">
+          <h4 class="fw-bold mb-4 text-dark"><i class="fas fa-shield-alt text-green me-2"></i>4-Step Execution Framework</h4>
           
           <div class="row g-3">
             <div class="col-sm-6">
-              <div class="iz-process-card h-100 p-3">
-                <div class="iz-process-step fs-4 mb-1">01</div>
-                <h6 class="fw-bold mb-1">Business Discovery</h6>
-                <p class="small text-muted mb-0">Aligning KPIs, concurrency demands, and unit economics.</p>
+              <div class="iz-process-card h-100 p-3 border rounded-3" style="background: #fafafa; border-color: #f0f0f0;">
+                <div class="iz-process-step fs-4 mb-1 text-green fw-bold">01</div>
+                <h6 class="fw-bold mb-1 text-dark">Business Discovery</h6>
+                <p class="small text-muted mb-0">Aligning KPIs, concurrency demands, and cloud unit economics.</p>
               </div>
             </div>
 
             <div class="col-sm-6">
-              <div class="iz-process-card h-100 p-3">
-                <div class="iz-process-step fs-4 mb-1">02</div>
-                <h6 class="fw-bold mb-1">System Blueprint</h6>
-                <p class="small text-muted mb-0">Designing modular domain models and elastic schemas.</p>
+              <div class="iz-process-card h-100 p-3 border rounded-3" style="background: #fafafa; border-color: #f0f0f0;">
+                <div class="iz-process-step fs-4 mb-1 text-green fw-bold">02</div>
+                <h6 class="fw-bold mb-1 text-dark">System Blueprint</h6>
+                <p class="small text-muted mb-0">Designing modular domain models and elastic data schemas.</p>
               </div>
             </div>
 
             <div class="col-sm-6">
-              <div class="iz-process-card h-100 p-3">
-                <div class="iz-process-step fs-4 mb-1">03</div>
-                <h6 class="fw-bold mb-1">Rapid Scalable Build</h6>
-                <p class="small text-muted mb-0">Developing microservices with .NET 9, Angular/React, and CI/CD.</p>
+              <div class="iz-process-card h-100 p-3 border rounded-3" style="background: #fafafa; border-color: #f0f0f0;">
+                <div class="iz-process-step fs-4 mb-1 text-green fw-bold">03</div>
+                <h6 class="fw-bold mb-1 text-dark">Rapid Scalable Build</h6>
+                <p class="small text-muted mb-0">Developing microservices with .NET 9, modern web, and CI/CD.</p>
               </div>
             </div>
 
             <div class="col-sm-6">
-              <div class="iz-process-card h-100 p-3">
-                <div class="iz-process-step fs-4 mb-1">04</div>
-                <h6 class="fw-bold mb-1">Scale & Governance</h6>
+              <div class="iz-process-card h-100 p-3 border rounded-3" style="background: #fafafa; border-color: #f0f0f0;">
+                <div class="iz-process-step fs-4 mb-1 text-green fw-bold">04</div>
+                <h6 class="fw-bold mb-1 text-dark">Scale & Governance</h6>
                 <p class="small text-muted mb-0">Real-time telemetry, Redis caching, and cost governance.</p>
               </div>
             </div>
@@ -103,12 +103,13 @@
 <section class="iz-dark-value-section" *ngIf="isSectionVisible('execution')">
   <div *ngIf="getSection('execution')?.customHtml" [innerHTML]="getSection('execution')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('execution')?.customHtml">
-    <div class="iz-dark-value-header">
-      <h2>{{ getSection('execution')?.title || 'How Solutions Architecture Delivers Value To Your Business ?' }}</h2>
-      <p>{{ getSection('execution')?.description || 'Choosing the right architecture partner changes everything. Here is what you need to know about us.' }}</p>
+    <div class="iz-dark-value-header text-center max-w-860 mx-auto">
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-shield-virus text-green"></i> {{ getSection('execution')?.subtitle || 'Strategic Value' }}</div>
+      <h2 class="text-white">{{ getSection('execution')?.title || 'How Solutions Architecture Delivers Value To Your Business' }}</h2>
+      <p class="text-white-50">{{ getSection('execution')?.description || 'Choosing the right architecture partner changes everything. Here is what you need to know about us.' }}</p>
     </div>
 
-    <div class="iz-value-cards-grid">
+    <div class="iz-value-cards-grid mt-4">
       <div class="iz-value-mint-card" *ngFor="let card of getSectionCards('execution')">
         <h3>{{ card.title }}</h3>
         <p>{{ card.description }}</p>
@@ -118,63 +119,37 @@
   </div>
 </section>
 
-<!-- ==================== CAREER TRACK RECORD TIMELINE ==================== -->
-<section class="iz-section iz-section-sage" *ngIf="isSectionVisible('milestones')">
+<!-- ==================== COMPANY MILESTONES & EVOLUTION ==================== -->
+<section class="iz-section iz-section-offwhite" id="milestones" *ngIf="isSectionVisible('milestones')">
   <div *ngIf="getSection('milestones')?.customHtml" [innerHTML]="getSection('milestones')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('milestones')?.customHtml">
-    <div class="iz-section-header">
-      <div class="iz-tag"><i class="fas fa-history"></i> {{ getSection('milestones')?.subtitle || 'Track Record' }}</div>
-      <h2 class="iz-title">{{ getSection('milestones')?.title || 'Verified Career Journey' }}</h2>
+    <div class="iz-section-header text-center max-w-860 mx-auto mb-5">
+      <div class="iz-tag"><i class="fas fa-history text-green"></i> {{ getSection('milestones')?.subtitle || 'Company Evolution' }}</div>
+      <h2 class="iz-title">{{ getSection('milestones')?.title || 'Company Track Record & Engineering Milestones' }}</h2>
       <p class="iz-subtitle">
-        {{ getSection('milestones')?.description || 'Over 9 years of dedicated software engineering and solutions architecture across international technology companies.' }}
+        {{ getSection('milestones')?.description || 'A history of architecting, scaling, and deploying mission-critical systems for international enterprises and high-growth startups.' }}
       </p>
     </div>
 
-    <div class="row g-5">
-      <!-- Experience Column -->
-      <div class="col-lg-7">
-        <h4 class="fw-bold mb-4"><i class="fas fa-briefcase text-green me-2"></i>Enterprise Delivery Experience</h4>
-        <div class="timeline-flow" style="border-left-color: rgba(184, 245, 0, 0.45);">
-          <div class="timeline-item" *ngFor="let exp of portfolioService.experiences">
-            <div class="timeline-dot" style="background: #B8F500; box-shadow: 0 0 10px rgba(184, 245, 0, 0.8);"></div>
-            <div class="timeline-title-row">
-              <h5 class="text-dark fw-bold">{{ exp.title }}</h5>
-              <span class="timeline-period" style="background: #E8FF9E; color: #101828;">{{ exp.period }}</span>
+    <!-- Company Milestones Grid -->
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-6" *ngFor="let item of companyMilestones; let idx = index">
+        <div class="iz-stat-card h-100 p-4 text-start border d-flex flex-column justify-content-between position-relative overflow-hidden" style="background: #ffffff; border-color: var(--iz-border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border-radius: 16px;">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span class="badge px-3 py-2 fw-bold" style="background: #E8FF9E; color: #101828; font-size: 0.82rem; border-radius: 9999px;">
+                <i [class]="item.icon || 'fas fa-flag'" class="text-green me-1"></i> {{ item.badge }}
+              </span>
+              <span class="text-muted small fw-semibold">Phase 0{{ idx + 1 }}</span>
             </div>
-            <div class="timeline-company text-green fw-bold">{{ exp.company }} · {{ exp.location }}</div>
-            <p class="timeline-desc text-muted">{{ exp.description }}</p>
-            <div class="timeline-skills-badge" style="background: #ffffff; border-color: #e5e7eb; color: #33413b;">
-              <i class="fas fa-gem text-green"></i> {{ exp.tags.join(' · ') }}
-            </div>
+            <h4 class="fw-bold text-dark mb-3" style="font-size: 1.22rem; line-height: 1.4;">{{ item.title }}</h4>
+            <p class="text-muted mb-4" style="line-height: 1.65; font-size: 0.95rem;">{{ item.description }}</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Education & Certifications Column -->
-      <div class="col-lg-5">
-        <h4 class="fw-bold mb-4"><i class="fas fa-graduation-cap text-green me-2"></i>Education</h4>
-        <div class="timeline-flow mb-5" style="border-left-color: rgba(184, 245, 0, 0.45);">
-          <div class="timeline-item" *ngFor="let edu of portfolioService.educations">
-            <div class="timeline-dot" style="background: #B8F500; box-shadow: 0 0 10px rgba(184, 245, 0, 0.8);"></div>
-            <div class="timeline-title-row">
-              <h5 class="text-dark fw-bold">{{ edu.degree }}</h5>
-              <span class="timeline-period" style="background: #E8FF9E; color: #101828;">{{ edu.period }}</span>
-            </div>
-            <div class="timeline-company text-green fw-bold">{{ edu.institution }}</div>
-            <p class="timeline-desc text-muted">{{ edu.description }}</p>
-          </div>
-        </div>
-
-        <h4 class="fw-bold mb-4"><i class="fas fa-certificate text-green me-2"></i>Certifications</h4>
-        <div class="timeline-flow" style="border-left-color: rgba(184, 245, 0, 0.45);">
-          <div class="timeline-item" *ngFor="let cert of portfolioService.certifications">
-            <div class="timeline-dot" style="background: #B8F500; box-shadow: 0 0 10px rgba(184, 245, 0, 0.8);"></div>
-            <div class="timeline-title-row">
-              <h5 class="text-dark fw-bold">{{ cert.title }}</h5>
-              <span class="timeline-period" style="background: #E8FF9E; color: #101828;">{{ cert.level }}</span>
-            </div>
-            <div class="timeline-company text-green fw-bold">{{ cert.issuer }}</div>
-            <p class="timeline-desc text-muted">{{ cert.description }}</p>
+          <div class="pt-3 border-top border-light d-flex align-items-center justify-content-between">
+            <span class="badge bg-light text-dark border px-2 py-1 small fw-semibold">
+              <i class="fas fa-check-circle text-green me-1"></i> Verified Production Delivery
+            </span>
+            <span class="text-muted small"><i class="fas fa-globe me-1 text-green"></i> Enterprise Grade</span>
           </div>
         </div>
       </div>
@@ -182,31 +157,38 @@
   </div>
 </section>
 
-<!-- ==================== 3-STEP PROCESS ==================== -->
-<section class="iz-process-network-section" id="process" *ngIf="isSectionVisible('credentials')">
+<!-- ==================== INSTITUTIONAL STANDARDS & GOVERNANCE ==================== -->
+<section class="iz-process-network-section" id="credentials" *ngIf="isSectionVisible('credentials')">
   <div *ngIf="getSection('credentials')?.customHtml" [innerHTML]="getSection('credentials')?.customHtml"></div>
   <div class="container text-center" *ngIf="!getSection('credentials')?.customHtml">
     <div class="iz-process-headline-wrap mb-5">
-      <h2 class="iz-process-title-white">{{ getSection('credentials')?.title || "Three Steps. That's All It Takes." }}</h2>
-      <h2 class="iz-process-title-green">{{ getSection('credentials')?.subtitle || 'Simple Process. Serious Results.' }}</h2>
-      <p class="text-white-50 mt-2" *ngIf="getSection('credentials')?.description">{{ getSection('credentials')?.description }}</p>
+      <div class="iz-tag iz-tag-dark mb-3 d-inline-block"><i class="fas fa-shield-alt text-green"></i> {{ getSection('credentials')?.subtitle || 'Enterprise Commitments' }}</div>
+      <h2 class="iz-process-title-white">{{ getSection('credentials')?.title || "Institutional Standards & Operating Governance" }}</h2>
+      <p class="text-white-50 mt-3 max-w-700 mx-auto" *ngIf="getSection('credentials')?.description">{{ getSection('credentials')?.description }}</p>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
-      <div class="col-md-4" *ngFor="let step of getSectionCards('credentials'); let idx = index">
-        <div class="iz-process-column">
-          <div class="iz-process-badge-lime">{{ step.badge || ('0' + (idx + 1)) }}</div>
-          <h4 class="iz-process-col-title">{{ step.title }}</h4>
-          <p class="iz-process-col-desc">
-            {{ step.description }}
-          </p>
+      <div class="col-md-6 col-lg-3" *ngFor="let step of companyStandards; let idx = index">
+        <div class="iz-process-column h-100 d-flex flex-column justify-content-between text-start p-4" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="iz-process-badge-lime" style="width: 44px; height: 44px; font-size: 1rem;">
+                <i [class]="step.icon || 'fas fa-shield-alt'"></i>
+              </div>
+              <span class="badge border border-white-50 text-white-50 small px-2 py-1">{{ step.badge || ('0' + (idx + 1)) }}</span>
+            </div>
+            <h4 class="iz-process-col-title text-white mb-3" style="font-size: 1.15rem;">{{ step.title }}</h4>
+            <p class="iz-process-col-desc text-white-50 mb-0" style="font-size: 0.9rem; line-height: 1.6;">
+              {{ step.description }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="d-flex justify-content-center">
       <a routerLink="/contact" class="iz-btn-white-pill">
-        Schedule A Call Now <span class="iz-arrow-up-right">↗</span>
+        Schedule Strategy Session <span class="iz-arrow-up-right">↗</span>
       </a>
     </div>
   </div>
@@ -216,7 +198,7 @@
 <section class="iz-section" id="testimonials" *ngIf="isSectionVisible('testimonials')">
   <div *ngIf="getSection('testimonials')?.customHtml" [innerHTML]="getSection('testimonials')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('testimonials')?.customHtml">
-    <div class="iz-section-header">
+    <div class="iz-section-header text-center max-w-860 mx-auto mb-5">
       <div class="iz-tag"><i class="fas fa-star text-green"></i> {{ getSection('testimonials')?.subtitle || 'Client Endorsements' }}</div>
       <h2 class="iz-title">{{ getSection('testimonials')?.title || 'Trusted by International Technology Teams' }}</h2>
       <p class="iz-subtitle">{{ getSection('testimonials')?.description || 'Real feedback from founders and engineering leaders across the US and Europe.' }}</p>
@@ -224,16 +206,16 @@
 
     <div class="row g-4">
       <div class="col-lg-4" *ngFor="let t of portfolioService.testimonials">
-        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4">
+        <div class="iz-stat-card h-100 d-flex flex-column justify-content-between text-start p-4 border" style="background: #ffffff; border-color: var(--iz-border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border-radius: 16px;">
           <div>
             <div class="iz-stars mb-3">★★★★★</div>
-            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic;">
+            <p class="lead text-dark mb-4" style="font-size: 1.05rem; font-style: italic; line-height: 1.6;">
               "{{ t.quote }}"
             </p>
           </div>
           <div class="pt-3 border-top border-light d-flex justify-content-between align-items-center">
             <div>
-              <h6 class="mb-0 fw-bold">{{ t.author }}</h6>
+              <h6 class="mb-0 fw-bold text-dark">{{ t.author }}</h6>
               <span class="text-muted small">{{ t.role }}</span>
             </div>
             <span class="iz-chip">{{ t.tag }}</span>
@@ -245,18 +227,23 @@
 </section>
 
 <!-- ==================== CALL TO ACTION ==================== -->
-<section class="iz-section iz-section-sage" *ngIf="isSectionVisible('focus-areas')">
+<section class="iz-section" *ngIf="isSectionVisible('focus-areas')">
   <div *ngIf="getSection('focus-areas')?.customHtml" [innerHTML]="getSection('focus-areas')?.customHtml"></div>
   <div class="container text-center" *ngIf="!getSection('focus-areas')?.customHtml">
-    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
-      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-handshake"></i> {{ getSection('focus-areas')?.subtitle || "Let's Collaborate" }}</div>
-      <h2 class="text-white fw-bold mb-3">{{ getSection('focus-areas')?.title || 'Looking for Senior Architecture Leadership?' }}</h2>
-      <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
+    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+      <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-handshake text-green"></i> {{ getSection('focus-areas')?.subtitle || "Let's Collaborate" }}</div>
+      <h2 class="text-white fw-bold mb-3">{{ getSection('focus-areas')?.title || 'Ready to Architect Your Next Production Platform?' }}</h2>
+      <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important; font-size: 1.05rem; line-height: 1.6;">
         {{ getSection('focus-areas')?.description || "Whether you need a full system architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session." }}
       </p>
-      <a routerLink="/contact" class="iz-btn-green py-3 px-4">
-        Schedule Strategy Session <i class="fas fa-arrow-right ms-2"></i>
-      </a>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a routerLink="/contact" class="iz-btn-green py-3 px-4">
+          Schedule Strategy Session <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+        <a routerLink="/projects" class="iz-btn-outline-white py-3 px-4">
+          View Case Studies <i class="fas fa-arrow-up-right ms-1"></i>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -266,7 +253,7 @@
   <section class="iz-section iz-custom-section" [id]="sec.sectionKey" *ngIf="sec.isVisible">
     <div class="container">
       <div class="iz-section-header" *ngIf="sec.title || sec.subtitle">
-        <div class="iz-tag" *ngIf="sec.subtitle"><i class="fas fa-layer-group"></i> {{ sec.subtitle }}</div>
+        <div class="iz-tag" *ngIf="sec.subtitle"><i class="fas fa-layer-group text-green"></i> {{ sec.subtitle }}</div>
         <h2 class="iz-title" *ngIf="sec.title">{{ sec.title }}</h2>
         <p class="iz-subtitle" *ngIf="sec.description">{{ sec.description }}</p>
       </div>

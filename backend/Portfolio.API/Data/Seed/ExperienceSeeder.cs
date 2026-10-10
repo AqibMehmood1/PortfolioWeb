@@ -14,9 +14,9 @@ public static class ExperienceSeeder
             {
                 Title = "Founder & Principal Solutions Architect",
                 Period = "Feb 2024 - Present · 2 yrs+",
-                Company = "SoftEngr Labs",
-                Location = "Remote Advisory & Engineering",
-                Description = "Partnering directly with startups and SMB founders across the US, Canada, and Europe to architect multi-tenant SaaS products, AI Agents, and distributed cloud applications that scale seamlessly.",
+                Company = "NEXVOYS",
+                Location = "Lahore HQ · Global Remote (US, Canada, Singapore, Cyprus)",
+                Description = "Partnering directly with startups and SMB founders across the US, Canada, Singapore, and Europe to architect multi-tenant SaaS products, AI Agents, and distributed cloud applications that scale seamlessly.",
                 TagsJson = JsonSerializer.Serialize(new[] { "Solutions Architecture", "AI Agents", "Multi-Tenant SaaS", "Azure", ".NET 9" }),
                 DisplayOrder = 1,
                 IsActive = true
@@ -69,10 +69,26 @@ public static class ExperienceSeeder
 
         foreach (var exp in experiences)
         {
-            if (!await context.Experiences.AnyAsync(e => e.Company == exp.Company && e.Title == exp.Title))
+            var existing = await context.Experiences.FirstOrDefaultAsync(e => e.Company == exp.Company && e.Title == exp.Title);
+            if (existing == null)
             {
                 await context.Experiences.AddAsync(exp);
             }
+            else
+            {
+                existing.Period = exp.Period;
+                existing.Location = exp.Location;
+                existing.Description = exp.Description;
+                existing.TagsJson = exp.TagsJson;
+                existing.DisplayOrder = exp.DisplayOrder;
+            }
+        }
+
+        // Clean up old SoftEngr Labs if exists
+        var old = await context.Experiences.FirstOrDefaultAsync(e => e.Company == "SoftEngr Labs");
+        if (old != null)
+        {
+            context.Experiences.Remove(old);
         }
 
         await context.SaveChangesAsync();

@@ -2,7 +2,22 @@
   display: block;
 }
 
-.about-page-header {
-  padding: 8rem 0 3.5rem;
-  position: relative;
+.iz-stat-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.iz-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.08) !important;
+  border-color: rgba(184, 245, 0, 0.45) !important;
+}
+
+.iz-process-column {
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.iz-process-column:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 245, 0, 0.45) !important;
+  background: rgba(255, 255, 255, 0.07) !important;
 }

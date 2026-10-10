@@ -346,11 +346,46 @@ export class AdminPagesComponent implements OnInit {
         { title: 'Cost Efficiency', description: 'Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization.' },
         { title: 'Resource Efficiency', description: 'Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste.' }
       ];
+    } else if (this.sectionCards.length === 0 && section.sectionKey === 'milestones') {
+      this.sectionCards = [
+        { title: 'Launch of Specialized .NET & Cloud Architecture Studio', description: 'Founded Nexvoys as an elite engineering practice specializing in distributed .NET architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients.', badge: '2021 · Foundation', icon: 'fas fa-rocket' },
+        { title: 'Sub-Second CPQ & High-Throughput Engines', description: 'Engineered enterprise CPQ (Configure, Price, Quote) engines and payment processing pipelines, slashing calculation latency from 3 hours to under 30 seconds across high-volume transactions.', badge: '2022 · Scale', icon: 'fas fa-bolt' },
+        { title: 'Global Multi-Market Delivery', description: 'Expanded direct client delivery footprint across international markets worldwide. Shipped production platforms maintaining an audited 99.99% uptime SLA with zero-downtime deployment pipelines.', badge: '2023 · Expansion', icon: 'fas fa-globe' },
+        { title: 'Autonomous AI Agents & .NET 9 Cloud Modernization', description: 'Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization to .NET 9 for next-generation enterprise SaaS systems.', badge: '2024–Present · Next-Gen', icon: 'fas fa-brain' }
+      ];
+    } else if (this.sectionCards.length === 0 && section.sectionKey === 'credentials' && this.selectedPageForSections?.slug === 'about') {
+      this.sectionCards = [
+        { title: 'Total Client IP & Repository Ownership', description: 'Every line of source code, deployment script, infrastructure-as-code template, and architecture document belongs exclusively to you from day one. Zero proprietary vendor lock-in.', badge: '01 · Legal & IP', icon: 'fas fa-code-branch' },
+        { title: 'Direct Principal Engineering Oversight', description: 'Engagements are steered and authored by senior principal architects. We do not use account managers or hand off your core architecture to junior, unvetted subcontractors.', badge: '02 · Quality', icon: 'fas fa-user-shield' },
+        { title: 'Multi-Timezone Synchronized Delivery', description: 'Dedicated overlapping working hours across US Eastern/Pacific, European CET, and APAC time zones for rapid code reviews, sprint alignment, and seamless real-time collaboration.', badge: '03 · Velocity', icon: 'fas fa-clock' },
+        { title: 'Enterprise Security & SOC2/OWASP Compliance', description: 'Production code is built against OWASP Top 10 standards, automated static analysis (SAST), strict secret management, and full NDA confidentiality protocols.', badge: '04 · Security', icon: 'fas fa-shield-alt' }
+      ];
     } else if (this.sectionCards.length === 0 && (section.sectionKey === 'process' || section.sectionKey === 'credentials')) {
       this.sectionCards = [
-        { title: 'Tell Us What You Need', description: 'One quick conversation. Tell us about your team, tech stack, and goals.', badge: '01' },
-        { title: 'Build Your Match Within 24 Hours', description: 'We match AI developers to your stack and workflow. You review them.', badge: '02' },
-        { title: 'Start Shipping Immediately', description: 'Your engineer is embedded, onboarded and contributing.', badge: '03' }
+        { title: 'Discovery Call', description: 'A 30-minute technical session to understand your architecture bottlenecks, timeline, and growth goals.', badge: '01' },
+        { title: 'Blueprint or Fixed-Fee Audit', description: 'A concrete system blueprint, data isolation schema, or 2-week architecture audit with prioritized roadmap.', badge: '02' },
+        { title: 'Senior Build & Modernize', description: 'Principal-led engineering with .NET 9, Azure, Angular/React, and AI agents with rigorous code quality.', badge: '03' },
+        { title: 'Handover & Enablement', description: 'Written architecture documentation, test coverage, and complete team handover with zero lock-in.', badge: '04' }
+      ];
+    } else if (this.sectionCards.length === 0 && section.sectionKey === 'problems') {
+      this.sectionCards = [
+        { title: 'Cloud Costs Outpacing Revenue', description: 'Unoptimized Azure and AWS compute eating into margins. We identify waste, right-size infrastructure, and cut cloud spend by up to 25% without sacrificing throughput.', badge: 'amber', icon: 'fas fa-chart-line' },
+        { title: 'Monolithic Bottlenecks', description: 'Legacy .NET codebases holding back release velocity. We re-architect incrementally to clean .NET 9 and event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
+        { title: 'AI Pipelines Failing in Production', description: 'Prototypes that hit latency and hallucination walls. We build enterprise RAG pipelines with deterministic guardrails and scalable vector search.', badge: 'blue', icon: 'fas fa-robot' },
+        { title: 'Missing Senior Tech Lead', description: 'Startups needing strategic architectural governance without the $250k+ full-time CTO overhead. We serve as fractional principal architects guiding your engineers.', badge: 'green', icon: 'fas fa-user-shield' }
+      ];
+    } else if (this.sectionCards.length === 0 && section.sectionKey === 'proof-strip') {
+      this.sectionCards = [
+        { title: 'Shipping Production Systems', description: 'Audited enterprise platforms', badge: '9+ Years', icon: 'fas fa-history' },
+        { title: 'Global Client Footprint', description: 'Worldwide client delivery footprint', badge: 'Worldwide', icon: 'fas fa-globe' },
+        { title: 'CPQ Turnaround (from 3 hrs)', description: 'Automated pricing calculation', badge: '< 30 Seconds', icon: 'fas fa-bolt' },
+        { title: 'Cloud Cost Optimization', description: 'FinOps Azure & AWS reduction', badge: 'Up to 25%', icon: 'fas fa-chart-line' }
+      ];
+    } else if (this.sectionCards.length === 0 && section.sectionKey === 'diagnostic-audit') {
+      this.sectionCards = [
+        { title: 'Fixed fee', description: 'from $2,500 with zero surprise overages', badge: 'Fixed Fee', icon: 'fas fa-check-circle' },
+        { title: 'Delivery', description: '10 business days direct turnaround', badge: '10 Days', icon: 'fas fa-clock' },
+        { title: 'Deliverables', description: 'FinOps savings breakdown + 90-day prioritized remediation roadmap', badge: 'Deliverables', icon: 'fas fa-file-contract' }
       ];
     }
 

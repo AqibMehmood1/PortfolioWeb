@@ -8,48 +8,47 @@ public static class AboutPageSeeder
 {
     public static async Task SeedAsync(ApplicationDbContext context, ILogger logger)
     {
-        if (!await context.AboutContents.AnyAsync(a => a.SectionKey == "about-main"))
-        {
-            var about = new AboutContent
-            {
-                SectionKey = "about-main",
-                Headline = "Architectural Philosophy & Strategy",
-                Subtitle = "Enterprise Solutions Architect & Technology Partner helping Startups, SMBs, and Enterprises architect scalable SaaS products, autonomous AI agents, and high-performance cloud applications.",
-                VisionHeadline = "Technology Decisions Must Directly Drive Revenue & Velocity",
-                VisionLead = "With 9+ years of international software delivery across the US, Canada, and Europe, I partner with founders, CEOs, and CTOs to design secure, scalable, and high-performance software.",
-                VisionDescription = "I believe successful software starts with understanding unit economics, user growth projections, and business workflows before choosing technologies. The right architecture simplifies ongoing development, reduces cloud bills, and prevents catastrophic rewrites.",
-                FocusAreasJson = JsonSerializer.Serialize(new[]
-                {
-                    "Designing multi-tenant SaaS foundations with clean data isolation from day one.",
-                    "Refactoring legacy monolithic .NET systems into modular, high-velocity microservices.",
-                    "Integrating autonomous AI agents and enterprise RAG pipelines that automate complex manual work.",
-                    "Auditing and optimizing Azure/AWS cloud infrastructures to cut operational costs by up to 25%."
-                }),
-                ExecutionStepsJson = JsonSerializer.Serialize(new[]
-                {
-                    new { Step = "01", Title = "Business Discovery", Description = "Aligning KPIs, concurrency demands, and unit economics." },
-                    new { Step = "02", Title = "System Blueprint", Description = "Designing modular domain models and elastic schemas." },
-                    new { Step = "03", Title = "Rapid Scalable Build", Description = "Developing microservices with .NET 9, Angular/React, and CI/CD." },
-                    new { Step = "04", Title = "Scale & Governance", Description = "Real-time telemetry, Redis caching, and cost governance." }
-                }),
-                ValueCardsJson = JsonSerializer.Serialize(new[]
-                {
-                    new { Title = "Task Automation", Description = "DevOps and backend architecture screened for proven technical capability, eliminating repetitive manual operations." },
-                    new { Title = "Agentic Workflows", Description = "Speeds up execution by connecting systems and streamlining processes across different tools and multi-agent LLM pipelines." },
-                    new { Title = "Cost Efficiency", Description = "Lowers operational costs by minimizing manual effort and optimizing compute, caching, and serverless resource utilization." },
-                    new { Title = "Resource Efficiency", Description = "Optimizes the use of people, time, and systems by ensuring architecture tasks are handled intelligently with minimal waste." }
-                }),
-                ThreeStepProcessJson = JsonSerializer.Serialize(new[]
-                {
-                    new { Step = "01", Title = "Tell Us What You Need", Description = "One quick conversation. Tell us about your team, tech stack, and goals." },
-                    new { Step = "02", Title = "Build Your Match Within 24 Hours", Description = "We match AI developers to your stack and workflow. You review them." },
-                    new { Step = "03", Title = "Start Shipping Immediately", Description = "Your engineer is embedded, onboarded and contributing." }
-                }),
-                CreatedAt = DateTime.UtcNow
-            };
+        var existing = await context.AboutContents.FirstOrDefaultAsync(a => a.SectionKey == "about-main");
+        var about = existing ?? new AboutContent { SectionKey = "about-main" };
 
+        about.Headline = "Senior Architecture & Systems Strategy";
+        about.Subtitle = "Founder-led architecture partner for startups and SMBs building high-scale SaaS products, autonomous AI agents, and resilient cloud systems.";
+        about.VisionHeadline = "Senior-Only Execution. Direct Access to a Principal Architect.";
+        about.VisionLead = "Nexvoys is led by Bilal, a principal solutions architect with 9+ years of delivery across the US, Canada, Singapore, and Cyprus. We partner directly with founders and CTOs to design, modernize, and ship software that scales.";
+        about.VisionDescription = "We believe successful software starts with clean system boundaries, unit economics, and data isolation before writing a single line of code. You work directly with a senior architect who has built and deployed production systems — no account managers, no junior handoffs.";
+        about.FocusAreasJson = JsonSerializer.Serialize(new[]
+        {
+            "Designing multi-tenant SaaS foundations with clean data isolation from day one.",
+            "Refactoring monolithic .NET codebases into high-velocity .NET 9 microservices.",
+            "Integrating autonomous AI agents and enterprise RAG pipelines that automate complex manual work.",
+            "Auditing and optimizing Azure/AWS cloud infrastructures to cut operational spend by up to 25%."
+        });
+        about.ExecutionStepsJson = JsonSerializer.Serialize(new[]
+        {
+            new { Step = "01", Title = "Discovery & Scoping", Description = "Aligning business KPIs, concurrency needs, and cloud unit economics." },
+            new { Step = "02", Title = "Architecture Blueprint", Description = "Designing modular domain boundaries, database schemas, and API contracts." },
+            new { Step = "03", Title = "Senior Execution", Description = "Shipping resilient services with .NET 9, Angular/React, and CI/CD pipelines." },
+            new { Step = "04", Title = "Handover & Governance", Description = "Comprehensive written documentation, telemetry, and zero vendor lock-in." }
+        });
+        about.ValueCardsJson = JsonSerializer.Serialize(new[]
+        {
+            new { Title = "Direct Architect Access", Description = "You work directly with a principal architect with 9+ years shipping production software — no junior hand-offs." },
+            new { Title = "100% IP & Code Ownership", Description = "You own every line of code, infrastructure script, and architecture diagram from day one." },
+            new { Title = "Measurable Cost Discipline", Description = "We design cloud systems to be lean by default, rightsizing compute and eliminating cloud waste." },
+            new { Title = "Time-Zone Alignment", Description = "Dedicated overlap hours for US Eastern & Pacific, plus same-day working overlap with Singapore and Europe." }
+        });
+        about.ThreeStepProcessJson = JsonSerializer.Serialize(new[]
+        {
+            new { Step = "01", Title = "Discovery Call", Description = "A 30-minute technical session to discuss your roadmap, bottlenecks, and timeline." },
+            new { Step = "02", Title = "Blueprint or Audit", Description = "A focused technical roadmap, architecture design, and fixed-scope delivery plan." },
+            new { Step = "03", Title = "Production Delivery", Description = "Hands-on architectural implementation, code reviews, and production rollout." }
+        });
+
+        if (existing == null)
+        {
+            about.CreatedAt = DateTime.UtcNow;
             await context.AboutContents.AddAsync(about);
-            await context.SaveChangesAsync();
         }
+        await context.SaveChangesAsync();
     }
 }

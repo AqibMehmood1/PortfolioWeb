@@ -92,7 +92,7 @@ export class AdminSettingsComponent implements OnInit {
     } else {
       this.settingsMap[key].value = val;
     }
-    if (key === 'Favicon' && val) {
+    if (key === 'Favicon') {
       this.portfolioService.updateFavicon(val);
     }
   }

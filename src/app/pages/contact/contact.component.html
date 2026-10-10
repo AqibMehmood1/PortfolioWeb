@@ -57,16 +57,49 @@
               <div class="col-md-6">
                 <input type="email" class="iz-input" [(ngModel)]="contactForm.email" name="email" placeholder="Your Work Email *" required [disabled]="isSubmitting">
               </div>
+              <div class="col-md-6">
+                <input type="tel" class="iz-input" [(ngModel)]="contactForm.phone" name="phone" placeholder="+1 (555) 000-0000" [disabled]="isSubmitting">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="iz-input" [(ngModel)]="contactForm.company" name="company" placeholder="Company Name / Website" [disabled]="isSubmitting">
+              </div>
+              <div class="col-md-6">
+                <select class="iz-input" [(ngModel)]="contactForm.timeline" name="timeline" [disabled]="isSubmitting">
+                  <option value="ASAP / Within 2 weeks">Timeline: ASAP (within 2 weeks)</option>
+                  <option value="Within 2-4 weeks">Timeline: Within 2-4 weeks</option>
+                  <option value="Within 1-2 months">Timeline: 1 - 2 months</option>
+                  <option value="Exploring options / Q3-Q4">Timeline: Planning / Future</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <select class="iz-input" [(ngModel)]="contactForm.budgetRange" name="budgetRange" [disabled]="isSubmitting">
+                  <option value="$2,500 - $5,000 (Architecture Audit)">Budget: $2,500 - $5k (Diagnostic Audit)</option>
+                  <option value="$10,000 - $25,000">$10,000 - $25,000 (Project Build)</option>
+                  <option value="$25,000 - $50,000+">$25,000 - $50,000+ (Enterprise SaaS)</option>
+                  <option value="$3,500+/mo (Fractional Architect)">$3,500+/mo (Fractional Retainer)</option>
+                </select>
+              </div>
               <div class="col-12">
                 <input type="text" class="iz-input" [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject / Focus" [disabled]="isSubmitting">
               </div>
               <div class="col-12">
                 <textarea class="iz-textarea" rows="4" [(ngModel)]="contactForm.message" name="message" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required [disabled]="isSubmitting"></textarea>
               </div>
+
+              <div class="col-12">
+                <div class="iz-checkbox-row mb-2">
+                  <input type="checkbox" id="contactAgreeTerms" [(ngModel)]="contactForm.agreed" name="agreed" [disabled]="isSubmitting">
+                  <label for="contactAgreeTerms">I agree to the <a routerLink="/privacy" class="text-dark fw-bold">Privacy Policy</a> and understand my details are used only to respond to this request.</label>
+                </div>
+                <p class="small text-muted mb-3">
+                  <i class="fas fa-shield-alt text-green me-1"></i> <strong>What happens next:</strong> You'll receive a response within 24 hours directly from Principal Solutions Architect Bilal. We can execute an NDA before our first working session.
+                </p>
+              </div>
+
               <div class="col-12">
                 <button type="submit" class="iz-submit-btn" [disabled]="isSubmitting">
                   <span *ngIf="!isSubmitting">
-                    Send Message & Request Consultation <i class="fas fa-arrow-right ms-1"></i>
+                    Send Message & Request Architecture Call <i class="fas fa-arrow-right ms-1"></i>
                   </span>
                   <span *ngIf="isSubmitting">
                     <i class="fas fa-spinner fa-spin me-2"></i> Sending Message & Request...
@@ -116,7 +149,7 @@
             <span class="small fw-bold text-muted d-block mb-2 text-uppercase">Verified Professional Profiles</span>
             <div class="d-flex flex-wrap gap-3">
               <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
-                <i class="fab fa-linkedin text-primary me-1"></i> LinkedIn Company
+                <i class="fab fa-linkedin text-primary me-1"></i> Bilal on LinkedIn
               </a>
             </div>
           </div>
@@ -130,12 +163,12 @@
   </div>
 </section>
 
-<!-- ==================== 3-STEP PROCESS ==================== -->
+<!-- ==================== 3-STEP ARCHITECTURE PROCESS ==================== -->
 <section class="iz-process-network-section" id="process">
   <div class="container text-center">
     <div class="iz-process-headline-wrap mb-5">
-      <h2 class="iz-process-title-white">Three Steps. That's All It Takes.</h2>
-      <h2 class="iz-process-title-green">Simple Process. Serious Results.</h2>
+      <h2 class="iz-process-title-white">Three Steps. Serious Results.</h2>
+      <h2 class="iz-process-title-green">Transparent Architecture Delivery</h2>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
@@ -143,9 +176,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">01</div>
-          <h4 class="iz-process-col-title">Tell Us What You Need</h4>
+          <h4 class="iz-process-col-title">Diagnostic & Blueprint</h4>
           <p class="iz-process-col-desc">
-            One quick conversation. Tell us about your team, tech stack, and goals.
+            We review your codebase, telemetry, and cloud spend. You receive an architectural blueprint, risk register, and timeline before code is written.
           </p>
         </div>
       </div>
@@ -154,9 +187,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">02</div>
-          <h4 class="iz-process-col-title">Build Your Match Within 24 Hours</h4>
+          <h4 class="iz-process-col-title">Sprint Delivery & Governance</h4>
           <p class="iz-process-col-desc">
-            We match AI developers to your stack and workflow. You review them.
+            Bi-weekly releases with clean architecture, CI/CD pipelines, and pull request reviews. You work directly with Principal Architect Bilal.
           </p>
         </div>
       </div>
@@ -165,9 +198,9 @@
       <div class="col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">03</div>
-          <h4 class="iz-process-col-title">Start Shipping Immediately</h4>
+          <h4 class="iz-process-col-title">Hardening & Handover</h4>
           <p class="iz-process-col-desc">
-            Your engineer is embedded, onboarded and contributing.
+            Load testing, cloud FinOps cost tuning, telemetry dashboards, and complete runbooks so your in-house team owns and operates the platform.
           </p>
         </div>
       </div>
