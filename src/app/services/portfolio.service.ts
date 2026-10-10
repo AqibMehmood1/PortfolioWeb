@@ -185,6 +185,9 @@ export class PortfolioService {
     this.initDefaultData();
     this.loadDynamicData();
     this.refreshPages();
+    if (this.profile.favicon) {
+      this.updateFavicon(this.profile.favicon);
+    }
   }
 
   private initDefaultData(): void {
@@ -636,6 +639,9 @@ export class PortfolioService {
           this.profile.logoDark = d.logoDark || this.profile.logoDark;
           this.profile.logoLight = d.logoLight || this.profile.logoLight;
           this.profile.favicon = d.favicon || this.profile.favicon;
+          if (this.profile.favicon) {
+            this.updateFavicon(this.profile.favicon);
+          }
           this.profile.footerBio = d.footerBio || this.profile.footerBio;
           this.profile.copyrightText = d.copyrightText || this.profile.copyrightText;
           if (d.tickerTexts && d.tickerTexts.length > 0) {
@@ -793,5 +799,53 @@ export class PortfolioService {
   closeProjectModal(): void {
     this.selectedProjectSubject.next(null);
     document.body.style.overflow = '';
+  }
+
+  updateFavicon(iconUrl: string): void {
+    if (!iconUrl || typeof document === 'undefined') return;
+    try {
+      const lower = iconUrl.toLowerCase();
+      let mimeType = 'image/png';
+      if (lower.endsWith('.ico')) {
+        mimeType = 'image/x-icon';
+      } else if (lower.endsWith('.svg')) {
+        mimeType = 'image/svg+xml';
+      } else if (lower.endsWith('.gif')) {
+        mimeType = 'image/gif';
+      } else if (lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.jfif')) {
+        mimeType = 'image/jpeg';
+      }
+
+      const cleanUrl = iconUrl.trim();
+      const cacheBustUrl = cleanUrl.includes('?') ? `${cleanUrl}&v=${Date.now()}` : `${cleanUrl}?v=${Date.now()}`;
+
+      // Remove all existing icon links
+      const existingIcons = document.querySelectorAll<HTMLLinkElement>("link[rel*='icon']");
+      existingIcons.forEach(el => el.remove());
+
+      // Create new dynamic icon link
+      const newIcon = document.createElement('link');
+      newIcon.id = 'app-dynamic-favicon';
+      newIcon.rel = 'icon';
+      newIcon.type = mimeType;
+      newIcon.href = cacheBustUrl;
+      document.head.appendChild(newIcon);
+
+      // Create shortcut icon link
+      const shortcut = document.createElement('link');
+      shortcut.id = 'app-dynamic-favicon-shortcut';
+      shortcut.rel = 'shortcut icon';
+      shortcut.href = cacheBustUrl;
+      document.head.appendChild(shortcut);
+
+      // Create apple touch icon link
+      const appleIcon = document.createElement('link');
+      appleIcon.id = 'app-dynamic-favicon-apple';
+      appleIcon.rel = 'apple-touch-icon';
+      appleIcon.href = cacheBustUrl;
+      document.head.appendChild(appleIcon);
+    } catch (e) {
+      console.warn('Could not update browser favicon dynamically:', e);
+    }
   }
 }

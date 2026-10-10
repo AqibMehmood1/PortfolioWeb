@@ -66,20 +66,59 @@ public class AdminSettingsController : ControllerBase
         return Ok(ApiResponse<WebsiteSetting>.Ok(setting, "Setting updated successfully."));
     }
 
+    [HttpPost("batch")]
+    [HttpPut("batch")]
+    [HttpPost("bulk")]
     [HttpPut("bulk")]
-    public async Task<ActionResult<ApiResponse<object>>> BulkUpdateSettings([FromBody] BulkUpdateSettingsDto dto)
+    public async Task<ActionResult<ApiResponse<object>>> BatchUpdateSettings([FromBody] JsonElement body)
     {
-        if (dto?.Settings == null || dto.Settings.Count == 0)
+        var itemsToUpdate = new List<UpdateSettingItemDto>();
+
+        if (body.ValueKind == JsonValueKind.Array)
         {
-            return BadRequest(ApiResponse.Fail("No settings provided."));
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var list = JsonSerializer.Deserialize<List<UpdateSettingItemDto>>(body.GetRawText(), options);
+            if (list != null) itemsToUpdate.AddRange(list);
+        }
+        else if (body.ValueKind == JsonValueKind.Object)
+        {
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            if (body.TryGetProperty("settings", out var settingsProp) || body.TryGetProperty("Settings", out settingsProp))
+            {
+                if (settingsProp.ValueKind == JsonValueKind.Array)
+                {
+                    var list = JsonSerializer.Deserialize<List<UpdateSettingItemDto>>(settingsProp.GetRawText(), options);
+                    if (list != null) itemsToUpdate.AddRange(list);
+                }
+            }
+            else
+            {
+                foreach (var prop in body.EnumerateObject())
+                {
+                    itemsToUpdate.Add(new UpdateSettingItemDto
+                    {
+                        Key = prop.Name,
+                        Value = prop.Value.GetString() ?? prop.Value.GetRawText()
+                    });
+                }
+            }
         }
 
-        foreach (var item in dto.Settings)
+        if (itemsToUpdate.Count == 0)
         {
-            var existing = await _context.WebsiteSettings.FirstOrDefaultAsync(s => s.Key == item.Key);
+            return BadRequest(ApiResponse.Fail("No settings provided to update."));
+        }
+
+        foreach (var item in itemsToUpdate)
+        {
+            if (string.IsNullOrWhiteSpace(item.Key)) continue;
+
+            var existing = await _context.WebsiteSettings.FirstOrDefaultAsync(s => s.Key.ToLower() == item.Key.ToLower());
             if (existing != null)
             {
-                existing.Value = item.Value;
+                existing.Value = item.Value ?? string.Empty;
+                if (!string.IsNullOrEmpty(item.Group)) existing.Group = item.Group;
+                if (!string.IsNullOrEmpty(item.Description)) existing.Description = item.Description;
                 existing.UpdatedAt = DateTime.UtcNow;
             }
             else
@@ -87,16 +126,17 @@ public class AdminSettingsController : ControllerBase
                 await _context.WebsiteSettings.AddAsync(new WebsiteSetting
                 {
                     Key = item.Key,
-                    Value = item.Value,
+                    Value = item.Value ?? string.Empty,
                     Group = item.Group ?? "General",
-                    Description = item.Description,
+                    Description = item.Description ?? string.Empty,
+                    IsActive = true,
                     CreatedAt = DateTime.UtcNow
                 });
             }
         }
 
         await _context.SaveChangesAsync();
-        await _auditLog.LogAsync("BulkUpdateSettings", "WebsiteSetting", null, $"Bulk updated {dto.Settings.Count} settings", null, User.Identity?.Name, HttpContext.Connection.RemoteIpAddress?.ToString());
+        await _auditLog.LogAsync("BatchUpdateSettings", "WebsiteSetting", null, $"Batch updated {itemsToUpdate.Count} settings", null, User.Identity?.Name, HttpContext.Connection.RemoteIpAddress?.ToString());
 
         return Ok(ApiResponse<object>.Ok(null, "Settings updated successfully."));
     }

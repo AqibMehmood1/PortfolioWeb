@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -150,7 +151,19 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseStaticFiles();
+var staticFileTypeProvider = new FileExtensionContentTypeProvider();
+staticFileTypeProvider.Mappings[".jfif"] = "image/jpeg";
+staticFileTypeProvider.Mappings[".pjpeg"] = "image/jpeg";
+staticFileTypeProvider.Mappings[".pjp"] = "image/jpeg";
+staticFileTypeProvider.Mappings[".avif"] = "image/avif";
+staticFileTypeProvider.Mappings[".webp"] = "image/webp";
+staticFileTypeProvider.Mappings[".ico"] = "image/x-icon";
+staticFileTypeProvider.Mappings[".svg"] = "image/svg+xml";
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = staticFileTypeProvider
+});
 
 if (!app.Environment.IsDevelopment())
 {

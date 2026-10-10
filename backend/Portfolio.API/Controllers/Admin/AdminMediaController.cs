@@ -72,12 +72,32 @@ public class AdminMediaController : ControllerBase
             return BadRequest(ApiResponse.Fail(error));
         }
 
+        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+        var contentType = file.ContentType;
+        if (string.IsNullOrWhiteSpace(contentType) || contentType == "application/octet-stream" || ext == ".jfif")
+        {
+            contentType = ext switch
+            {
+                ".jfif" or ".jpeg" or ".jpg" or ".pjpeg" or ".pjp" => "image/jpeg",
+                ".png" => "image/png",
+                ".webp" => "image/webp",
+                ".gif" => "image/gif",
+                ".svg" => "image/svg+xml",
+                ".ico" => "image/x-icon",
+                ".avif" => "image/avif",
+                ".bmp" => "image/bmp",
+                ".tiff" or ".tif" => "image/tiff",
+                ".pdf" => "application/pdf",
+                _ => string.IsNullOrWhiteSpace(file.ContentType) ? "application/octet-stream" : file.ContentType
+            };
+        }
+
         var media = new MediaFile
         {
             FileName = Path.GetFileName(relativePath),
             OriginalFileName = originalName,
             FilePath = relativePath,
-            ContentType = file.ContentType,
+            ContentType = contentType,
             FileSizeBytes = file.Length,
             AltText = altText ?? originalName,
             UploadedBy = User.Identity?.Name ?? "Admin",

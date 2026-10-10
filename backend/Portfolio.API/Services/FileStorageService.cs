@@ -9,7 +9,12 @@ public interface IFileStorageService
 public class LocalFileStorageService : IFileStorageService
 {
     private readonly IWebHostEnvironment _environment;
-    private readonly string[] _allowedExtensions = [".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".pdf"];
+    private readonly string[] _allowedExtensions =
+    [
+        ".png", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp",
+        ".webp", ".gif", ".svg", ".ico", ".avif", ".bmp",
+        ".tiff", ".tif", ".pdf"
+    ];
     private const long MaxFileSize = 50 * 1024 * 1024; // 50MB
 
     public LocalFileStorageService(IWebHostEnvironment environment)

@@ -15,7 +15,7 @@ export class ImagePickerComponent {
   @Input() label: string = 'Image';
   @Input() hint: string = '';
   @Input() placeholder: string = 'Enter image URL or asset path (e.g. assets/img/photo.png or https://...)';
-  @Input() accept: string = 'image/*';
+  @Input() accept: string = 'image/*,.jfif,.ico,.avif,.webp,.svg,.png,.jpg,.jpeg';
   @Input() allowMediaLibrary: boolean = true;
   @Input() disabled: boolean = false;
   @Input() fullSpan: boolean = false;

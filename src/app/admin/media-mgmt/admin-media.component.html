@@ -8,7 +8,7 @@
       <label class="btn-primary file-upload-btn">
         <i class="fas fa-cloud-upload-alt" [class.fa-spin]="uploading"></i>
         <span>{{ uploading ? 'Uploading...' : 'Upload Media' }}</span>
-        <input type="file" (change)="onFileInput($event)" accept="image/*,application/pdf" [disabled]="uploading" style="display: none;" />
+        <input type="file" (change)="onFileInput($event)" accept="image/*,.jfif,.ico,.avif,.webp,.svg,.png,.jpg,.jpeg,application/pdf" [disabled]="uploading" style="display: none;" />
       </label>
     </div>
   </div>

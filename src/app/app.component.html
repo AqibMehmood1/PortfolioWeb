@@ -20,7 +20,7 @@
     <div class="iz-navbar-inner">
       <!-- Brand Logo -->
       <a routerLink="/" class="iz-brand-invozone" (click)="closeMobileMenu(); closeMegaMenu()" aria-label="NEXVOYS Home">
-        <img src="assets/nexvoys/black-logo.png" alt="NEXVOYS" class="iz-header-logo">
+        <img [src]="portfolioService.profile.logoDark || 'assets/nexvoys/black-logo.png'" alt="NEXVOYS" class="iz-header-logo">
       </a>
 
       <!-- Dynamic Navigation Links -->
@@ -179,7 +179,7 @@
   <div class="iz-mobile-drawer-white" [class.open]="mobileMenuOpen">
     <div class="iz-mobile-drawer-brand d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-light">
       <a routerLink="/" class="text-decoration-none" (click)="closeMobileMenu()" aria-label="NEXVOYS Home">
-        <img src="assets/nexvoys/black-logo.png" alt="NEXVOYS" class="iz-mobile-logo">
+        <img [src]="portfolioService.profile.logoDark || 'assets/nexvoys/black-logo.png'" alt="NEXVOYS" class="iz-mobile-logo">
       </a>
       <button type="button" class="iz-mobile-drawer-close" (click)="closeMobileMenu()" aria-label="Close menu">
         <i class="fas fa-times"></i>
@@ -276,7 +276,7 @@
       <div class="col-12 col-lg-4 mb-3 mb-lg-0">
         <div class="mb-3">
           <a routerLink="/" class="d-inline-block text-decoration-none" aria-label="NEXVOYS Home">
-            <img src="assets/nexvoys/white-logo.png" alt="NEXVOYS" class="iz-footer-logo">
+            <img [src]="portfolioService.profile.logoLight || 'assets/nexvoys/white-logo.png'" alt="NEXVOYS" class="iz-footer-logo">
           </a>
         </div>
         <p class="small text-muted mb-4">

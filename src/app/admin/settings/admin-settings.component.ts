@@ -59,14 +59,19 @@ export class AdminSettingsComponent implements OnInit {
         if (res.success) {
           this.portfolioService.showToast('Website settings saved successfully!');
           this.portfolioService.refreshData();
+          const newFav = this.getVal('Favicon');
+          if (newFav) {
+            this.portfolioService.updateFavicon(newFav);
+          }
         } else {
           this.portfolioService.showToast(res.message || 'Failed to update settings.');
         }
         this.cdr.detectChanges();
       },
-      error: () => {
+      error: (err) => {
         this.saving = false;
-        this.portfolioService.showToast('Error saving settings to database.');
+        const msg = err.error?.message || 'Error saving settings to database.';
+        this.portfolioService.showToast(msg);
         this.cdr.detectChanges();
       }
     });
@@ -86,6 +91,9 @@ export class AdminSettingsComponent implements OnInit {
       };
     } else {
       this.settingsMap[key].value = val;
+    }
+    if (key === 'Favicon' && val) {
+      this.portfolioService.updateFavicon(val);
     }
   }
 }
