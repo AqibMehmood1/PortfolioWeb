@@ -13,7 +13,7 @@ public static class WebsiteSettingsSeeder
             new() { Key = "CompanyName", Value = "NEXVOYS", Group = "Profile", Description = "Company / Brand Name" },
             new() { Key = "Tagline", Value = "Founder-led Architecture Partner for Startups & SMBs", Group = "Profile", Description = "Header Tagline" },
             new() { Key = "Role", Value = "Principal Solutions Architect & Founder", Group = "Profile", Description = "Primary Professional Role" },
-            new() { Key = "Email", Value = "hello@nexvoys.com", Group = "Contact", Description = "Primary Email Address" },
+            new() { Key = "Email", Value = "nexvoys@gmail.com", Group = "Contact", Description = "Primary Email Address" },
             new() { Key = "Phone", Value = "+92 345 6466188", Group = "Contact", Description = "Phone Number (International format)" },
             new() { Key = "DisplayPhone", Value = "+92 345 6466188", Group = "Contact", Description = "Formatted Display Phone" },
             new() { Key = "Location", Value = "Lahore HQ · Serving clients in US, Canada, Singapore & Cyprus", Group = "Contact", Description = "Primary Office Location" },

@@ -20,7 +20,7 @@ export class PortfolioService {
     name: 'NEXVOYS',
     tagline: 'Founder-led Architecture Partner for Startups & SMBs',
     role: 'Principal Solutions Architect & Founder',
-    email: 'hello@nexvoys.com',
+    email: 'nexvoys@gmail.com',
     phone: '+923456466188',
     displayPhone: '+92 345 6466188',
     location: 'Lahore HQ · Serving Clients Worldwide',
