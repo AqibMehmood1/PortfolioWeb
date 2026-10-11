@@ -1,13 +1,20 @@
-<div class="legal-page-header">
-  <div class="container text-center">
-    <div class="legal-badge">LEGAL COMPLIANCE & DATA PROTECTION</div>
-    <h1 class="display-5 fw-bold mb-3">Privacy Policy</h1>
-    <p class="text-white-50 max-w-600 mx-auto">
-      Last updated: October 2026 · NEXVOYS Ltd. Architecture Studio
+<!-- ==================== PRIVACY POLICY HERO ==================== -->
+<section class="iz-page-hero">
+  <div class="container text-center max-w-860 mx-auto">
+    <div class="iz-breadcrumb d-flex justify-content-center mb-3">
+      <a routerLink="/">Home</a>
+      <span class="sep">/</span>
+      <span class="text-dark fw-bold">Privacy Policy</span>
+    </div>
+    <div class="iz-tag"><i class="fas fa-shield-alt text-green"></i> Legal Compliance &amp; Data Protection</div>
+    <h1 class="iz-hero-headline">Privacy Policy</h1>
+    <p class="iz-hero-sub mx-auto">
+      Last updated: October 2026 &middot; NEXVOYS Ltd. Architecture Studio &middot; Transparent Data Governance
     </p>
   </div>
-</div>
+</section>
 
+<!-- ==================== PRIVACY POLICY BODY ==================== -->
 <section class="legal-content-section">
   <div class="container" style="max-width: 860px;">
     <div class="legal-card">
@@ -29,7 +36,7 @@
       <ul>
         <li><strong>Contact Information:</strong> Full name, professional work email address, phone number (optional),
           and company name.</li>
-        <li><strong>Project & Architectural Context:</strong> Project requirements, tech stack details, target timeline,
+        <li><strong>Project &amp; Architectural Context:</strong> Project requirements, tech stack details, target timeline,
           budget range, and any high-level architecture documents you choose to provide.</li>
         <li><strong>Technical Information:</strong> Standard, privacy-preserving server logs including IP address,
           browser type, and referring URL used solely for diagnostic security and load performance.</li>
@@ -39,22 +46,21 @@
       <p>We process your data exclusively for legitimate business purposes:</p>
       <ul>
         <li>To review and respond to your architectural inquiry within one business day.</li>
-        <li>To scope technical feasibility, estimate delivery roadmaps, and schedule architecture strategy sessions.
-        </li>
+        <li>To scope technical feasibility, estimate delivery roadmaps, and schedule architecture strategy sessions.</li>
         <li>To execute Mutual Non-Disclosure Agreements (NDAs) prior to in-depth technical discovery.</li>
         <li>To provide agreed consulting, engineering, and fractional architecture services.</li>
       </ul>
       <p><strong>We do not sell, rent, monetize, or trade your personal or project data to third-party data brokers or
           marketing advertisers under any circumstance.</strong></p>
 
-      <h2>4. Non-Disclosure & Confidentiality</h2>
+      <h2>4. Non-Disclosure &amp; Confidentiality</h2>
       <p>
         We treat all client architectural blueprints, database schemas, API specs, business logic, and codebases as
         strictly confidential. We execute Mutual NDAs prior to accessing private client repositories, staging
         environments, or production infrastructure.
       </p>
 
-      <h2>5. Data Subject Rights (GDPR & International)</h2>
+      <h2>5. Data Subject Rights (GDPR &amp; International)</h2>
       <p>Under GDPR and applicable international regulations, you have the right to:</p>
       <ul>
         <li>Request access to the personal data we hold about you.</li>
@@ -63,7 +69,7 @@
         <li>Withdraw consent at any time where processing was based on consent.</li>
       </ul>
 
-      <h2>6. Security & Least-Privilege Access</h2>
+      <h2>6. Security &amp; Least-Privilege Access</h2>
       <p>
         When collaborating on client projects, NEXVOYS operates on zero-trust and least-privilege principles. We mandate
         hardware-backed multi-factor authentication (MFA), encrypted communications, and ephemeral access credentials
@@ -73,18 +79,33 @@
       <h2>7. Contact Us</h2>
       <p>
         If you have questions regarding this Privacy Policy or wish to exercise your data rights, please contact our
-        data compliance officer directly:
+        compliance team directly:
       </p>
-      <p>
-        <strong>NEXVOYS Ltd.</strong><br>
-        Email: <a href="mailto:nexvoys@gmail.com" class="text-success fw-bold">nexvoys@gmail.com</a><br>
-        Direct Phone: +92 345 6466188<br>
-        Headquarters: Lahore, Pakistan · Serving Clients Worldwide
-      </p>
+      <div class="p-3 rounded-3 mb-4" style="background: rgba(15, 23, 42, 0.03); border: 1px solid rgba(15, 23, 42, 0.08);">
+        <p class="mb-1"><strong>NEXVOYS Ltd.</strong></p>
+        <p class="mb-1">
+          <i class="fas fa-envelope text-green me-2"></i>Email:
+          <a [href]="'mailto:' + (portfolioService.profile.email || 'nexvoys@gmail.com')" class="text-decoration-none fw-bold" style="color: #0f172a;">
+            {{ portfolioService.profile.email || 'nexvoys@gmail.com' }}
+          </a>
+        </p>
+        <p class="mb-1" *ngIf="portfolioService.profile.phone">
+          <i class="fas fa-phone-alt text-green me-2"></i>Phone:
+          <a [href]="'tel:' + portfolioService.profile.phone" class="text-decoration-none text-muted">
+            {{ portfolioService.profile.phone }}
+          </a>
+        </p>
+        <p class="mb-0 text-muted">
+          <i class="fas fa-map-marker-alt text-green me-2"></i>Location: {{ portfolioService.profile.location || 'Lahore, Pakistan · Serving Clients Worldwide' }}
+        </p>
+      </div>
 
-      <div class="mt-5 pt-4 border-top">
-        <a routerLink="/" class="btn btn-outline-dark px-4 py-2 rounded-pill">
-          ← Return to Home
+      <div class="mt-4 pt-3 border-top d-flex flex-wrap gap-3 align-items-center justify-content-between">
+        <a routerLink="/" class="iz-btn-dark">
+          <i class="fas fa-arrow-left me-2"></i>Return to Home
+        </a>
+        <a routerLink="/contact" class="iz-btn-green">
+          Get in Touch <i class="fas fa-arrow-right ms-2"></i>
         </a>
       </div>
     </div>

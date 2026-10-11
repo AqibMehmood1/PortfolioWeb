@@ -488,7 +488,7 @@ export class PortfolioService {
         title: 'SaaS Product Architecture',
         shortDesc: 'Multi-tenant foundations, tenant data isolation, subscription billing, and elastic cloud scaling.',
         bullets: ['Multi-Tenant Database Schema Partitioning', 'Stripe & Subscription Billing Workflows', 'Elastic Cloud Auto-Scaling & CDN Edge', 'Granular RBAC Security & Audit Logs'],
-        image: 'assets/img/Cloudoor.png',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
         route: '/services'
       },
       {
@@ -496,7 +496,7 @@ export class PortfolioService {
         title: 'AI Agents & Automation',
         shortDesc: 'Autonomous LLM tool-calling agents, enterprise RAG vector retrieval, and intelligent workflow pipelines.',
         bullets: ['Autonomous Task & Reasoning Agents', 'Enterprise RAG with Vector Databases', 'LangChain & Semantic Kernel Pipelines', 'Document Parsing & Automated Data Workflows'],
-        image: 'assets/img/ODTool.png',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80',
         route: '/services'
       },
       {
@@ -504,7 +504,7 @@ export class PortfolioService {
         title: 'Cloud Cost Optimization',
         shortDesc: 'Infrastructure audits, containerization, and workload rightsizing that cut operating costs by up to 25%.',
         bullets: ['Up to 25% Cloud Cost Reduction', 'Azure & AWS Compute Rightsizing', 'Docker Containerization & Kubernetes', 'Distributed In-Memory Redis Caching'],
-        image: 'assets/img/Cloudoor.png',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
         route: '/services'
       },
       {
@@ -512,7 +512,15 @@ export class PortfolioService {
         title: '.NET Modernization',
         shortDesc: 'Upgrading monolithic legacy .NET Framework applications into high-throughput .NET 9 microservices and reactive SPAs.',
         bullets: ['Monolith to Microservices Roadmap', 'Legacy .NET Framework to .NET 9 Upgrade', 'Sub-Second Response Time Optimization', 'High-Throughput WebAPI & gRPC Contracts'],
-        image: 'assets/img/Eurobank.png',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+        route: '/services'
+      },
+      {
+        index: '//05',
+        title: 'Fractional CTO & Advisory',
+        shortDesc: 'Senior technical leadership for startups and SMBs preparing to raise, scale, or hire engineering teams.',
+        bullets: ['Technical Due Diligence & Roadmap', 'Engineering Hiring & Code Review Standards', 'Tech Stack Evaluation (.NET, Azure, Node)', 'Executive & Board Technical Advisory'],
+        image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
         route: '/services'
       }
     ]);
@@ -719,7 +727,11 @@ export class PortfolioService {
     this.api.getAccordionServices().subscribe({
       next: res => {
         if (res.success && res.data && res.data.length > 0) {
-          this.accordionServicesSubject.next(res.data);
+          const mapped = res.data.map((item, idx) => ({
+            ...item,
+            index: item.index || (item as any).indexTag || (item as any).num || `//0${idx + 1}`
+          }));
+          this.accordionServicesSubject.next(mapped);
         }
       },
       error: () => { }

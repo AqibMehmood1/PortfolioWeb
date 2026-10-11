@@ -124,7 +124,7 @@ public static class ServicesSeeder
                     "Elastic Cloud Auto-Scaling & CDN Edge",
                     "Granular RBAC Security & Audit Logs"
                 }),
-                Image = "assets/img/Cloudoor.png",
+                Image = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
                 Route = "/services",
                 DisplayOrder = 1,
                 IsPublished = true
@@ -141,7 +141,7 @@ public static class ServicesSeeder
                     "LangChain & Semantic Kernel Pipelines",
                     "Document Parsing & Automated Data Workflows"
                 }),
-                Image = "assets/img/ODTool.png",
+                Image = "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80",
                 Route = "/services",
                 DisplayOrder = 2,
                 IsPublished = true
@@ -158,7 +158,7 @@ public static class ServicesSeeder
                     "Docker Containerization & Kubernetes",
                     "Distributed In-Memory Redis Caching"
                 }),
-                Image = "assets/img/Cloudoor.png",
+                Image = "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
                 Route = "/services",
                 DisplayOrder = 3,
                 IsPublished = true
@@ -175,7 +175,7 @@ public static class ServicesSeeder
                     "Sub-Second Response Time Optimization",
                     "High-Throughput WebAPI & gRPC Contracts"
                 }),
-                Image = "assets/img/Eurobank.png",
+                Image = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
                 Route = "/services",
                 DisplayOrder = 4,
                 IsPublished = true
@@ -192,7 +192,7 @@ public static class ServicesSeeder
                     "Tech Stack Evaluation (.NET, Azure, Node)",
                     "Executive & Board Technical Advisory"
                 }),
-                Image = "assets/img/ODTool.png",
+                Image = "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
                 Route = "/services",
                 DisplayOrder = 5,
                 IsPublished = true

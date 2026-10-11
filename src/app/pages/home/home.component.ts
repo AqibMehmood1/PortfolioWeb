@@ -15,7 +15,10 @@ interface TechTile {
 }
 
 interface AccordionService {
+  id?: number;
   index: string;
+  indexTag?: string;
+  num?: string;
   title: string;
   shortDesc: string;
   bullets: string[];
@@ -244,6 +247,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return { 'background': 'rgba(34, 197, 94, 0.12)', 'color': '#16a34a' };
     }
     return { 'background': 'rgba(16, 185, 129, 0.12)', 'color': '#059669' };
+  }
+
+  getProcessColClass(): string {
+    const cards = this.getSectionCards('process');
+    const count = cards?.length || 4;
+    if (count === 4) return 'col-12 col-md-6 col-lg-3';
+    if (count === 3) return 'col-12 col-md-4 col-lg-4';
+    if (count === 2) return 'col-12 col-md-6 col-lg-6';
+    if (count === 1) return 'col-12';
+    return 'col-12 col-md-6 col-lg-3';
   }
 
   ngOnInit(): void {

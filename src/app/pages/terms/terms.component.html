@@ -1,13 +1,20 @@
-<div class="legal-page-header">
-  <div class="container text-center">
-    <div class="legal-badge">CLIENT TERMS & INTELLECTUAL PROPERTY</div>
-    <h1 class="display-5 fw-bold mb-3">Terms of Service</h1>
-    <p class="text-white-50 max-w-600 mx-auto">
-      Last updated: October 2026 · NEXVOYS Ltd. Architecture Studio
+<!-- ==================== TERMS OF SERVICE HERO ==================== -->
+<section class="iz-page-hero">
+  <div class="container text-center max-w-860 mx-auto">
+    <div class="iz-breadcrumb d-flex justify-content-center mb-3">
+      <a routerLink="/">Home</a>
+      <span class="sep">/</span>
+      <span class="text-dark fw-bold">Terms of Service</span>
+    </div>
+    <div class="iz-tag"><i class="fas fa-file-contract text-green"></i> Client Terms &amp; Intellectual Property</div>
+    <h1 class="iz-hero-headline">Terms of Service</h1>
+    <p class="iz-hero-sub mx-auto">
+      Last updated: October 2026 &middot; NEXVOYS Ltd. Architecture Studio &middot; Transparent Engagement Standards
     </p>
   </div>
-</div>
+</section>
 
+<!-- ==================== TERMS OF SERVICE BODY ==================== -->
 <section class="legal-content-section">
   <div class="container" style="max-width: 860px;">
     <div class="legal-card">
@@ -19,7 +26,7 @@
         entering into a Statement of Work (SOW), you agree to be bound by these Terms.
       </p>
 
-      <h2>2. Intellectual Property & Code Ownership</h2>
+      <h2>2. Intellectual Property &amp; Code Ownership</h2>
       <p>
         <strong>You own 100% of your work.</strong> Unless otherwise stipulated in a signed Statement of Work, all
         custom source code, architecture blueprints, database schemas, CI/CD configuration files, and documentation
@@ -31,25 +38,25 @@
         engineered for your business.
       </p>
 
-      <h2>3. Engagement Models & Delivery</h2>
+      <h2>3. Engagement Models &amp; Delivery</h2>
       <p>We deliver services under three primary transparent models:</p>
       <ul>
-        <li><strong>Fixed-Fee Architecture & Cloud Cost Audit:</strong> A fixed 2-week engagement delivering a written
+        <li><strong>Fixed-Fee Architecture &amp; Cloud Cost Audit:</strong> A fixed 2-week engagement delivering a written
           architecture evaluation, prioritized risk matrix, and a 90-day technical roadmap.</li>
         <li><strong>Project-Based Delivery:</strong> Scoped sprint-based delivery for greenfield SaaS platforms, legacy
           .NET modernizations, or custom AI agent pipelines with milestone-based sign-offs.</li>
-        <li><strong>Fractional CTO & Advisory:</strong> Retained architectural leadership, technical due diligence, team
+        <li><strong>Fractional CTO &amp; Advisory:</strong> Retained architectural leadership, technical due diligence, team
           mentoring, and code reviews on an agreed monthly schedule.</li>
       </ul>
 
-      <h2>4. Confidentiality & Non-Disclosure</h2>
+      <h2>4. Confidentiality &amp; Non-Disclosure</h2>
       <p>
         Both parties agree to protect and treat all proprietary business data, trade secrets, system designs, and code
         repositories as confidential information. An explicit Mutual Non-Disclosure Agreement (NDA) will govern all
         project-specific disclosures.
       </p>
 
-      <h2>5. Warranties & Disclaimers</h2>
+      <h2>5. Warranties &amp; Disclaimers</h2>
       <p>
         NEXVOYS warrants that all consulting and architecture services will be performed with professional care,
         adhering to industry best practices in software architecture, security, and cloud scalability. Except as
@@ -75,16 +82,31 @@
       <p>
         For inquiries regarding these Terms or to request an NDA prior to scheduling a project consultation:
       </p>
-      <p>
-        <strong>NEXVOYS Ltd.</strong><br>
-        Email: <a href="mailto:nexvoys@gmail.com" class="text-success fw-bold">nexvoys@gmail.com</a><br>
-        Direct Phone: +92 345 6466188<br>
-        Headquarters: Lahore, Pakistan · Serving Clients Worldwide
-      </p>
+      <div class="p-3 rounded-3 mb-4" style="background: rgba(15, 23, 42, 0.03); border: 1px solid rgba(15, 23, 42, 0.08);">
+        <p class="mb-1"><strong>NEXVOYS Ltd.</strong></p>
+        <p class="mb-1">
+          <i class="fas fa-envelope text-green me-2"></i>Email:
+          <a [href]="'mailto:' + (portfolioService.profile.email || 'nexvoys@gmail.com')" class="text-decoration-none fw-bold" style="color: #0f172a;">
+            {{ portfolioService.profile.email || 'nexvoys@gmail.com' }}
+          </a>
+        </p>
+        <p class="mb-1" *ngIf="portfolioService.profile.phone">
+          <i class="fas fa-phone-alt text-green me-2"></i>Phone:
+          <a [href]="'tel:' + portfolioService.profile.phone" class="text-decoration-none text-muted">
+            {{ portfolioService.profile.phone }}
+          </a>
+        </p>
+        <p class="mb-0 text-muted">
+          <i class="fas fa-map-marker-alt text-green me-2"></i>Location: {{ portfolioService.profile.location || 'Lahore, Pakistan · Serving Clients Worldwide' }}
+        </p>
+      </div>
 
-      <div class="mt-5 pt-4 border-top">
-        <a routerLink="/" class="btn btn-outline-dark px-4 py-2 rounded-pill">
-          ← Return to Home
+      <div class="mt-4 pt-3 border-top d-flex flex-wrap gap-3 align-items-center justify-content-between">
+        <a routerLink="/" class="iz-btn-dark">
+          <i class="fas fa-arrow-left me-2"></i>Return to Home
+        </a>
+        <a routerLink="/contact" class="iz-btn-green">
+          Get in Touch <i class="fas fa-arrow-right ms-2"></i>
         </a>
       </div>
     </div>

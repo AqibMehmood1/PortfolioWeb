@@ -164,6 +164,7 @@ public class AccordionServiceItemDto
 {
     public int Id { get; set; }
     public string IndexTag { get; set; } = string.Empty;
+    public string Index { get => IndexTag; set => IndexTag = value; }
     public string Num { get => IndexTag; set => IndexTag = value; }
     public string Title { get; set; } = string.Empty;
     public string ShortDesc { get; set; } = string.Empty;

@@ -47,7 +47,10 @@ export interface CertificationItem {
 }
 
 export interface AccordionService {
+  id?: number;
   index: string;
+  indexTag?: string;
+  num?: string;
   title: string;
   shortDesc: string;
   bullets: string[];

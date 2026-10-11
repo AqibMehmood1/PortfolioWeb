@@ -5,7 +5,10 @@ import { PortfolioService } from '../../services/portfolio.service';
 import { ServiceItem } from '../../models/portfolio.model';
 
 export interface AccordionService {
+  id?: number;
   index: string;
+  indexTag?: string;
+  num?: string;
   title: string;
   shortDesc: string;
   bullets: string[];
@@ -22,63 +25,81 @@ export interface AccordionService {
 })
 export class ServicesComponent {
   activeServiceIndex: number = 0;
-
-  readonly servicesAccordion: AccordionService[] = [
+  servicesAccordion: AccordionService[] = [
     {
       index: '//01',
-      title: 'AI & Data Innovation',
-      shortDesc: 'Build Intelligent Products Using AI, Machine Learning, And Advanced Data Engineering.',
+      title: 'SaaS Product Architecture',
+      shortDesc: 'Multi-tenant foundations, tenant data isolation, subscription billing, and elastic cloud scaling.',
       bullets: [
-        'Agent As a Service',
-        'AI Product Development',
-        'Autonomous Agentic AI',
-        'Enterprise RAG & Vector DBs'
+        'Multi-Tenant Database Schema Partitioning',
+        'Stripe & Subscription Billing Workflows',
+        'Elastic Cloud Auto-Scaling & CDN Edge',
+        'Granular RBAC Security & Audit Logs'
       ],
-      image: 'assets/img/project-3.jpg',
-      route: '/expertise'
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      route: '/services'
     },
     {
       index: '//02',
-      title: 'Custom Software Development',
-      shortDesc: 'End-to-End Scalable Architectures Tailored for Startup MVPs & High-Growth SaaS Platforms.',
+      title: 'AI Agents & Automation',
+      shortDesc: 'Autonomous LLM tool-calling agents, enterprise RAG vector retrieval, and intelligent workflow pipelines.',
       bullets: [
-        'Multi-Tenant SaaS Platforms',
-        'Automated Stripe Billing',
-        'Dynamic Subdomain Routers',
-        'Clean RBAC Data Isolation'
+        'Autonomous Task & Reasoning Agents',
+        'Enterprise RAG with Vector Databases',
+        'LangChain & Semantic Kernel Pipelines',
+        'Document Parsing & Automated Data Workflows'
       ],
-      image: 'assets/img/project-1.jpg',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80',
       route: '/services'
     },
     {
       index: '//03',
-      title: 'Enterprise .NET & CPQ Engines',
-      shortDesc: 'Modern High-Throughput C# / .NET 9 WebAPIs, Microservices, and Dynamic Pricing Systems.',
+      title: 'Cloud Cost Optimization',
+      shortDesc: 'Infrastructure audits, containerization, and workload rightsizing that cut operating costs by up to 25%.',
       bullets: [
-        '.NET 9 & ASP.NET WebAPI',
-        'Dynamic CPQ Price Calculation',
-        'Asynchronous Event-Bus',
-        'Monolith to Microservices Modernization'
+        'Up to 25% Cloud Cost Reduction',
+        'Azure & AWS Compute Rightsizing',
+        'Docker Containerization & Kubernetes',
+        'Distributed In-Memory Redis Caching'
       ],
-      image: 'assets/img/project-2.jpg',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
       route: '/services'
     },
     {
       index: '//04',
-      title: 'Cloud Scaling & Cost Optimization',
-      shortDesc: 'Resilient Azure & AWS Cloud Infrastructure Engineered to Cut Operating Bills by up to 25%.',
+      title: '.NET Modernization',
+      shortDesc: 'Upgrading monolithic legacy .NET Framework applications into high-throughput .NET 9 microservices and reactive SPAs.',
       bullets: [
-        '25% Cloud Cost Reduction',
-        'Kubernetes & Docker Clusters',
-        'Zero-Downtime Blue/Green CI/CD',
-        'Distributed In-Memory Redis Caching'
+        'Monolith to Microservices Roadmap',
+        'Legacy .NET Framework to .NET 9 Upgrade',
+        'Sub-Second Response Time Optimization',
+        'High-Throughput WebAPI & gRPC Contracts'
       ],
-      image: 'assets/img/project-1.jpg',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+      route: '/services'
+    },
+    {
+      index: '//05',
+      title: 'Fractional CTO & Advisory',
+      shortDesc: 'Senior technical leadership for startups and SMBs preparing to raise, scale, or hire engineering teams.',
+      bullets: [
+        'Technical Due Diligence & Roadmap',
+        'Engineering Hiring & Code Review Standards',
+        'Tech Stack Evaluation (.NET, Azure, Node)',
+        'Executive & Board Technical Advisory'
+      ],
+      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
       route: '/services'
     }
   ];
 
-  constructor(public portfolioService: PortfolioService, private router: Router) {}
+  constructor(public portfolioService: PortfolioService, private router: Router) {
+    this.portfolioService.accordionServices$.subscribe(items => {
+      if (items && items.length > 0) {
+        this.servicesAccordion = items;
+      }
+    });
+  }
 
   isSectionVisible(sectionKey: string): boolean {
     return this.portfolioService.isSectionVisible('services', sectionKey);

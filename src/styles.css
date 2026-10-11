@@ -23,25 +23,33 @@ body {
 
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #334155;
   border-radius: 9999px;
-  border: 2px solid #f1f5f9;
+  border: 2px solid #0f172a;
+  transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #b8f500;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(135, 230, 75, 0.35);
-  color: #111915;
+  background: #b8f500;
+  color: #101828;
+}
+
+/* Smooth Focus Outlines */
+:focus-visible {
+  outline: 2px solid #b8f500;
+  outline-offset: 2px;
 }

@@ -15,7 +15,7 @@ import { PortfolioService } from '../../services/portfolio.service';
         <div class="container text-center max-w-860 mx-auto">
           <div class="iz-breadcrumb d-flex justify-content-center mb-3">
             <a routerLink="/">Home</a>
-            <span class="sep">»</span>
+            <span class="sep">/</span>
             <span class="text-dark fw-bold">{{ page.navTitle || page.title }}</span>
           </div>
           <div class="iz-tag"><i class="fas fa-layer-group"></i> {{ page.navTitle || 'NEXVOYS Platform' }}</div>
