@@ -44,7 +44,7 @@ export class AdminInquiriesComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-        this.portfolioService.showToast('Failed to load inquiries.');
+        this.portfolioService.showError('Failed to load inquiries from server.', 'Load Error');
         this.cdr.detectChanges();
       }
     });
@@ -80,8 +80,13 @@ export class AdminInquiriesComponent implements OnInit {
           if (this.selectedInquiry && this.selectedInquiry.id === id) {
             this.selectedInquiry.status = status;
           }
-          this.portfolioService.showToast(`Inquiry marked as ${status}`);
+          this.portfolioService.showSuccess(`Inquiry status updated to "${status}".`, 'Status Updated');
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to update status.', 'Update Error');
         }
+      },
+      error: () => {
+        this.portfolioService.showError('Failed to update inquiry status.', 'Update Error');
       }
     });
   }
@@ -105,15 +110,17 @@ export class AdminInquiriesComponent implements OnInit {
       next: (res) => {
         this.savingNotes = false;
         if (res.success) {
-          this.portfolioService.showToast('Admin notes saved successfully.');
+          this.portfolioService.showSuccess('Inquiry notes saved successfully.', 'Notes Saved');
           const item = this.inquiries.find(x => x.id === this.selectedInquiry!.id);
           if (item) item.adminNotes = this.selectedInquiry!.adminNotes;
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to save notes.', 'Save Error');
         }
         this.cdr.detectChanges();
       },
       error: () => {
         this.savingNotes = false;
-        this.portfolioService.showToast('Failed to save notes.');
+        this.portfolioService.showError('Failed to save inquiry notes.', 'Save Error');
         this.cdr.detectChanges();
       }
     });
@@ -135,12 +142,14 @@ export class AdminInquiriesComponent implements OnInit {
       this.adminApi.deleteInquiry(inq.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Inquiry deleted successfully.');
+            this.portfolioService.showSuccess(`Inquiry from "${inq.name}" deleted successfully.`, 'Inquiry Deleted');
             if (this.selectedInquiry?.id === inq.id) this.selectedInquiry = null;
             this.loadInquiries();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete inquiry.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete inquiry.')
+        error: () => this.portfolioService.showError('Failed to delete inquiry. Please try again.', 'Delete Error')
       });
     }
   }

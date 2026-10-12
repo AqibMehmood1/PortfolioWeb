@@ -12,6 +12,17 @@ import {
 } from '../models/portfolio.model';
 import { PortfolioApiService, WebsiteSettingsData, SitePageDto, SiteSectionDto } from './portfolio-api.service';
 
+export type ToastType = 'success' | 'error' | 'warning' | 'info';
+
+export interface ToastNotification {
+  message: string;
+  type: ToastType;
+  title?: string;
+  durationMs?: number;
+  icon?: string;
+  id?: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,8 +48,8 @@ export class PortfolioService {
   private settingsSubject = new BehaviorSubject<WebsiteSettingsData | null>(null);
   settings$: Observable<WebsiteSettingsData | null> = this.settingsSubject.asObservable();
 
-  private toastSubject = new BehaviorSubject<string | null>(null);
-  toast$: Observable<string | null> = this.toastSubject.asObservable();
+  private toastSubject = new BehaviorSubject<ToastNotification | null>(null);
+  toast$: Observable<ToastNotification | null> = this.toastSubject.asObservable();
   private toastTimeout: any = null;
 
   // Selected project for modal preview
@@ -792,20 +803,79 @@ export class PortfolioService {
     this.loadDynamicData();
   }
 
-  showToast(message: string, durationMs: number = 3000): void {
+  showToast(message: string, typeOrDuration: ToastType | number = 'info', durationMs: number = 3500, title?: string): void {
+    let type: ToastType = 'info';
+    let duration = durationMs;
+
+    if (typeof typeOrDuration === 'number') {
+      duration = typeOrDuration;
+      type = 'info';
+    } else if (typeof typeOrDuration === 'string') {
+      type = typeOrDuration as ToastType;
+    }
+
     if (this.toastTimeout) {
       clearTimeout(this.toastTimeout);
       this.toastTimeout = null;
     }
+
+    let icon = 'fas fa-info-circle';
+    let defaultTitle = title;
+    switch (type) {
+      case 'success':
+        icon = 'fas fa-check-circle';
+        defaultTitle = title || 'Success';
+        break;
+      case 'error':
+        icon = 'fas fa-times-circle';
+        defaultTitle = title || 'Error';
+        break;
+      case 'warning':
+        icon = 'fas fa-exclamation-triangle';
+        defaultTitle = title || 'Warning';
+        break;
+      case 'info':
+      default:
+        icon = 'fas fa-info-circle';
+        defaultTitle = title || 'Notice';
+        break;
+    }
+
+    const toast: ToastNotification = {
+      message,
+      type,
+      title: defaultTitle,
+      durationMs: duration,
+      icon,
+      id: Date.now()
+    };
+
     this.ngZone.run(() => {
-      this.toastSubject.next(message);
+      this.toastSubject.next(toast);
     });
+
     this.toastTimeout = setTimeout(() => {
       this.ngZone.run(() => {
         this.toastSubject.next(null);
       });
       this.toastTimeout = null;
-    }, durationMs);
+    }, duration);
+  }
+
+  showSuccess(message: string, title: string = 'Success', durationMs: number = 3500): void {
+    this.showToast(message, 'success', durationMs, title);
+  }
+
+  showError(message: string, title: string = 'Error', durationMs: number = 5000): void {
+    this.showToast(message, 'error', durationMs, title);
+  }
+
+  showWarning(message: string, title: string = 'Warning', durationMs: number = 4000): void {
+    this.showToast(message, 'warning', durationMs, title);
+  }
+
+  showInfo(message: string, title: string = 'Notice', durationMs: number = 3500): void {
+    this.showToast(message, 'info', durationMs, title);
   }
 
   clearToast(): void {
@@ -821,7 +891,7 @@ export class PortfolioService {
   copyText(text: string, label: string): void {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
-        this.showToast(`${label} copied to clipboard! ✨`);
+        this.showInfo(`${label} copied to clipboard! 📋`, 'Copied');
       }).catch(() => {
         this.fallbackCopy(text, label);
       });
@@ -837,7 +907,7 @@ export class PortfolioService {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    this.showToast(`${label} copied to clipboard! ✨`);
+    this.showInfo(`${label} copied to clipboard! 📋`, 'Copied');
   }
 
   openWhatsApp(): void {

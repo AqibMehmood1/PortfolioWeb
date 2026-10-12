@@ -53,6 +53,7 @@ export class AdminLoginComponent implements OnDestroy {
 
     if (!this.username.trim() || !this.password) {
       this.errorMessage = 'Please enter both username/email and password.';
+      this.portfolioService.showWarning(this.errorMessage, 'Validation Warning');
       this.cdr.detectChanges();
       this.errorTimeout = setTimeout(() => {
         this.ngZone.run(() => {
@@ -79,10 +80,11 @@ export class AdminLoginComponent implements OnDestroy {
       next: (res) => {
         this.ngZone.run(() => {
           if (res.success) {
-            this.portfolioService.showToast('Login successful. Welcome to Admin CMS!');
+            this.portfolioService.showSuccess('Login successful. Welcome back!', 'Authenticated');
             this.router.navigate(['/admin/dashboard']);
           } else {
             this.errorMessage = res.message || 'Login failed. Please check your credentials.';
+            this.portfolioService.showError(this.errorMessage, 'Access Denied');
             this.cdr.detectChanges();
             this.errorTimeout = setTimeout(() => {
               this.ngZone.run(() => {
@@ -112,6 +114,7 @@ export class AdminLoginComponent implements OnDestroy {
           }
 
           this.errorMessage = msg;
+          this.portfolioService.showError(msg, 'Authentication Failed');
           this.cdr.detectChanges();
 
           this.errorTimeout = setTimeout(() => {

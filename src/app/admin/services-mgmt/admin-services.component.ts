@@ -56,7 +56,7 @@ export class AdminServicesComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load services.');
+        this.portfolioService.showError('Failed to load services from server.', 'Load Error');
       }
     });
 
@@ -68,6 +68,9 @@ export class AdminServicesComponent implements OnInit {
           this.accordionItems = res.data;
         }
         this.cdr.detectChanges();
+      },
+      error: () => {
+        this.portfolioService.showError('Failed to load capability pillars.', 'Load Error');
       }
     });
   }
@@ -116,7 +119,7 @@ export class AdminServicesComponent implements OnInit {
 
   saveService(): void {
     if (!this.currentService.title.trim()) {
-      this.portfolioService.showToast('Service title is required.');
+      this.portfolioService.showWarning('Service title is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -138,15 +141,18 @@ export class AdminServicesComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditService ? 'Service updated successfully.' : 'Service created successfully.');
+          this.portfolioService.showSuccess(
+            this.isEditService ? `Service "${this.currentService.title}" updated successfully!` : `Service "${this.currentService.title}" created successfully!`,
+            this.isEditService ? 'Service Updated' : 'Service Created'
+          );
           this.showServiceModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -168,12 +174,14 @@ export class AdminServicesComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Service deleted successfully.');
+            this.portfolioService.showSuccess(`Service "${srv.title}" deleted successfully.`, 'Service Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete service.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete service.')
+        error: () => this.portfolioService.showError('Failed to delete service. Please try again.', 'Delete Error')
       });
     }
   }
@@ -193,7 +201,7 @@ export class AdminServicesComponent implements OnInit {
 
   saveAccordion(): void {
     if (!this.currentAccordion.title.trim()) {
-      this.portfolioService.showToast('Pillar title is required.');
+      this.portfolioService.showWarning('Pillar title is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -211,15 +219,18 @@ export class AdminServicesComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditAccordion ? 'Accordion pillar updated.' : 'Accordion pillar created.');
+          this.portfolioService.showSuccess(
+            this.isEditAccordion ? `Capability pillar "${this.currentAccordion.title}" updated!` : `Capability pillar "${this.currentAccordion.title}" created!`,
+            this.isEditAccordion ? 'Pillar Updated' : 'Pillar Created'
+          );
           this.showAccordionModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -239,12 +250,14 @@ export class AdminServicesComponent implements OnInit {
       this.adminApi.deleteAccordionItem(item.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Pillar deleted successfully.');
+            this.portfolioService.showSuccess(`Pillar "${item.title}" deleted successfully.`, 'Pillar Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete pillar.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete pillar.')
+        error: () => this.portfolioService.showError('Failed to delete pillar. Please try again.', 'Delete Error')
       });
     }
   }

@@ -60,15 +60,15 @@ export class ImagePickerComponent {
           this.imageUrl = chosenUrl;
           this.imageError = false;
           this.imageUrlChange.emit(this.imageUrl);
-          this.portfolioService.showToast(`Uploaded "${file.name}" successfully! ✨`);
+          this.portfolioService.showSuccess(`Uploaded "${file.name}" successfully!`, 'Upload Success');
         } else {
-          this.portfolioService.showToast(res.message || 'Upload failed.');
+          this.portfolioService.showError(res.message || 'Upload failed.', 'Upload Error');
         }
         this.cdr.detectChanges();
       },
       error: (err) => {
         this.uploading = false;
-        this.portfolioService.showToast(err.error?.message || 'Failed to upload image.');
+        this.portfolioService.showError(err.error?.message || 'Failed to upload image.', 'Upload Error');
         this.cdr.detectChanges();
       }
     });
@@ -84,10 +84,10 @@ export class ImagePickerComponent {
     if (!this.imageUrl) return;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(this.imageUrl).then(() => {
-        this.portfolioService.showToast('Image URL copied to clipboard! 📋');
+        this.portfolioService.showInfo('Image URL copied to clipboard! 📋', 'Copied');
       });
     } else {
-      this.portfolioService.showToast('Copied URL! 📋');
+      this.portfolioService.showInfo('Image URL copied to clipboard! 📋', 'Copied');
     }
   }
 
@@ -112,7 +112,7 @@ export class ImagePickerComponent {
       },
       error: () => {
         this.loadingMedia = false;
-        this.portfolioService.showToast('Failed to load media library assets.');
+        this.portfolioService.showError('Failed to load media library assets.', 'Load Error');
         this.cdr.detectChanges();
       }
     });
@@ -134,7 +134,7 @@ export class ImagePickerComponent {
     this.imageError = false;
     this.imageUrlChange.emit(this.imageUrl);
     this.showMediaModal = false;
-    this.portfolioService.showToast(`Selected "${file.originalFileName || file.fileName}"! ✨`);
+    this.portfolioService.showInfo(`Selected "${file.originalFileName || file.fileName}"`, 'Asset Selected');
     this.cdr.detectChanges();
   }
 }

@@ -46,7 +46,7 @@ export class AdminMediaComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load media files.');
+        this.portfolioService.showError('Failed to load media files from server.', 'Load Error');
       }
     });
   }
@@ -75,21 +75,21 @@ export class AdminMediaComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast('File uploaded successfully!');
+          this.portfolioService.showSuccess(`File "${file.name}" uploaded successfully!`, 'File Uploaded');
           this.loadMedia();
         } else {
-          this.portfolioService.showToast(res.message || 'Upload failed.');
+          this.portfolioService.showError(res.message || 'Upload failed.', 'Upload Error');
         }
       },
       error: (err) => {
-        this.portfolioService.showToast(err.error?.message || 'File upload error.');
+        this.portfolioService.showError(err.error?.message || 'File upload failed. Please try again.', 'Upload Error');
       }
     });
   }
 
   copyUrl(url: string): void {
     navigator.clipboard.writeText(url).then(() => {
-      this.portfolioService.showToast('URL copied to clipboard!');
+      this.portfolioService.showInfo('Asset URL copied to clipboard! 📋', 'Copied');
     });
   }
 
@@ -109,12 +109,14 @@ export class AdminMediaComponent implements OnInit {
       this.adminApi.deleteMedia(file.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('File deleted successfully.');
+            this.portfolioService.showSuccess(`Media asset "${file.fileName}" deleted successfully.`, 'File Deleted');
             if (this.selectedFile?.id === file.id) this.selectedFile = null;
             this.loadMedia();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete file.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete file.')
+        error: () => this.portfolioService.showError('Failed to delete media asset. Please try again.', 'Delete Error')
       });
     }
   }

@@ -371,9 +371,14 @@
 
 <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
 <div class="toast-container-custom" *ngIf="toastMessage" (click)="portfolioService.clearToast()">
-  <div class="custom-toast">
-    <i class="fas fa-check-circle text-green"></i>
-    <span>{{ toastMessage }}</span>
+  <div class="custom-toast" [ngClass]="'toast-' + toastMessage.type">
+    <div class="toast-icon-wrap" [ngClass]="'icon-' + toastMessage.type">
+      <i [class]="toastMessage.icon"></i>
+    </div>
+    <div class="toast-content">
+      <span class="toast-title" *ngIf="toastMessage.title">{{ toastMessage.title }}</span>
+      <span class="toast-text">{{ toastMessage.message }}</span>
+    </div>
     <button type="button" class="toast-close-btn" (click)="portfolioService.clearToast(); $event.stopPropagation()" aria-label="Close notification">
       <i class="fas fa-times"></i>
     </button>

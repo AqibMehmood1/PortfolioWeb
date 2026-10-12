@@ -94,6 +94,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     if (!this.contactForm.name.trim() || !this.contactForm.email.trim() || !this.contactForm.message.trim()) {
       this.errorMessage = 'Please complete all required fields (Full Name, Work Email, and Message).';
+      this.portfolioService.showWarning(this.errorMessage, 'Incomplete Form');
       this.cdr.detectChanges();
       this.msgTimeout = setTimeout(() => {
         this.errorMessage = null;
@@ -104,6 +105,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     if (!this.contactForm.agreed) {
       this.errorMessage = 'Please agree to the privacy policy to proceed.';
+      this.portfolioService.showWarning(this.errorMessage, 'Privacy Agreement');
       this.cdr.detectChanges();
       this.msgTimeout = setTimeout(() => {
         this.errorMessage = null;
@@ -141,7 +143,7 @@ export class ContactComponent implements OnInit, OnDestroy {
           this.isSubmitting = false;
           const sender = this.contactForm.name.trim();
           this.successMessage = res.message || `Thank you, ${sender}! Your message has been received. Principal Architect Bilal will respond within 24 hours. 🚀`;
-          this.portfolioService.showToast(`Thank you, ${sender}! Message sent successfully. 🚀`);
+          this.portfolioService.showSuccess(`Thank you, ${sender}! Message sent successfully. 🚀`, 'Message Sent');
           
           // Clear all form fields on success
           this.contactForm = {
@@ -178,6 +180,7 @@ export class ContactComponent implements OnInit, OnDestroy {
             msg = err.error;
           }
           this.errorMessage = msg;
+          this.portfolioService.showError(msg, 'Submission Failed');
           this.cdr.detectChanges();
 
           this.msgTimeout = setTimeout(() => {

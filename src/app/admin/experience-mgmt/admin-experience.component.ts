@@ -86,7 +86,7 @@ export class AdminExperienceComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load career data.');
+        this.portfolioService.showError('Failed to load career data from server.', 'Load Error');
       }
     });
   }
@@ -146,7 +146,7 @@ export class AdminExperienceComponent implements OnInit {
 
   saveExp(): void {
     if (!this.currentExp.role.trim() || !this.currentExp.company.trim()) {
-      this.portfolioService.showToast('Role and Company are required.');
+      this.portfolioService.showWarning('Role and Company are required before saving.', 'Validation Warning');
       return;
     }
 
@@ -164,15 +164,18 @@ export class AdminExperienceComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditExp ? 'Experience updated.' : 'Experience created.');
+          this.portfolioService.showSuccess(
+            this.isEditExp ? `Experience position "${this.currentExp.role}" updated!` : `Experience position "${this.currentExp.role}" created!`,
+            this.isEditExp ? 'Experience Updated' : 'Experience Created'
+          );
           this.showExpModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -194,12 +197,14 @@ export class AdminExperienceComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Experience deleted successfully.');
+            this.portfolioService.showSuccess(`Experience at "${exp.company}" deleted successfully.`, 'Experience Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete experience.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete experience.')
+        error: () => this.portfolioService.showError('Failed to delete experience. Please try again.', 'Delete Error')
       });
     }
   }
@@ -219,7 +224,7 @@ export class AdminExperienceComponent implements OnInit {
 
   saveEdu(): void {
     if (!this.currentEdu.degree.trim()) {
-      this.portfolioService.showToast('Degree is required.');
+      this.portfolioService.showWarning('Degree is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -237,15 +242,18 @@ export class AdminExperienceComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditEdu ? 'Education updated.' : 'Education created.');
+          this.portfolioService.showSuccess(
+            this.isEditEdu ? `Education "${this.currentEdu.degree}" updated!` : `Education "${this.currentEdu.degree}" added!`,
+            this.isEditEdu ? 'Education Updated' : 'Education Added'
+          );
           this.showEduModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -267,12 +275,14 @@ export class AdminExperienceComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Education deleted successfully.');
+            this.portfolioService.showSuccess(`Education credential "${edu.degree}" deleted.`, 'Education Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete education.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete education.')
+        error: () => this.portfolioService.showError('Failed to delete education. Please try again.', 'Delete Error')
       });
     }
   }
@@ -292,7 +302,7 @@ export class AdminExperienceComponent implements OnInit {
 
   saveCert(): void {
     if (!this.currentCert.title.trim()) {
-      this.portfolioService.showToast('Certification title is required.');
+      this.portfolioService.showWarning('Certification title is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -310,15 +320,18 @@ export class AdminExperienceComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditCert ? 'Certification updated.' : 'Certification created.');
+          this.portfolioService.showSuccess(
+            this.isEditCert ? `Certification "${this.currentCert.title}" updated!` : `Certification "${this.currentCert.title}" added!`,
+            this.isEditCert ? 'Certification Updated' : 'Certification Added'
+          );
           this.showCertModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -340,12 +353,14 @@ export class AdminExperienceComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Certification deleted successfully.');
+            this.portfolioService.showSuccess(`Certification "${cert.title}" deleted successfully.`, 'Certification Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete certification.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete certification.')
+        error: () => this.portfolioService.showError('Failed to delete certification. Please try again.', 'Delete Error')
       });
     }
   }

@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ChangeDetectorRef, NgZone } from '@angular/co
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { PortfolioService } from './services/portfolio.service';
+import { PortfolioService, ToastNotification } from './services/portfolio.service';
 import { SitePageDto } from './services/portfolio-api.service';
 import { ProjectItem } from './models/portfolio.model';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
@@ -18,7 +18,7 @@ export class AppComponent implements AfterViewInit {
   mobileMenuOpen: boolean = false;
   activeMegaMenu: 'hire' | 'services' | 'industries' | 'company' | null = null;
   selectedProject: ProjectItem | null = null;
-  toastMessage: string | null = null;
+  toastMessage: ToastNotification | null = null;
   isAdminRoute: boolean = false;
   private hoverTimeout: any = null;
 

@@ -166,11 +166,12 @@ export class AdminLayoutComponent implements OnInit {
   logout(): void {
     this.adminApi.logout().subscribe({
       next: () => {
-        this.portfolioService.showToast('Logged out successfully.');
+        this.portfolioService.showInfo('You have logged out of Admin CMS.', 'Signed Out');
         this.router.navigate(['/admin/login']);
       },
       error: () => {
         this.adminApi.clearSession();
+        this.portfolioService.showInfo('You have logged out of Admin CMS.', 'Signed Out');
         this.router.navigate(['/admin/login']);
       }
     });

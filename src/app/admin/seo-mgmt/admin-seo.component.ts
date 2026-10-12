@@ -53,7 +53,7 @@ export class AdminSeoComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load SEO metadata.');
+        this.portfolioService.showError('Failed to load SEO metadata from server.', 'Load Error');
       }
     });
   }
@@ -76,15 +76,17 @@ export class AdminSeoComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(`SEO for route "${this.selectedSeo?.pageRoute}" updated.`);
+          this.portfolioService.showSuccess(`SEO configuration for route "${this.selectedSeo?.pageRoute}" updated successfully!`, 'SEO Updated');
           const idx = this.seoList.findIndex(x => x.id === this.selectedSeo?.id);
           if (idx !== -1) {
             this.seoList[idx] = { ...this.selectedSeo! };
           }
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to save SEO metadata.', 'Save Error');
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to save SEO metadata.');
+        this.portfolioService.showError('Failed to save SEO metadata. Please try again.', 'Save Error');
       }
     });
   }

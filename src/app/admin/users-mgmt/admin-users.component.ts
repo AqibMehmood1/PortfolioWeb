@@ -61,7 +61,7 @@ export class AdminUsersComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load admin users.');
+        this.portfolioService.showError('Failed to load administrator accounts.', 'Load Error');
       }
     });
   }
@@ -96,12 +96,12 @@ export class AdminUsersComponent implements OnInit {
 
   saveUser(): void {
     if (!this.userForm.username.trim() || !this.userForm.email.trim()) {
-      this.portfolioService.showToast('Username and Email are required.');
+      this.portfolioService.showWarning('Username and Email are required before saving.', 'Validation Warning');
       return;
     }
 
     if (!this.isEdit && !this.userForm.password) {
-      this.portfolioService.showToast('Password is required for new users.');
+      this.portfolioService.showWarning('Password is required for newly created administrators.', 'Validation Warning');
       return;
     }
 
@@ -125,14 +125,17 @@ export class AdminUsersComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEdit ? 'User updated successfully.' : 'User created successfully.');
+          this.portfolioService.showSuccess(
+            this.isEdit ? `Admin user "${this.userForm.username}" updated successfully!` : `Admin user "${this.userForm.username}" created successfully!`,
+            this.isEdit ? 'User Updated' : 'User Created'
+          );
           this.showModal = false;
           this.loadUsers();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -153,11 +156,13 @@ export class AdminUsersComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('User deactivated/deleted successfully.');
+            this.portfolioService.showSuccess(`Admin user "${u.username}" deactivated successfully.`, 'User Deactivated');
             this.loadUsers();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to deactivate user.', 'Action Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete user.')
+        error: () => this.portfolioService.showError('Failed to deactivate administrator account.', 'Action Error')
       });
     }
   }

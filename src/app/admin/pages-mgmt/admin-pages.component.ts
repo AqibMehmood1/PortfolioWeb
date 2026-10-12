@@ -86,7 +86,9 @@ export class AdminPagesComponent implements OnInit {
           this.portfolioService.refreshPages();
         }
       },
-      error: () => {}
+      error: () => {
+        this.portfolioService.showError('Failed to load site pages from server.', 'Load Error');
+      }
     });
   }
 
@@ -116,13 +118,15 @@ export class AdminPagesComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           page.isVisible = !page.isVisible;
-          this.portfolioService.showToast(`Page "${page.title}" visibility toggled ${page.isVisible ? 'ON' : 'OFF'}.`);
+          this.portfolioService.showSuccess(`Page "${page.title}" visibility turned ${page.isVisible ? 'ON' : 'OFF'}.`, 'Visibility Updated');
           this.portfolioService.refreshPages();
           this.cdr.detectChanges();
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to update page visibility.', 'Update Error');
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to update page visibility.');
+        this.portfolioService.showError('Failed to update page visibility.', 'Update Error');
       }
     });
   }
@@ -133,13 +137,15 @@ export class AdminPagesComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           page.showInNav = !page.showInNav;
-          this.portfolioService.showToast(`Navbar display for "${page.title}" updated.`);
+          this.portfolioService.showSuccess(`Navbar display for "${page.title}" updated.`, 'Navigation Updated');
           this.portfolioService.refreshPages();
           this.cdr.detectChanges();
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to update navbar display setting.', 'Update Error');
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to update navbar display setting.');
+        this.portfolioService.showError('Failed to update navbar display setting.', 'Update Error');
       }
     });
   }
@@ -162,13 +168,15 @@ export class AdminPagesComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           page.showInFooter = !page.showInFooter;
-          this.portfolioService.showToast(`Footer display for "${page.title}" updated.`);
+          this.portfolioService.showSuccess(`Footer display for "${page.title}" updated.`, 'Footer Updated');
           this.portfolioService.refreshPages();
           this.cdr.detectChanges();
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to update footer display setting.', 'Update Error');
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to update footer display setting.');
+        this.portfolioService.showError('Failed to update footer display setting.', 'Update Error');
       }
     });
   }
@@ -203,7 +211,7 @@ export class AdminPagesComponent implements OnInit {
 
   savePage(): void {
     if (!this.pageForm.title.trim()) {
-      this.portfolioService.showToast('Please provide a page title.');
+      this.portfolioService.showWarning('Please provide a page title before saving.', 'Validation Warning');
       return;
     }
 
@@ -221,15 +229,18 @@ export class AdminPagesComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditPage ? 'Page updated successfully.' : 'New page added successfully.');
+          this.portfolioService.showSuccess(
+            this.isEditPage ? `Page "${this.pageForm.title}" updated successfully.` : `Page "${this.pageForm.title}" created successfully.`,
+            this.isEditPage ? 'Page Updated' : 'Page Created'
+          );
           this.showPageModal = false;
           this.loadPages();
         } else {
-          this.portfolioService.showToast(res.message || 'Failed to save page.');
+          this.portfolioService.showError(res.message || 'Failed to save page.', 'Save Error');
         }
       },
       error: (err) => {
-        this.portfolioService.showToast(err.error?.message || 'Error saving page.');
+        this.portfolioService.showError(err.error?.message || 'Error saving page. Please try again.', 'Save Error');
       }
     });
   }
@@ -237,7 +248,7 @@ export class AdminPagesComponent implements OnInit {
   deletePage(page: SitePageDto, event?: Event): void {
     if (event) event.stopPropagation();
     if (page.isSystem) {
-      this.portfolioService.showToast('System pages cannot be deleted, but you can toggle their visibility OFF to hide them completely.');
+      this.portfolioService.showWarning('System pages cannot be deleted, but you can toggle their visibility OFF to hide them completely.', 'System Protected');
       return;
     }
 
@@ -251,17 +262,17 @@ export class AdminPagesComponent implements OnInit {
         this.adminApi.deletePage(page.id).subscribe({
           next: (res) => {
             if (res.success) {
-              this.portfolioService.showToast(`Page "${page.title}" deleted successfully.`);
+              this.portfolioService.showSuccess(`Page "${page.title}" deleted successfully.`, 'Page Deleted');
               if (this.selectedPageForSections?.id === page.id) {
                 this.selectedPageForSections = null;
               }
               this.loadPages();
             } else {
-              this.portfolioService.showToast(res.message || 'Failed to delete page.');
+              this.portfolioService.showError(res.message || 'Failed to delete page.', 'Delete Error');
             }
           },
           error: (err) => {
-            this.portfolioService.showToast(err.error?.message || 'Error deleting page.');
+            this.portfolioService.showError(err.error?.message || 'Error deleting page. Please try again.', 'Delete Error');
           }
         });
       }
@@ -285,13 +296,15 @@ export class AdminPagesComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           section.isVisible = !section.isVisible;
-          this.portfolioService.showToast(`Section "${section.title}" visibility toggled ${section.isVisible ? 'ON' : 'OFF'}.`);
+          this.portfolioService.showSuccess(`Section "${section.title}" visibility turned ${section.isVisible ? 'ON' : 'OFF'}.`, 'Visibility Updated');
           this.portfolioService.refreshPages();
           this.cdr.detectChanges();
+        } else {
+          this.portfolioService.showError(res.message || 'Failed to update section visibility.', 'Update Error');
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to update section visibility.');
+        this.portfolioService.showError('Failed to update section visibility.', 'Update Error');
       }
     });
   }
@@ -419,7 +432,7 @@ export class AdminPagesComponent implements OnInit {
 
   saveSection(): void {
     if (!this.sectionForm.title.trim() || !this.sectionForm.sectionKey.trim()) {
-      this.portfolioService.showToast('Please provide both Section Key and Title.');
+      this.portfolioService.showWarning('Please provide both Section Key and Title before saving.', 'Validation Warning');
       return;
     }
 
@@ -458,15 +471,18 @@ export class AdminPagesComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditSection ? 'Section updated successfully.' : 'New section created successfully.');
+          this.portfolioService.showSuccess(
+            this.isEditSection ? `Section "${this.sectionForm.title}" updated successfully.` : `Section "${this.sectionForm.title}" created successfully.`,
+            this.isEditSection ? 'Section Updated' : 'Section Created'
+          );
           this.showSectionModal = false;
           this.loadPages();
         } else {
-          this.portfolioService.showToast(res.message || 'Failed to save section.');
+          this.portfolioService.showError(res.message || 'Failed to save section.', 'Save Error');
         }
       },
       error: (err) => {
-        this.portfolioService.showToast(err.error?.message || 'Error saving section.');
+        this.portfolioService.showError(err.error?.message || 'Error saving section. Please try again.', 'Save Error');
       }
     });
   }
@@ -482,14 +498,14 @@ export class AdminPagesComponent implements OnInit {
         this.adminApi.deleteSection(section.id).subscribe({
           next: (res) => {
             if (res.success) {
-              this.portfolioService.showToast(`Section "${section.title}" deleted.`);
+              this.portfolioService.showSuccess(`Section "${section.title}" deleted successfully.`, 'Section Deleted');
               this.loadPages();
             } else {
-              this.portfolioService.showToast(res.message || 'Failed to delete section.');
+              this.portfolioService.showError(res.message || 'Failed to delete section.', 'Delete Error');
             }
           },
           error: (err) => {
-            this.portfolioService.showToast(err.error?.message || 'Error deleting section.');
+            this.portfolioService.showError(err.error?.message || 'Error deleting section. Please try again.', 'Delete Error');
           }
         });
       }

@@ -49,7 +49,7 @@ export class AdminProjectsComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-        this.portfolioService.showToast('Failed to load projects from database.');
+        this.portfolioService.showError('Failed to load projects from database.', 'Load Error');
         this.cdr.detectChanges();
       }
     });
@@ -110,7 +110,7 @@ export class AdminProjectsComponent implements OnInit {
 
   saveProject(): void {
     if (!this.currentProject.title.trim()) {
-      this.portfolioService.showToast('Project title is required.');
+      this.portfolioService.showWarning('Project title is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -135,16 +135,18 @@ export class AdminProjectsComponent implements OnInit {
         next: (res) => {
           this.saving = false;
           if (res.success) {
-            this.portfolioService.showToast('Project updated successfully.');
+            this.portfolioService.showSuccess(`Project "${this.currentProject.title}" updated successfully!`, 'Project Updated');
             this.showModal = false;
             this.loadProjects();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to update project.', 'Update Error');
           }
           this.cdr.detectChanges();
         },
         error: (err) => {
           this.saving = false;
-          this.portfolioService.showToast(err.error?.message || 'Update failed.');
+          this.portfolioService.showError(err.error?.message || 'Failed to update project. Please try again.', 'Update Error');
           this.cdr.detectChanges();
         }
       });
@@ -160,16 +162,18 @@ export class AdminProjectsComponent implements OnInit {
         next: (res) => {
           this.saving = false;
           if (res.success) {
-            this.portfolioService.showToast('Project created successfully.');
+            this.portfolioService.showSuccess(`Project "${this.currentProject.title}" published successfully!`, 'Project Created');
             this.showModal = false;
             this.loadProjects();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to create project.', 'Creation Error');
           }
           this.cdr.detectChanges();
         },
         error: (err) => {
           this.saving = false;
-          this.portfolioService.showToast(err.error?.message || 'Create failed.');
+          this.portfolioService.showError(err.error?.message || 'Failed to create project. Please try again.', 'Creation Error');
           this.cdr.detectChanges();
         }
       });
@@ -192,12 +196,14 @@ export class AdminProjectsComponent implements OnInit {
       this.adminApi.deleteProject(proj.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Project deleted successfully.');
+            this.portfolioService.showSuccess(`Project "${proj.title}" deleted successfully.`, 'Project Deleted');
             this.loadProjects();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete project.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete project.')
+        error: () => this.portfolioService.showError('Failed to delete project. Please try again.', 'Delete Error')
       });
     }
   }

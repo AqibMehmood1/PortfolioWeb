@@ -47,7 +47,7 @@ export class AdminAuditLogsComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-        this.portfolioService.showToast('Failed to load audit logs.');
+        this.portfolioService.showError('Failed to load audit logs from server.', 'Load Error');
         this.cdr.detectChanges();
       }
     });

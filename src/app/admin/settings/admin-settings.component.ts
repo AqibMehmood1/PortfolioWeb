@@ -44,7 +44,7 @@ export class AdminSettingsComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-        this.portfolioService.showToast('Failed to load website settings.');
+        this.portfolioService.showError('Failed to load website settings from server.', 'Load Error');
         this.cdr.detectChanges();
       }
     });
@@ -66,21 +66,21 @@ export class AdminSettingsComponent implements OnInit {
       next: (res) => {
         this.saving = false;
         if (res.success) {
-          this.portfolioService.showToast('Website settings saved successfully!');
+          this.portfolioService.showSuccess('Website settings saved successfully!', 'Settings Saved');
           this.portfolioService.refreshData();
           const newFav = this.getVal('Favicon');
           if (newFav) {
             this.portfolioService.updateFavicon(newFav);
           }
         } else {
-          this.portfolioService.showToast(res.message || 'Failed to update settings.');
+          this.portfolioService.showError(res.message || 'Failed to update settings.', 'Save Error');
         }
         this.cdr.detectChanges();
       },
       error: (err) => {
         this.saving = false;
         const msg = err.error?.message || 'Error saving settings to database.';
-        this.portfolioService.showToast(msg);
+        this.portfolioService.showError(msg, 'Save Error');
         this.cdr.detectChanges();
       }
     });

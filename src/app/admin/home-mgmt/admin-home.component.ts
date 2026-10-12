@@ -51,7 +51,7 @@ export class AdminHomeComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-        this.portfolioService.showToast('Failed to load homepage content from database.');
+        this.portfolioService.showError('Failed to load homepage content from database.', 'Load Error');
         this.cdr.detectChanges();
       }
     });
@@ -71,16 +71,16 @@ export class AdminHomeComponent implements OnInit {
       next: (res) => {
         this.saving = false;
         if (res.success) {
-          this.portfolioService.showToast('Homepage content updated successfully!');
+          this.portfolioService.showSuccess('Homepage content updated successfully!', 'Content Saved');
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Failed to save homepage content.');
+          this.portfolioService.showError(res.message || 'Failed to save homepage content.', 'Save Error');
         }
         this.cdr.detectChanges();
       },
       error: () => {
         this.saving = false;
-        this.portfolioService.showToast('Error saving homepage content.');
+        this.portfolioService.showError('Error saving homepage content. Please try again.', 'Save Error');
         this.cdr.detectChanges();
       }
     });

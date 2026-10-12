@@ -68,7 +68,7 @@ export class AdminTechnologiesComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load technologies.');
+        this.portfolioService.showError('Failed to load technologies from server.', 'Load Error');
       }
     });
   }
@@ -124,7 +124,7 @@ export class AdminTechnologiesComponent implements OnInit {
 
   saveTech(): void {
     if (!this.currentTech.name.trim()) {
-      this.portfolioService.showToast('Technology name is required.');
+      this.portfolioService.showWarning('Technology name is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -146,15 +146,18 @@ export class AdminTechnologiesComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditTech ? 'Technology updated.' : 'Technology created.');
+          this.portfolioService.showSuccess(
+            this.isEditTech ? `Technology "${this.currentTech.name}" updated successfully!` : `Technology "${this.currentTech.name}" created successfully!`,
+            this.isEditTech ? 'Technology Updated' : 'Technology Created'
+          );
           this.showTechModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -176,12 +179,14 @@ export class AdminTechnologiesComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Technology deleted successfully.');
+            this.portfolioService.showSuccess(`Technology "${tech.name}" deleted successfully.`, 'Technology Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete technology.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete technology.')
+        error: () => this.portfolioService.showError('Failed to delete technology. Please try again.', 'Delete Error')
       });
     }
   }
@@ -201,7 +206,7 @@ export class AdminTechnologiesComponent implements OnInit {
 
   saveCat(): void {
     if (!this.currentCat.name.trim()) {
-      this.portfolioService.showToast('Category name is required.');
+      this.portfolioService.showWarning('Category name is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -223,15 +228,18 @@ export class AdminTechnologiesComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditCat ? 'Category updated.' : 'Category created.');
+          this.portfolioService.showSuccess(
+            this.isEditCat ? `Category "${this.currentCat.name}" updated successfully!` : `Category "${this.currentCat.name}" created successfully!`,
+            this.isEditCat ? 'Category Updated' : 'Category Created'
+          );
           this.showCatModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -251,12 +259,14 @@ export class AdminTechnologiesComponent implements OnInit {
       this.adminApi.deleteTechCategory(cat.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Category deleted successfully.');
+            this.portfolioService.showSuccess(`Category "${cat.name}" deleted successfully.`, 'Category Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete category.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete category.')
+        error: () => this.portfolioService.showError('Failed to delete category. Please try again.', 'Delete Error')
       });
     }
   }

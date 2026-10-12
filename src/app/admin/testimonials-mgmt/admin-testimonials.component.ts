@@ -69,7 +69,7 @@ export class AdminTestimonialsComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load testimonials/industries.');
+        this.portfolioService.showError('Failed to load testimonials and industries from server.', 'Load Error');
       }
     });
   }
@@ -115,7 +115,7 @@ export class AdminTestimonialsComponent implements OnInit {
 
   saveTestimonial(): void {
     if (!this.currentTestimonial.author.trim() || !this.currentTestimonial.quote.trim()) {
-      this.portfolioService.showToast('Author name and Testimonial quote are required.');
+      this.portfolioService.showWarning('Author name and Testimonial quote are required before saving.', 'Validation Warning');
       return;
     }
 
@@ -133,15 +133,18 @@ export class AdminTestimonialsComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditTestimonial ? 'Testimonial updated.' : 'Testimonial created.');
+          this.portfolioService.showSuccess(
+            this.isEditTestimonial ? `Testimonial by "${this.currentTestimonial.author}" updated!` : `Testimonial by "${this.currentTestimonial.author}" created!`,
+            this.isEditTestimonial ? 'Testimonial Updated' : 'Testimonial Created'
+          );
           this.showTestimonialModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -163,12 +166,14 @@ export class AdminTestimonialsComponent implements OnInit {
       ).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Testimonial deleted successfully.');
+            this.portfolioService.showSuccess(`Testimonial by "${testi.author}" deleted successfully.`, 'Testimonial Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete testimonial.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete testimonial.')
+        error: () => this.portfolioService.showError('Failed to delete testimonial. Please try again.', 'Delete Error')
       });
     }
   }
@@ -188,7 +193,7 @@ export class AdminTestimonialsComponent implements OnInit {
 
   saveIndustry(): void {
     if (!this.currentIndustry.name.trim()) {
-      this.portfolioService.showToast('Industry name is required.');
+      this.portfolioService.showWarning('Industry name is required before saving.', 'Validation Warning');
       return;
     }
 
@@ -206,15 +211,18 @@ export class AdminTestimonialsComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast(this.isEditIndustry ? 'Industry updated.' : 'Industry created.');
+          this.portfolioService.showSuccess(
+            this.isEditIndustry ? `Industry sector "${this.currentIndustry.name}" updated!` : `Industry sector "${this.currentIndustry.name}" created!`,
+            this.isEditIndustry ? 'Industry Updated' : 'Industry Created'
+          );
           this.showIndustryModal = false;
           this.loadData();
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Operation failed.');
+          this.portfolioService.showError(res.message || 'Operation failed.', 'Save Error');
         }
       },
-      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+      error: (err) => this.portfolioService.showError(err.error?.message || 'Operation failed. Please try again.', 'Save Error')
     });
   }
 
@@ -234,12 +242,14 @@ export class AdminTestimonialsComponent implements OnInit {
       this.adminApi.deleteIndustry(ind.id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.portfolioService.showToast('Industry deleted successfully.');
+            this.portfolioService.showSuccess(`Industry sector "${ind.name}" deleted successfully.`, 'Industry Deleted');
             this.loadData();
             this.portfolioService.refreshData();
+          } else {
+            this.portfolioService.showError(res.message || 'Failed to delete industry.', 'Delete Error');
           }
         },
-        error: () => this.portfolioService.showToast('Failed to delete industry.')
+        error: () => this.portfolioService.showError('Failed to delete industry. Please try again.', 'Delete Error')
       });
     }
   }

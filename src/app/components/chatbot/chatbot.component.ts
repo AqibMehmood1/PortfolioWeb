@@ -5,6 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { timeout, finalize } from 'rxjs';
 import { PortfolioApiService, ChatMessageHistoryDto, ChatActionLinkDto, SubmitChatInquiryDto } from '../../services/portfolio-api.service';
+import { PortfolioService } from '../../services/portfolio.service';
 
 interface DisplayChatMessage {
   id: string;
@@ -65,6 +66,7 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   constructor(
     private apiService: PortfolioApiService,
+    private portfolioService: PortfolioService,
     private sanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef,
     private router: Router
@@ -235,6 +237,7 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     if (!this.inquiryForm.name?.trim() || !this.inquiryForm.email?.trim() || !this.inquiryForm.message?.trim()) {
       this.modalErrorMsg = 'Please provide your name, work email, and project details.';
+      this.portfolioService.showWarning(this.modalErrorMsg, 'Incomplete Inquiry');
       this.modalMsgTimeout = setTimeout(() => {
         this.modalErrorMsg = null;
         this.cdr.detectChanges();
@@ -279,6 +282,7 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
         const interest = this.inquiryForm.interest;
 
         this.showInquiryModal = false;
+        this.portfolioService.showSuccess(`Thank you, ${sender}! Your consultation request was received. 🚀`, 'Request Received');
         
         this.addBotMessage(
           `🎉 **Inquiry Received!**\n\nThank you **${sender}**! Your technical inquiry regarding *"${interest}"* has been routed to our Principal Solutions Architect.\n\nWe will review your requirements and follow up via **${email}** within 24 business hours.`,
@@ -300,6 +304,7 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
       error: () => {
         this.isSubmittingInquiry = false;
         this.modalErrorMsg = 'Could not submit inquiry at this moment. Please try again or visit our Contact page.';
+        this.portfolioService.showError(this.modalErrorMsg, 'Submission Error');
         this.modalMsgTimeout = setTimeout(() => {
           this.modalErrorMsg = null;
           this.cdr.detectChanges();

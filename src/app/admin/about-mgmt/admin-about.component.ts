@@ -64,7 +64,7 @@ export class AdminAboutComponent implements OnInit {
         }
       },
       error: () => {
-        this.portfolioService.showToast('Failed to load About content.');
+        this.portfolioService.showError('Failed to load About & Strategy content from server.', 'Load Error');
       }
     });
   }
@@ -80,14 +80,14 @@ export class AdminAboutComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         if (res.success) {
-          this.portfolioService.showToast('About & Strategy content updated successfully!');
+          this.portfolioService.showSuccess('About & Strategy content updated successfully!', 'Content Saved');
           this.portfolioService.refreshData();
         } else {
-          this.portfolioService.showToast(res.message || 'Failed to update About content.');
+          this.portfolioService.showError(res.message || 'Failed to update About content.', 'Save Error');
         }
       },
       error: () => {
-        this.portfolioService.showToast('Error saving About content to database.');
+        this.portfolioService.showError('Error saving About content to database. Please try again.', 'Save Error');
       }
     });
   }

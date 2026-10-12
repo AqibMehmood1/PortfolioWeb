@@ -369,6 +369,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (!this.inquiryForm.fullName.trim() || !this.inquiryForm.email.trim() || !this.inquiryForm.message.trim()) {
       this.heroErrorMsg = 'Please complete all required fields (Name, Work Email, and Message).';
+      this.portfolioService.showWarning(this.heroErrorMsg, 'Incomplete Inquiry');
       this.heroMsgTimeout = setTimeout(() => {
         this.heroErrorMsg = null;
       }, 5000);
@@ -377,6 +378,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (!this.inquiryForm.agreed) {
       this.heroErrorMsg = 'Please agree to the privacy policy to proceed.';
+      this.portfolioService.showWarning(this.heroErrorMsg, 'Privacy Agreement');
       this.heroMsgTimeout = setTimeout(() => {
         this.heroErrorMsg = null;
       }, 5000);
@@ -410,7 +412,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           this.isSubmittingInquiry = false;
           const sender = this.inquiryForm.fullName;
           this.heroSuccessMsg = res.message || `Thank you, ${sender}! Your inquiry has been sent successfully. We will follow up shortly.`;
-          this.portfolioService.showToast(`Thank you, ${sender}! Inquiry submitted successfully. 🚀`);
+          this.portfolioService.showSuccess(`Thank you, ${sender}! Inquiry submitted successfully. 🚀`, 'Inquiry Received');
           
           // Clear the form fields on success
           this.inquiryForm = {
@@ -442,6 +444,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             msg = err.error.message;
           }
           this.heroErrorMsg = msg;
+          this.portfolioService.showError(msg, 'Submission Failed');
           this.cdr.detectChanges();
 
           this.heroMsgTimeout = setTimeout(() => {
@@ -462,6 +465,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (!this.bottomContactForm.fullName.trim() || !this.bottomContactForm.email.trim() || !this.bottomContactForm.message.trim()) {
       this.bottomErrorMsg = 'Please complete all required fields (Full Name, Work Email, and Message).';
+      this.portfolioService.showWarning(this.bottomErrorMsg, 'Incomplete Form');
       this.cdr.detectChanges();
       this.bottomMsgTimeout = setTimeout(() => {
         this.bottomErrorMsg = null;
@@ -494,7 +498,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           this.isSubmittingBottom = false;
           const sender = this.bottomContactForm.fullName;
           this.bottomSuccessMsg = res.message || `Thank you, ${sender}! Your consultation request has been received. We will respond within 24 hours.`;
-          this.portfolioService.showToast(`Thank you, ${sender}! Consultation request submitted. 🚀`);
+          this.portfolioService.showSuccess(`Thank you, ${sender}! Consultation request submitted. 🚀`, 'Request Received');
 
           // Clear bottom form fields on success
           this.bottomContactForm = {
@@ -524,6 +528,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             msg = err.error.message;
           }
           this.bottomErrorMsg = msg;
+          this.portfolioService.showError(msg, 'Submission Failed');
           this.cdr.detectChanges();
 
           this.bottomMsgTimeout = setTimeout(() => {
