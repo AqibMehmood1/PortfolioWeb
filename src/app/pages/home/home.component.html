@@ -444,46 +444,52 @@
 
     <div class="iz-projects-grid">
       <div class="iz-project-card" *ngFor="let project of featuredProjects">
-        <div class="iz-project-media">
-          <img [src]="project.image" [alt]="project.title">
+        <!-- Media / Thumbnail with hover effect -->
+        <div class="iz-project-media" (click)="openProjectModal(project)" title="Click to view Architecture Blueprint">
+          <img [src]="project.image" [alt]="project.title" loading="lazy">
           <span class="iz-project-cat-tag">{{ project.category }}</span>
+          <div class="iz-project-media-overlay">
+            <span class="iz-quick-demo-btn">
+              <i class="fas fa-eye me-1"></i> Blueprint Demo
+            </span>
+          </div>
         </div>
 
         <div class="iz-project-body">
           <div>
-            <h4>{{ project.title }}</h4>
-            <p>{{ project.description }}</p>
+            <h4 class="iz-project-title" (click)="openProjectModal(project)" [title]="project.title">{{ project.title }}</h4>
+            <p class="iz-project-desc">{{ project.description }}</p>
 
-            <div class="mb-3">
-              <h6 class="fw-bold small mb-2" style="color: #475569;">Architecture Highlights:</h6>
-              <div class="d-flex flex-wrap gap-1">
-                <span class="iz-chip" *ngFor="let h of project.highlights">
-                  <i class="fas fa-check text-green me-1"></i> {{ h }}
-                </span>
+            <!-- Compact Architecture Highlights -->
+            <div class="iz-project-highlights-box" *ngIf="project.highlights.length">
+              <div class="iz-highlight-item" *ngFor="let h of project.highlights | slice:0:2" [title]="h">
+                <i class="fas fa-check-circle"></i>
+                <span>{{ h }}</span>
               </div>
             </div>
 
-            <div class="iz-tech-chips">
-              <span class="iz-chip" *ngFor="let t of project.tech">{{ t }}</span>
+            <!-- Sleek Tech Badges -->
+            <div class="iz-card-tech-row" *ngIf="project.tech.length">
+              <span class="iz-tech-badge" *ngFor="let t of project.tech | slice:0:3">{{ t }}</span>
+              <span class="iz-tech-more" *ngIf="project.tech.length > 3">+{{ project.tech.length - 3 }}</span>
             </div>
           </div>
 
           <div class="iz-project-actions">
-            <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" rel="noopener" class="iz-btn-green py-2 px-3 small">
-              Live Site <i class="fas fa-external-link-alt ms-1"></i>
-            </a>
-            <span *ngIf="!project.liveUrl" class="iz-chip py-2 px-2 small border" style="background: #f1f5f9; font-size: 0.78rem;">
-              <i class="fas fa-lock text-green me-1"></i> Under NDA
-            </span>
-            <a *ngIf="!project.liveUrl" routerLink="/contact" class="iz-btn-green py-2 px-3 small">
-              Request Walkthrough <i class="fas fa-calendar-alt ms-1"></i>
-            </a>
-            <button type="button" class="iz-btn-dark py-2 px-3 small" (click)="openProjectModal(project)">
-              <i class="fas fa-eye me-1 text-green"></i> Architecture Demo
-            </button>
-            <button type="button" class="iz-btn-copy-link" (click)="copyProjectLink(project)" title="Copy Link"
-              aria-label="Copy Link">
-              <i class="fas fa-link"></i>
+            <div class="d-flex align-items-center gap-2">
+              <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" rel="noopener" class="iz-card-btn-primary">
+                Live Site <i class="fas fa-external-link-alt ms-1"></i>
+              </a>
+              <span *ngIf="!project.liveUrl" class="iz-nda-tag" title="Enterprise NDA Protected">
+                <i class="fas fa-lock text-muted"></i> NDA
+              </span>
+              <a *ngIf="!project.liveUrl" routerLink="/contact" class="iz-card-btn-primary">
+                Walkthrough <i class="fas fa-calendar-alt ms-1"></i>
+              </a>
+            </div>
+
+            <button type="button" class="iz-card-btn-secondary" (click)="openProjectModal(project)" title="View Architecture Blueprint">
+              <i class="fas fa-eye text-green"></i> Demo
             </button>
           </div>
         </div>
