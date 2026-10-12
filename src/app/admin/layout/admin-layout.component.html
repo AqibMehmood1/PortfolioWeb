@@ -31,15 +31,29 @@
     </div>
 
     <nav class="sidebar-nav">
-      <div class="nav-section-title" *ngIf="sidebarOpen || isMobile">CORE PLATFORM</div>
-      <ul>
-        <li *ngFor="let item of navItems">
-          <a [routerLink]="item.route" routerLinkActive="active" [title]="item.label" (click)="closeSidebarOnMobile()">
-            <i [class]="item.icon"></i>
-            <span class="nav-label" *ngIf="sidebarOpen || isMobile">{{ item.label }}</span>
-          </a>
-        </li>
-      </ul>
+      <div *ngFor="let section of navSections; let last = last" class="nav-section">
+        <div class="nav-section-title" *ngIf="sidebarOpen || isMobile">
+          <span class="nav-section-label">
+            <span class="nav-section-bullet" [class]="'bullet-' + (section.accent || 'lime')"></span>
+            {{ section.title }}
+          </span>
+          <span class="nav-section-tag" [class]="'tag-' + (section.accent || 'lime')" *ngIf="section.tag">
+            {{ section.tag }}
+          </span>
+        </div>
+        <ul>
+          <li *ngFor="let item of section.items">
+            <a [routerLink]="item.route" routerLinkActive="active" [title]="item.label" (click)="closeSidebarOnMobile()">
+              <i [class]="item.icon"></i>
+              <span class="nav-label" *ngIf="sidebarOpen || isMobile">{{ item.label }}</span>
+              <span class="nav-badge" [ngClass]="item.badgeClass || ''" *ngIf="(sidebarOpen || isMobile) && item.badge">
+                {{ item.badge }}
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="nav-section-divider" *ngIf="!last"></div>
+      </div>
     </nav>
 
     <div class="sidebar-footer">
