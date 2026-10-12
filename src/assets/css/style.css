@@ -699,17 +699,41 @@ p.lead, .lead {
   }
 }
 
-/* Mobile Drawer Menu */
+/* Modern Backdrop for Mobile Drawer */
+.iz-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 60px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 998;
+  animation: izBackdropFade 0.22s ease-out forwards;
+}
+
+@keyframes izBackdropFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modern Mobile Drawer Menu */
 .iz-mobile-drawer-white {
   display: none;
   flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   background: #ffffff;
-  border-top: 1px solid #e2e8f0;
-  padding: 18px 20px 24px 20px;
-  gap: 8px;
-  max-height: calc(100vh - 75px);
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 0 0 24px 24px;
+  padding: 16px 20px 24px 20px;
+  gap: 12px;
+  max-height: calc(100vh - 80px);
   overflow-y: auto;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.25);
+  z-index: 1000;
 }
 
 .iz-mobile-drawer-white.open {
@@ -720,7 +744,7 @@ p.lead, .lead {
 @keyframes izDrawerSlide {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -728,23 +752,100 @@ p.lead, .lead {
   }
 }
 
-.iz-mobile-drawer-white a {
-  color: #1e293b;
-  font-size: 1.05rem;
-  font-weight: 600;
-  padding: 12px 16px;
-  border-radius: 12px;
-  text-decoration: none;
+.iz-mobile-nav-list {
   display: flex;
-  align-items: center;
-  transition: all var(--transition-fast);
-  min-height: 44px;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.iz-mobile-drawer-white a:hover,
-.iz-mobile-drawer-white a.active {
-  background: var(--iz-green-tint);
-  color: var(--iz-green-dark);
+.iz-mobile-nav-item {
+  color: #1e293b;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 48px;
+  border: 1px solid transparent;
+}
+
+.iz-mobile-nav-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+  color: #16a34a;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.iz-mobile-nav-title {
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.iz-mobile-nav-arrow {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Inactive Hover */
+.iz-mobile-nav-item:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.iz-mobile-nav-item:hover .iz-mobile-nav-icon {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.iz-mobile-nav-item:hover .iz-mobile-nav-arrow {
+  transform: translateX(3px);
+  color: #0f172a;
+}
+
+/* Active State (High Contrast Charcoal & Electric Lime) */
+.iz-mobile-nav-item.active {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16);
+}
+
+.iz-mobile-nav-item.active .iz-mobile-nav-icon {
+  background: rgba(184, 245, 0, 0.2) !important;
+  border-color: rgba(184, 245, 0, 0.45) !important;
+  color: #b8f500 !important;
+}
+
+.iz-mobile-nav-item.active .iz-mobile-nav-title {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.iz-mobile-nav-item.active .iz-mobile-nav-arrow {
+  color: #b8f500 !important;
+  transform: translateX(2px);
+}
+
+.iz-mobile-drawer-footer {
+  padding-top: 14px;
+  margin-top: 6px;
+  border-top: 1px solid #f1f5f9;
 }
 
 /* InvoZone Interactive Mega Menu Drawer */
@@ -761,6 +862,12 @@ p.lead, .lead {
   padding: 16px 0 40px 0;
   overflow-y: auto;
   animation: izMegaFadeSlide 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 991px) {
+  .iz-mega-menu-overlay {
+    display: none !important;
+  }
 }
 
 @keyframes izMegaFadeSlide {
@@ -3094,8 +3201,8 @@ a.filter-pill-btn.active,
 .back-to-top {
   position: fixed;
   bottom: clamp(16px, 3vw, 28px);
-  right: clamp(16px, 3vw, 28px);
-  left: auto;
+  left: clamp(16px, 3vw, 28px);
+  right: auto;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -3309,3 +3416,514 @@ a.filter-pill-btn.active,
 .toast-close-btn:hover {
   color: #ffffff;
 }
+
+/* ==========================================================================
+   16. Legal & Policy Documentation Responsive Cards
+   ========================================================================== */
+.legal-content-section {
+  padding: clamp(36px, 5vw, 72px) 0 clamp(48px, 6vw, 96px) 0;
+  background: var(--iz-bg-offwhite);
+  width: 100%;
+}
+
+.legal-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: clamp(22px, 4vw, 48px);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.legal-card h2 {
+  font-size: clamp(1.22rem, 2.2vw, 1.55rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: clamp(22px, 3.5vw, 36px);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+  letter-spacing: -0.02em;
+}
+
+.legal-card h2:first-child {
+  margin-top: 0;
+}
+
+.legal-card p {
+  color: #475569;
+  font-size: clamp(0.9rem, 1.8vw, 0.98rem);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.legal-card ul {
+  padding-left: 1.25rem;
+  margin-bottom: 18px;
+}
+
+.legal-card li {
+  color: #475569;
+  font-size: clamp(0.9rem, 1.8vw, 0.98rem);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   17. COMPREHENSIVE RESPONSIVE DESIGN SYSTEM & ADAPTIVE BREAKPOINTS
+   ========================================================================== */
+
+/* --- Safe Universal Fluid Scaling --- */
+img, svg, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Breakpoint: Ultra-Wide Screens (>= 1400px) --- */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* --- Breakpoint: Desktop & Small Laptops (992px to 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .iz-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .iz-tech-matrix-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .iz-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* --- Breakpoint: Tablets & Large Mobile in Landscape (<= 991px) --- */
+@media (max-width: 991px) {
+  /* Global Nav / Header Adaptation */
+  .iz-nav-links-white {
+    display: none !important;
+  }
+
+  .iz-mobile-toggle-dark {
+    display: flex !important;
+  }
+
+  .iz-mega-menu-overlay {
+    display: none !important;
+  }
+
+  /* Hero Section Stacking */
+  .iz-hero-origami {
+    padding: clamp(36px, 5vw, 60px) 0;
+  }
+
+  .iz-hero-origami .row.align-items-center {
+    row-gap: 36px;
+  }
+
+  /* Section Spacing Adaptation */
+  .iz-section {
+    padding: clamp(40px, 5vw, 64px) 0;
+  }
+
+  /* Services & Industries Grids */
+  .iz-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .industry-bento-grid,
+  .iz-industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .iz-value-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* InvoZone Contact Hub */
+  .iz-stats-side {
+    border-left: none !important;
+    border-top: 1.5px solid var(--iz-border-light);
+    padding: clamp(24px, 4vw, 36px);
+  }
+
+  /* Fixed Diagnostic Audit Banner */
+  #diagnostic-audit .text-lg-end {
+    text-align: left !important;
+    margin-top: 16px;
+  }
+
+  #diagnostic-audit .iz-btn-green {
+    width: auto;
+    display: inline-flex;
+  }
+}
+
+/* --- Breakpoint: Medium Mobile & Phablets (<= 767px) --- */
+@media (max-width: 767px) {
+  /* Fluid Swipeable Filter Navigation Bar */
+  .filter-nav-bar,
+  .topic-pills-row,
+  .topic-selector-container .d-flex {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+    margin-bottom: 20px !important;
+  }
+
+  .filter-nav-bar::-webkit-scrollbar,
+  .topic-pills-row::-webkit-scrollbar,
+  .topic-selector-container .d-flex::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill-btn {
+    flex-shrink: 0;
+  }
+
+  /* Fluid Swipeable Tech Stack Tabs */
+  .iz-stack-tabs-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+    margin-bottom: 20px !important;
+  }
+
+  .iz-stack-tabs-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .iz-stack-tab-pill {
+    flex-shrink: 0;
+  }
+
+  /* Tech Matrix Section Responsive Header */
+  .iz-tech-matrix-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .iz-tech-matrix-header .d-flex {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px !important;
+  }
+
+  .iz-tech-search-pill {
+    width: 100%;
+  }
+
+  .iz-tech-matrix-header .iz-btn-view-all {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Services Accordion Header & Layout */
+  .iz-services-accordion-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .iz-services-accordion-header .iz-btn-view-all {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .iz-accordion-bullets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Case Studies Header */
+  #case-studies .d-flex.align-items-end {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  #case-studies .iz-btn-dark {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* iOS Auto-Zoom Prevention on Form Inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  select,
+  textarea,
+  .iz-input,
+  .iz-input-light,
+  .iz-select-light,
+  .iz-textarea,
+  .iz-textarea-light {
+    font-size: 16px !important;
+  }
+
+  /* Footer Bottom Alignment */
+  .iz-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .iz-footer-bottom .d-flex {
+    flex-direction: column;
+    gap: 8px !important;
+    align-items: center;
+  }
+}
+
+/* --- Breakpoint: Compact Mobile Phones (<= 576px, iPhone SE, 320px - 480px) --- */
+@media (max-width: 576px) {
+  /* Top Contact Button on Navbar */
+  .iz-btn-contact-top {
+    display: none !important;
+  }
+
+  .iz-header-logo {
+    height: 48px;
+  }
+
+  /* Hero Badge Announcement Pill */
+  .iz-hero-badge-pill {
+    gap: 8px;
+    padding: 3px 10px 3px 4px;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+
+  .iz-badge-chip {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  .iz-badge-text {
+    font-size: 0.74rem;
+    white-space: normal;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  /* Hero Main Title Typography */
+  .iz-hero-title-main {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    line-height: 1.15;
+    word-break: break-word;
+    margin-bottom: 16px;
+  }
+
+  .iz-hero-sub-origami {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  /* Hero Dual Action Buttons */
+  .iz-hero-actions-origami {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .iz-btn-book-call,
+  .iz-btn-matched {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* Trust Badges Strip */
+  .iz-trust-badges-row {
+    gap: 8px;
+  }
+
+  .iz-trust-badges-row .iz-chip {
+    font-size: 0.76rem;
+    padding: 5px 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Founder Banner in Inquiry Card */
+  .iz-founder-banner {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .iz-founder-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+  }
+
+  .iz-inquiry-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  /* Accordion Row */
+  .iz-accordion-row {
+    padding: 14px 12px;
+    border-radius: 16px;
+  }
+
+  .iz-accordion-meta-left {
+    gap: 10px;
+  }
+
+  .iz-accordion-index {
+    min-width: 40px;
+    padding: 4px 6px;
+    font-size: 0.75rem;
+  }
+
+  .iz-accordion-heading {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  .iz-accordion-toggle-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  /* Services Grid, Industries & Values */
+  .iz-services-grid,
+  .industry-bento-grid,
+  .iz-industries-grid,
+  .iz-value-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Tech Matrix Tiles Grid */
+  .iz-tech-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .iz-tech-tile {
+    min-height: 96px;
+    padding: 14px 8px;
+  }
+
+  .iz-tech-tile-icon {
+    font-size: 1.4rem;
+  }
+
+  .iz-tech-tile-name {
+    font-size: 0.8rem;
+  }
+
+  /* Project Card Media & Actions */
+  .iz-project-media {
+    height: 180px;
+  }
+
+  .iz-project-body {
+    padding: 14px 14px 12px;
+  }
+
+  .iz-project-title {
+    font-size: 1.05rem;
+  }
+
+  .iz-project-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .iz-project-actions > .d-flex {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .iz-card-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Modal Dialog Adaptations */
+  .iz-modal-dialog {
+    max-width: 100%;
+    margin: 8px;
+    max-height: 94vh;
+    border-radius: 16px;
+  }
+
+  .iz-modal-header {
+    padding: 14px 16px;
+  }
+
+  .iz-modal-body {
+    padding: 14px 16px;
+  }
+
+  .modal-preview-media img {
+    max-height: 220px !important;
+  }
+
+  /* Direct Channels Card */
+  .direct-channel-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .channel-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .channel-meta .value {
+    font-size: 0.82rem;
+  }
+
+  .channel-copy-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+
+  /* Floating Toast Notification */
+  .toast-container-custom {
+    bottom: 80px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .custom-toast {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  /* Floating Back to Top Button */
+  .back-to-top {
+    bottom: 16px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+}
+

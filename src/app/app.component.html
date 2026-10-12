@@ -159,45 +159,71 @@
     </div>
   </div>
 
-  <!-- Mobile Drawer Menu -->
-  <div class="iz-mobile-drawer-white" [class.open]="mobileMenuOpen">
-    <div class="iz-mobile-drawer-brand d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-light">
-      <a routerLink="/" class="text-decoration-none" (click)="closeMobileMenu()" aria-label="NEXVOYS Home">
-        <img [src]="portfolioService.profile.logoDark || 'assets/nexvoys/black-logo.png'" alt="NEXVOYS" class="iz-mobile-logo" width="140" height="46">
-      </a>
-      <button type="button" class="iz-mobile-drawer-close" (click)="closeMobileMenu()" aria-label="Close menu">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <ng-container *ngIf="navPages && navPages.length > 0; else fallbackMobileNav">
-      <ng-container *ngFor="let p of navPages">
-        <a [routerLink]="getNavPageLink(p)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: p.slug === '' || p.slug === 'home'}" (click)="closeMobileMenu()">
-          <i [class]="getPageIcon(p.slug) + ' me-2 text-green'"></i> {{ p.navTitle || p.title }}
-        </a>
-      </ng-container>
-    </ng-container>
+  <!-- Mobile Backdrop Overlay -->
+  <div class="iz-mobile-backdrop" *ngIf="mobileMenuOpen" (click)="closeMobileMenu()"></div>
 
-    <ng-template #fallbackMobileNav>
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
-        <i class="fas fa-home me-2 text-green"></i> Home
+  <!-- Modern Mobile Drawer Menu -->
+  <div class="iz-mobile-drawer-white" [class.open]="mobileMenuOpen">
+    <div class="iz-mobile-nav-list">
+      <ng-container *ngIf="navPages && navPages.length > 0; else fallbackMobileNav">
+        <ng-container *ngFor="let p of navPages">
+          <a *ngIf="p.slug !== 'contact'" [routerLink]="getNavPageLink(p)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: p.slug === '' || p.slug === 'home'}" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
+            <span class="d-flex align-items-center gap-3">
+              <span class="iz-mobile-nav-icon"><i [class]="getPageIcon(p.slug)"></i></span>
+              <span class="iz-mobile-nav-title">{{ p.navTitle || p.title }}</span>
+            </span>
+            <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
+          </a>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #fallbackMobileNav>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
+          <span class="d-flex align-items-center gap-3">
+            <span class="iz-mobile-nav-icon"><i class="fas fa-home"></i></span>
+            <span class="iz-mobile-nav-title">Home</span>
+          </span>
+          <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
+        </a>
+        <a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
+          <span class="d-flex align-items-center gap-3">
+            <span class="iz-mobile-nav-icon"><i class="fas fa-cubes"></i></span>
+            <span class="iz-mobile-nav-title">Services</span>
+          </span>
+          <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
+        </a>
+        <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
+          <span class="d-flex align-items-center gap-3">
+            <span class="iz-mobile-nav-icon"><i class="fas fa-layer-group"></i></span>
+            <span class="iz-mobile-nav-title">Industries & Stacks</span>
+          </span>
+          <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
+        </a>
+        <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
+          <span class="d-flex align-items-center gap-3">
+            <span class="iz-mobile-nav-icon"><i class="fas fa-laptop-code"></i></span>
+            <span class="iz-mobile-nav-title">Portfolio</span>
+          </span>
+          <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
+        </a>
+        <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
+          <span class="d-flex align-items-center gap-3">
+            <span class="iz-mobile-nav-icon"><i class="fas fa-user-shield"></i></span>
+            <span class="iz-mobile-nav-title">Company & About</span>
+          </span>
+          <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
+        </a>
+      </ng-template>
+    </div>
+
+    <!-- Bottom Action CTA -->
+    <div class="iz-mobile-drawer-footer" *ngIf="portfolioService.isPageVisible('contact')">
+      <a routerLink="/contact" (click)="closeMobileMenu()" class="iz-btn-green w-100 justify-content-center py-3 fw-bold">
+        Book Architecture Call <span class="ms-1">↗</span>
       </a>
-      <a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()">
-        <i class="fas fa-cubes me-2 text-green"></i> Services
-      </a>
-      <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()">
-        <i class="fas fa-layer-group me-2 text-green"></i> Industries & Stacks
-      </a>
-      <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">
-        <i class="fas fa-laptop-code me-2 text-green"></i> Portfolio
-      </a>
-      <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">
-        <i class="fas fa-user-shield me-2 text-green"></i> Company & About
-      </a>
-    </ng-template>
-    <div class="pt-3 mt-2 border-top border-light d-flex gap-2" *ngIf="portfolioService.isPageVisible('contact')">
-      <a routerLink="/contact" (click)="closeMobileMenu()" class="iz-btn-green w-100 justify-content-center py-2">
-        Contact Us <span class="ms-1">↗</span>
-      </a>
+      <div class="iz-mobile-drawer-trust mt-2 text-center">
+        <span class="small text-muted"><i class="fas fa-shield-alt text-success me-1"></i> Direct Founder Access · NDA on Request</span>
+      </div>
     </div>
   </div>
 </header>
@@ -360,4 +386,4 @@
 </button>
 
 <!-- ==================== AI CHATBOT PUBLIC WIDGET ==================== -->
-<app-chatbot *ngIf="!isAdminRoute"></app-chatbot>
+<app-chatbot *ngIf="!isAdminRoute" [style.visibility]="mobileMenuOpen ? 'hidden' : 'visible'" [style.pointer-events]="mobileMenuOpen ? 'none' : 'auto'"></app-chatbot>
