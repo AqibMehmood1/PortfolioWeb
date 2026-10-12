@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, TechnologyCategoryDto, TechnologyDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -16,6 +17,8 @@ export class AdminTechnologiesComponent implements OnInit {
   categories: TechnologyCategoryDto[] = [];
   technologies: TechnologyDto[] = [];
   loading: boolean = true;
+  savingTech: boolean = false;
+  savingCat: boolean = false;
   activeTab: 'tech' | 'categories' = 'tech';
 
   // Technology Modal
@@ -41,7 +44,9 @@ export class AdminTechnologiesComponent implements OnInit {
 
   loadData(): void {
     this.loading = true;
-    this.adminApi.getTechCategories().subscribe({
+    this.adminApi.getTechCategories().pipe(
+      timeout(15000)
+    ).subscribe({
       next: (res) => {
         if (res.success && res.data) {
           this.categories = res.data;
@@ -50,18 +55,20 @@ export class AdminTechnologiesComponent implements OnInit {
       }
     });
 
-    this.adminApi.getTechnologies().subscribe({
-      next: (res) => {
+    this.adminApi.getTechnologies().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.technologies = res.data;
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load technologies.');
-        this.cdr.detectChanges();
       }
     });
   }
@@ -125,29 +132,30 @@ export class AdminTechnologiesComponent implements OnInit {
       this.currentTech.slug = this.currentTech.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     }
 
-    if (this.isEditTech && this.currentTech.id) {
-      this.adminApi.updateTechnology(this.currentTech.id, this.currentTech).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Technology updated.');
-            this.showTechModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingTech = true;
+    const req$ = (this.isEditTech && this.currentTech.id)
+      ? this.adminApi.updateTechnology(this.currentTech.id, this.currentTech)
+      : this.adminApi.createTechnology(this.currentTech);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingTech = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditTech ? 'Technology updated.' : 'Technology created.');
+          this.showTechModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createTechnology(this.currentTech).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Technology created.');
-            this.showTechModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteTech(tech: TechnologyDto): Promise<void> {
@@ -163,7 +171,9 @@ export class AdminTechnologiesComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteTechnology(tech.id).subscribe({
+      this.adminApi.deleteTechnology(tech.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('Technology deleted successfully.');
@@ -199,29 +209,30 @@ export class AdminTechnologiesComponent implements OnInit {
       this.currentCat.slug = this.currentCat.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     }
 
-    if (this.isEditCat && this.currentCat.id) {
-      this.adminApi.updateTechCategory(this.currentCat.id, this.currentCat).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Category updated.');
-            this.showCatModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingCat = true;
+    const req$ = (this.isEditCat && this.currentCat.id)
+      ? this.adminApi.updateTechCategory(this.currentCat.id, this.currentCat)
+      : this.adminApi.createTechCategory(this.currentCat);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingCat = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditCat ? 'Category updated.' : 'Category created.');
+          this.showCatModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createTechCategory(this.currentCat).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Category created.');
-            this.showCatModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteCat(cat: TechnologyCategoryDto): Promise<void> {

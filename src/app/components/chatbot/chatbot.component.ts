@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { timeout, finalize } from 'rxjs';
 import { PortfolioApiService, ChatMessageHistoryDto, ChatActionLinkDto, SubmitChatInquiryDto } from '../../services/portfolio-api.service';
 
 interface DisplayChatMessage {
@@ -155,7 +156,15 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
       message: query,
       history: history,
       userContext: 'public-visitor'
-    }).subscribe({
+    })
+    .pipe(
+      timeout(15000),
+      finalize(() => {
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      })
+    )
+    .subscribe({
       next: (res) => {
         this.isLoading = false;
         if (res.success && res.data) {
@@ -253,7 +262,15 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
       interest: this.inquiryForm.interest || 'Enterprise Architecture Consulting',
       message: this.inquiryForm.message.trim(),
       chatTranscriptSummary: this.inquiryForm.chatTranscriptSummary
-    }).subscribe({
+    })
+    .pipe(
+      timeout(15000),
+      finalize(() => {
+        this.isSubmittingInquiry = false;
+        this.cdr.detectChanges();
+      })
+    )
+    .subscribe({
       next: (res) => {
         this.isSubmittingInquiry = false;
         this.inquirySubmittedSuccess = true;

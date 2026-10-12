@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, MediaFileDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -32,18 +33,20 @@ export class AdminMediaComponent implements OnInit {
 
   loadMedia(): void {
     this.loading = true;
-    this.adminApi.getMediaFiles().subscribe({
-      next: (res) => {
+    this.adminApi.getMediaFiles().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.mediaFiles = res.data;
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load media files.');
-        this.cdr.detectChanges();
       }
     });
   }
@@ -61,9 +64,16 @@ export class AdminMediaComponent implements OnInit {
     if (!file) return;
 
     this.uploading = true;
-    this.adminApi.uploadMedia(file).subscribe({
-      next: (res) => {
+    this.cdr.detectChanges();
+
+    this.adminApi.uploadMedia(file).pipe(
+      timeout(60000),
+      finalize(() => {
         this.uploading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success) {
           this.portfolioService.showToast('File uploaded successfully!');
           this.loadMedia();
@@ -72,7 +82,6 @@ export class AdminMediaComponent implements OnInit {
         }
       },
       error: (err) => {
-        this.uploading = false;
         this.portfolioService.showToast(err.error?.message || 'File upload error.');
       }
     });

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, TestimonialDto, IndustryDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -17,6 +18,8 @@ export class AdminTestimonialsComponent implements OnInit {
   testimonials: TestimonialDto[] = [];
   industries: IndustryDto[] = [];
   loading: boolean = true;
+  savingTestimonial: boolean = false;
+  savingIndustry: boolean = false;
   activeTab: 'testimonials' | 'industries' = 'testimonials';
 
   // Testimonial Modal
@@ -42,7 +45,9 @@ export class AdminTestimonialsComponent implements OnInit {
 
   loadData(): void {
     this.loading = true;
-    this.adminApi.getTestimonials().subscribe({
+    this.adminApi.getTestimonials().pipe(
+      timeout(15000)
+    ).subscribe({
       next: (res) => {
         if (res.success && res.data) {
           this.testimonials = res.data;
@@ -51,18 +56,20 @@ export class AdminTestimonialsComponent implements OnInit {
       }
     });
 
-    this.adminApi.getIndustries().subscribe({
-      next: (res) => {
+    this.adminApi.getIndustries().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.industries = res.data;
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load testimonials/industries.');
-        this.cdr.detectChanges();
       }
     });
   }
@@ -112,29 +119,30 @@ export class AdminTestimonialsComponent implements OnInit {
       return;
     }
 
-    if (this.isEditTestimonial && this.currentTestimonial.id) {
-      this.adminApi.updateTestimonial(this.currentTestimonial.id, this.currentTestimonial).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Testimonial updated.');
-            this.showTestimonialModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingTestimonial = true;
+    const req$ = (this.isEditTestimonial && this.currentTestimonial.id)
+      ? this.adminApi.updateTestimonial(this.currentTestimonial.id, this.currentTestimonial)
+      : this.adminApi.createTestimonial(this.currentTestimonial);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingTestimonial = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditTestimonial ? 'Testimonial updated.' : 'Testimonial created.');
+          this.showTestimonialModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createTestimonial(this.currentTestimonial).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Testimonial created.');
-            this.showTestimonialModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteTestimonial(testi: TestimonialDto): Promise<void> {
@@ -150,7 +158,9 @@ export class AdminTestimonialsComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteTestimonial(testi.id).subscribe({
+      this.adminApi.deleteTestimonial(testi.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('Testimonial deleted successfully.');
@@ -182,29 +192,30 @@ export class AdminTestimonialsComponent implements OnInit {
       return;
     }
 
-    if (this.isEditIndustry && this.currentIndustry.id) {
-      this.adminApi.updateIndustry(this.currentIndustry.id, this.currentIndustry).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Industry updated.');
-            this.showIndustryModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingIndustry = true;
+    const req$ = (this.isEditIndustry && this.currentIndustry.id)
+      ? this.adminApi.updateIndustry(this.currentIndustry.id, this.currentIndustry)
+      : this.adminApi.createIndustry(this.currentIndustry);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingIndustry = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditIndustry ? 'Industry updated.' : 'Industry created.');
+          this.showIndustryModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createIndustry(this.currentIndustry).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Industry created.');
-            this.showIndustryModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteIndustry(ind: IndustryDto): Promise<void> {

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, AboutContentDto, StepItemDto, ValueCardDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 
@@ -40,9 +41,14 @@ export class AdminAboutComponent implements OnInit {
 
   loadAboutContent(): void {
     this.loading = true;
-    this.adminApi.getAboutContent().subscribe({
-      next: (res) => {
+    this.adminApi.getAboutContent().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.aboutContent = {
             headline: res.data.headline || '',
@@ -56,33 +62,32 @@ export class AdminAboutComponent implements OnInit {
             threeStepProcess: res.data.threeStepProcess || []
           };
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load About content.');
-        this.cdr.detectChanges();
       }
     });
   }
 
   saveAbout(): void {
     this.saving = true;
-    this.adminApi.updateAboutContent(this.aboutContent).subscribe({
-      next: (res) => {
+    this.adminApi.updateAboutContent(this.aboutContent).pipe(
+      timeout(15000),
+      finalize(() => {
         this.saving = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success) {
           this.portfolioService.showToast('About & Strategy content updated successfully!');
           this.portfolioService.refreshData();
         } else {
           this.portfolioService.showToast(res.message || 'Failed to update About content.');
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.saving = false;
         this.portfolioService.showToast('Error saving About content to database.');
-        this.cdr.detectChanges();
       }
     });
   }

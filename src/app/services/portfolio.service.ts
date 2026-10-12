@@ -706,7 +706,7 @@ export class PortfolioService {
     // 2. Projects
     this.api.getProjects().subscribe({
       next: res => {
-        if (res.success && res.data && res.data.length > 0) {
+        if (res.success && res.data) {
           this.projectsSubject.next(res.data);
         }
       },

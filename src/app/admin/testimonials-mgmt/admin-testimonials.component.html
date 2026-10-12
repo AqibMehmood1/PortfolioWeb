@@ -173,8 +173,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showTestimonialModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveTestimonial()">Save Review</button>
+        <button class="btn-cancel" (click)="showTestimonialModal = false" [disabled]="savingTestimonial">Cancel</button>
+        <button class="btn-primary" (click)="saveTestimonial()" [disabled]="savingTestimonial">
+          <i *ngIf="savingTestimonial" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingTestimonial ? 'Saving...' : 'Save Review' }}</span>
+        </button>
       </div>
     </div>
   </div>
@@ -211,8 +214,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showIndustryModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveIndustry()">Save Industry</button>
+        <button class="btn-cancel" (click)="showIndustryModal = false" [disabled]="savingIndustry">Cancel</button>
+        <button class="btn-primary" (click)="saveIndustry()" [disabled]="savingIndustry">
+          <i *ngIf="savingIndustry" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingIndustry ? 'Saving...' : 'Save Industry' }}</span>
+        </button>
       </div>
     </div>
   </div>

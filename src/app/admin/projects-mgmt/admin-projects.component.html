@@ -187,8 +187,10 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveProject()">Save Case Study</button>
+        <button class="btn-cancel" (click)="showModal = false" [disabled]="saving">Cancel</button>
+        <button class="btn-primary" (click)="saveProject()" [disabled]="saving">
+          <i class="fas" [ngClass]="saving ? 'fa-spinner fa-spin me-1' : 'fa-save me-1'"></i> {{ saving ? 'Saving...' : 'Save Case Study' }}
+        </button>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, ServiceDto, AccordionItemDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -16,6 +17,8 @@ export class AdminServicesComponent implements OnInit {
   services: ServiceDto[] = [];
   accordionItems: AccordionItemDto[] = [];
   loading: boolean = true;
+  savingService: boolean = false;
+  savingAccordion: boolean = false;
   activeTab: 'services' | 'accordion' = 'services';
 
   // Modal / Form state
@@ -40,22 +43,26 @@ export class AdminServicesComponent implements OnInit {
 
   loadData(): void {
     this.loading = true;
-    this.adminApi.getServices().subscribe({
-      next: (res) => {
+    this.adminApi.getServices().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.services = res.data;
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load services.');
-        this.cdr.detectChanges();
       }
     });
 
-    this.adminApi.getAccordionItems().subscribe({
+    this.adminApi.getAccordionItems().pipe(
+      timeout(15000)
+    ).subscribe({
       next: (res) => {
         if (res.success && res.data) {
           this.accordionItems = res.data;
@@ -117,31 +124,30 @@ export class AdminServicesComponent implements OnInit {
       this.currentService.slug = this.currentService.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     }
 
-    if (this.isEditService && this.currentService.id) {
-      this.adminApi.updateService(this.currentService.id, this.currentService).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Service updated successfully.');
-            this.showServiceModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        },
-        error: (err) => this.portfolioService.showToast(err.error?.message || 'Update failed.')
-      });
-    } else {
-      this.adminApi.createService(this.currentService).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Service created successfully.');
-            this.showServiceModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        },
-        error: (err) => this.portfolioService.showToast(err.error?.message || 'Create failed.')
-      });
-    }
+    this.savingService = true;
+    const req$ = (this.isEditService && this.currentService.id)
+      ? this.adminApi.updateService(this.currentService.id, this.currentService)
+      : this.adminApi.createService(this.currentService);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingService = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditService ? 'Service updated successfully.' : 'Service created successfully.');
+          this.showServiceModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
+        }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteService(srv: ServiceDto): Promise<void> {
@@ -157,7 +163,9 @@ export class AdminServicesComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteService(srv.id).subscribe({
+      this.adminApi.deleteService(srv.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('Service deleted successfully.');
@@ -189,29 +197,30 @@ export class AdminServicesComponent implements OnInit {
       return;
     }
 
-    if (this.isEditAccordion && this.currentAccordion.id) {
-      this.adminApi.updateAccordionItem(this.currentAccordion.id, this.currentAccordion).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Accordion pillar updated.');
-            this.showAccordionModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingAccordion = true;
+    const req$ = (this.isEditAccordion && this.currentAccordion.id)
+      ? this.adminApi.updateAccordionItem(this.currentAccordion.id, this.currentAccordion)
+      : this.adminApi.createAccordionItem(this.currentAccordion);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingAccordion = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditAccordion ? 'Accordion pillar updated.' : 'Accordion pillar created.');
+          this.showAccordionModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createAccordionItem(this.currentAccordion).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Accordion pillar created.');
-            this.showAccordionModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteAccordion(item: AccordionItemDto): Promise<void> {

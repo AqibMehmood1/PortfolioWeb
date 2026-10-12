@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { timeout, finalize } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio.service';
 import { PortfolioApiService } from '../../services/portfolio-api.service';
 
@@ -42,7 +43,9 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(
     public portfolioService: PortfolioService,
     private api: PortfolioApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit(): void {
@@ -91,21 +94,27 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     if (!this.contactForm.name.trim() || !this.contactForm.email.trim() || !this.contactForm.message.trim()) {
       this.errorMessage = 'Please complete all required fields (Full Name, Work Email, and Message).';
+      this.cdr.detectChanges();
       this.msgTimeout = setTimeout(() => {
         this.errorMessage = null;
+        this.cdr.detectChanges();
       }, 5000);
       return;
     }
 
     if (!this.contactForm.agreed) {
       this.errorMessage = 'Please agree to the privacy policy to proceed.';
+      this.cdr.detectChanges();
       this.msgTimeout = setTimeout(() => {
         this.errorMessage = null;
+        this.cdr.detectChanges();
       }, 5000);
       return;
     }
 
     this.isSubmitting = true;
+    this.cdr.detectChanges();
+
     const formattedMessage = `[Timeline: ${this.contactForm.timeline} | Budget: ${this.contactForm.budgetRange}]\n\n${this.contactForm.message.trim()}`;
 
     this.api.submitContactInquiry({
@@ -116,37 +125,68 @@ export class ContactComponent implements OnInit, OnDestroy {
       subject: this.contactForm.subject.trim(),
       techStack: this.selectedTopic,
       message: formattedMessage
-    }).subscribe({
+    })
+    .pipe(
+      timeout(15000),
+      finalize(() => {
+        this.ngZone.run(() => {
+          this.isSubmitting = false;
+          this.cdr.detectChanges();
+        });
+      })
+    )
+    .subscribe({
       next: (res) => {
-        this.isSubmitting = false;
-        const sender = this.contactForm.name.trim();
-        this.successMessage = res.message || `Thank you, ${sender}! Your message has been received. Principal Architect Bilal will respond within 24 hours. 🚀`;
-        this.portfolioService.showToast(`Thank you, ${sender}! Message sent successfully. 🚀`);
-        
-        // Clear all form fields on success
-        this.contactForm = {
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          timeline: 'Within 2-4 weeks',
-          budgetRange: '$10k - $25k',
-          subject: `Topic: ${this.selectedTopic}`,
-          message: '',
-          agreed: false
-        };
+        this.ngZone.run(() => {
+          this.isSubmitting = false;
+          const sender = this.contactForm.name.trim();
+          this.successMessage = res.message || `Thank you, ${sender}! Your message has been received. Principal Architect Bilal will respond within 24 hours. 🚀`;
+          this.portfolioService.showToast(`Thank you, ${sender}! Message sent successfully. 🚀`);
+          
+          // Clear all form fields on success
+          this.contactForm = {
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            timeline: 'Within 2-4 weeks',
+            budgetRange: '$10k - $25k',
+            subject: `Topic: ${this.selectedTopic}`,
+            message: '',
+            agreed: false
+          };
+          this.cdr.detectChanges();
 
-        // Auto-dismiss alert message after 5 seconds
-        this.msgTimeout = setTimeout(() => {
-          this.successMessage = null;
-        }, 5000);
+          // Auto-dismiss alert message after 6 seconds
+          this.msgTimeout = setTimeout(() => {
+            this.ngZone.run(() => {
+              this.successMessage = null;
+              this.cdr.detectChanges();
+            });
+          }, 6000);
+        });
       },
-      error: () => {
-        this.isSubmitting = false;
-        this.errorMessage = 'Unable to send your message at this moment. Please try again or reach out directly via WhatsApp / Email.';
-        this.msgTimeout = setTimeout(() => {
-          this.errorMessage = null;
-        }, 5000);
+      error: (err) => {
+        this.ngZone.run(() => {
+          this.isSubmitting = false;
+          let msg = 'Unable to send your message at this moment. Please try again or reach out directly via WhatsApp / Email.';
+          if (err?.name === 'TimeoutError') {
+            msg = 'Request timed out after 15 seconds. Please verify your connection or contact us directly.';
+          } else if (err?.error?.message) {
+            msg = err.error.message;
+          } else if (typeof err?.error === 'string' && err.error.trim()) {
+            msg = err.error;
+          }
+          this.errorMessage = msg;
+          this.cdr.detectChanges();
+
+          this.msgTimeout = setTimeout(() => {
+            this.ngZone.run(() => {
+              this.errorMessage = null;
+              this.cdr.detectChanges();
+            });
+          }, 6000);
+        });
       }
     });
   }

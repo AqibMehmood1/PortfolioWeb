@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { AdminApiService, HomePageContentDto, StatItemDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 
@@ -58,7 +59,15 @@ export class AdminHomeComponent implements OnInit {
 
   saveHome(): void {
     this.saving = true;
-    this.adminApi.updateHomeContent(this.homeContent).subscribe({
+    this.cdr.detectChanges();
+    this.adminApi.updateHomeContent(this.homeContent)
+    .pipe(
+      finalize(() => {
+        this.saving = false;
+        this.cdr.detectChanges();
+      })
+    )
+    .subscribe({
       next: (res) => {
         this.saving = false;
         if (res.success) {

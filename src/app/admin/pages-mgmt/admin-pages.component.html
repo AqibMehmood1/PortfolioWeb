@@ -421,10 +421,11 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn-secondary" (click)="showPageModal = false">Cancel</button>
-        <button class="btn-primary" (click)="savePage()">
-          <i class="fas fa-check"></i>
-          <span>{{ isEditPage ? 'Save Changes' : 'Create Page' }}</span>
+        <button class="btn-secondary" (click)="showPageModal = false" [disabled]="savingPage">Cancel</button>
+        <button class="btn-primary" (click)="savePage()" [disabled]="savingPage">
+          <i *ngIf="savingPage" class="fas fa-circle-notch fa-spin"></i>
+          <i *ngIf="!savingPage" class="fas fa-check"></i>
+          <span>{{ savingPage ? 'Saving...' : (isEditPage ? 'Save Changes' : 'Create Page') }}</span>
         </button>
       </div>
     </div>
@@ -605,10 +606,11 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn-secondary" (click)="showSectionModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveSection()">
-          <i class="fas fa-check"></i>
-          <span>{{ isEditSection ? 'Save Section' : 'Create Section' }}</span>
+        <button class="btn-secondary" (click)="showSectionModal = false" [disabled]="savingSection">Cancel</button>
+        <button class="btn-primary" (click)="saveSection()" [disabled]="savingSection">
+          <i *ngIf="savingSection" class="fas fa-circle-notch fa-spin"></i>
+          <i *ngIf="!savingSection" class="fas fa-check"></i>
+          <span>{{ savingSection ? 'Saving...' : (isEditSection ? 'Save Section' : 'Create Section') }}</span>
         </button>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { AdminApiService, ProjectDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -16,6 +17,7 @@ import { ImagePickerComponent } from '../components/image-picker/image-picker.co
 export class AdminProjectsComponent implements OnInit {
   projects: ProjectDto[] = [];
   loading: boolean = true;
+  saving: boolean = false;
   showModal: boolean = false;
   isEdit: boolean = false;
   currentProject: ProjectDto = this.getEmptyProject();
@@ -118,29 +120,58 @@ export class AdminProjectsComponent implements OnInit {
 
     this.currentProject.image = this.currentProject.thumbnailUrl;
 
+    this.saving = true;
+    this.cdr.detectChanges();
+
     if (this.isEdit && this.currentProject.id) {
-      this.adminApi.updateProject(this.currentProject.id, this.currentProject).subscribe({
+      this.adminApi.updateProject(this.currentProject.id, this.currentProject)
+      .pipe(
+        finalize(() => {
+          this.saving = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
         next: (res) => {
+          this.saving = false;
           if (res.success) {
             this.portfolioService.showToast('Project updated successfully.');
             this.showModal = false;
             this.loadProjects();
             this.portfolioService.refreshData();
           }
+          this.cdr.detectChanges();
         },
-        error: (err) => this.portfolioService.showToast(err.error?.message || 'Update failed.')
+        error: (err) => {
+          this.saving = false;
+          this.portfolioService.showToast(err.error?.message || 'Update failed.');
+          this.cdr.detectChanges();
+        }
       });
     } else {
-      this.adminApi.createProject(this.currentProject).subscribe({
+      this.adminApi.createProject(this.currentProject)
+      .pipe(
+        finalize(() => {
+          this.saving = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
         next: (res) => {
+          this.saving = false;
           if (res.success) {
             this.portfolioService.showToast('Project created successfully.');
             this.showModal = false;
             this.loadProjects();
             this.portfolioService.refreshData();
           }
+          this.cdr.detectChanges();
         },
-        error: (err) => this.portfolioService.showToast(err.error?.message || 'Create failed.')
+        error: (err) => {
+          this.saving = false;
+          this.portfolioService.showToast(err.error?.message || 'Create failed.');
+          this.cdr.detectChanges();
+        }
       });
     }
   }

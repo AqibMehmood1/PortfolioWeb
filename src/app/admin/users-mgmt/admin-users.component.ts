@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, AdminUserDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -15,6 +16,7 @@ import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 export class AdminUsersComponent implements OnInit {
   users: AdminUserDto[] = [];
   loading: boolean = true;
+  saving: boolean = false;
   showModal: boolean = false;
   isEdit: boolean = false;
   showPassword: boolean = false;
@@ -46,18 +48,20 @@ export class AdminUsersComponent implements OnInit {
 
   loadUsers(): void {
     this.loading = true;
-    this.adminApi.getAdminUsers().subscribe({
-      next: (res) => {
+    this.adminApi.getAdminUsers().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.users = res.data;
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load admin users.');
-        this.cdr.detectChanges();
       }
     });
   }
@@ -101,35 +105,35 @@ export class AdminUsersComponent implements OnInit {
       return;
     }
 
-    if (this.isEdit) {
-      this.adminApi.updateAdminUser(this.userForm.id, {
-        email: this.userForm.email,
-        fullName: this.userForm.fullName,
-        role: this.userForm.role,
-        isActive: this.userForm.isActive,
-        password: this.userForm.password || undefined
-      }).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('User updated successfully.');
-            this.showModal = false;
-            this.loadUsers();
-          }
-        },
-        error: (err) => this.portfolioService.showToast(err.error?.message || 'Update failed.')
-      });
-    } else {
-      this.adminApi.createAdminUser(this.userForm).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('User created successfully.');
-            this.showModal = false;
-            this.loadUsers();
-          }
-        },
-        error: (err) => this.portfolioService.showToast(err.error?.message || 'Create failed.')
-      });
-    }
+    this.saving = true;
+    const req$ = this.isEdit
+      ? this.adminApi.updateAdminUser(this.userForm.id, {
+          email: this.userForm.email,
+          fullName: this.userForm.fullName,
+          role: this.userForm.role,
+          isActive: this.userForm.isActive,
+          password: this.userForm.password || undefined
+        })
+      : this.adminApi.createAdminUser(this.userForm);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.saving = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEdit ? 'User updated successfully.' : 'User created successfully.');
+          this.showModal = false;
+          this.loadUsers();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
+        }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteUser(u: AdminUserDto): Promise<void> {
@@ -144,7 +148,9 @@ export class AdminUsersComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteAdminUser(u.id).subscribe({
+      this.adminApi.deleteAdminUser(u.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('User deactivated/deleted successfully.');

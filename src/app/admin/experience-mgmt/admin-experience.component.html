@@ -203,8 +203,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showExpModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveExp()">Save Experience</button>
+        <button class="btn-cancel" (click)="showExpModal = false" [disabled]="savingExp">Cancel</button>
+        <button class="btn-primary" (click)="saveExp()" [disabled]="savingExp">
+          <i *ngIf="savingExp" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingExp ? 'Saving...' : 'Save Experience' }}</span>
+        </button>
       </div>
     </div>
   </div>
@@ -245,8 +248,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showEduModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveEdu()">Save Education</button>
+        <button class="btn-cancel" (click)="showEduModal = false" [disabled]="savingEdu">Cancel</button>
+        <button class="btn-primary" (click)="saveEdu()" [disabled]="savingEdu">
+          <i *ngIf="savingEdu" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingEdu ? 'Saving...' : 'Save Education' }}</span>
+        </button>
       </div>
     </div>
   </div>
@@ -283,8 +289,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showCertModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveCert()">Save Certification</button>
+        <button class="btn-cancel" (click)="showCertModal = false" [disabled]="savingCert">Cancel</button>
+        <button class="btn-primary" (click)="saveCert()" [disabled]="savingCert">
+          <i *ngIf="savingCert" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingCert ? 'Saving...' : 'Save Certification' }}</span>
+        </button>
       </div>
     </div>
   </div>

@@ -49,7 +49,7 @@
             <span>{{ errorMessage }}</span>
           </div>
 
-          <form (submit)="submitContactForm(); $event.preventDefault()">
+          <form (ngSubmit)="submitContactForm()" (submit)="$event.preventDefault()">
             <div class="row g-3">
               <div class="col-md-6">
                 <input type="text" class="iz-input" [(ngModel)]="contactForm.name" name="name" placeholder="Your Full Name *" required [disabled]="isSubmitting">

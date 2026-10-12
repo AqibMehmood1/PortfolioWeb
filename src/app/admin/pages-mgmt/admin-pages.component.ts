@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { 
   AdminApiService, 
   SitePageDto, 
@@ -30,6 +31,8 @@ export interface SectionCardItem {
 export class AdminPagesComponent implements OnInit {
   pages: SitePageDto[] = [];
   loading: boolean = true;
+  savingPage: boolean = false;
+  savingSection: boolean = false;
   selectedPageForSections: SitePageDto | null = null;
 
   // Search & Filter
@@ -61,9 +64,14 @@ export class AdminPagesComponent implements OnInit {
 
   loadPages(refreshPortfolio: boolean = true): void {
     this.loading = true;
-    this.adminApi.getAllPages().subscribe({
-      next: (res) => {
+    this.adminApi.getAllPages().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.pages = res.data.sort((a, b) => a.displayOrder - b.displayOrder);
           // If we had a selected page, update its reference
@@ -77,12 +85,8 @@ export class AdminPagesComponent implements OnInit {
         if (refreshPortfolio) {
           this.portfolioService.refreshPages();
         }
-        this.cdr.detectChanges();
       },
-      error: () => {
-        this.loading = false;
-        this.cdr.detectChanges();
-      }
+      error: () => {}
     });
   }
 
@@ -203,37 +207,31 @@ export class AdminPagesComponent implements OnInit {
       return;
     }
 
-    if (this.isEditPage && this.currentPageId) {
-      this.adminApi.updatePage(this.currentPageId, this.pageForm).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Page updated successfully.');
-            this.showPageModal = false;
-            this.loadPages();
-          } else {
-            this.portfolioService.showToast(res.message || 'Failed to update page.');
-          }
-        },
-        error: (err) => {
-          this.portfolioService.showToast(err.error?.message || 'Error updating page.');
+    this.savingPage = true;
+    const req$ = (this.isEditPage && this.currentPageId)
+      ? this.adminApi.updatePage(this.currentPageId, this.pageForm)
+      : this.adminApi.createPage(this.pageForm);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingPage = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditPage ? 'Page updated successfully.' : 'New page added successfully.');
+          this.showPageModal = false;
+          this.loadPages();
+        } else {
+          this.portfolioService.showToast(res.message || 'Failed to save page.');
         }
-      });
-    } else {
-      this.adminApi.createPage(this.pageForm).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('New page added successfully.');
-            this.showPageModal = false;
-            this.loadPages();
-          } else {
-            this.portfolioService.showToast(res.message || 'Failed to create page.');
-          }
-        },
-        error: (err) => {
-          this.portfolioService.showToast(err.error?.message || 'Error creating page.');
-        }
-      });
-    }
+      },
+      error: (err) => {
+        this.portfolioService.showToast(err.error?.message || 'Error saving page.');
+      }
+    });
   }
 
   deletePage(page: SitePageDto, event?: Event): void {
@@ -429,50 +427,48 @@ export class AdminPagesComponent implements OnInit {
     const validCards = this.sectionCards.filter(c => c.title.trim() || c.description.trim());
     this.sectionForm.contentJson = validCards.length > 0 ? JSON.stringify(validCards) : '';
 
-    if (this.isEditSection && this.currentSectionId) {
-      const updateDto: UpdateSiteSectionDto = {
-        sectionKey: this.sectionForm.sectionKey,
-        title: this.sectionForm.title,
-        subtitle: this.sectionForm.subtitle,
-        description: this.sectionForm.description,
-        sectionType: this.sectionForm.sectionType,
-        isVisible: this.sectionForm.isVisible,
-        displayOrder: this.sectionForm.displayOrder,
-        contentJson: this.sectionForm.contentJson,
-        customHtml: this.sectionForm.customHtml
-      };
+    this.savingSection = true;
+    const req$ = (this.isEditSection && this.currentSectionId)
+      ? this.adminApi.updateSection(this.currentSectionId, {
+          sectionKey: this.sectionForm.sectionKey,
+          title: this.sectionForm.title,
+          subtitle: this.sectionForm.subtitle,
+          description: this.sectionForm.description,
+          sectionType: this.sectionForm.sectionType,
+          isVisible: this.sectionForm.isVisible,
+          displayOrder: this.sectionForm.displayOrder,
+          contentJson: this.sectionForm.contentJson,
+          customHtml: this.sectionForm.customHtml
+        })
+      : (this.selectedPageForSections
+          ? this.adminApi.createSection(this.selectedPageForSections.id, this.sectionForm)
+          : null);
 
-      this.adminApi.updateSection(this.currentSectionId, updateDto).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Section updated successfully.');
-            this.showSectionModal = false;
-            this.loadPages();
-          } else {
-            this.portfolioService.showToast(res.message || 'Failed to update section.');
-          }
-        },
-        error: (err) => {
-          this.portfolioService.showToast(err.error?.message || 'Error updating section.');
-        }
-      });
-    } else {
-      if (!this.selectedPageForSections) return;
-      this.adminApi.createSection(this.selectedPageForSections.id, this.sectionForm).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('New section created successfully.');
-            this.showSectionModal = false;
-            this.loadPages();
-          } else {
-            this.portfolioService.showToast(res.message || 'Failed to create section.');
-          }
-        },
-        error: (err) => {
-          this.portfolioService.showToast(err.error?.message || 'Error creating section.');
-        }
-      });
+    if (!req$) {
+      this.savingSection = false;
+      return;
     }
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingSection = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditSection ? 'Section updated successfully.' : 'New section created successfully.');
+          this.showSectionModal = false;
+          this.loadPages();
+        } else {
+          this.portfolioService.showToast(res.message || 'Failed to save section.');
+        }
+      },
+      error: (err) => {
+        this.portfolioService.showToast(err.error?.message || 'Error saving section.');
+      }
+    });
   }
 
   deleteSection(section: SiteSectionDto): void {

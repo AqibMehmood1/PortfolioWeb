@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, SeoMetadataDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ImagePickerComponent } from '../components/image-picker/image-picker.component';
@@ -30,9 +31,14 @@ export class AdminSeoComponent implements OnInit {
 
   loadSeo(): void {
     this.loading = true;
-    this.adminApi.getSeoList().subscribe({
-      next: (res) => {
+    this.adminApi.getSeoList().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.seoList = (res.data || []).map(s => ({
             ...s,
@@ -45,12 +51,9 @@ export class AdminSeoComponent implements OnInit {
             this.selectedSeo = { ...this.seoList[0] };
           }
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load SEO metadata.');
-        this.cdr.detectChanges();
       }
     });
   }
@@ -64,9 +67,14 @@ export class AdminSeoComponent implements OnInit {
     if (!this.selectedSeo || !this.selectedSeo.id) return;
 
     this.saving = true;
-    this.adminApi.updateSeo(this.selectedSeo.id, this.selectedSeo).subscribe({
-      next: (res) => {
+    this.adminApi.updateSeo(this.selectedSeo.id, this.selectedSeo).pipe(
+      timeout(15000),
+      finalize(() => {
         this.saving = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success) {
           this.portfolioService.showToast(`SEO for route "${this.selectedSeo?.pageRoute}" updated.`);
           const idx = this.seoList.findIndex(x => x.id === this.selectedSeo?.id);
@@ -74,12 +82,9 @@ export class AdminSeoComponent implements OnInit {
             this.seoList[idx] = { ...this.selectedSeo! };
           }
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.saving = false;
         this.portfolioService.showToast('Failed to save SEO metadata.');
-        this.cdr.detectChanges();
       }
     });
   }

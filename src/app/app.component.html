@@ -54,7 +54,7 @@
         <a *ngIf="portfolioService.isPageVisible('contact')" routerLink="/contact" class="iz-btn-contact-top" (click)="closeMegaMenu()" (mouseenter)="closeMegaMenu()">
           Contact Us <span class="iz-arrow-up-right">↗</span>
         </a>
-        <button type="button" class="iz-mobile-toggle-dark" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+        <button type="button" class="iz-mobile-toggle-dark" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
           <i class="fas" [ngClass]="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
         </button>
       </div>
@@ -195,7 +195,7 @@
         <a routerLink="/expertise" routerLinkActive="active" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
           <span class="d-flex align-items-center gap-3">
             <span class="iz-mobile-nav-icon"><i class="fas fa-layer-group"></i></span>
-            <span class="iz-mobile-nav-title">Industries & Stacks</span>
+            <span class="iz-mobile-nav-title">Expertise</span>
           </span>
           <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
         </a>
@@ -209,7 +209,7 @@
         <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()" class="iz-mobile-nav-item">
           <span class="d-flex align-items-center gap-3">
             <span class="iz-mobile-nav-icon"><i class="fas fa-user-shield"></i></span>
-            <span class="iz-mobile-nav-title">Company & About</span>
+            <span class="iz-mobile-nav-title">About</span>
           </span>
           <i class="fas fa-chevron-right iz-mobile-nav-arrow"></i>
         </a>
@@ -219,7 +219,7 @@
     <!-- Bottom Action CTA -->
     <div class="iz-mobile-drawer-footer" *ngIf="portfolioService.isPageVisible('contact')">
       <a routerLink="/contact" (click)="closeMobileMenu()" class="iz-btn-green w-100 justify-content-center py-3 fw-bold">
-        Book Architecture Call <span class="ms-1">↗</span>
+        Contact Us <span class="ms-1">↗</span>
       </a>
       <div class="iz-mobile-drawer-trust mt-2 text-center">
         <span class="small text-muted"><i class="fas fa-shield-alt text-success me-1"></i> Direct Founder Access · NDA on Request</span>
@@ -386,4 +386,4 @@
 </button>
 
 <!-- ==================== AI CHATBOT PUBLIC WIDGET ==================== -->
-<app-chatbot *ngIf="!isAdminRoute" [style.visibility]="mobileMenuOpen ? 'hidden' : 'visible'" [style.pointer-events]="mobileMenuOpen ? 'none' : 'auto'"></app-chatbot>
+<app-chatbot *ngIf="!isAdminRoute" [style.display]="mobileMenuOpen ? 'none' : 'block'"></app-chatbot>

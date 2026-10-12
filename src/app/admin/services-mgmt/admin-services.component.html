@@ -170,8 +170,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showServiceModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveService()">Save Service</button>
+        <button class="btn-cancel" (click)="showServiceModal = false" [disabled]="savingService">Cancel</button>
+        <button class="btn-primary" (click)="saveService()" [disabled]="savingService">
+          <i *ngIf="savingService" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingService ? 'Saving...' : 'Save Service' }}</span>
+        </button>
       </div>
     </div>
   </div>
@@ -221,8 +224,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showAccordionModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveAccordion()">Save Pillar</button>
+        <button class="btn-cancel" (click)="showAccordionModal = false" [disabled]="savingAccordion">Cancel</button>
+        <button class="btn-primary" (click)="saveAccordion()" [disabled]="savingAccordion">
+          <i *ngIf="savingAccordion" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingAccordion ? 'Saving...' : 'Save Pillar' }}</span>
+        </button>
       </div>
     </div>
   </div>

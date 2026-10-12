@@ -684,6 +684,13 @@ p.lead, .lead {
   color: var(--iz-green-dark);
 }
 
+.iz-mobile-toggle-dark.active {
+  background: #0f172a !important;
+  border-color: #0f172a !important;
+  color: #b8f500 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+}
+
 @media (max-width: 991px) {
   .iz-nav-links-white {
     display: none;
@@ -703,8 +710,8 @@ p.lead, .lead {
 .iz-mobile-backdrop {
   position: fixed;
   inset: 0;
-  top: 60px;
-  background: rgba(15, 23, 42, 0.55);
+  top: 0;
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 998;
@@ -730,8 +737,9 @@ p.lead, .lead {
   border-radius: 0 0 24px 24px;
   padding: 16px 20px 24px 20px;
   gap: 12px;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100dvh - 75px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.25);
   z-index: 1000;
 }

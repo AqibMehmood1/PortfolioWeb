@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService, ExperienceDto, EducationDto, CertificationDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -17,6 +18,9 @@ export class AdminExperienceComponent implements OnInit {
   educations: EducationDto[] = [];
   certifications: CertificationDto[] = [];
   loading: boolean = true;
+  savingExp: boolean = false;
+  savingEdu: boolean = false;
+  savingCert: boolean = false;
   activeTab: 'exp' | 'edu' | 'cert' = 'exp';
 
   // Experience Modal
@@ -47,7 +51,9 @@ export class AdminExperienceComponent implements OnInit {
 
   loadData(): void {
     this.loading = true;
-    this.adminApi.getExperiences().subscribe({
+    this.adminApi.getExperiences().pipe(
+      timeout(15000)
+    ).subscribe({
       next: (res) => {
         if (res.success && res.data) {
           this.experiences = res.data;
@@ -56,7 +62,9 @@ export class AdminExperienceComponent implements OnInit {
       }
     });
 
-    this.adminApi.getEducations().subscribe({
+    this.adminApi.getEducations().pipe(
+      timeout(15000)
+    ).subscribe({
       next: (res) => {
         if (res.success && res.data) {
           this.educations = res.data;
@@ -65,18 +73,20 @@ export class AdminExperienceComponent implements OnInit {
       }
     });
 
-    this.adminApi.getCertifications().subscribe({
-      next: (res) => {
+    this.adminApi.getCertifications().pipe(
+      timeout(15000),
+      finalize(() => {
         this.loading = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
         if (res.success && res.data) {
           this.certifications = res.data;
         }
-        this.cdr.detectChanges();
       },
       error: () => {
-        this.loading = false;
         this.portfolioService.showToast('Failed to load career data.');
-        this.cdr.detectChanges();
       }
     });
   }
@@ -140,29 +150,30 @@ export class AdminExperienceComponent implements OnInit {
       return;
     }
 
-    if (this.isEditExp && this.currentExp.id) {
-      this.adminApi.updateExperience(this.currentExp.id, this.currentExp).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Experience updated.');
-            this.showExpModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingExp = true;
+    const req$ = (this.isEditExp && this.currentExp.id)
+      ? this.adminApi.updateExperience(this.currentExp.id, this.currentExp)
+      : this.adminApi.createExperience(this.currentExp);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingExp = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditExp ? 'Experience updated.' : 'Experience created.');
+          this.showExpModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createExperience(this.currentExp).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Experience created.');
-            this.showExpModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteExp(exp: ExperienceDto): Promise<void> {
@@ -178,7 +189,9 @@ export class AdminExperienceComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteExperience(exp.id).subscribe({
+      this.adminApi.deleteExperience(exp.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('Experience deleted successfully.');
@@ -210,29 +223,30 @@ export class AdminExperienceComponent implements OnInit {
       return;
     }
 
-    if (this.isEditEdu && this.currentEdu.id) {
-      this.adminApi.updateEducation(this.currentEdu.id, this.currentEdu).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Education updated.');
-            this.showEduModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingEdu = true;
+    const req$ = (this.isEditEdu && this.currentEdu.id)
+      ? this.adminApi.updateEducation(this.currentEdu.id, this.currentEdu)
+      : this.adminApi.createEducation(this.currentEdu);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingEdu = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditEdu ? 'Education updated.' : 'Education created.');
+          this.showEduModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createEducation(this.currentEdu).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Education created.');
-            this.showEduModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteEdu(edu: EducationDto): Promise<void> {
@@ -248,7 +262,9 @@ export class AdminExperienceComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteEducation(edu.id).subscribe({
+      this.adminApi.deleteEducation(edu.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('Education deleted successfully.');
@@ -280,29 +296,30 @@ export class AdminExperienceComponent implements OnInit {
       return;
     }
 
-    if (this.isEditCert && this.currentCert.id) {
-      this.adminApi.updateCertification(this.currentCert.id, this.currentCert).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Certification updated.');
-            this.showCertModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
+    this.savingCert = true;
+    const req$ = (this.isEditCert && this.currentCert.id)
+      ? this.adminApi.updateCertification(this.currentCert.id, this.currentCert)
+      : this.adminApi.createCertification(this.currentCert);
+
+    req$.pipe(
+      timeout(15000),
+      finalize(() => {
+        this.savingCert = false;
+        this.cdr.detectChanges();
+      })
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.portfolioService.showToast(this.isEditCert ? 'Certification updated.' : 'Certification created.');
+          this.showCertModal = false;
+          this.loadData();
+          this.portfolioService.refreshData();
+        } else {
+          this.portfolioService.showToast(res.message || 'Operation failed.');
         }
-      });
-    } else {
-      this.adminApi.createCertification(this.currentCert).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.portfolioService.showToast('Certification created.');
-            this.showCertModal = false;
-            this.loadData();
-            this.portfolioService.refreshData();
-          }
-        }
-      });
-    }
+      },
+      error: (err) => this.portfolioService.showToast(err.error?.message || 'Operation failed.')
+    });
   }
 
   async deleteCert(cert: CertificationDto): Promise<void> {
@@ -318,7 +335,9 @@ export class AdminExperienceComponent implements OnInit {
     });
 
     if (confirmed) {
-      this.adminApi.deleteCertification(cert.id).subscribe({
+      this.adminApi.deleteCertification(cert.id).pipe(
+        timeout(15000)
+      ).subscribe({
         next: (res) => {
           if (res.success) {
             this.portfolioService.showToast('Certification deleted successfully.');

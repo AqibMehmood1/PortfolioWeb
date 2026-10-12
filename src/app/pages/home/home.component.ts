@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { timeout, finalize } from 'rxjs';
 import Typed from 'typed.js';
 import { PortfolioService } from '../../services/portfolio.service';
 import { PortfolioApiService } from '../../services/portfolio-api.service';
@@ -34,7 +35,9 @@ interface AccordionService {
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  featuredProjects: ProjectItem[] = [];
+  get featuredProjects(): ProjectItem[] {
+    return this.portfolioService.projects;
+  }
   allServices: ServiceItem[] = [];
   selectedHeroFocus: string = 'SaaS Architecture & Scale';
   activeArchTab: 'saas' | 'ai' | 'cloud' = 'saas';
@@ -181,7 +184,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public portfolioService: PortfolioService,
     private api: PortfolioApiService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
   ) {}
 
   isSectionVisible(sectionKey: string): boolean {
@@ -260,17 +265,17 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Subscribe to dynamic portfolio service data
-    this.portfolioService.projects$.subscribe(projects => {
-      this.featuredProjects = projects;
-    });
+    // Refresh latest portfolio and CMS data on homepage load
+    this.portfolioService.refreshData();
 
     this.portfolioService.services$.subscribe(services => {
       this.allServices = services;
+      this.cdr.markForCheck();
     });
 
     this.portfolioService.accordionServices$.subscribe(accServices => {
       this.servicesAccordion = accServices;
+      this.cdr.markForCheck();
     });
 
     // Load dynamic home hero content from API
@@ -379,6 +384,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.isSubmittingInquiry = true;
+    this.cdr.detectChanges();
+
     this.api.submitContactInquiry({
       name: this.inquiryForm.fullName.trim(),
       email: this.inquiryForm.email.trim(),
@@ -387,34 +394,63 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       subject: `Inquiry: ${this.inquiryForm.techStack}`,
       techStack: this.inquiryForm.techStack,
       message: this.inquiryForm.message.trim()
-    }).subscribe({
+    })
+    .pipe(
+      timeout(15000),
+      finalize(() => {
+        this.ngZone.run(() => {
+          this.isSubmittingInquiry = false;
+          this.cdr.detectChanges();
+        });
+      })
+    )
+    .subscribe({
       next: (res) => {
-        this.isSubmittingInquiry = false;
-        const sender = this.inquiryForm.fullName;
-        this.heroSuccessMsg = res.message || `Thank you, ${sender}! Your inquiry has been sent successfully. We will follow up shortly.`;
-        this.portfolioService.showToast(`Thank you, ${sender}! Inquiry submitted successfully. 🚀`);
-        
-        // Clear the form fields on success
-        this.inquiryForm = {
-          fullName: '',
-          email: '',
-          phone: '',
-          techStack: 'Multi-Tenant SaaS Architecture',
-          message: '',
-          agreed: false
-        };
+        this.ngZone.run(() => {
+          this.isSubmittingInquiry = false;
+          const sender = this.inquiryForm.fullName;
+          this.heroSuccessMsg = res.message || `Thank you, ${sender}! Your inquiry has been sent successfully. We will follow up shortly.`;
+          this.portfolioService.showToast(`Thank you, ${sender}! Inquiry submitted successfully. 🚀`);
+          
+          // Clear the form fields on success
+          this.inquiryForm = {
+            fullName: '',
+            email: '',
+            phone: '',
+            techStack: 'Multi-Tenant SaaS Architecture',
+            message: '',
+            agreed: false
+          };
+          this.cdr.detectChanges();
 
-        // Auto-dismiss message after 5 seconds
-        this.heroMsgTimeout = setTimeout(() => {
-          this.heroSuccessMsg = null;
-        }, 5000);
+          // Auto-dismiss message after 6 seconds
+          this.heroMsgTimeout = setTimeout(() => {
+            this.ngZone.run(() => {
+              this.heroSuccessMsg = null;
+              this.cdr.detectChanges();
+            });
+          }, 6000);
+        });
       },
-      error: () => {
-        this.isSubmittingInquiry = false;
-        this.heroErrorMsg = 'Unable to submit your inquiry at this moment. Please check your connection or contact directly via Email / WhatsApp.';
-        this.heroMsgTimeout = setTimeout(() => {
-          this.heroErrorMsg = null;
-        }, 5000);
+      error: (err) => {
+        this.ngZone.run(() => {
+          this.isSubmittingInquiry = false;
+          let msg = 'Unable to submit your inquiry at this moment. Please check your connection or contact directly via Email / WhatsApp.';
+          if (err?.name === 'TimeoutError') {
+            msg = 'Request timed out after 15 seconds. Please verify your connection or contact us directly.';
+          } else if (err?.error?.message) {
+            msg = err.error.message;
+          }
+          this.heroErrorMsg = msg;
+          this.cdr.detectChanges();
+
+          this.heroMsgTimeout = setTimeout(() => {
+            this.ngZone.run(() => {
+              this.heroErrorMsg = null;
+              this.cdr.detectChanges();
+            });
+          }, 6000);
+        });
       }
     });
   }
@@ -426,44 +462,77 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (!this.bottomContactForm.fullName.trim() || !this.bottomContactForm.email.trim() || !this.bottomContactForm.message.trim()) {
       this.bottomErrorMsg = 'Please complete all required fields (Full Name, Work Email, and Message).';
+      this.cdr.detectChanges();
       this.bottomMsgTimeout = setTimeout(() => {
         this.bottomErrorMsg = null;
+        this.cdr.detectChanges();
       }, 5000);
       return;
     }
 
     this.isSubmittingBottom = true;
+    this.cdr.detectChanges();
+
     this.api.submitContactInquiry({
       name: this.bottomContactForm.fullName.trim(),
       email: this.bottomContactForm.email.trim(),
       subject: this.bottomContactForm.subject.trim() || 'General Consultation & Architecture Inquiry',
       message: this.bottomContactForm.message.trim()
-    }).subscribe({
+    })
+    .pipe(
+      timeout(15000),
+      finalize(() => {
+        this.ngZone.run(() => {
+          this.isSubmittingBottom = false;
+          this.cdr.detectChanges();
+        });
+      })
+    )
+    .subscribe({
       next: (res) => {
-        this.isSubmittingBottom = false;
-        const sender = this.bottomContactForm.fullName;
-        this.bottomSuccessMsg = res.message || `Thank you, ${sender}! Your consultation request has been received. We will respond within 24 hours.`;
-        this.portfolioService.showToast(`Thank you, ${sender}! Consultation request submitted. 🚀`);
+        this.ngZone.run(() => {
+          this.isSubmittingBottom = false;
+          const sender = this.bottomContactForm.fullName;
+          this.bottomSuccessMsg = res.message || `Thank you, ${sender}! Your consultation request has been received. We will respond within 24 hours.`;
+          this.portfolioService.showToast(`Thank you, ${sender}! Consultation request submitted. 🚀`);
 
-        // Clear bottom form fields on success
-        this.bottomContactForm = {
-          fullName: '',
-          email: '',
-          subject: '',
-          message: ''
-        };
+          // Clear bottom form fields on success
+          this.bottomContactForm = {
+            fullName: '',
+            email: '',
+            subject: '',
+            message: ''
+          };
+          this.cdr.detectChanges();
 
-        // Auto-dismiss message after 5 seconds
-        this.bottomMsgTimeout = setTimeout(() => {
-          this.bottomSuccessMsg = null;
-        }, 5000);
+          // Auto-dismiss message after 6 seconds
+          this.bottomMsgTimeout = setTimeout(() => {
+            this.ngZone.run(() => {
+              this.bottomSuccessMsg = null;
+              this.cdr.detectChanges();
+            });
+          }, 6000);
+        });
       },
-      error: () => {
-        this.isSubmittingBottom = false;
-        this.bottomErrorMsg = 'Failed to submit consultation request. Please try again or reach out directly via Email / WhatsApp.';
-        this.bottomMsgTimeout = setTimeout(() => {
-          this.bottomErrorMsg = null;
-        }, 5000);
+      error: (err) => {
+        this.ngZone.run(() => {
+          this.isSubmittingBottom = false;
+          let msg = 'Failed to submit consultation request. Please try again or reach out directly via Email / WhatsApp.';
+          if (err?.name === 'TimeoutError') {
+            msg = 'Request timed out after 15 seconds. Please verify your connection or contact us directly.';
+          } else if (err?.error?.message) {
+            msg = err.error.message;
+          }
+          this.bottomErrorMsg = msg;
+          this.cdr.detectChanges();
+
+          this.bottomMsgTimeout = setTimeout(() => {
+            this.ngZone.run(() => {
+              this.bottomErrorMsg = null;
+              this.cdr.detectChanges();
+            });
+          }, 6000);
+        });
       }
     });
   }

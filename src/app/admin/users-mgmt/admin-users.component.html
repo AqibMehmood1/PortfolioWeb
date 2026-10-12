@@ -106,8 +106,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveUser()">Save User</button>
+        <button class="btn-cancel" (click)="showModal = false" [disabled]="saving">Cancel</button>
+        <button class="btn-primary" (click)="saveUser()" [disabled]="saving">
+          <i *ngIf="saving" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ saving ? 'Saving...' : 'Save User' }}</span>
+        </button>
       </div>
     </div>
   </div>

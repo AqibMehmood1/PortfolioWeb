@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { AdminApiService, ContactInquiryDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -88,11 +89,19 @@ export class AdminInquiriesComponent implements OnInit {
   saveNotes(): void {
     if (!this.selectedInquiry || !this.selectedInquiry.id) return;
     this.savingNotes = true;
+    this.cdr.detectChanges();
     this.adminApi.updateInquiryStatus(
       this.selectedInquiry.id,
       this.selectedInquiry.status,
       this.selectedInquiry.adminNotes
-    ).subscribe({
+    )
+    .pipe(
+      finalize(() => {
+        this.savingNotes = false;
+        this.cdr.detectChanges();
+      })
+    )
+    .subscribe({
       next: (res) => {
         this.savingNotes = false;
         if (res.success) {

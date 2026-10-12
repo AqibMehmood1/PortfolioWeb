@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, NgZone, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { finalize, timeout } from 'rxjs';
 import { AdminApiService } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 
@@ -66,10 +67,17 @@ export class AdminLoginComponent implements OnDestroy {
     this.errorMessage = '';
     this.cdr.detectChanges();
 
-    this.adminApi.login({ username: this.username.trim(), password: this.password }).subscribe({
-      next: (res) => {
+    this.adminApi.login({ username: this.username.trim(), password: this.password }).pipe(
+      timeout(15000),
+      finalize(() => {
         this.ngZone.run(() => {
           this.loading = false;
+          this.cdr.detectChanges();
+        });
+      })
+    ).subscribe({
+      next: (res) => {
+        this.ngZone.run(() => {
           if (res.success) {
             this.portfolioService.showToast('Login successful. Welcome to Admin CMS!');
             this.router.navigate(['/admin/dashboard']);
@@ -88,8 +96,6 @@ export class AdminLoginComponent implements OnDestroy {
       },
       error: (err) => {
         this.ngZone.run(() => {
-          this.loading = false;
-
           let msg = 'Invalid username or password. Please try again.';
           if (err?.error?.message) {
             msg = err.error.message;
@@ -99,6 +105,8 @@ export class AdminLoginComponent implements OnDestroy {
             msg = 'Invalid username or password.';
           } else if (err?.status === 0) {
             msg = 'Backend server is unreachable. Please verify the API is running.';
+          } else if (err?.name === 'TimeoutError') {
+            msg = 'Connection timed out. Server is taking too long to respond.';
           } else if (err?.message) {
             msg = err.message;
           }

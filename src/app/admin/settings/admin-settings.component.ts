@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { AdminApiService, WebsiteSettingDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ImagePickerComponent } from '../components/image-picker/image-picker.component';
@@ -51,9 +52,17 @@ export class AdminSettingsComponent implements OnInit {
 
   saveAll(): void {
     this.saving = true;
+    this.cdr.detectChanges();
     const updateList = Object.values(this.settingsMap);
 
-    this.adminApi.updateSettings(updateList).subscribe({
+    this.adminApi.updateSettings(updateList)
+    .pipe(
+      finalize(() => {
+        this.saving = false;
+        this.cdr.detectChanges();
+      })
+    )
+    .subscribe({
       next: (res) => {
         this.saving = false;
         if (res.success) {

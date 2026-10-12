@@ -168,8 +168,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showTechModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveTech()">Save Technology</button>
+        <button class="btn-cancel" (click)="showTechModal = false" [disabled]="savingTech">Cancel</button>
+        <button class="btn-primary" (click)="saveTech()" [disabled]="savingTech">
+          <i *ngIf="savingTech" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingTech ? 'Saving...' : 'Save Technology' }}</span>
+        </button>
       </div>
     </div>
   </div>
@@ -211,8 +214,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" (click)="showCatModal = false">Cancel</button>
-        <button class="btn-primary" (click)="saveCat()">Save Category</button>
+        <button class="btn-cancel" (click)="showCatModal = false" [disabled]="savingCat">Cancel</button>
+        <button class="btn-primary" (click)="saveCat()" [disabled]="savingCat">
+          <i *ngIf="savingCat" class="fas fa-circle-notch fa-spin"></i>
+          <span>{{ savingCat ? 'Saving...' : 'Save Category' }}</span>
+        </button>
       </div>
     </div>
   </div>
