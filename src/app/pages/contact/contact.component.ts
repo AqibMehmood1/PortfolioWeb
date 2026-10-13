@@ -34,7 +34,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     phone: '',
     company: '',
     timeline: 'Within 2-4 weeks',
-    budgetRange: '$10k - $25k',
+    budgetRange: '$500 - $2,500 (Architecture Audit)',
     subject: 'Topic: SaaS Architecture & Scale',
     message: '',
     agreed: false
@@ -152,7 +152,7 @@ export class ContactComponent implements OnInit, OnDestroy {
             phone: '',
             company: '',
             timeline: 'Within 2-4 weeks',
-            budgetRange: '$10k - $25k',
+            budgetRange: '$500 - $2,500 (Architecture Audit)',
             subject: `Topic: ${this.selectedTopic}`,
             message: '',
             agreed: false

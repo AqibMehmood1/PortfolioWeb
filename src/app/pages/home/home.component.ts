@@ -231,7 +231,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const cards = this.getSectionCards('diagnostic-audit');
     if (cards && cards.length > 0) return cards;
     return [
-      { title: 'Fixed fee', description: 'from $2,500', icon: 'fas fa-check-circle' },
+      { title: 'Fixed fee', description: 'from $500', icon: 'fas fa-check-circle' },
       { title: 'Delivery', description: '10 business days', icon: 'fas fa-check-circle' },
       { title: 'Deliverables', description: 'FinOps savings breakdown + 90-day prioritized remediation roadmap', icon: 'fas fa-check-circle' }
     ];

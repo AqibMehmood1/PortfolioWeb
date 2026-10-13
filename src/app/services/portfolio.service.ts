@@ -208,7 +208,7 @@ export class PortfolioService {
     // Fallback defaults for diagnostic-audit
     if (sectionKey === 'diagnostic-audit') {
       return [
-        { title: 'Fixed fee', description: 'from $2,500 with zero surprise overages', badge: 'Fixed Fee', icon: 'fas fa-check-circle' },
+        { title: 'Fixed fee', description: 'from $500 with zero surprise overages', badge: 'Fixed Fee', icon: 'fas fa-check-circle' },
         { title: 'Delivery', description: '10 business days direct turnaround', badge: '10 Days', icon: 'fas fa-clock' },
         { title: 'Deliverables', description: 'FinOps savings breakdown + 90-day prioritized remediation roadmap', badge: 'Deliverables', icon: 'fas fa-file-contract' }
       ];
