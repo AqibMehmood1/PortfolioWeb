@@ -89,6 +89,16 @@ export class PortfolioService {
   testimonials$: Observable<TestimonialItem[]> = this.testimonialsSubject.asObservable();
   get testimonials(): TestimonialItem[] { return this.testimonialsSubject.value; }
 
+  get marqueeReviews(): TestimonialItem[] {
+    const list = this.testimonials;
+    if (!list || list.length === 0) return [];
+    let repeated = [...list];
+    while (repeated.length < 6) {
+      repeated = [...repeated, ...list];
+    }
+    return repeated;
+  }
+
   private pagesSubject = new BehaviorSubject<SitePageDto[]>([]);
   pages$: Observable<SitePageDto[]> = this.pagesSubject.asObservable();
   get pages(): SitePageDto[] { return this.pagesSubject.value; }
