@@ -21,3 +21,245 @@
   border-color: rgba(184, 245, 0, 0.45) !important;
   background: rgba(255, 255, 255, 0.07) !important;
 }
+
+/* ========================================================
+   COMPANY TRACK RECORD & MILESTONES (Clean Compact Timeline)
+   ======================================================== */
+.iz-timeline-container {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 10px 0;
+}
+
+/* --------------------------------------------------------
+   DESKTOP 4-COLUMN HORIZONTAL TIMELINE (>= 992px)
+   -------------------------------------------------------- */
+@media (min-width: 992px) {
+  .iz-horizontal-timeline {
+    position: relative;
+    padding-top: 10px;
+  }
+
+  /* Connecting Track Line */
+  .iz-track-line {
+    position: absolute;
+    top: 24px;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: #e2e8f0;
+    z-index: 1;
+  }
+
+  .iz-track-line-progress {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #b8f500 0%, #10b981 40%, #0ea5e9 75%, #0f172a 100%);
+  }
+
+  /* 4 Columns Grid */
+  .iz-timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .iz-timeline-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    transition: transform 0.25s ease;
+    cursor: default;
+  }
+
+  .iz-timeline-col:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Node circle sitting on the track line */
+  .iz-col-node-wrapper {
+    margin-bottom: 20px;
+    padding-left: 2px;
+  }
+
+  .iz-col-node {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #0f172a;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #0f172a;
+    transition: all 0.25s ease;
+  }
+
+  .iz-timeline-col:hover .iz-col-node,
+  .iz-timeline-col.active .iz-col-node {
+    background: #b8f500;
+    border-color: #0f172a;
+    transform: scale(1.12);
+    box-shadow: 0 0 20px rgba(184, 245, 0, 0.7);
+  }
+
+  /* Column Body */
+  .iz-col-body {
+    width: 100%;
+  }
+
+  .iz-col-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .iz-col-year {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .iz-col-era-pill {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: rgba(184, 245, 0, 0.25);
+    color: #166534;
+    border: 1px solid rgba(184, 245, 0, 0.5);
+  }
+
+  .iz-col-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 8px 0;
+    min-height: 44px;
+  }
+
+  .iz-col-desc {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.55;
+    margin: 0 0 12px 0;
+  }
+
+  .iz-col-kpi-pill {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 4px 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------
+   MOBILE & TABLET VERTICAL STREAM (< 992px)
+   -------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .iz-vertical-timeline {
+    position: relative;
+    padding-left: 54px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .iz-v-spine {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 19px;
+    width: 2px;
+    background: linear-gradient(180deg, #b8f500 0%, #10b981 40%, #0ea5e9 75%, #0f172a 100%);
+  }
+
+  .iz-v-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .iz-v-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .iz-v-node {
+    position: absolute;
+    left: -54px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #0f172a;
+  }
+
+  .iz-v-content {
+    text-align: left;
+  }
+
+  .iz-col-year {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+  }
+
+  .iz-col-era-pill {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: rgba(184, 245, 0, 0.25);
+    color: #166534;
+    border: 1px solid rgba(184, 245, 0, 0.5);
+  }
+
+  .iz-col-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+  }
+
+  .iz-col-desc {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.55;
+  }
+
+  .iz-col-kpi-pill {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+}
+

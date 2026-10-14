@@ -13,6 +13,16 @@ export interface TechTile {
   color: string;
 }
 
+export interface ArchitectureDomain {
+  id: number;
+  title: string;
+  category: string;
+  icon: string;
+  iconColor: string;
+  desc: string;
+  chips: string[];
+}
+
 @Component({
   selector: 'app-expertise',
   standalone: true,
@@ -22,6 +32,138 @@ export interface TechTile {
 })
 export class ExpertiseComponent {
   activeTrackTab: 'experience' | 'education' | 'certifications' = 'experience';
+  activeDomainIndex: number = 0;
+
+  readonly architectureDomains: ArchitectureDomain[] = [
+    {
+      id: 1,
+      title: 'Cloud & Distributed Systems',
+      category: 'Cloud',
+      icon: 'fas fa-cloud',
+      iconColor: '#0089d6',
+      desc: 'Architecting resilient multi-region architectures, microservices, containerization, and zero-downtime deployment pipelines.',
+      chips: ['Microsoft Azure', 'AWS Cloud', 'Kubernetes', 'Docker', 'Serverless', 'Microservices', 'API Gateway']
+    },
+    {
+      id: 2,
+      title: 'AI Agents & GenAI Engineering',
+      category: 'AI & GenAI',
+      icon: 'fas fa-robot',
+      iconColor: '#10b981',
+      desc: 'Integrating autonomous reasoning agents, retrieval-augmented generation (RAG), and enterprise LLM workflow automations.',
+      chips: ['AI Agents', 'LangChain', 'Semantic Kernel', 'RAG Pipelines', 'OpenAI / Claude', 'Pinecone Vector DB']
+    },
+    {
+      id: 3,
+      title: 'Enterprise .NET & Backend',
+      category: '.NET Core',
+      icon: 'fas fa-bolt',
+      iconColor: '#512bd4',
+      desc: 'High-throughput backend architectures using modern C#, ASP.NET WebAPI, asynchronous event buses, and domain-driven design.',
+      chips: ['.NET 9 / .NET Core', 'C# (Async/Await)', 'ASP.NET WebAPI', 'Entity Framework Core', 'Clean Architecture']
+    },
+    {
+      id: 4,
+      title: 'Modern Frontend & Web Systems',
+      category: 'Frontend',
+      icon: 'fas fa-laptop-code',
+      iconColor: '#0ea5e9',
+      desc: 'Building responsive, lightning-fast Single Page Applications and portals with strict type safety and rich user experience.',
+      chips: ['Angular 17+', 'React', 'TypeScript', 'RxJS', 'Bootstrap 5', 'Responsive Web']
+    },
+    {
+      id: 5,
+      title: 'Data, Caching & Performance',
+      category: 'Data',
+      icon: 'fas fa-database',
+      iconColor: '#cc292b',
+      desc: 'Optimizing transactional databases, high-speed distributed cache layers, database indexing, and query execution plans.',
+      chips: ['SQL Server', 'PostgreSQL', 'Redis Caching', 'MongoDB', 'Index Tuning']
+    },
+    {
+      id: 6,
+      title: 'Architecture Advisory & Governance',
+      category: 'Leadership',
+      icon: 'fas fa-user-shield',
+      iconColor: '#f59e0b',
+      desc: 'Guiding engineering teams with technical roadmaps, architectural reviews, agile sprint governance, and security audits.',
+      chips: ['Fractional CTO', 'Scrum Leadership', 'Zero-Trust Security', 'Cost Optimization', 'System Audits']
+    }
+  ];
+
+  processViewMode: 'lifecycle' | 'domains' = 'lifecycle';
+
+  readonly lifecyclePhases: ArchitectureDomain[] = [
+    {
+      id: 1,
+      title: 'Planning',
+      category: 'Phase 01',
+      icon: 'fas fa-lightbulb',
+      iconColor: '#ef4444',
+      desc: 'Our first step is to thoroughly research and organize your strengths and weaknesses. We start with understanding how you want to position your website and offer technical assistance.',
+      chips: ['Discovery Workshop', 'Gap Analysis', 'Feasibility Review', 'Roadmap Blueprint']
+    },
+    {
+      id: 2,
+      title: 'Design',
+      category: 'Phase 02',
+      icon: 'fas fa-mobile-alt',
+      iconColor: '#0284c7',
+      desc: 'The next stage is where we start with designing the website, checking the sitemap, optimizing user experience, and making sure the website is responsive across all digital fronts.',
+      chips: ['User Experience (UX)', 'Sitemap & Flows', 'Responsive UI', 'System Architecture']
+    },
+    {
+      id: 3,
+      title: 'Development',
+      category: 'Phase 03',
+      icon: 'fas fa-laptop-code',
+      iconColor: '#10b981',
+      desc: 'We create initial mockups of the web design from scratch. Our team ensures optimizing the design and adding content that is fully optimized to rank on different search engines.',
+      chips: ['.NET 9 Web API', 'Angular SPAs', 'Docker CI/CD', 'SEO Optimization']
+    },
+    {
+      id: 4,
+      title: 'Deployment',
+      category: 'Phase 04',
+      icon: 'fas fa-rocket',
+      iconColor: '#8b5cf6',
+      desc: 'The launch phase is where (once the customer feels satisfied), we send the website live. We ensure the original design works smoothly and gain feedback on improvements.',
+      chips: ['Zero-Downtime Release', 'Azure Telemetry', 'Production Handover', 'Feedback Loop']
+    }
+  ];
+
+  get currentItems(): ArchitectureDomain[] {
+    return this.processViewMode === 'lifecycle' ? this.lifecyclePhases : this.architectureDomains;
+  }
+
+  selectDomain(index: number): void {
+    this.activeDomainIndex = index;
+  }
+
+  getStepCoords(index: number, total: number): { x: number; y: number } {
+    if (total === 4) {
+      const coords4 = [
+        { x: 456, y: 75 },
+        { x: 548, y: 232 },
+        { x: 548, y: 408 },
+        { x: 456, y: 565 }
+      ];
+      return coords4[index] || { x: 500, y: 300 };
+    }
+    const coords6 = [
+      { x: 439, y: 110 },
+      { x: 514, y: 200 },
+      { x: 555, y: 311 },
+      { x: 555, y: 429 },
+      { x: 514, y: 540 },
+      { x: 439, y: 630 }
+    ];
+    return coords6[index] || { x: 500, y: 300 };
+  }
+
+  getStepMarginLeft(index: number, total: number): string {
+    return `${this.getStepCoords(index, total).x}px`;
+  }
 
   // Tech Stacks Matrix State (Screenshot 5)
   activeStackCategory: StackCategory = 'ai';

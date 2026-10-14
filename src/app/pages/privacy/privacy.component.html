@@ -36,7 +36,8 @@
       <ul>
         <li><strong>Contact Information:</strong> Full name, professional work email address, phone number (optional),
           and company name.</li>
-        <li><strong>Project &amp; Architectural Context:</strong> Project requirements, tech stack details, target timeline,
+        <li><strong>Project &amp; Architectural Context:</strong> Project requirements, tech stack details, target
+          timeline,
           budget range, and any high-level architecture documents you choose to provide.</li>
         <li><strong>Technical Information:</strong> Standard, privacy-preserving server logs including IP address,
           browser type, and referring URL used solely for diagnostic security and load performance.</li>
@@ -46,7 +47,8 @@
       <p>We process your data exclusively for legitimate business purposes:</p>
       <ul>
         <li>To review and respond to your architectural inquiry within one business day.</li>
-        <li>To scope technical feasibility, estimate delivery roadmaps, and schedule architecture strategy sessions.</li>
+        <li>To scope technical feasibility, estimate delivery roadmaps, and schedule architecture strategy sessions.
+        </li>
         <li>To execute Mutual Non-Disclosure Agreements (NDAs) prior to in-depth technical discovery.</li>
         <li>To provide agreed consulting, engineering, and fractional architecture services.</li>
       </ul>
@@ -81,12 +83,14 @@
         If you have questions regarding this Privacy Policy or wish to exercise your data rights, please contact our
         compliance team directly:
       </p>
-      <div class="p-3 rounded-3 mb-4" style="background: rgba(15, 23, 42, 0.03); border: 1px solid rgba(15, 23, 42, 0.08);">
+      <div class="p-3 rounded-3 mb-4"
+        style="background: rgba(15, 23, 42, 0.03); border: 1px solid rgba(15, 23, 42, 0.08);">
         <p class="mb-1"><strong>NEXVOYS Ltd.</strong></p>
         <p class="mb-1">
           <i class="fas fa-envelope text-green me-2"></i>Email:
-          <a [href]="'mailto:' + (portfolioService.profile.email || 'nexvoys@gmail.com')" class="text-decoration-none fw-bold" style="color: #0f172a;">
-            {{ portfolioService.profile.email || 'nexvoys@gmail.com' }}
+          <a [href]="'mailto:' + (portfolioService.profile.email || 'info@nexvoys.com')"
+            class="text-decoration-none fw-bold" style="color: #0f172a;">
+            {{ portfolioService.profile.email || 'info@nexvoys.com' }}
           </a>
         </p>
         <p class="mb-1" *ngIf="portfolioService.profile.phone">
@@ -96,7 +100,8 @@
           </a>
         </p>
         <p class="mb-0 text-muted">
-          <i class="fas fa-map-marker-alt text-green me-2"></i>Location: {{ portfolioService.profile.location || 'Lahore, Pakistan · Serving Clients Worldwide' }}
+          <i class="fas fa-map-marker-alt text-green me-2"></i>Location: {{ portfolioService.profile.location ||
+          'Lahore, Pakistan · Serving Clients Worldwide' }}
         </p>
       </div>
 

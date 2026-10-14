@@ -123,37 +123,93 @@
 <section class="iz-section iz-section-offwhite" id="milestones" *ngIf="isSectionVisible('milestones')">
   <div *ngIf="getSection('milestones')?.customHtml" [innerHTML]="getSection('milestones')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('milestones')?.customHtml">
+    
+    <!-- Section Header -->
     <div class="iz-section-header text-center max-w-860 mx-auto mb-5">
-      <div class="iz-tag"><i class="fas fa-history text-green"></i> {{ getSection('milestones')?.subtitle || 'Company Evolution' }}</div>
-      <h2 class="iz-title">{{ getSection('milestones')?.title || 'Company Track Record & Engineering Milestones' }}</h2>
-      <p class="iz-subtitle">
+      <div class="iz-tag d-inline-flex align-items-center mb-2">
+        <i class="fas fa-history text-green me-2"></i> {{ getSection('milestones')?.subtitle || 'Company Evolution' }}
+      </div>
+      <h2 class="iz-title mb-2">{{ getSection('milestones')?.title || 'Company Track Record & Engineering Milestones' }}</h2>
+      <p class="iz-subtitle mx-auto">
         {{ getSection('milestones')?.description || 'A history of architecting, scaling, and deploying mission-critical systems for international enterprises and high-growth startups.' }}
       </p>
     </div>
 
-    <!-- Company Milestones Grid -->
-    <div class="row g-4 justify-content-center">
-      <div class="col-lg-6" *ngFor="let item of companyMilestones; let idx = index">
-        <div class="iz-stat-card h-100 p-4 text-start border d-flex flex-column justify-content-between position-relative overflow-hidden" style="background: #ffffff; border-color: var(--iz-border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border-radius: 16px;">
-          <div>
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <span class="badge px-3 py-2 fw-bold" style="background: #E8FF9E; color: #101828; font-size: 0.82rem; border-radius: 9999px;">
-                <i [class]="item.icon || 'fas fa-flag'" class="text-green me-1"></i> {{ item.badge }}
-              </span>
-              <span class="text-muted small fw-semibold">Phase 0{{ idx + 1 }}</span>
+    <!-- Clean, Compact Milestone Timeline (Horizontal on Desktop, Vertical on Mobile) -->
+    <div class="iz-timeline-container">
+      
+      <!-- DESKTOP 4-COLUMN HORIZONTAL TRACK (>= 992px) -->
+      <div class="iz-horizontal-timeline d-none d-lg-block">
+        <!-- Connecting Track Line -->
+        <div class="iz-track-line">
+          <div class="iz-track-line-progress"></div>
+        </div>
+
+        <!-- 4 Milestone Columns -->
+        <div class="iz-timeline-grid">
+          <div class="iz-timeline-col" 
+               *ngFor="let item of companyMilestones; let idx = index"
+               [class.active]="activeMilestoneIdx === idx"
+               (mouseenter)="activeMilestoneIdx = idx">
+            
+            <!-- Top Node with Icon -->
+            <div class="iz-col-node-wrapper">
+              <div class="iz-col-node">
+                <i [class]="item.icon || 'fas fa-flag'"></i>
+              </div>
             </div>
-            <h4 class="fw-bold text-dark mb-3" style="font-size: 1.22rem; line-height: 1.4;">{{ item.title }}</h4>
-            <p class="text-muted mb-4" style="line-height: 1.65; font-size: 0.95rem;">{{ item.description }}</p>
-          </div>
-          <div class="pt-3 border-top border-light d-flex align-items-center justify-content-between">
-            <span class="badge bg-light text-dark border px-2 py-1 small fw-semibold">
-              <i class="fas fa-check-circle text-green me-1"></i> Verified Production Delivery
-            </span>
-            <span class="text-muted small"><i class="fas fa-globe me-1 text-green"></i> Enterprise Grade</span>
+
+            <!-- Milestone Details -->
+            <div class="iz-col-body">
+              <!-- Year & Era Header -->
+              <div class="iz-col-header mb-2">
+                <span class="iz-col-year">{{ getYear(item.badge) }}</span>
+                <span class="iz-col-era-pill">{{ getEra(item.badge) }}</span>
+              </div>
+
+              <!-- Title -->
+              <h4 class="iz-col-title">{{ item.title }}</h4>
+
+              <!-- Description -->
+              <p class="iz-col-desc">{{ item.description }}</p>
+
+              <!-- Highlight Metric Pill -->
+              <div class="iz-col-kpi-pill">
+                <i class="fas fa-check-circle text-green me-1"></i>
+                <span>{{ getKpi(idx).metric }}</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+
+      <!-- MOBILE & TABLET VERTICAL TIMELINE (< 992px) -->
+      <div class="iz-vertical-timeline d-lg-none">
+        <div class="iz-v-spine"></div>
+
+        <div class="iz-v-item" *ngFor="let item of companyMilestones; let idx = index">
+          <div class="iz-v-node">
+            <i [class]="item.icon || 'fas fa-flag'"></i>
+          </div>
+
+          <div class="iz-v-content">
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="iz-col-year">{{ getYear(item.badge) }}</span>
+              <span class="iz-col-era-pill">{{ getEra(item.badge) }}</span>
+            </div>
+            <h4 class="iz-col-title mb-2">{{ item.title }}</h4>
+            <p class="iz-col-desc mb-2">{{ item.description }}</p>
+            <div class="iz-col-kpi-pill d-inline-flex">
+              <i class="fas fa-check-circle text-green me-1"></i>
+              <span>{{ getKpi(idx).metric }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </section>
 

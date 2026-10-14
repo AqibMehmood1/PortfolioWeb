@@ -99,121 +99,85 @@
   </div>
 </section>
 
-<!-- ==================== 3. 6-DOMAIN TECH RADAR ==================== -->
-<section class="iz-section">
+<!-- ==================== 3. CIRCULAR ARCHITECTURE PROCESS (EXACT REFERENCE DESIGN) ==================== -->
+<section class="iz-section iz-circular-process-section" id="architecture-domains">
   <div class="container">
-    <div class="iz-services-grid">
-      <div class="iz-service-card">
-        <div>
-          <div class="iz-service-top">
-            <div class="iz-service-icon"><i class="fas fa-cloud"></i></div>
-            <span class="iz-chip">Cloud</span>
-          </div>
-          <h4>Cloud & Distributed Systems</h4>
-          <p>Architecting resilient multi-region architectures, microservices, containerization, and zero-downtime deployment pipelines.</p>
-        </div>
-        <div class="iz-tech-chips">
-          <span class="iz-chip">Microsoft Azure</span>
-          <span class="iz-chip">AWS Cloud</span>
-          <span class="iz-chip">Kubernetes</span>
-          <span class="iz-chip">Docker</span>
-          <span class="iz-chip">Serverless</span>
-          <span class="iz-chip">Microservices</span>
-          <span class="iz-chip">API Gateway</span>
+    <!-- Header: Centered like 'Our Website Design Process' in reference image -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-2 iz-circular-main-title">
+        {{ processViewMode === 'lifecycle' ? 'Our Website Design Process' : 'Our Architecture & Engineering Domains' }}
+      </h2>
+      <p class="text-muted mx-auto iz-circular-main-sub">
+        {{ processViewMode === 'lifecycle' 
+           ? 'Our proven four-stage methodology delivering resilient, responsive, and search-optimized systems from inception to live deployment.' 
+           : 'Six core technical disciplines bridging high-concurrency cloud systems, enterprise GenAI pipelines, and strategic governance.' }}
+      </p>
+
+      <!-- View Switcher -->
+      <div class="d-inline-flex p-1 bg-white rounded-pill shadow-sm border mt-3">
+        <button type="button" 
+                class="btn btn-sm rounded-pill px-4 py-2 fw-bold"
+                [ngClass]="processViewMode === 'lifecycle' ? 'btn-dark text-white' : 'btn-light text-secondary'"
+                (click)="processViewMode = 'lifecycle'; activeDomainIndex = 0">
+          <i class="fas fa-sync-alt me-1" [class.text-green]="processViewMode === 'lifecycle'"></i> 4-Phase Process Lifecycle
+        </button>
+        <button type="button" 
+                class="btn btn-sm rounded-pill px-4 py-2 fw-bold"
+                [ngClass]="processViewMode === 'domains' ? 'btn-dark text-white' : 'btn-light text-secondary'"
+                (click)="processViewMode = 'domains'; activeDomainIndex = 0">
+          <i class="fas fa-layer-group me-1" [class.text-green]="processViewMode === 'domains'"></i> 6 Specialist Domains
+        </button>
+      </div>
+    </div>
+
+    <!-- Integrated Circular Stage (Reference Image Exact Match) -->
+    <div class="iz-circular-stage-container"
+         [class.mode-4]="currentItems.length === 4"
+         [class.mode-6]="currentItems.length === 6">
+      
+      <!-- Big Circular Image Anchored on the Left -->
+      <div class="iz-circle-photo-wrapper">
+        <div class="iz-circle-photo-frame">
+          <img src="assets/img/architect-circle.jpg" 
+               alt="Website Design and Solutions Architecture Team" 
+               class="iz-circle-photo-img"
+               loading="lazy">
         </div>
       </div>
 
-      <div class="iz-service-card">
-        <div>
-          <div class="iz-service-top">
-            <div class="iz-service-icon"><i class="fas fa-robot"></i></div>
-            <span class="iz-chip">AI & GenAI</span>
+      <!-- Steps List: Badges curve along the circumference of the circle -->
+      <div class="iz-circular-steps-list">
+        <div class="iz-circular-step-row"
+             *ngFor="let item of currentItems; let i = index"
+             [class.active]="activeDomainIndex === i"
+             (mouseenter)="selectDomain(i)"
+             (click)="selectDomain(i)"
+             [style.--node-x.px]="getStepCoords(i, currentItems.length).x"
+             [style.--node-y.px]="getStepCoords(i, currentItems.length).y">
+          
+          <!-- Circular Node Badge (Sits directly on the circumference edge) -->
+          <div class="iz-circle-node-badge">
+            <i [class]="item.icon" [style.color]="item.iconColor"></i>
           </div>
-          <h4>AI Agents & GenAI Engineering</h4>
-          <p>Integrating autonomous reasoning agents, retrieval-augmented generation (RAG), and enterprise LLM workflow automations.</p>
-        </div>
-        <div class="iz-tech-chips">
-          <span class="iz-chip">AI Agents</span>
-          <span class="iz-chip">LangChain</span>
-          <span class="iz-chip">Semantic Kernel</span>
-          <span class="iz-chip">RAG Pipelines</span>
-          <span class="iz-chip">OpenAI / Claude</span>
-          <span class="iz-chip">Pinecone Vector DB</span>
+
+          <!-- Horizontal Connector Dash (—) matching Image 1 -->
+          <div class="iz-circle-connector-line"></div>
+
+          <!-- Step Content: Clean typography, no box card border -->
+          <div class="iz-circle-step-body">
+            <h3 class="iz-circle-step-title">
+              <span class="iz-circle-step-num">{{ i + 1 }}.</span> {{ item.title }}
+              <span class="iz-chip iz-circle-step-chip ms-2" *ngIf="processViewMode === 'domains' && item.category">{{ item.category }}</span>
+            </h3>
+            <p class="iz-circle-step-desc">{{ item.desc }}</p>
+            <div class="iz-circle-step-chips" *ngIf="item.chips && item.chips.length && (processViewMode === 'domains' && activeDomainIndex === i)">
+              <span class="iz-circle-chip" *ngFor="let chip of item.chips">{{ chip }}</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="iz-service-card">
-        <div>
-          <div class="iz-service-top">
-            <div class="iz-service-icon"><i class="fas fa-bolt"></i></div>
-            <span class="iz-chip">.NET Core</span>
-          </div>
-          <h4>Enterprise .NET & Backend</h4>
-          <p>High-throughput backend architectures using modern C#, ASP.NET WebAPI, asynchronous event buses, and domain-driven design.</p>
-        </div>
-        <div class="iz-tech-chips">
-          <span class="iz-chip">.NET 9 / .NET Core</span>
-          <span class="iz-chip">C# (Async/Await)</span>
-          <span class="iz-chip">ASP.NET WebAPI</span>
-          <span class="iz-chip">Entity Framework Core</span>
-          <span class="iz-chip">Clean Architecture</span>
-        </div>
-      </div>
-
-      <div class="iz-service-card">
-        <div>
-          <div class="iz-service-top">
-            <div class="iz-service-icon"><i class="fas fa-laptop-code"></i></div>
-            <span class="iz-chip">Frontend</span>
-          </div>
-          <h4>Modern Frontend & Web Systems</h4>
-          <p>Building responsive, lightning-fast Single Page Applications and portals with strict type safety and rich user experience.</p>
-        </div>
-        <div class="iz-tech-chips">
-          <span class="iz-chip">Angular 17+</span>
-          <span class="iz-chip">React</span>
-          <span class="iz-chip">TypeScript</span>
-          <span class="iz-chip">RxJS</span>
-          <span class="iz-chip">Bootstrap 5</span>
-          <span class="iz-chip">Responsive Web</span>
-        </div>
-      </div>
-
-      <div class="iz-service-card">
-        <div>
-          <div class="iz-service-top">
-            <div class="iz-service-icon"><i class="fas fa-database"></i></div>
-            <span class="iz-chip">Data</span>
-          </div>
-          <h4>Data, Caching & Performance</h4>
-          <p>Optimizing transactional databases, high-speed distributed cache layers, database indexing, and query execution plans.</p>
-        </div>
-        <div class="iz-tech-chips">
-          <span class="iz-chip">SQL Server</span>
-          <span class="iz-chip">PostgreSQL</span>
-          <span class="iz-chip">Redis Caching</span>
-          <span class="iz-chip">MongoDB</span>
-          <span class="iz-chip">Index Tuning</span>
-        </div>
-      </div>
-
-      <div class="iz-service-card">
-        <div>
-          <div class="iz-service-top">
-            <div class="iz-service-icon"><i class="fas fa-user-shield"></i></div>
-            <span class="iz-chip">Leadership</span>
-          </div>
-          <h4>Architecture Advisory & Governance</h4>
-          <p>Guiding engineering teams with technical roadmaps, architectural reviews, agile sprint governance, and security audits.</p>
-        </div>
-        <div class="iz-tech-chips">
-          <span class="iz-chip">Fractional CTO</span>
-          <span class="iz-chip">Scrum Leadership</span>
-          <span class="iz-chip">Zero-Trust Security</span>
-          <span class="iz-chip">Cost Optimization</span>
-          <span class="iz-chip">System Audits</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>

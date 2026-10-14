@@ -6,3 +6,305 @@
   padding: 8rem 0 3.5rem;
   position: relative;
 }
+
+/* ========================================================
+   CIRCULAR ARCHITECTURE PROCESS SECTION (Exact Image 1 Design)
+   ======================================================== */
+.iz-circular-process-section {
+  background: #ffffff;
+  padding: clamp(60px, 7vw, 100px) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.iz-circular-main-title {
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.iz-circular-main-sub {
+  max-width: 680px;
+  font-size: 1.05rem;
+}
+
+/* Main Circular Stage Container */
+.iz-circular-stage-container {
+  position: relative;
+  min-height: 660px;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.iz-circular-stage-container.mode-4 {
+  min-height: 660px;
+}
+
+.iz-circular-stage-container.mode-6 {
+  min-height: 740px;
+}
+
+/* --------------------------------------------------------
+   DESKTOP (>= 992px): Big Circle Photo on Left, Nodes on Circumference
+   -------------------------------------------------------- */
+@media (min-width: 992px) {
+  /* Left Circular Photo (Anchored so right edge intersects node badges) */
+  .iz-circle-photo-wrapper {
+    position: absolute;
+    left: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 680px;
+    height: 680px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .iz-circle-photo-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 4px solid #ffffff;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    background: #0f172a;
+  }
+
+  .iz-circle-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Steps List: Absolutely positioned along the circle circumference */
+  .iz-circular-steps-list {
+    position: relative;
+    width: 100%;
+    min-height: 660px;
+    z-index: 2;
+  }
+
+  .iz-circular-stage-container.mode-6 .iz-circular-steps-list {
+    min-height: 740px;
+  }
+
+  .iz-circular-step-row {
+    position: absolute;
+    left: calc(var(--node-x) * 1px - 34px);
+    top: calc(var(--node-y) * 1px - 34px);
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    z-index: 2;
+    transition: transform 0.25s ease;
+    cursor: pointer;
+  }
+
+  .iz-circular-step-row:hover,
+  .iz-circular-step-row.active {
+    z-index: 5;
+  }
+
+  .iz-circular-step-row:hover .iz-circle-step-body,
+  .iz-circular-step-row.active .iz-circle-step-body {
+    transform: translateX(4px);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .iz-circular-stage-container {
+    transform: scale(0.88);
+    transform-origin: left center;
+    margin-bottom: -50px;
+  }
+}
+
+/* --------------------------------------------------------
+   CIRCULAR NODE BADGE (Half on Photo, Half on Canvas)
+   -------------------------------------------------------- */
+.iz-circle-node-badge {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08),
+              0 2px 6px rgba(15, 23, 42, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+  z-index: 3;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iz-circular-step-row:hover .iz-circle-node-badge,
+.iz-circular-step-row.active .iz-circle-node-badge {
+  background: #ffffff;
+  border-color: #0f172a;
+  transform: scale(1.12);
+  box-shadow: 0 0 0 4px rgba(184, 245, 0, 0.4),
+              0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+/* --------------------------------------------------------
+   HORIZONTAL CONNECTOR LINE (—) Matching Reference Image
+   -------------------------------------------------------- */
+.iz-circle-connector-line {
+  width: 32px;
+  height: 2px;
+  background: #cbd5e1;
+  margin-top: 33px;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.iz-circular-step-row:hover .iz-circle-connector-line,
+.iz-circular-step-row.active .iz-circle-connector-line {
+  background: #0f172a;
+  width: 42px;
+}
+
+/* --------------------------------------------------------
+   STEP CONTENT BODY (Clean Typography, No Box Cards)
+   -------------------------------------------------------- */
+.iz-circle-step-body {
+  flex: 1;
+  padding-left: 14px;
+  padding-top: 18px;
+  max-width: 520px;
+  transition: transform 0.25s ease;
+}
+
+.iz-circle-step-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.25;
+}
+
+.iz-circle-step-num {
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.iz-circle-step-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(184, 245, 0, 0.2);
+  color: #166534;
+  border: 1px solid rgba(184, 245, 0, 0.4);
+}
+
+.iz-circle-step-desc {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.iz-circle-step-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.iz-circle-chip {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #475569;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.iz-circle-chip:hover {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+
+/* --------------------------------------------------------
+   RESPONSIVE (Mobile & Tablet)
+   -------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .iz-circular-stage-container {
+    min-height: auto !important;
+  }
+
+  .iz-circle-photo-wrapper {
+    position: relative;
+    width: clamp(260px, 60vw, 340px);
+    height: clamp(260px, 60vw, 340px);
+    margin: 0 auto 36px;
+  }
+
+  .iz-circle-photo-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ffffff;
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+  }
+
+  .iz-circle-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .iz-circular-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    min-height: auto !important;
+  }
+
+  .iz-circular-step-row {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+
+  .iz-circle-node-badge {
+    width: 52px;
+    height: 52px;
+    font-size: 1.25rem;
+  }
+
+  .iz-circle-connector-line {
+    display: none;
+  }
+
+  .iz-circle-step-body {
+    padding-left: 0;
+    padding-top: 2px;
+  }
+
+  .iz-circle-step-title {
+    font-size: 1.15rem;
+  }
+}

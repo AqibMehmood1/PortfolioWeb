@@ -10,7 +10,7 @@ public class WebsiteSettingsDto
     public string CompanyName => Get("CompanyName", "NEXVOYS");
     public string Tagline => Get("Tagline", "Enterprise Technology Partner");
     public string Role => Get("Role", "Enterprise Technology Partner & Solutions Architecture");
-    public string Email => Get("Email", "nexvoys@gmail.com");
+    public string Email => Get("Email", "info@nexvoys.com");
     public string Phone => Get("Phone", "+923456466188");
     public string DisplayPhone => Get("DisplayPhone", "+92 345 6466188");
     public string Location => Get("Location", "Lahore, Pakistan · Global Remote");

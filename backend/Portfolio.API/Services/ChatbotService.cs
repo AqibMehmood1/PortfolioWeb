@@ -601,7 +601,7 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "### 🤝 Connect with NEXVOYS Leadership\n\nWe are available for new software builds, architectural advisory, and scaling initiatives:\n\n- 📧 **Email**: [nexvoys@gmail.com](mailto:nexvoys@gmail.com)\n- 📱 **WhatsApp Direct**: [+92 345 6466188](https://wa.me/923456466188)\n- 📍 **Location**: Lahore, Pakistan · Global Remote (US, Canada, Europe)\n\nYou can also submit your requirements directly here in this chat using the button below, and our engineering leadership will respond within 24 hours!",
+            Reply = "### 🤝 Connect with NEXVOYS Leadership\n\nWe are available for new software builds, architectural advisory, and scaling initiatives:\n\n- 📧 **Email**: [info@nexvoys.com](mailto:info@nexvoys.com)\n- 📱 **WhatsApp Direct**: [+92 345 6466188](https://wa.me/923456466188)\n- 📍 **Location**: Lahore, Pakistan · Global Remote (US, Canada, Europe)\n\nYou can also submit your requirements directly here in this chat using the button below, and our engineering leadership will respond within 24 hours!",
             SuggestedActions = new List<string>
             {
                 "Book Consultation Online",
