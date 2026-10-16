@@ -168,3 +168,7 @@ D:\github\PortfolioWeb\backend\Portfolio.API\obj\Debug\net9.0\ref\Portfolio.API.
 D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\BCrypt.Net-Next.dll
 D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\Portfolio.API.staticwebassets.runtime.json
+D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\MailKit.dll
+D:\github\PortfolioWeb\backend\Portfolio.API\bin\Debug\net9.0\MimeKit.dll
+D:\github\PortfolioWeb\backend\Portfolio.API\obj\Debug\net9.0\compressed\08tnne7wx0-{0}-p3zpdnuehp-p3zpdnuehp.gz

@@ -42,13 +42,15 @@
         </div>
 
         <p class="small text-muted mb-4">
-          <i class="fas fa-shield-alt text-success me-1"></i> No sales team — you speak directly with the principal architect who leads your project. NDA on request.
+          <i class="fas fa-shield-alt text-success me-1"></i> No sales team — you speak directly with the principal
+          architect who leads your project. NDA on request.
         </p>
 
         <!-- Trust Badges Strip -->
         <div class="iz-trust-badges-row">
           <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
-            <i class="fab fa-linkedin text-primary me-1"></i> {{ portfolioService.profile.name || 'NEXVOYS' }} on LinkedIn
+            <i class="fab fa-linkedin text-primary me-1"></i> {{ portfolioService.profile.name || 'NEXVOYS' }} on
+            LinkedIn
           </a>
           <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-chip">
             <i class="fab fa-whatsapp text-success me-1"></i> WhatsApp Direct
@@ -71,7 +73,8 @@
             <div class="flex-grow-1">
               <div class="d-flex align-items-center justify-content-between">
                 <h4 class="mb-0 fw-bold fs-6 text-white">Bilal</h4>
-                <span class="badge" style="background: rgba(184, 245, 0, 0.2); color: #b8f500; font-size: 0.7rem; border: 1px solid rgba(184, 245, 0, 0.4);">
+                <span class="badge"
+                  style="background: rgba(184, 245, 0, 0.2); color: #b8f500; font-size: 0.7rem; border: 1px solid rgba(184, 245, 0, 0.4);">
                   Principal Architect
                 </span>
               </div>
@@ -113,7 +116,8 @@
                   placeholder="+1 (555) 000-0000" [disabled]="isSubmittingInquiry">
               </div>
               <div class="col-12 col-sm-6">
-                <select class="iz-select-light" [(ngModel)]="inquiryForm.techStack" name="techStack" [disabled]="isSubmittingInquiry">
+                <select class="iz-select-light" [(ngModel)]="inquiryForm.techStack" name="techStack"
+                  [disabled]="isSubmittingInquiry">
                   <option value="Multi-Tenant SaaS Architecture">SaaS Multi-Tenancy</option>
                   <option value="Autonomous AI Agents & GenAI">AI Agents & GenAI</option>
                   <option value="Cloud Cost Tuning (Azure & AWS)">Cloud Cost Tuning</option>
@@ -131,8 +135,10 @@
             </div>
 
             <div class="iz-checkbox-row">
-              <input type="checkbox" id="agreeTerms" [(ngModel)]="inquiryForm.agreed" name="agreed" [disabled]="isSubmittingInquiry">
-              <label for="agreeTerms">I agree to the <a routerLink="/privacy" class="text-dark fw-bold">Privacy Policy</a> and <a routerLink="/terms" class="text-dark fw-bold">Terms</a>.</label>
+              <input type="checkbox" id="agreeTerms" [(ngModel)]="inquiryForm.agreed" name="agreed"
+                [disabled]="isSubmittingInquiry">
+              <label for="agreeTerms">I agree to the <a routerLink="/privacy" class="text-dark fw-bold">Privacy
+                  Policy</a> and <a routerLink="/terms" class="text-dark fw-bold">Terms</a>.</label>
             </div>
 
             <button type="submit" class="iz-submit-lime-btn" [disabled]="isSubmittingInquiry">
@@ -151,7 +157,8 @@
 </section>
 
 <!-- ==================== PROOF STRIP ==================== -->
-<section class="py-4 border-top border-bottom bg-white" style="border-color: #eef2f6 !important;" id="proof-strip" *ngIf="isSectionVisible('proof-strip')">
+<section class="py-4 border-top border-bottom bg-white" style="border-color: #eef2f6 !important;" id="proof-strip"
+  *ngIf="isSectionVisible('proof-strip')">
   <div *ngIf="getSection('proof-strip')?.customHtml" [innerHTML]="getSection('proof-strip')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('proof-strip')?.customHtml">
     <div class="row g-4 text-center align-items-center">
@@ -169,11 +176,13 @@
   <div class="container" *ngIf="!getSection('problems')?.customHtml">
     <div class="iz-section-header text-center mb-5">
       <div class="iz-tag">
-        <i class="fas fa-exclamation-triangle text-warning"></i> {{ getSection('problems')?.subtitle || 'Architecture Challenges' }}
+        <i class="fas fa-exclamation-triangle text-warning"></i> {{ getSection('problems')?.subtitle || 'Architecture
+        Challenges' }}
       </div>
       <h2 class="iz-title">{{ getSection('problems')?.title || 'Problems We Solve For Growing Tech Companies' }}</h2>
       <p class="iz-subtitle">
-        {{ getSection('problems')?.description || 'We eliminate the engineering bottlenecks that drain revenue, slow release velocity, and put customer data at risk.' }}
+        {{ getSection('problems')?.description || 'We eliminate the engineering bottlenecks that drain revenue, slow
+        release velocity, and put customer data at risk.' }}
       </p>
     </div>
 
@@ -197,7 +206,8 @@
   <div class="container" *ngIf="!getSection('value')?.customHtml">
     <div class="iz-dark-value-header">
       <h2>{{ getSection('value')?.title || 'How Solutions Architecture Delivers Value To Your Business ?' }}</h2>
-      <p>{{ getSection('value')?.description || 'Choosing the right architecture partner changes everything. Here is what you need to know about us.' }}</p>
+      <p>{{ getSection('value')?.description || 'Choosing the right architecture partner changes everything. Here is
+        what you need to know about us.' }}</p>
     </div>
 
     <div class="iz-value-cards-grid">
@@ -221,7 +231,8 @@
         </h2>
       </div>
       <p class="iz-accordion-tagline">
-        {{ getSection('services')?.description || getSection('services')?.subtitle || 'From strategy to delivery. Engineering that works.' }}
+        {{ getSection('services')?.description || getSection('services')?.subtitle || 'From strategy to delivery.
+        Engineering that works.' }}
       </p>
       <div>
         <a routerLink="/services" class="iz-btn-view-all">
@@ -232,7 +243,8 @@
 
     <!-- Accordion Rows -->
     <div class="iz-accordion-container">
-      <div class="iz-accordion-row" *ngFor="let s of servicesAccordion; let i = index" [class.is-active]="activeServiceIndex === i">
+      <div class="iz-accordion-row" *ngFor="let s of servicesAccordion; let i = index"
+        [class.is-active]="activeServiceIndex === i">
         <!-- Row Header (Clickable) -->
         <div class="iz-accordion-row-header" (click)="toggleServiceAccordion(i)">
           <div class="iz-accordion-meta-left">
@@ -250,15 +262,19 @@
           <div class="row align-items-center g-4">
             <div class="col-lg-5 col-md-5">
               <div class="iz-accordion-media-box">
-                <img [src]="s.image" [alt]="s.title" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'">
+                <img [src]="s.image" [alt]="s.title"
+                  onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'">
                 <div class="position-absolute top-0 start-0 p-3" style="z-index: 2;">
-                  <span class="badge" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); color: #b8f500; font-family: var(--font-mono); font-weight: 700; border: 1px solid rgba(184, 245, 0, 0.35); font-size: 0.72rem; padding: 6px 12px; border-radius: 999px;">
+                  <span class="badge"
+                    style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); color: #b8f500; font-family: var(--font-mono); font-weight: 700; border: 1px solid rgba(184, 245, 0, 0.35); font-size: 0.72rem; padding: 6px 12px; border-radius: 999px;">
                     {{ s.index || s.indexTag || ('//0' + (i + 1)) }}
                   </span>
                 </div>
-                <div class="position-absolute bottom-0 start-0 end-0 p-3 text-start" style="z-index: 2; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 65%, transparent 100%);">
+                <div class="position-absolute bottom-0 start-0 end-0 p-3 text-start"
+                  style="z-index: 2; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 65%, transparent 100%);">
                   <span class="text-white fw-bold d-block small mb-1">{{ s.title }}</span>
-                  <span style="color: #b8f500; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-shield-alt me-1"></i> Production Architecture</span>
+                  <span style="color: #b8f500; font-size: 0.72rem; font-weight: 600;"><i
+                      class="fas fa-shield-alt me-1"></i> Production Architecture</span>
                 </div>
               </div>
             </div>
@@ -289,19 +305,26 @@
 </section>
 
 <!-- ==================== PRODUCTISED ENTRY OFFER ==================== -->
-<section class="py-5" style="background: linear-gradient(135deg, #0b1a10 0%, #152b1b 100%); color: #ffffff;" id="diagnostic-audit" *ngIf="isSectionVisible('diagnostic-audit')">
-  <div *ngIf="getSection('diagnostic-audit')?.customHtml" [innerHTML]="getSection('diagnostic-audit')?.customHtml"></div>
+<section class="py-5" style="background: linear-gradient(135deg, #0b1a10 0%, #152b1b 100%); color: #ffffff;"
+  id="diagnostic-audit" *ngIf="isSectionVisible('diagnostic-audit')">
+  <div *ngIf="getSection('diagnostic-audit')?.customHtml" [innerHTML]="getSection('diagnostic-audit')?.customHtml">
+  </div>
   <div class="container" *ngIf="!getSection('diagnostic-audit')?.customHtml">
-    <div class="row align-items-center g-4 p-4 p-lg-5 rounded-4" style="border: 1px solid rgba(184, 245, 0, 0.2); background: rgba(255, 255, 255, 0.03);">
+    <div class="row align-items-center g-4 p-4 p-lg-5 rounded-4"
+      style="border: 1px solid rgba(184, 245, 0, 0.2); background: rgba(255, 255, 255, 0.03);">
       <div class="col-lg-8">
-        <div class="badge px-3 py-2 mb-3 fw-bold" style="background-color: #b8f500 !important; color: #101828 !important;">
-          <i class="fas fa-bolt me-1"></i> {{ getSection('diagnostic-audit')?.subtitle || 'Fixed-Scope Architecture Diagnostic' }}
+        <div class="badge px-3 py-2 mb-3 fw-bold"
+          style="background-color: #b8f500 !important; color: #101828 !important;">
+          <i class="fas fa-bolt me-1"></i> {{ getSection('diagnostic-audit')?.subtitle || 'Fixed-Scope Architecture
+          Diagnostic' }}
         </div>
         <h2 class="fw-bold text-white mb-2" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
           {{ getSection('diagnostic-audit')?.title || 'Architecture & Cloud Cost Audit' }}
         </h2>
         <p class="text-white-50 lead mb-3 fs-6">
-          {{ getSection('diagnostic-audit')?.description || 'A 2-week diagnostic designed for tech founders and engineering leaders. We examine your architecture blueprints, cloud infrastructure spend (Azure/AWS), database performance, and security posture.' }}
+          {{ getSection('diagnostic-audit')?.description || 'A 2-week diagnostic designed for tech founders and
+          engineering leaders. We examine your architecture blueprints, cloud infrastructure spend (Azure/AWS), database
+          performance, and security posture.' }}
         </p>
         <div class="d-flex flex-wrap gap-3 text-white small">
           <div *ngFor="let card of auditCards">
@@ -311,7 +334,8 @@
         </div>
       </div>
       <div class="col-lg-4 text-lg-end">
-        <a routerLink="/contact" class="iz-btn-green px-4 py-3 text-decoration-none d-inline-flex align-items-center justify-content-center fw-bold fs-6">
+        <a routerLink="/contact"
+          class="iz-btn-green px-4 py-3 text-decoration-none d-inline-flex align-items-center justify-content-center fw-bold fs-6">
           Book Audit Call <i class="fas fa-arrow-right ms-2"></i>
         </a>
         <p class="text-white-50 small mt-2 mb-0">No long-term lock-in. Immediate actionable findings.</p>
@@ -325,22 +349,20 @@
   <div *ngIf="getSection('tech-matrix')?.customHtml" [innerHTML]="getSection('tech-matrix')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('tech-matrix')?.customHtml">
     <div class="iz-tech-matrix-header">
-      <div class="iz-tech-matrix-title-wrap">
+      <div>
         <h2 class="iz-tech-matrix-title">
           {{ getSection('tech-matrix')?.title || 'Yes. We Have Expertise For Every Stack.' }}
         </h2>
         <p class="iz-tech-matrix-sub">
-          {{ getSection('tech-matrix')?.description || '9+ years of hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines.' }}
+          {{ getSection('tech-matrix')?.description || '9+ years of hands-on expertise across leading enterprise
+          frameworks, cloud ecosystems & AI pipelines.' }}
         </p>
       </div>
 
-      <div class="iz-tech-matrix-actions">
+      <div class="d-flex align-items-center gap-3">
         <div class="iz-tech-search-pill">
           <i class="fas fa-search text-muted"></i>
           <input type="text" [(ngModel)]="stackSearchQuery" placeholder="Search Stack">
-          <button type="button" class="btn btn-link btn-sm p-0 text-muted border-0 bg-transparent ms-1" *ngIf="stackSearchQuery" (click)="stackSearchQuery = ''" title="Clear search">
-            <i class="fas fa-times-circle"></i>
-          </button>
         </div>
         <a routerLink="/expertise" class="iz-btn-view-all">
           Our Full Stacks <span class="iz-arrow-up-right">↗</span>
@@ -381,7 +403,7 @@
     </div>
 
     <!-- 6-Column Tech Tiles Grid -->
-    <div class="iz-tech-matrix-grid" *ngIf="displayedTechTiles.length > 0">
+    <div class="iz-tech-matrix-grid">
       <div class="iz-tech-tile" *ngFor="let tile of displayedTechTiles">
         <div class="iz-tech-tile-icon" [style.color]="tile.color">
           <i [class]="tile.icon"></i>
@@ -392,18 +414,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Empty Search State -->
-    <div class="iz-tech-empty-state text-center py-5 my-3" *ngIf="displayedTechTiles.length === 0">
-      <div class="mb-3 text-muted">
-        <i class="fas fa-search fa-2x"></i>
-      </div>
-      <h5 class="fw-bold mb-1">No technologies found matching "{{ stackSearchQuery }}"</h5>
-      <p class="text-muted small mb-3">We architect custom solutions and integrations across all modern frameworks and legacy systems.</p>
-      <button type="button" class="btn btn-sm btn-dark rounded-pill px-4" (click)="stackSearchQuery = ''">
-        Clear Search Filter
-      </button>
-    </div>
   </div>
 </section>
 
@@ -412,10 +422,12 @@
   <div *ngIf="getSection('industries')?.customHtml" [innerHTML]="getSection('industries')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('industries')?.customHtml">
     <div class="iz-section-header">
-      <div class="iz-tag"><i class="fas fa-network-wired"></i> {{ getSection('industries')?.subtitle || 'Industry Domain Mastery' }}</div>
+      <div class="iz-tag"><i class="fas fa-network-wired"></i> {{ getSection('industries')?.subtitle || 'Industry Domain
+        Mastery' }}</div>
       <h2 class="iz-title">{{ getSection('industries')?.title || 'Proven Solutions Across Core Industries' }}</h2>
       <p class="iz-subtitle">
-        {{ getSection('industries')?.description || 'Deep domain expertise applied to high-stakes industries where compliance, security, and uptime are mission-critical.' }}
+        {{ getSection('industries')?.description || 'Deep domain expertise applied to high-stakes industries where
+        compliance, security, and uptime are mission-critical.' }}
       </p>
     </div>
 
@@ -448,9 +460,11 @@
   <div class="container" *ngIf="!getSection('case-studies')?.customHtml">
     <div class="d-flex flex-wrap justify-content-between align-items-end mb-5 gap-3">
       <div>
-        <div class="iz-tag"><i class="fas fa-laptop-code"></i> {{ getSection('case-studies')?.subtitle || 'Delivered Systems' }}</div>
+        <div class="iz-tag"><i class="fas fa-laptop-code"></i> {{ getSection('case-studies')?.subtitle || 'Delivered
+          Systems' }}</div>
         <h2 class="iz-title mb-1">{{ getSection('case-studies')?.title || 'Featured Case Studies' }}</h2>
-        <p class="iz-subtitle mb-0">{{ getSection('case-studies')?.description || 'Production web platforms, dynamic estimation engines, and SaaS architectures delivered worldwide.' }}</p>
+        <p class="iz-subtitle mb-0">{{ getSection('case-studies')?.description || 'Production web platforms, dynamic
+          estimation engines, and SaaS architectures delivered worldwide.' }}</p>
       </div>
       <a routerLink="/projects" class="iz-btn-dark">
         View All Case Studies <i class="fas fa-arrow-right ms-2"></i>
@@ -472,7 +486,8 @@
 
         <div class="iz-project-body">
           <div>
-            <h4 class="iz-project-title" (click)="openProjectModal(project)" [title]="project.title">{{ project.title }}</h4>
+            <h4 class="iz-project-title" (click)="openProjectModal(project)" [title]="project.title">{{ project.title }}
+            </h4>
             <p class="iz-project-desc">{{ project.description }}</p>
 
             <!-- Compact Architecture Highlights -->
@@ -492,7 +507,8 @@
 
           <div class="iz-project-actions">
             <div class="d-flex align-items-center gap-2">
-              <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" rel="noopener" class="iz-card-btn-primary">
+              <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" rel="noopener"
+                class="iz-card-btn-primary">
                 Live Site <i class="fas fa-external-link-alt ms-1"></i>
               </a>
               <span *ngIf="!project.liveUrl" class="iz-nda-tag" title="Enterprise NDA Protected">
@@ -503,7 +519,8 @@
               </a>
             </div>
 
-            <button type="button" class="iz-card-btn-secondary" (click)="openProjectModal(project)" title="View Architecture Blueprint">
+            <button type="button" class="iz-card-btn-secondary" (click)="openProjectModal(project)"
+              title="View Architecture Blueprint">
               <i class="fas fa-eye text-green"></i> Demo
             </button>
           </div>
@@ -519,8 +536,10 @@
   <div class="container text-center" *ngIf="!getSection('process')?.customHtml">
     <div class="iz-process-headline-wrap mb-5">
       <h2 class="iz-process-title-white">{{ getSection('process')?.title || "Three Steps. That's All It Takes." }}</h2>
-      <h2 class="iz-process-title-green">{{ getSection('process')?.subtitle || 'Simple Process. Serious Results.' }}</h2>
-      <p class="text-white-50 mt-2" *ngIf="getSection('process')?.description">{{ getSection('process')?.description }}</p>
+      <h2 class="iz-process-title-green">{{ getSection('process')?.subtitle || 'Simple Process. Serious Results.' }}
+      </h2>
+      <p class="text-white-50 mt-2" *ngIf="getSection('process')?.description">{{ getSection('process')?.description }}
+      </p>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
@@ -548,9 +567,12 @@
   <div *ngIf="getSection('testimonials')?.customHtml" [innerHTML]="getSection('testimonials')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('testimonials')?.customHtml">
     <div class="iz-section-header text-center max-w-860 mx-auto mb-4">
-      <div class="iz-tag d-inline-flex align-items-center mb-2"><i class="fas fa-star text-green me-2"></i> {{ getSection('testimonials')?.subtitle || 'Client Endorsements' }}</div>
-      <h2 class="iz-title mb-2">{{ getSection('testimonials')?.title || 'Trusted by International Technology Teams' }}</h2>
-      <p class="iz-subtitle mx-auto">{{ getSection('testimonials')?.description || 'Real feedback from founders and engineering leaders across the US and Europe.' }}</p>
+      <div class="iz-tag d-inline-flex align-items-center mb-2"><i class="fas fa-star text-green me-2"></i> {{
+        getSection('testimonials')?.subtitle || 'Client Endorsements' }}</div>
+      <h2 class="iz-title mb-2">{{ getSection('testimonials')?.title || 'Trusted by International Technology Teams' }}
+      </h2>
+      <p class="iz-subtitle mx-auto">{{ getSection('testimonials')?.description || 'Real feedback from founders and
+        engineering leaders across the US and Europe.' }}</p>
     </div>
   </div>
 
@@ -605,15 +627,15 @@
     <div class="row g-4 justify-content-center">
       <!-- Modern Contact Form with Tech Stack Selection -->
       <div class="col-lg-8">
-        <app-modern-contact-form
-          [formTitle]="getSection('contact-hub')?.title || 'Let\'s Discuss Your Needs'"
+        <app-modern-contact-form [formTitle]="getSection('contact-hub')?.title || 'Let\'s Discuss Your Needs'"
           [formSubtitle]="getSection('contact-hub')?.description || 'Tell Us About Your Project. We\'ll Take It From There'">
         </app-modern-contact-form>
       </div>
 
       <!-- Stats & Direct Channels Side -->
       <div class="col-lg-4">
-        <div class="iz-stats-side h-100 rounded-4 shadow-sm" style="background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 28px !important;">
+        <div class="iz-stats-side h-100 rounded-4 shadow-sm"
+          style="background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 28px !important;">
           <h4 class="fw-bold mb-3">Direct Communication Channels</h4>
           <p class="small text-muted mb-4">Direct access to the NEXVOYS Enterprise Solutions & Advisory Team.</p>
 

@@ -11,11 +11,19 @@ public class ChatbotService : IChatbotService
 {
     private readonly ApplicationDbContext _context;
     private readonly IAuditLogService _auditLog;
+    private readonly IEmailService _emailService;
+    private readonly ILogger<ChatbotService> _logger;
 
-    public ChatbotService(ApplicationDbContext context, IAuditLogService auditLog)
+    public ChatbotService(
+        ApplicationDbContext context, 
+        IAuditLogService auditLog,
+        IEmailService emailService,
+        ILogger<ChatbotService> logger)
     {
         _context = context;
         _auditLog = auditLog;
+        _emailService = emailService;
+        _logger = logger;
     }
 
     public async Task<ChatResponseDto> ProcessMessageAsync(ChatRequestDto request)
@@ -112,6 +120,26 @@ public class ChatbotService : IChatbotService
             "PublicChatbot",
             ipAddress
         );
+
+        // Asynchronously dispatch confirmation & leadership alert emails
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await _emailService.SendInquiryEmailsAsync(
+                    inquiry.Name,
+                    inquiry.Email,
+                    inquiry.Phone,
+                    inquiry.Company,
+                    inquiry.Subject,
+                    inquiry.TechStack,
+                    inquiry.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to send email notifications for chatbot inquiry {Id}", inquiry.Id);
+            }
+        });
 
         return true;
     }
