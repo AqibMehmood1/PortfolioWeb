@@ -31,17 +31,17 @@
 /* Main Circular Stage Container */
 .iz-circular-stage-container {
   position: relative;
-  min-height: 660px;
+  min-height: 700px;
   max-width: 1220px;
   margin: 0 auto;
 }
 
 .iz-circular-stage-container.mode-4 {
-  min-height: 660px;
+  min-height: 700px;
 }
 
 .iz-circular-stage-container.mode-6 {
-  min-height: 740px;
+  min-height: 780px;
 }
 
 /* --------------------------------------------------------
@@ -84,21 +84,22 @@
   .iz-circular-steps-list {
     position: relative;
     width: 100%;
-    min-height: 660px;
+    min-height: 700px;
     z-index: 2;
   }
 
   .iz-circular-stage-container.mode-6 .iz-circular-steps-list {
-    min-height: 740px;
+    min-height: 780px;
   }
 
   .iz-circular-step-row {
     position: absolute;
-    left: calc(var(--node-x) * 1px - 34px);
-    top: calc(var(--node-y) * 1px - 34px);
+    left: calc(var(--node-x, 34px) - 34px);
+    top: calc(var(--node-y, 34px) - 34px);
     display: flex;
     align-items: flex-start;
     gap: 0;
+    max-width: 600px;
     z-index: 2;
     transition: transform 0.25s ease;
     cursor: pointer;

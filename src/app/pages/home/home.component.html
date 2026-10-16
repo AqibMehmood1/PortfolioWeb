@@ -48,7 +48,7 @@
         <!-- Trust Badges Strip -->
         <div class="iz-trust-badges-row">
           <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
-            <i class="fab fa-linkedin text-primary me-1"></i> Principal Architect on LinkedIn
+            <i class="fab fa-linkedin text-primary me-1"></i> {{ portfolioService.profile.name || 'NEXVOYS' }} on LinkedIn
           </a>
           <a href="#" (click)="portfolioService.openWhatsApp(); $event.preventDefault()" class="iz-chip">
             <i class="fab fa-whatsapp text-success me-1"></i> WhatsApp Direct
@@ -325,7 +325,7 @@
   <div *ngIf="getSection('tech-matrix')?.customHtml" [innerHTML]="getSection('tech-matrix')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('tech-matrix')?.customHtml">
     <div class="iz-tech-matrix-header">
-      <div>
+      <div class="iz-tech-matrix-title-wrap">
         <h2 class="iz-tech-matrix-title">
           {{ getSection('tech-matrix')?.title || 'Yes. We Have Expertise For Every Stack.' }}
         </h2>
@@ -334,10 +334,13 @@
         </p>
       </div>
 
-      <div class="d-flex align-items-center gap-3">
+      <div class="iz-tech-matrix-actions">
         <div class="iz-tech-search-pill">
           <i class="fas fa-search text-muted"></i>
           <input type="text" [(ngModel)]="stackSearchQuery" placeholder="Search Stack">
+          <button type="button" class="btn btn-link btn-sm p-0 text-muted border-0 bg-transparent ms-1" *ngIf="stackSearchQuery" (click)="stackSearchQuery = ''" title="Clear search">
+            <i class="fas fa-times-circle"></i>
+          </button>
         </div>
         <a routerLink="/expertise" class="iz-btn-view-all">
           Our Full Stacks <span class="iz-arrow-up-right">↗</span>
@@ -378,7 +381,7 @@
     </div>
 
     <!-- 6-Column Tech Tiles Grid -->
-    <div class="iz-tech-matrix-grid">
+    <div class="iz-tech-matrix-grid" *ngIf="displayedTechTiles.length > 0">
       <div class="iz-tech-tile" *ngFor="let tile of displayedTechTiles">
         <div class="iz-tech-tile-icon" [style.color]="tile.color">
           <i [class]="tile.icon"></i>
@@ -388,6 +391,18 @@
           <span class="iz-tile-arrow">›</span>
         </div>
       </div>
+    </div>
+
+    <!-- Empty Search State -->
+    <div class="iz-tech-empty-state text-center py-5 my-3" *ngIf="displayedTechTiles.length === 0">
+      <div class="mb-3 text-muted">
+        <i class="fas fa-search fa-2x"></i>
+      </div>
+      <h5 class="fw-bold mb-1">No technologies found matching "{{ stackSearchQuery }}"</h5>
+      <p class="text-muted small mb-3">We architect custom solutions and integrations across all modern frameworks and legacy systems.</p>
+      <button type="button" class="btn btn-sm btn-dark rounded-pill px-4" (click)="stackSearchQuery = ''">
+        Clear Search Filter
+      </button>
     </div>
   </div>
 </section>
@@ -587,52 +602,18 @@
 <section class="iz-section iz-section-offwhite" id="contact-hub" *ngIf="isSectionVisible('contact-hub')">
   <div *ngIf="getSection('contact-hub')?.customHtml" [innerHTML]="getSection('contact-hub')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('contact-hub')?.customHtml">
-    <div class="iz-contact-box">
-      <div class="row g-0">
-        <!-- Form Side -->
-        <div class="col-lg-7 iz-form-side">
-          <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> {{ getSection('contact-hub')?.subtitle || "Let's Talk" }}</div>
-          <h2 class="iz-title mb-2 fs-2">{{ getSection('contact-hub')?.title || 'Have a Project in Mind?' }}</h2>
-          <p class="iz-subtitle mb-4 fs-6">{{ getSection('contact-hub')?.description || "Tell us what you're building. Discuss your roadmap directly with Principal Solutions Architect Bilal." }}</p>
+    <div class="row g-4 justify-content-center">
+      <!-- Modern Contact Form with Tech Stack Selection -->
+      <div class="col-lg-8">
+        <app-modern-contact-form
+          [formTitle]="getSection('contact-hub')?.title || 'Let\'s Discuss Your Needs'"
+          [formSubtitle]="getSection('contact-hub')?.description || 'Tell Us About Your Project. We\'ll Take It From There'">
+        </app-modern-contact-form>
+      </div>
 
-          <!-- Success / Error Alert Feedback (5-sec auto-dismiss) -->
-          <div class="iz-form-alert iz-form-alert-success" *ngIf="bottomSuccessMsg">
-            <i class="fas fa-check-circle"></i>
-            <span>{{ bottomSuccessMsg }}</span>
-          </div>
-          <div class="iz-form-alert iz-form-alert-error" *ngIf="bottomErrorMsg">
-            <i class="fas fa-exclamation-circle"></i>
-            <span>{{ bottomErrorMsg }}</span>
-          </div>
-
-          <form (submit)="submitBottomContact(); $event.preventDefault()">
-            <input type="text" class="iz-input" [(ngModel)]="bottomContactForm.fullName" name="bottomFullName"
-              placeholder="Your Full Name *" required [disabled]="isSubmittingBottom">
-            <input type="email" class="iz-input" [(ngModel)]="bottomContactForm.email" name="bottomEmail"
-              placeholder="Your Work Email *" required [disabled]="isSubmittingBottom">
-            <input type="text" class="iz-input" [(ngModel)]="bottomContactForm.subject" name="bottomSubject"
-              placeholder="Subject / Tech Focus (e.g. SaaS Architecture, Cloud FinOps, .NET 9)" [disabled]="isSubmittingBottom">
-            <textarea class="iz-textarea" rows="4" [(ngModel)]="bottomContactForm.message" name="bottomMessage"
-              placeholder="Briefly describe your project requirements, architecture challenges, or cloud roadmap *"
-              required [disabled]="isSubmittingBottom"></textarea>
-            
-            <p class="small text-muted mb-3">
-              <i class="fas fa-shield-alt text-green me-1"></i> <strong>What happens next:</strong> You'll receive a response within 24 hours directly from Principal Architect Bilal. We can execute an NDA before our first call. Read our <a routerLink="/privacy" class="text-dark fw-bold">Privacy Policy</a>.
-            </p>
-
-            <button type="submit" class="iz-submit-btn" [disabled]="isSubmittingBottom">
-              <span *ngIf="!isSubmittingBottom">
-                Send Message & Request Architecture Call <i class="fas fa-arrow-right ms-1"></i>
-              </span>
-              <span *ngIf="isSubmittingBottom">
-                <i class="fas fa-spinner fa-spin me-2"></i> Sending Request...
-              </span>
-            </button>
-          </form>
-        </div>
-
-        <!-- Stats & Direct Channels Side -->
-        <div class="col-lg-5 iz-stats-side">
+      <!-- Stats & Direct Channels Side -->
+      <div class="col-lg-4">
+        <div class="iz-stats-side h-100 rounded-4 shadow-sm" style="background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 28px !important;">
           <h4 class="fw-bold mb-3">Direct Communication Channels</h4>
           <p class="small text-muted mb-4">Direct access to the NEXVOYS Enterprise Solutions & Advisory Team.</p>
 

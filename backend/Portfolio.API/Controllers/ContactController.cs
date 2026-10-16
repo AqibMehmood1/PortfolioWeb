@@ -3,6 +3,7 @@ using Portfolio.API.Common;
 using Portfolio.API.Data;
 using Portfolio.API.DTOs;
 using Portfolio.API.Entities;
+using Portfolio.API.Services;
 
 namespace Portfolio.API.Controllers;
 
@@ -12,11 +13,36 @@ public class ContactController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
     private readonly ILogger<ContactController> _logger;
+    private readonly IFileStorageService _fileStorage;
 
-    public ContactController(ApplicationDbContext context, ILogger<ContactController> logger)
+    public ContactController(
+        ApplicationDbContext context, 
+        ILogger<ContactController> logger,
+        IFileStorageService fileStorage)
     {
         _context = context;
         _logger = logger;
+        _fileStorage = fileStorage;
+    }
+
+    [HttpPost("upload")]
+    public async Task<ActionResult<ApiResponse<object>>> UploadAttachment([FromForm] IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest(ApiResponse.Fail("No file provided."));
+        }
+
+        var (success, filePath, fileName, error) = await _fileStorage.SaveFileAsync(file, "inquiries");
+        if (!success)
+        {
+            return BadRequest(ApiResponse.Fail(error));
+        }
+
+        var baseUrl = $"{Request.Scheme}://{Request.Host}";
+        var fileUrl = $"{baseUrl}/{filePath.TrimStart('/')}";
+
+        return Ok(ApiResponse<object>.Ok(new { filePath, fileName, fileUrl }, "File uploaded successfully."));
     }
 
     [HttpPost]

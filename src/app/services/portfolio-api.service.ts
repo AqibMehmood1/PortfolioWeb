@@ -202,6 +202,12 @@ export class PortfolioApiService {
     return this.http.post<ApiResponse<any>>(`${this.baseUrl}/contact`, inquiry);
   }
 
+  uploadContactAttachment(file: File): Observable<ApiResponse<{ filePath: string; fileName: string; fileUrl: string }>> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<ApiResponse<{ filePath: string; fileName: string; fileUrl: string }>>(`${this.baseUrl}/contact/upload`, formData);
+  }
+
   getSeoByRoute(route: string): Observable<ApiResponse<SeoMetadataDto>> {
     return this.http.get<ApiResponse<SeoMetadataDto>>(`${this.baseUrl}/seo/by-route?route=${encodeURIComponent(route)}`);
   }

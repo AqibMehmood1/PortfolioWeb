@@ -27,10 +27,12 @@ interface AccordionService {
   route: string;
 }
 
+import { ModernContactFormComponent } from '../../components/modern-contact-form/modern-contact-form.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ModernContactFormComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

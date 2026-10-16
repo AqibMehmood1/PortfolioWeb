@@ -6,6 +6,12 @@ import { AdminApiService, ContactInquiryDto } from '../../services/admin-api.ser
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 
+export interface InquiryAttachment {
+  fileName: string;
+  url?: string;
+  note?: string;
+}
+
 @Component({
   selector: 'app-admin-inquiries',
   standalone: true,
@@ -152,5 +158,70 @@ export class AdminInquiriesComponent implements OnInit {
         error: () => this.portfolioService.showError('Failed to delete inquiry. Please try again.', 'Delete Error')
       });
     }
+  }
+
+  // ==================== ATTACHMENT HELPERS ====================
+  getAttachment(inquiry: ContactInquiryDto | null): InquiryAttachment | null {
+    if (!inquiry || !inquiry.message) return null;
+
+    // Matches: [Attached File: filename - url]
+    const fullMatch = inquiry.message.match(/\[Attached File:\s*([^\-]+?)\s*-\s*([^\]]+)\]/i);
+    if (fullMatch) {
+      const fileName = fullMatch[1].trim();
+      let url = fullMatch[2].trim();
+      if (url.startsWith('/')) {
+        url = `http://localhost:5175${url}`;
+      }
+      return { fileName, url };
+    }
+
+    // Matches: [Attached File Mention: filename (size)]
+    const mentionMatch = inquiry.message.match(/\[Attached File Mention:\s*([^\]]+)\]/i);
+    if (mentionMatch) {
+      return { fileName: mentionMatch[1].trim(), note: 'File mentioned in client inquiry' };
+    }
+
+    return null;
+  }
+
+  hasAttachment(inquiry: ContactInquiryDto): boolean {
+    return !!this.getAttachment(inquiry);
+  }
+
+  getCleanMessage(message: string): string {
+    if (!message) return '';
+    return message
+      .replace(/\[Attached File:[^\]]+\]/gi, '')
+      .replace(/\[Attached File Mention:[^\]]+\]/gi, '')
+      .trim();
+  }
+
+  getFileIcon(fileName: string): string {
+    if (!fileName) return 'fas fa-file text-muted';
+    const ext = fileName.split('.').pop()?.toLowerCase();
+    switch (ext) {
+      case 'pdf': return 'fas fa-file-pdf text-danger';
+      case 'doc':
+      case 'docx': return 'fas fa-file-word text-primary';
+      case 'xls':
+      case 'xlsx':
+      case 'csv': return 'fas fa-file-excel text-success';
+      case 'zip':
+      case 'rar':
+      case '7z': return 'fas fa-file-archive text-warning';
+      case 'png':
+      case 'jpg':
+      case 'jpeg':
+      case 'webp':
+      case 'gif':
+      case 'svg': return 'fas fa-file-image text-cyan';
+      default: return 'fas fa-file-alt text-secondary';
+    }
+  }
+
+  isImage(fileName: string): boolean {
+    if (!fileName) return false;
+    const ext = fileName.split('.').pop()?.toLowerCase();
+    return ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg', 'bmp', 'jfif'].includes(ext || '');
   }
 }

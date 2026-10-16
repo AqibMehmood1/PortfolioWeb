@@ -18,100 +18,18 @@
 <!-- ==================== INVOZONE 2-COLUMN CONTACT HUB ==================== -->
 <section class="iz-section" *ngIf="isSectionVisible('contact-form') || isSectionVisible('contact-channels')">
   <div class="container">
-    <div class="iz-contact-box">
-      <div class="row g-0">
-        <!-- Form Side -->
-        <div [class]="isSectionVisible('contact-channels') ? 'col-lg-7 iz-form-side' : 'col-12 iz-form-side'" *ngIf="isSectionVisible('contact-form')">
-          <div class="iz-tag mb-3"><i class="fas fa-paper-plane"></i> {{ getSection('contact-form')?.subtitle || 'Book Strategy Call' }}</div>
-          <h2 class="iz-title mb-2 fs-2">{{ getSection('contact-form')?.title || 'Request Architecture Session' }}</h2>
-          <p class="iz-subtitle mb-4 fs-6">{{ getSection('contact-form')?.description || 'Select your primary objective so I can prepare relevant case studies and technical options:' }}</p>
+    <div class="row g-4 justify-content-center">
+      <!-- Modern Contact Form with Tech Stack Selection -->
+      <div [class]="isSectionVisible('contact-channels') ? 'col-lg-8' : 'col-12'" *ngIf="isSectionVisible('contact-form')">
+        <app-modern-contact-form
+          [formTitle]="getSection('contact-form')?.title || 'Let\'s Discuss Your Needs'"
+          [formSubtitle]="getSection('contact-form')?.description || 'Tell Us About Your Project. We\'ll Take It From There'">
+        </app-modern-contact-form>
+      </div>
 
-          <!-- Interactive Topic Selector -->
-          <div class="topic-selector-container mb-4">
-            <div class="fw-bold small text-muted mb-2"><i class="fas fa-sliders-h text-green me-1"></i> Consultation Focus:</div>
-            <div class="d-flex flex-wrap gap-2">
-              <button type="button" *ngFor="let topic of topics" 
-                class="filter-pill-btn" 
-                [class.active]="selectedTopic === topic" 
-                (click)="selectTopic(topic)">
-                {{ topic }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Success / Error Alert Feedback (5-sec auto-dismiss) -->
-          <div class="iz-form-alert iz-form-alert-success" *ngIf="successMessage">
-            <i class="fas fa-check-circle"></i>
-            <span>{{ successMessage }}</span>
-          </div>
-          <div class="iz-form-alert iz-form-alert-error" *ngIf="errorMessage">
-            <i class="fas fa-exclamation-circle"></i>
-            <span>{{ errorMessage }}</span>
-          </div>
-
-          <form (ngSubmit)="submitContactForm()" (submit)="$event.preventDefault()">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <input type="text" class="iz-input" [(ngModel)]="contactForm.name" name="name" placeholder="Your Full Name *" required [disabled]="isSubmitting">
-              </div>
-              <div class="col-md-6">
-                <input type="email" class="iz-input" [(ngModel)]="contactForm.email" name="email" placeholder="Your Work Email *" required [disabled]="isSubmitting">
-              </div>
-              <div class="col-md-6">
-                <input type="tel" class="iz-input" [(ngModel)]="contactForm.phone" name="phone" placeholder="+1 (555) 000-0000" [disabled]="isSubmitting">
-              </div>
-              <div class="col-md-6">
-                <input type="text" class="iz-input" [(ngModel)]="contactForm.company" name="company" placeholder="Company Name / Website" [disabled]="isSubmitting">
-              </div>
-              <div class="col-md-6">
-                <select class="iz-input" [(ngModel)]="contactForm.timeline" name="timeline" [disabled]="isSubmitting">
-                  <option value="ASAP / Within 2 weeks">Timeline: ASAP (within 2 weeks)</option>
-                  <option value="Within 2-4 weeks">Timeline: Within 2-4 weeks</option>
-                  <option value="Within 1-2 months">Timeline: 1 - 2 months</option>
-                  <option value="Exploring options / Q3-Q4">Timeline: Planning / Future</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <select class="iz-input" [(ngModel)]="contactForm.budgetRange" name="budgetRange" [disabled]="isSubmitting">
-                  <option value="$500 - $2,500 (Architecture Audit)">Budget: $500 - $2.5k (Diagnostic Audit)</option>
-                  <option value="$2,500 - $10,000 (Project Build)">$2,500 - $10,000 (Project Build)</option>
-                  <option value="$10,000 - $25,000+ (Enterprise SaaS)">$10,000 - $25,000+ (Enterprise SaaS)</option>
-                  <option value="$1,500+/mo (Fractional Retainer)">$1,500+/mo (Fractional Retainer)</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <input type="text" class="iz-input" [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject / Focus" [disabled]="isSubmitting">
-              </div>
-              <div class="col-12">
-                <textarea class="iz-textarea" rows="4" [(ngModel)]="contactForm.message" name="message" placeholder="Briefly describe your project requirements, timeline, or architecture challenges..." required [disabled]="isSubmitting"></textarea>
-              </div>
-
-              <div class="col-12">
-                <div class="iz-checkbox-row mb-2">
-                  <input type="checkbox" id="contactAgreeTerms" [(ngModel)]="contactForm.agreed" name="agreed" [disabled]="isSubmitting">
-                  <label for="contactAgreeTerms">I agree to the <a routerLink="/privacy" class="text-dark fw-bold">Privacy Policy</a> and understand my details are used only to respond to this request.</label>
-                </div>
-                <p class="small text-muted mb-3">
-                  <i class="fas fa-shield-alt text-green me-1"></i> <strong>What happens next:</strong> You'll receive a response within 24 hours directly from Principal Solutions Architect Bilal. We can execute an NDA before our first working session.
-                </p>
-              </div>
-
-              <div class="col-12">
-                <button type="submit" class="iz-submit-btn" [disabled]="isSubmitting">
-                  <span *ngIf="!isSubmitting">
-                    Send Message & Request Architecture Call <i class="fas fa-arrow-right ms-1"></i>
-                  </span>
-                  <span *ngIf="isSubmitting">
-                    <i class="fas fa-spinner fa-spin me-2"></i> Sending Message & Request...
-                  </span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <!-- Direct Channels & Trust Side -->
-        <div [class]="isSectionVisible('contact-form') ? 'col-lg-5 iz-stats-side' : 'col-12 iz-stats-side'" *ngIf="isSectionVisible('contact-channels')">
+      <!-- Direct Channels & Trust Side -->
+      <div [class]="isSectionVisible('contact-form') ? 'col-lg-4' : 'col-12'" *ngIf="isSectionVisible('contact-channels')">
+        <div class="iz-stats-side h-100 rounded-4 shadow-sm" style="background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 28px !important;">
           <h4 class="fw-bold mb-3">{{ getSection('contact-channels')?.title || 'Direct Channels' }}</h4>
           <p class="small text-muted mb-4">{{ getSection('contact-channels')?.description || 'I collaborate with clients across US, Canada, Europe, and worldwide.' }}</p>
 
@@ -149,7 +67,7 @@
             <span class="small fw-bold text-muted d-block mb-2 text-uppercase">Verified Professional Profiles</span>
             <div class="d-flex flex-wrap gap-3">
               <a [href]="portfolioService.profile.linkedinUrl" target="_blank" rel="noopener" class="iz-chip">
-                <i class="fab fa-linkedin text-primary me-1"></i> Bilal on LinkedIn
+                <i class="fab fa-linkedin text-primary me-1"></i> {{ portfolioService.profile.name || 'NEXVOYS' }} on LinkedIn
               </a>
             </div>
           </div>

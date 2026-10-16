@@ -20,7 +20,7 @@
   <div *ngIf="getSection('radar')?.customHtml" [innerHTML]="getSection('radar')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('radar')?.customHtml">
     <div class="iz-tech-matrix-header">
-      <div>
+      <div class="iz-tech-matrix-title-wrap">
         <h2 class="iz-tech-matrix-title">
           {{ getSection('radar')?.title || 'Yes. We Have Expertise For Every Stack.' }}
         </h2>
@@ -29,10 +29,13 @@
         </p>
       </div>
 
-      <div class="d-flex align-items-center gap-3">
+      <div class="iz-tech-matrix-actions">
         <div class="iz-tech-search-pill">
           <i class="fas fa-search text-muted"></i>
           <input type="text" [(ngModel)]="stackSearchQuery" placeholder="Search Stack">
+          <button type="button" class="btn btn-link btn-sm p-0 text-muted border-0 bg-transparent ms-1" *ngIf="stackSearchQuery" (click)="stackSearchQuery = ''" title="Clear search">
+            <i class="fas fa-times-circle"></i>
+          </button>
         </div>
         <a routerLink="/contact" class="iz-btn-view-all">
           Request Stack Audit <span class="iz-arrow-up-right">↗</span>
@@ -51,7 +54,7 @@
     </div>
 
     <!-- 6-Column Tech Tiles Grid -->
-    <div class="iz-tech-matrix-grid">
+    <div class="iz-tech-matrix-grid" *ngIf="displayedTechTiles.length > 0">
       <div class="iz-tech-tile" *ngFor="let tile of displayedTechTiles">
         <div class="iz-tech-tile-icon" [style.color]="tile.color">
           <i [class]="tile.icon"></i>
@@ -61,6 +64,18 @@
           <span class="iz-tile-arrow">›</span>
         </div>
       </div>
+    </div>
+
+    <!-- Empty Search State -->
+    <div class="iz-tech-empty-state text-center py-5 my-3" *ngIf="displayedTechTiles.length === 0">
+      <div class="mb-3 text-muted">
+        <i class="fas fa-search fa-2x"></i>
+      </div>
+      <h5 class="fw-bold mb-1">No technologies found matching "{{ stackSearchQuery }}"</h5>
+      <p class="text-muted small mb-3">We architect custom solutions and integrations across all modern frameworks and legacy systems.</p>
+      <button type="button" class="btn btn-sm btn-dark rounded-pill px-4" (click)="stackSearchQuery = ''">
+        Clear Search Filter
+      </button>
     </div>
   </div>
 </section>
@@ -153,7 +168,9 @@
              (mouseenter)="selectDomain(i)"
              (click)="selectDomain(i)"
              [style.--node-x.px]="getStepCoords(i, currentItems.length).x"
-             [style.--node-y.px]="getStepCoords(i, currentItems.length).y">
+             [style.--node-y.px]="getStepCoords(i, currentItems.length).y"
+             [style.left.px]="getStepCoords(i, currentItems.length).x - 34"
+             [style.top.px]="getStepCoords(i, currentItems.length).y - 34">
           
           <!-- Circular Node Badge (Sits directly on the circumference edge) -->
           <div class="iz-circle-node-badge">

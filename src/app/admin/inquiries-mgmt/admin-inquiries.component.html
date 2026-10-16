@@ -46,11 +46,16 @@
                 {{ inq.status }}
               </span>
             </td>
-            <td class="font-bold">{{ inq.name }}</td>
+            <td class="font-bold">
+              {{ inq.name }}
+              <span *ngIf="hasAttachment(inq)" class="attachment-pill ms-1" title="Includes File Attachment">
+                <i class="fas fa-paperclip text-cyan"></i>
+              </span>
+            </td>
             <td class="text-muted">{{ inq.company || 'Individual' }}</td>
             <td>
               <div class="subject-line">{{ inq.subject || 'Portfolio Inquiry' }}</div>
-              <div class="text-muted truncate-msg">{{ inq.message }}</div>
+              <div class="text-muted truncate-msg">{{ getCleanMessage(inq.message) }}</div>
             </td>
             <td class="text-muted text-xs">{{ inq.createdAt | date:'short' }}</td>
             <td class="text-right" (click)="$event.stopPropagation()">
@@ -104,7 +109,38 @@
 
           <div class="detail-section">
             <span class="meta-label">Message Payload:</span>
-            <div class="message-box">{{ selectedInquiry.message }}</div>
+            <div class="message-box">{{ getCleanMessage(selectedInquiry.message) }}</div>
+          </div>
+
+          <!-- Attachment Section (If attached) -->
+          <div class="detail-section" *ngIf="getAttachment(selectedInquiry) as att">
+            <span class="meta-label">Attached Document / Asset:</span>
+            <div class="inquiry-attachment-box">
+              <div class="att-icon">
+                <i [class]="getFileIcon(att.fileName)"></i>
+              </div>
+              <div class="att-meta">
+                <div class="att-filename" [title]="att.fileName">{{ att.fileName }}</div>
+                <div class="att-status text-success" *ngIf="att.url">
+                  <i class="fas fa-check-circle me-1"></i> Uploaded & ready to view
+                </div>
+                <div class="att-status text-muted" *ngIf="!att.url">
+                  {{ att.note || 'File attached by client' }}
+                </div>
+              </div>
+              <div class="att-action" *ngIf="att.url">
+                <a [href]="att.url" target="_blank" rel="noopener noreferrer" class="btn-att-download" title="Open or download file">
+                  <i class="fas fa-external-link-alt me-1"></i> Open File
+                </a>
+              </div>
+            </div>
+
+            <!-- Image thumbnail preview if image file -->
+            <div class="att-image-preview mt-2" *ngIf="att.url && isImage(att.fileName)">
+              <a [href]="att.url" target="_blank" rel="noopener noreferrer" title="Click to view full image in new tab">
+                <img [src]="att.url" [alt]="att.fileName" class="admin-img-preview" />
+              </a>
+            </div>
           </div>
 
           <div class="status-action-row">

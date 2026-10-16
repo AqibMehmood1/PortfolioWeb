@@ -2049,35 +2049,59 @@ p.lead, .lead {
 
 .iz-tech-matrix-header {
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: clamp(24px, 3vw, 36px);
-  gap: 16px;
+  gap: 24px;
+}
+
+.iz-tech-matrix-title-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 680px;
 }
 
 .iz-tech-matrix-title {
-  font-size: clamp(1.75rem, 3.8vw, 2.85rem);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
   font-weight: 900;
   color: #101828;
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .iz-tech-matrix-sub {
   font-size: clamp(0.92rem, 1.8vw, 1.05rem);
   color: #667085;
   margin: 0;
+  line-height: 1.5;
+}
+
+.iz-tech-matrix-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
 }
 
 .iz-tech-search-pill {
   background: #f8fafc;
   border: 1.5px solid #e2e8f0;
   border-radius: var(--radius-pill);
-  padding: 8px 18px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
   min-height: 42px;
+  width: 210px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.iz-tech-search-pill:focus-within {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
 }
 
 .iz-tech-search-pill input {

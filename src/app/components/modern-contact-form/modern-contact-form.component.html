@@ -1,0 +1,253 @@
+<div class="iz-modern-contact-card">
+  <!-- Section Header -->
+  <div class="iz-modern-header text-center" *ngIf="showHeader">
+    <h2 class="iz-modern-title">{{ formTitle }}</h2>
+    <p class="iz-modern-subtitle">{{ formSubtitle }}</p>
+    <div class="iz-modern-divider"></div>
+  </div>
+
+  <!-- Success / Error Alert Messages -->
+  <div class="iz-modern-alert iz-modern-alert-success" *ngIf="successMessage">
+    <i class="fas fa-check-circle me-2"></i>
+    <span>{{ successMessage }}</span>
+  </div>
+  <div class="iz-modern-alert iz-modern-alert-error" *ngIf="errorMessage">
+    <i class="fas fa-exclamation-circle me-2"></i>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <form (submit)="submitForm(); $event.preventDefault()" novalidate>
+    <!-- Row 1: Full Name & Phone with Country Picker -->
+    <div class="row g-3 mb-3">
+      <!-- Full Name -->
+      <div class="col-12 col-md-6">
+        <div class="iz-field-wrapper">
+          <input 
+            type="text" 
+            class="iz-pill-input" 
+            [(ngModel)]="fullName" 
+            name="fullName" 
+            placeholder="Full Name" 
+            (focus)="closeAllDropdowns()"
+            [disabled]="isSubmitting"
+            required>
+        </div>
+      </div>
+
+      <!-- Phone Number with Country Flag Selector -->
+      <div class="col-12 col-md-6">
+        <div class="iz-phone-group">
+          <!-- Country Flag Pill Selector -->
+          <div #countrySelectorWrapper class="iz-country-selector" (click)="toggleCountryDropdown($event)">
+            <span class="iz-country-flag">{{ selectedCountry.flag }}</span>
+            <span class="iz-country-code">{{ selectedCountry.code }}</span>
+            <i class="fas fa-chevron-down iz-country-chevron" [class.rotated]="isCountryDropdownOpen"></i>
+          </div>
+
+          <!-- Country Dropdown Floating Menu -->
+          <div #countryDropdownMenu class="iz-country-dropdown" *ngIf="isCountryDropdownOpen" (click)="$event.stopPropagation()">
+            <div class="iz-country-search-wrap">
+              <input 
+                type="text" 
+                class="iz-country-search-input" 
+                [(ngModel)]="countrySearchQuery" 
+                name="countrySearch" 
+                placeholder="Search country..."
+                autocomplete="off">
+            </div>
+            <ul class="iz-country-list">
+              <li 
+                *ngFor="let c of filteredCountries" 
+                class="iz-country-item"
+                [class.active]="c.code === selectedCountry.code && c.name === selectedCountry.name"
+                (click)="selectCountry(c)">
+                <span class="flag me-2">{{ c.flag }}</span>
+                <span class="name flex-grow-1">{{ c.name }}</span>
+                <span class="code text-muted">{{ c.code }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Phone Number Input -->
+          <input 
+            type="tel" 
+            class="iz-pill-input iz-phone-input" 
+            [(ngModel)]="phoneNumber" 
+            name="phoneNumber" 
+            placeholder="Phone Number" 
+            (focus)="closeAllDropdowns()"
+            [disabled]="isSubmitting">
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Email Address & Choose Your Tech Stack -->
+    <div class="row g-3 mb-3">
+      <!-- Email Address -->
+      <div class="col-12 col-md-6">
+        <div class="iz-field-wrapper">
+          <input 
+            type="email" 
+            class="iz-pill-input" 
+            [(ngModel)]="email" 
+            name="email" 
+            placeholder="Email Address *" 
+            (focus)="closeAllDropdowns()"
+            [disabled]="isSubmitting"
+            required>
+        </div>
+      </div>
+
+      <!-- Choose Your Tech Stack (Searchable + Manual Add Tag Combobox) -->
+      <div class="col-12 col-md-6">
+        <div #techSelectWrapper class="iz-tech-select-wrapper">
+          <div class="iz-tech-select-pill" [class.focused]="isTechDropdownOpen" (click)="onPillClick($event)">
+            <!-- Selected Tech Chips -->
+            <span class="iz-tech-tag-chip" *ngFor="let stack of selectedTechStacks">
+              {{ stack }}
+              <button type="button" class="iz-tech-tag-remove" (click)="removeTechStack(stack, $event)" aria-label="Remove tech">
+                &times;
+              </button>
+            </span>
+
+            <!-- Inline Input -->
+            <input 
+              #techInput
+              type="text" 
+              class="iz-tech-inner-input" 
+              [(ngModel)]="techSearchQuery" 
+              name="techSearch" 
+              [placeholder]="selectedTechStacks.length === 0 ? 'Choose Your Tech Stack' : '+ Add more...'"
+              (focus)="openTechDropdown()"
+              (click)="openTechDropdown()"
+              (input)="openTechDropdown()"
+              (keydown)="onTechKeydown($event)"
+              [disabled]="isSubmitting"
+              autocomplete="off">
+          </div>
+
+          <!-- Tech Stack Floating Dropdown (Exact Screenshot 2 Match) -->
+          <div class="iz-tech-dropdown" *ngIf="isTechDropdownOpen" (click)="$event.stopPropagation()">
+            <ul class="iz-tech-options-list">
+              <!-- Filtered Catalog Items -->
+              <li 
+                *ngFor="let tech of filteredTechStacks" 
+                class="iz-tech-option-item"
+                (click)="selectTech(tech)">
+                {{ tech }}
+              </li>
+
+              <!-- Manual Create Option (Screenshot 2 Match: Create "...") -->
+              <li 
+                *ngIf="canCreateCustomTech" 
+                class="iz-tech-option-item iz-tech-option-create"
+                (click)="createCustomTech()">
+                <i class="fas fa-plus me-1 text-primary"></i> Create "{{ techSearchQuery.trim() }}"
+              </li>
+
+              <li *ngIf="filteredTechStacks.length === 0 && !canCreateCustomTech" class="iz-tech-option-empty">
+                No matching tech stack found. Press Enter to create.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Help Us Understand (Project Details & Goals) -->
+    <div class="mb-3">
+      <div class="iz-field-wrapper">
+        <textarea 
+          class="iz-rounded-textarea" 
+          rows="4" 
+          [(ngModel)]="message" 
+          name="message" 
+          placeholder="Help us understand what you require assistance with, the goal of your project, and the problem we're dedicated to solving *" 
+          (focus)="closeAllDropdowns()"
+          [disabled]="isSubmitting"
+          required></textarea>
+      </div>
+    </div>
+
+    <!-- Row 4: File Upload & Drag-and-Drop Zone -->
+    <div class="mb-4">
+      <input 
+        #fileInput 
+        type="file" 
+        class="d-none" 
+        (change)="onFileChange($event)"
+        accept=".pdf,.doc,.docx,.txt,.zip,.csv,.xlsx,.png,.jpg,.jpeg">
+
+      <div 
+        class="iz-dropzone-box" 
+        [class.dragging]="isDragging"
+        [class.has-file]="selectedFile"
+        (click)="triggerFileInput()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)">
+
+        <!-- Empty State (Prompt) -->
+        <div class="iz-dropzone-prompt" *ngIf="!selectedFile">
+          <div class="iz-upload-icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <p class="iz-dropzone-title mb-0">
+            <strong>Click to upload</strong> or drag and drop
+          </p>
+          <span class="iz-dropzone-sub">PDF, DOCX, ZIP, PNG, or JPG (Up to 25MB)</span>
+        </div>
+
+        <!-- Selected File State -->
+        <div class="iz-dropzone-file" *ngIf="selectedFile" (click)="$event.stopPropagation()">
+          <div class="iz-file-icon">
+            <i class="fas fa-file-alt text-primary"></i>
+          </div>
+          <div class="iz-file-info flex-grow-1 text-start">
+            <div class="iz-file-name text-truncate">{{ selectedFile.name }}</div>
+            <div class="iz-file-size text-muted small">{{ formatFileSize(selectedFile.size) }}</div>
+          </div>
+          <button type="button" class="iz-file-remove-btn" (click)="removeFile($event)" title="Remove attachment" aria-label="Remove file">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5: Footer (Terms Agreement & Submit Now Button) -->
+    <div class="iz-modern-footer d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
+      <!-- Terms & Conditions Checkbox -->
+      <div class="iz-modern-checkbox-wrap">
+        <label class="iz-custom-checkbox">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="agreedToTerms" 
+            name="agreedToTerms" 
+            [disabled]="isSubmitting"
+            required>
+          <span class="iz-checkbox-checkmark"></span>
+          <span class="iz-checkbox-label">
+            I understand and agree to the <a routerLink="/terms" class="iz-terms-link">terms & conditions</a>.
+          </span>
+        </label>
+      </div>
+
+      <!-- Bright Lime Pill Submit Button -->
+      <button 
+        type="submit" 
+        class="iz-submit-pill-btn" 
+        [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">
+          Submit Now <span class="iz-arrow-icon">↗</span>
+        </span>
+        <span *ngIf="isSubmitting">
+          <i class="fas fa-spinner fa-spin me-2"></i> Submitting...
+        </span>
+      </button>
+    </div>
+  </form>
+</div>

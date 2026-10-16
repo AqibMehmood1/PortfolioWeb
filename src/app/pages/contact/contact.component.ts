@@ -5,11 +5,12 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { timeout, finalize } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio.service';
 import { PortfolioApiService } from '../../services/portfolio-api.service';
+import { ModernContactFormComponent } from '../../components/modern-contact-form/modern-contact-form.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, ModernContactFormComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })

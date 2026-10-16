@@ -13,7 +13,8 @@ public class LocalFileStorageService : IFileStorageService
     [
         ".png", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp",
         ".webp", ".gif", ".svg", ".ico", ".avif", ".bmp",
-        ".tiff", ".tif", ".pdf"
+        ".tiff", ".tif", ".pdf", ".doc", ".docx", ".txt",
+        ".zip", ".csv", ".xlsx"
     ];
     private const long MaxFileSize = 50 * 1024 * 1024; // 50MB
 

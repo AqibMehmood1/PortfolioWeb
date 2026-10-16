@@ -1,0 +1,626 @@
+:host {
+  display: block;
+}
+
+.iz-modern-contact-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: clamp(24px, 5vw, 48px);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header */
+.iz-modern-header {
+  margin-bottom: 32px;
+}
+
+.iz-modern-title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+
+.iz-modern-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: #64748b;
+  max-width: 620px;
+  margin: 0 auto 24px;
+  font-weight: 400;
+}
+
+.iz-modern-divider {
+  width: 100%;
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0 auto;
+}
+
+/* Alert Feedback */
+.iz-modern-alert {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: fadeInDown 0.3s ease;
+}
+
+.iz-modern-alert-success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.iz-modern-alert-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Field Wrapper */
+.iz-field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Pill Input */
+.iz-pill-input {
+  width: 100%;
+  height: 54px;
+  border-radius: 9999px;
+  background: #edf2f0;
+  border: 1.5px solid transparent;
+  padding: 0 24px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iz-pill-input::placeholder {
+  color: #8c9ba5;
+  font-weight: 400;
+}
+
+.iz-pill-input:focus {
+  background: #ffffff;
+  border-color: #b8f500;
+  box-shadow: 0 0 0 3.5px rgba(184, 245, 0, 0.3);
+}
+
+/* Phone Group with Country Selector */
+.iz-phone-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 54px;
+  border-radius: 9999px;
+  background: #edf2f0;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.iz-phone-group:focus-within {
+  background: #ffffff;
+  border-color: #b8f500;
+  box-shadow: 0 0 0 3.5px rgba(184, 245, 0, 0.3);
+}
+
+.iz-country-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px 0 20px;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+  border-right: 1px solid #d4dfdb;
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.iz-country-flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.iz-country-code {
+  color: #0f172a;
+}
+
+.iz-country-chevron {
+  font-size: 0.72rem;
+  color: #64748b;
+  transition: transform 0.2s ease;
+}
+
+.iz-country-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.iz-phone-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 20px;
+  height: 100%;
+  border-radius: 0 9999px 9999px 0;
+}
+
+/* Country Floating Dropdown */
+.iz-country-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 290px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  border: 1px solid #e2e8f0;
+  z-index: 60;
+  overflow: hidden;
+  animation: fadeInDown 0.2s ease;
+}
+
+.iz-country-search-wrap {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #f8fafc;
+}
+
+.iz-country-search-input {
+  width: 100%;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  padding: 0 12px;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.iz-country-search-input:focus {
+  border-color: #0f172a;
+}
+
+.iz-country-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.iz-country-item {
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.iz-country-item:hover,
+.iz-country-item.active {
+  background: #f1f5f9;
+}
+
+/* Choose Your Tech Stack (Combobox with Chips & Manual Add) */
+.iz-tech-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.iz-tech-select-pill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 54px;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: #edf2f0;
+  border: 1.5px solid transparent;
+  cursor: text;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iz-tech-select-pill.focused {
+  background: #ffffff;
+  border-color: #b8f500;
+  box-shadow: 0 0 0 3.5px rgba(184, 245, 0, 0.3);
+}
+
+.iz-tech-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-size: 0.84rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  animation: scaleIn 0.2s ease;
+}
+
+.iz-tech-tag-remove {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.iz-tech-tag-remove:hover {
+  color: #ef4444;
+}
+
+.iz-tech-inner-input {
+  flex: 1;
+  min-width: 150px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0f172a;
+  padding: 0 6px;
+}
+
+.iz-tech-inner-input::placeholder {
+  color: #8c9ba5;
+  font-weight: 400;
+}
+
+/* Floating Tech Dropdown (Exact Screenshot 2 Match) */
+.iz-tech-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.16);
+  border: 1px solid #e2e8f0;
+  z-index: 60;
+  overflow: hidden;
+  animation: fadeInDown 0.2s ease;
+}
+
+.iz-tech-options-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.iz-tech-option-item {
+  padding: 11px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+/* Screenshot 2 Highlighted Blue Match */
+.iz-tech-option-item:hover {
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.iz-tech-option-create {
+  border-top: 1px dashed #e2e8f0;
+  margin-top: 4px;
+  padding-top: 12px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.iz-tech-option-create:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.iz-tech-option-empty {
+  padding: 14px 20px;
+  font-size: 0.88rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Rounded Textarea */
+.iz-rounded-textarea {
+  width: 100%;
+  border-radius: 22px;
+  background: #edf2f0;
+  border: 1.5px solid transparent;
+  padding: 18px 24px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #0f172a;
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1.6;
+}
+
+.iz-rounded-textarea::placeholder {
+  color: #8c9ba5;
+  font-weight: 400;
+}
+
+.iz-rounded-textarea:focus {
+  background: #ffffff;
+  border-color: #b8f500;
+  box-shadow: 0 0 0 3.5px rgba(184, 245, 0, 0.3);
+}
+
+/* Drag & Drop File Upload Box */
+.iz-dropzone-box {
+  background: #edf2f0;
+  border: 2px dashed #cbd5e1;
+  border-radius: 22px;
+  padding: 30px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iz-dropzone-box:hover {
+  border-color: #94a3b8;
+  background: #e8eee9;
+}
+
+.iz-dropzone-box.dragging {
+  background: #f7fee7;
+  border-color: #84cc16;
+  transform: scale(1.01);
+}
+
+.iz-dropzone-box.has-file {
+  border-style: solid;
+  border-color: #e2e8f0;
+  background: #f8fafc;
+  padding: 18px 24px;
+}
+
+.iz-upload-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.iz-dropzone-title {
+  font-size: 0.98rem;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.iz-dropzone-sub {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* Selected File Display */
+.iz-dropzone-file {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 12px 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.iz-file-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.iz-file-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.iz-file-size {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.iz-file-remove-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.iz-file-remove-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* Footer: Terms Checkbox & Submit Button */
+.iz-modern-footer {
+  padding-top: 8px;
+}
+
+/* Custom Checkbox */
+.iz-custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.92rem;
+  color: #334155;
+  margin: 0;
+}
+
+.iz-custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.iz-checkbox-checkmark {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.iz-custom-checkbox input:checked ~ .iz-checkbox-checkmark {
+  background: #0f172a;
+  border-color: #0f172a;
+}
+
+.iz-custom-checkbox input:checked ~ .iz-checkbox-checkmark::after {
+  content: "✔";
+  color: #b8f500;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.iz-terms-link {
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.iz-terms-link:hover {
+  color: #166534;
+}
+
+/* Lime Green Submit Button (Exact Screenshot Match) */
+.iz-submit-pill-btn {
+  background: #b8f500;
+  color: #000000;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border-radius: 9999px;
+  padding: 13px 36px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(184, 245, 0, 0.38);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.iz-submit-pill-btn:hover:not(:disabled) {
+  background: #a3e600;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(184, 245, 0, 0.48);
+}
+
+.iz-submit-pill-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.iz-arrow-icon {
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .iz-modern-contact-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .iz-submit-pill-btn {
+    width: 100%;
+  }
+
+  .iz-country-dropdown {
+    width: 100%;
+  }
+}
