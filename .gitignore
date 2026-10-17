@@ -4,6 +4,7 @@
 /dist
 /frontend/dist
 /tmp
+/scratch
 /out-tsc
 /bazel-out
 
