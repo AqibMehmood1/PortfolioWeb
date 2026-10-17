@@ -3,6 +3,7 @@
 # Compiled output
 /dist
 /frontend/dist
+/publish
 /tmp
 /scratch
 /out-tsc
@@ -40,7 +41,8 @@ backend/Portfolio.API/obj/
 .history/*
 
 # Miscellaneous
-/.angular/cache
+/.angular
+/frontend/.angular
 .sass-cache/
 /connect.lock
 /coverage

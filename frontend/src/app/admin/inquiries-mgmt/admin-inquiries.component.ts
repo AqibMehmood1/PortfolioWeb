@@ -5,6 +5,7 @@ import { finalize } from 'rxjs';
 import { AdminApiService, ContactInquiryDto } from '../../services/admin-api.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
+import { environment } from '../../../environments/environment';
 
 export interface InquiryAttachment {
   fileName: string;
@@ -170,7 +171,9 @@ export class AdminInquiriesComponent implements OnInit {
       const fileName = fullMatch[1].trim();
       let url = fullMatch[2].trim();
       if (url.startsWith('/')) {
-        url = `http://localhost:5175${url}`;
+        url = `${environment.mediaBaseUrl || ''}${url}`;
+      } else if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = `${environment.mediaBaseUrl || ''}/${url}`;
       }
       return { fileName, url };
     }

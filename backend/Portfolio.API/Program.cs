@@ -100,17 +100,42 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // 6. CORS Policy for Angular Frontend
+var configuredOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+var defaultOrigins = new[]
+{
+    "http://localhost:4200", 
+    "https://localhost:4200", 
+    "http://127.0.0.1:4200",
+    "http://localhost:5175",
+    "https://localhost:7163",
+    "https://nexvoys.com",
+    "https://www.nexvoys.com",
+    "http://nexvoys.com",
+    "http://www.nexvoys.com"
+};
+var allOrigins = defaultOrigins.Union(configuredOrigins).ToArray();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowPortfolioApp", policy =>
     {
-        policy.WithOrigins(
-                "http://localhost:4200", 
-                "https://localhost:4200", 
-                "http://127.0.0.1:4200",
-                "http://localhost:5175",
-                "https://localhost:7163"
-              )
+        policy.WithOrigins(allOrigins)
+              .SetIsOriginAllowed(origin =>
+              {
+                  if (string.IsNullOrEmpty(origin)) return false;
+                  try
+                  {
+                      var uri = new Uri(origin);
+                      return uri.Host.EndsWith("nexvoys.com", StringComparison.OrdinalIgnoreCase)
+                          || uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
+                          || uri.Host.Equals("127.0.0.1", StringComparison.OrdinalIgnoreCase)
+                          || allOrigins.Contains(origin, StringComparer.OrdinalIgnoreCase);
+                  }
+                  catch
+                  {
+                      return false;
+                  }
+              })
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();

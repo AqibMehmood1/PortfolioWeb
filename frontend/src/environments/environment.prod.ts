@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: '/api',
-  mediaBaseUrl: ''
+  apiUrl: 'https://api.nexvoys.com/api',
+  mediaBaseUrl: 'https://api.nexvoys.com'
 };
