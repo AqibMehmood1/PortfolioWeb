@@ -28,21 +28,29 @@
   <meta name="twitter:description" content="Founder-led architecture partner for startups and enterprises worldwide.">
   <meta name="twitter:image" content="https://nexvoys.com/assets/nexvoys/black-logo.png">
 
-  <!-- Favicon -->
-  <link id="app-dynamic-favicon" rel="icon" type="image/png" href="assets/nexvoys/nex-fav.png">
-  <link id="app-dynamic-favicon-shortcut" rel="shortcut icon" href="assets/nexvoys/nex-fav.png">
-  <link id="app-dynamic-favicon-apple" rel="apple-touch-icon" href="assets/nexvoys/nex-fav.png">
+  <!-- Favicons & App Icons (Universal Search Engine, Mobile & Desktop Standards) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/nexvoys/nex-fav-48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/nexvoys/nex-fav-96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/nexvoys/nex-fav-192.png">
+  <link id="app-dynamic-favicon" rel="icon" type="image/png" sizes="512x512" href="/assets/nexvoys/nex-fav.png">
+  <link id="app-dynamic-favicon-shortcut" rel="shortcut icon" href="/favicon.ico">
+  <link id="app-dynamic-favicon-apple" rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileImage" content="/assets/nexvoys/nex-fav-192.png">
+  <meta name="theme-color" content="#0a0d0b">
   <script>
     (function () {
       try {
+        // Clear old/stale cached data from previous versions to ensure canonical brand logo is always active
         var cached = localStorage.getItem('cached_site_favicon');
+        if (cached && (cached.indexOf('data:image') === 0 || cached.indexOf('favicon.ico') !== -1 || cached.indexOf('assets/img/favicon.png') !== -1)) {
+          localStorage.removeItem('cached_site_favicon');
+          cached = null;
+        }
         if (cached) {
           var f = document.getElementById('app-dynamic-favicon');
-          var s = document.getElementById('app-dynamic-favicon-shortcut');
-          var a = document.getElementById('app-dynamic-favicon-apple');
-          if (f) { f.type = 'image/png'; f.href = cached; }
-          if (s) { s.type = 'image/png'; s.href = cached; }
-          if (a) { a.href = cached; }
+          if (f) { f.href = cached; }
         }
       } catch (e) { }
     })();
@@ -58,7 +66,8 @@
         "@id": "https://nexvoys.com/#organization",
         "name": "NEXVOYS",
         "url": "https://nexvoys.com",
-        "logo": "https://nexvoys.com/assets/nexvoys/black-logo.png",
+        "logo": "https://nexvoys.com/assets/nexvoys/nex-fav.png",
+        "image": "https://nexvoys.com/assets/nexvoys/black-logo.png",
         "email": "info@nexvoys.com",
         "founder": {
           "@type": "Person",

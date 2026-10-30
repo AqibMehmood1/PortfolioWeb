@@ -249,7 +249,9 @@ export class PortfolioService {
     try {
       if (typeof window !== 'undefined' && window.localStorage) {
         const cached = localStorage.getItem('cached_site_favicon');
-        if (cached) {
+        if (cached && (cached.startsWith('data:image') || cached.includes('favicon.ico') || cached.includes('assets/img/favicon.png'))) {
+          localStorage.removeItem('cached_site_favicon');
+        } else if (cached) {
           this.profile.favicon = cached;
         }
       }
@@ -939,8 +941,17 @@ export class PortfolioService {
     if (typeof document === 'undefined') return;
     try {
       const cleanUrl = (iconUrl || 'assets/nexvoys/nex-fav.png').trim();
-      if (!iconUrl) {
+      const isDefaultBrandIcon = !iconUrl || cleanUrl.includes('nex-fav.png');
+
+      if (isDefaultBrandIcon) {
         try { localStorage.removeItem('cached_site_favicon'); } catch { }
+        const f = document.getElementById('app-dynamic-favicon') as HTMLLinkElement | null;
+        if (f) { f.type = 'image/png'; f.href = '/assets/nexvoys/nex-fav.png'; }
+        const s = document.getElementById('app-dynamic-favicon-shortcut') as HTMLLinkElement | null;
+        if (s) { s.href = '/favicon.ico'; }
+        const a = document.getElementById('app-dynamic-favicon-apple') as HTMLLinkElement | null;
+        if (a) { a.href = '/apple-touch-icon.png'; }
+        return;
       }
 
       const cacheBustUrl = cleanUrl.includes('?')
@@ -984,9 +995,7 @@ export class PortfolioService {
 
       applyFaviconTags(cacheBustUrl, mimeType);
 
-      // 2. Offscreen Canvas conversion to pure PNG data URI:
-      // Chrome/Edge/Firefox tab strips require true PNG or ICO and often fail or ignore JPEG/JFIF.
-      // Generating a PNG Data URL guarantees universal display and updates the tab strip immediately.
+      // 2. Offscreen Canvas conversion to pure PNG data URI for custom icons
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
