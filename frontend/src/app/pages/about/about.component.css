@@ -22,6 +22,49 @@
   background: rgba(255, 255, 255, 0.07) !important;
 }
 
+/* ===== About Page Responsive Overrides ===== */
+
+/* Tablet */
+@media (max-width: 991px) {
+  /* Vision section — stack columns */
+  .iz-section .row.g-5.align-items-center > .col-lg-6 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
+  /* Action buttons wrap */
+  .d-flex.flex-wrap.gap-3 > a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+/* Compact Mobile */
+@media (max-width: 576px) {
+  /* Process card compact */
+  .iz-process-card.h-100.p-3 {
+    padding: 12px !important;
+  }
+
+  .iz-process-step {
+    font-size: 1.5rem !important;
+  }
+
+  /* Value cards compact */
+  .iz-value-mint-card {
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+
+  /* Stat card compact */
+  .iz-stat-card.p-4 {
+    padding: 16px !important;
+  }
+}
+
 /* ========================================================
    COMPANY TRACK RECORD & MILESTONES (Clean Compact Timeline)
    ======================================================== */
@@ -262,4 +305,3 @@
     padding: 4px 10px;
   }
 }
-

@@ -6,3 +6,45 @@
   padding: 8rem 0 3.5rem;
   position: relative;
 }
+
+/* ===== Contact Page Responsive Overrides ===== */
+
+/* Tablet */
+@media (max-width: 991px) {
+  /* Stats side stacks below form */
+  .iz-stats-side {
+    border-left: none !important;
+    border-top: 1.5px solid var(--iz-border-light);
+  }
+}
+
+/* Compact Mobile */
+@media (max-width: 576px) {
+  /* Direct channel cards compact */
+  .direct-channel-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .channel-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .channel-meta .value {
+    font-size: 0.82rem;
+  }
+
+  .channel-copy-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+
+  /* WhatsApp button full-width */
+  .iz-btn-green {
+    width: 100%;
+    justify-content: center;
+  }
+}

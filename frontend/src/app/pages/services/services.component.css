@@ -6,3 +6,173 @@
   padding: 8rem 0 3.5rem;
   position: relative;
 }
+
+.iz-btn-discuss {
+  white-space: normal !important;
+  text-align: left;
+  line-height: 1.35;
+  word-break: break-word;
+  height: auto;
+  min-height: 44px;
+}
+
+/* ===== Services Page Responsive Overrides ===== */
+
+/* Tablet: Stack accordion expanded body */
+@media (max-width: 991px) {
+  .iz-accordion-body-expanded .row {
+    flex-direction: column;
+  }
+
+  .iz-accordion-body-expanded [class*="col-lg-"],
+  .iz-accordion-body-expanded [class*="col-md-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
+  .iz-accordion-media-box {
+    height: clamp(180px, 40vw, 260px);
+    margin-bottom: 16px;
+  }
+
+  /* Accordion action buttons stack on tablet */
+  .iz-accordion-body-expanded .d-flex.flex-wrap.gap-2 {
+    flex-direction: column;
+    gap: 10px !important;
+  }
+
+  .iz-accordion-body-expanded .d-flex.flex-wrap.gap-2 > a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+/* Phablet: Engagement model cards full-width */
+@media (max-width: 767px) {
+  .row.g-4 > .col-lg-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Process steps stacking */
+  .iz-process-network-section .col-md-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Productised banner CTA button full-width */
+  .col-lg-4.text-lg-end {
+    text-align: left !important;
+  }
+
+  .col-lg-4.text-lg-end .iz-btn-green {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stat card tag + badge row wrapping */
+  .iz-stat-card .d-flex.justify-content-between.align-items-center {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* Compact Mobile */
+@media (max-width: 576px) {
+  /* Accordion expanded body compact */
+  .iz-accordion-body-expanded {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .iz-accordion-media-box {
+    height: 170px;
+  }
+
+  .iz-accordion-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .iz-accordion-bullet-item {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    gap: 8px;
+  }
+
+  /* Engagement model cards compact */
+  .iz-stat-card.h-100.p-4 {
+    padding: 16px !important;
+  }
+
+  .iz-stat-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .iz-stat-card .iz-deliverables-list li {
+    font-size: 0.82rem;
+  }
+
+  /* CTA card compact */
+  .iz-stat-card.p-5 {
+    padding: 20px 16px !important;
+  }
+
+  /* Productised banner compact */
+  .rounded-4 {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Process section compact */
+  .iz-process-badge-lime {
+    width: 46px;
+    height: 46px;
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+
+  .iz-process-col-title {
+    font-size: 1rem;
+    min-height: auto;
+  }
+
+  .iz-btn-white-pill {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 0.92rem;
+  }
+
+  /* Review cards narrower for mobile scrolling */
+  .iz-review-card {
+    width: 290px;
+    max-width: 80vw;
+  }
+
+  .iz-review-card-inner {
+    padding: 18px 16px;
+  }
+
+  .iz-review-quote {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+
+  .iz-review-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Service card buttons compact */
+  .iz-service-card .iz-btn-dark {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+}

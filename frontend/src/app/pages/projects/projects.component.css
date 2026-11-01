@@ -1,3 +1,69 @@
 :host {
   display: block;
 }
+
+/* ===== Projects Page Responsive Overrides ===== */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .iz-projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
+  }
+}
+
+/* Phablet */
+@media (max-width: 767px) {
+  .iz-projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  /* Filter pills horizontal scroll */
+  .filter-nav-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+  }
+
+  .filter-nav-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill-btn {
+    flex-shrink: 0;
+  }
+}
+
+/* Compact Mobile */
+@media (max-width: 576px) {
+  .iz-project-media {
+    height: 180px;
+  }
+
+  .iz-project-body {
+    padding: 14px 14px 12px;
+  }
+
+  .iz-project-title {
+    font-size: 1.05rem;
+  }
+
+  .iz-project-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .iz-project-actions > .d-flex {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .iz-card-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
