@@ -52,7 +52,7 @@ public static class ServicesSeeder
                 Icon = "fas fa-cloud",
                 Title = "Cloud Migration & Cost Optimization",
                 ShortDescription = "Architect zero-downtime Azure and AWS migrations, serverless workflows, and infrastructure tuning that cut costs up to 25%.",
-                FullDescription = "Eliminate bloated cloud bills and fragile infrastructure. I audit your Azure/AWS setups, rightsize compute/storage, implement distributed caching, and automate CI/CD release pipelines.",
+                FullDescription = "Eliminate bloated cloud bills and fragile infrastructure. We audit your Azure/AWS setups, rightsize compute/storage, implement distributed caching, and automate CI/CD release pipelines.",
                 DeliverablesJson = JsonSerializer.Serialize(new[]
                 {
                     "Zero-downtime database & app migration",
@@ -88,7 +88,7 @@ public static class ServicesSeeder
                 Icon = "fas fa-user-tie",
                 Title = "Fractional CTO & Architecture Advisory",
                 ShortDescription = "Senior technical leadership on a fractional basis for startups preparing to raise capital, hire developers, or scale.",
-                FullDescription = "Get executive-level technical leadership without the overhead of a full-time executive. I assist founders with technical due diligence, tech stack selection, code reviews, and agile engineering leadership.",
+                FullDescription = "Get executive-level technical leadership without the overhead of a full-time executive. We advise technology leaders on technical due diligence, tech stack selection, code reviews, and agile engineering governance.",
                 DeliverablesJson = JsonSerializer.Serialize(new[]
                 {
                     "Technical due diligence & architecture roadmap",
@@ -104,9 +104,15 @@ public static class ServicesSeeder
 
         foreach (var s in services)
         {
-            if (!await context.Services.AnyAsync(x => x.Slug == s.Slug))
+            var existing = await context.Services.FirstOrDefaultAsync(x => x.Slug == s.Slug);
+            if (existing == null)
             {
                 await context.Services.AddAsync(s);
+            }
+            else
+            {
+                existing.FullDescription = s.FullDescription;
+                existing.ShortDescription = s.ShortDescription;
             }
         }
 

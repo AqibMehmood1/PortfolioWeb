@@ -297,7 +297,7 @@ public class EmailService : IEmailService
                 <tr>
                   <td style=""padding: 14px 16px; color: #166534; font-size: 13px; line-height: 1.6;"">
                     ⏱ <strong>What happens next?</strong><br/>
-                    Principal Architect Bilal &amp; the NEXVOYS solutions team will analyze your requirements and follow up within <strong>24 business hours</strong> with technical recommendations, diagnostic feasibility, or an invite to a direct strategy session.
+                    The NEXVOYS Solutions Architecture Team will analyze your requirements and follow up within <strong>24 business hours</strong> with technical recommendations, diagnostic feasibility, or an invite to a direct strategy session.
                   </td>
                 </tr>
               </table>
@@ -325,7 +325,7 @@ public class EmailService : IEmailService
           <!-- Footer -->
           <tr>
             <td style=""background-color: #f8fafc; padding: 18px 24px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6;"">
-              &copy; {DateTime.UtcNow.Year} NEXVOYS Ltd. Founder-led Architecture Partner for Startups &amp; SMBs.<br/>
+              &copy; {DateTime.UtcNow.Year} NEXVOYS Ltd. Enterprise Software Architecture, Cloud &amp; AI Engineering Studio.<br/>
               Lahore HQ &middot; Serving clients worldwide across US, Canada, Europe, Singapore &amp; Cyprus.
             </td>
           </tr>
@@ -489,7 +489,7 @@ public class EmailService : IEmailService
             <td style=""background-color: #f8fafc; padding: 18px 24px; border-top: 1px solid #e2e8f0; text-align: center;"">
               <p style=""margin: 0; font-size: 12px; color: #64748b; line-height: 1.6;"">
                 Delivered automatically to NEXVOYS Leadership<br/>
-                <span style=""color: #334155; font-weight: 600;"">Bilal (Owner)</span> &middot; <span style=""color: #334155; font-weight: 600;"">Aqib (Manager)</span><br/>
+                <span style=""color: #334155; font-weight: 600;"">NEXVOYS Technical Leadership &amp; Engineering Operations</span><br/>
                 <span style=""font-size: 11px; color: #94a3b8;"">&copy; {DateTime.UtcNow.Year} NEXVOYS Ltd. All rights reserved.</span>
               </p>
             </td>

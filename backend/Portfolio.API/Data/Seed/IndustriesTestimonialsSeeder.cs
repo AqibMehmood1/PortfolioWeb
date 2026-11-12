@@ -83,7 +83,7 @@ public static class IndustriesTestimonialsSeeder
         {
             new()
             {
-                Quote = "Bilal architected our dynamic CPQ calculation engine from the ground up. His architectural leadership cut our quotation turnaround from 3 hours to under 30 seconds.",
+                Quote = "NEXVOYS architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround from 3 hours to under 30 seconds.",
                 Author = "Odyssey Design Leadership",
                 Role = "San Antonio, TX · Contract Engagement",
                 Tag = "Enterprise .NET & CPQ",

@@ -12,22 +12,22 @@ public static class SeoSeeder
             new()
             {
                 PageRoute = "/",
-                Title = "Nexvoys — SaaS & AI Architecture Partner for Startups and SMBs",
-                Description = "Founder-led architecture and engineering for SaaS and AI products. .NET, Azure and AI agents. Serving the US, Canada, Singapore and Cyprus.",
-                Keywords = "Solutions Architect, SaaS Architecture, AI Agents, .NET 9, Cloud Cost Optimization, Azure, Multi-Tenancy, Fractional CTO",
-                OgTitle = "Nexvoys — Senior Architecture for SaaS & AI Products",
-                OgDescription = "Founder-led architecture partner for startups and SMBs in the US, Canada, Singapore and Cyprus.",
+                Title = "NEXVOYS — Enterprise Software Architecture, Cloud & AI Engineering Studio",
+                Description = "Nexvoys is an enterprise software architecture and cloud engineering studio helping technology companies build scalable SaaS platforms, modern .NET microservices, and autonomous AI systems.",
+                Keywords = "Enterprise Solutions Architecture, SaaS Architecture, AI Agents, .NET 9, Cloud Cost Optimization, Azure, Multi-Tenancy, Software Engineering Studio",
+                OgTitle = "NEXVOYS — Enterprise Software Architecture, Cloud & AI Engineering Studio",
+                OgDescription = "Enterprise architecture and engineering partner for high-scale SaaS and AI platforms worldwide.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },
             new()
             {
                 PageRoute = "/about",
-                Title = "About Nexvoys | Founder-Led Architecture Partner",
-                Description = "Led by principal solutions architect Bilal with 9+ years shipping .NET, Azure, and AI systems for companies in the US, Europe, and Asia.",
-                Keywords = "Software Architecture, Solutions Architect, Founder-Led Engineering, .NET Azure AI Track Record",
-                OgTitle = "About Nexvoys | Senior Architecture Partner",
-                OgDescription = "Founder-led engineering philosophy and verified production delivery record.",
+                Title = "About NEXVOYS | Enterprise Software Architecture Studio",
+                Description = "Nexvoys is an enterprise software architecture studio delivering mission-critical SaaS platforms, cloud infrastructure, and AI engineering for international tech companies.",
+                Keywords = "Software Architecture Studio, Enterprise Solutions Architecture, Cloud Engineering, .NET Azure AI Systems",
+                OgTitle = "About NEXVOYS | Enterprise Architecture Studio",
+                OgDescription = "Engineering philosophy, institutional operating standards, and verified production delivery record.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             },

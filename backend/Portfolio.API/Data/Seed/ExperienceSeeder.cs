@@ -12,11 +12,11 @@ public static class ExperienceSeeder
         {
             new()
             {
-                Title = "Founder & Principal Solutions Architect",
+                Title = "Enterprise Solutions Architecture Practice",
                 Period = "Feb 2024 - Present · 2 yrs+",
                 Company = "NEXVOYS",
                 Location = "Lahore HQ · Global Remote (US, Canada, Singapore, Cyprus)",
-                Description = "Partnering directly with startups and SMB founders across the US, Canada, Singapore, and Europe to architect multi-tenant SaaS products, AI Agents, and distributed cloud applications that scale seamlessly.",
+                Description = "Partnering with technology companies and enterprise teams across the US, Canada, Singapore, and Europe to architect multi-tenant SaaS platforms, autonomous AI workflows, and distributed cloud systems that scale seamlessly.",
                 TagsJson = JsonSerializer.Serialize(new[] { "Solutions Architecture", "AI Agents", "Multi-Tenant SaaS", "Azure", ".NET 9" }),
                 DisplayOrder = 1,
                 IsActive = true

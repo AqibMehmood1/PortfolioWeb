@@ -11,30 +11,30 @@ public static class HomePageSeeder
         var existing = await context.HomePageContents.FirstOrDefaultAsync(h => h.SectionKey == "hero");
         var hero = existing ?? new HomePageContent { SectionKey = "hero" };
 
-        hero.Headline = "Senior architecture for SaaS and AI products that need to scale.";
-        hero.Subtitle = "Nexvoys is a founder-led technology partner for startups and SMBs in the US, Canada, Singapore and Cyprus. You work directly with a principal architect with 9+ years shipping .NET, Azure and AI systems — from first blueprint to production.";
+        hero.Headline = "Enterprise software architecture for SaaS and AI systems that scale.";
+        hero.Subtitle = "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance .NET microservices, and autonomous AI systems.";
         hero.TypedStringsJson = JsonSerializer.Serialize(new[]
         {
-            "Principal Solutions Architect",
+            "Enterprise Solutions Architecture",
             "Multi-Tenant SaaS Architecture",
             "Autonomous AI Agents & Pipelines",
             "Cloud Cost Optimization (Azure & AWS)",
             ".NET 9 & Microservices Modernization",
-            "Fractional CTO & Strategic Advisory"
+            "Fractional Principal Architecture & Advisory"
         });
         hero.StatsJson = JsonSerializer.Serialize(new[]
         {
-            new { Value = "9+", Label = "Years Shipping Systems", Icon = "fas fa-history" },
+            new { Value = "Enterprise", Label = "Production Platforms Shipped", Icon = "fas fa-history" },
             new { Value = "25%", Label = "Cloud Cost Reduction", Icon = "fas fa-chart-line" },
             new { Value = "< 30s", Label = "CPQ Turnaround (from 3 hrs)", Icon = "fas fa-bolt" },
-            new { Value = "4", Label = "Key Markets: US, CA, SG, CY", Icon = "fas fa-globe" }
+            new { Value = "Global", Label = "Key Markets: US, CA, SG, EU", Icon = "fas fa-globe" }
         });
         hero.AdditionalDataJson = JsonSerializer.Serialize(new
         {
-            HeroBadge = "Founder-Led Solutions Architecture",
-            CtaPrimaryText = "Book a 30-min architecture call",
-            CtaSecondaryText = "See selected work",
-            TrustBadge = "Direct founder access · Same-day overlap across US, Singapore & Cyprus"
+            HeroBadge = "Enterprise Solutions Architecture Studio",
+            CtaPrimaryText = "Book Architecture Consultation",
+            CtaSecondaryText = "See Selected Work",
+            TrustBadge = "Direct Senior Architect Collaboration · Overlapping Delivery Across US, Europe & Asia"
         });
 
         if (existing == null)

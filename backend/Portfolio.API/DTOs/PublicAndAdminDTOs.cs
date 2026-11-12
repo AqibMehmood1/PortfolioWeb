@@ -15,7 +15,7 @@ public class WebsiteSettingsDto
     public string DisplayPhone => Get("DisplayPhone", "+92 345 6466188");
     public string Location => Get("Location", "Lahore, Pakistan · Global Remote");
     public string LinkedinUrl => Get("LinkedinUrl", "https://www.linkedin.com/company/nex-voys/posts/?feedView=all");
-    public string CvPath => Get("CvPath", "assets/Bilal_CV.pdf");
+    public string CvPath => Get("CvPath", "assets/nexvoys/Nexvoys_Capabilities_Deck.pdf");
     public string LogoDark => Get("LogoDark", "assets/nexvoys/black-logo.png");
     public string LogoLight => Get("LogoLight", "assets/nexvoys/white-logo.png");
     public string Favicon => Get("Favicon", "assets/nexvoys/nex-fav.png");

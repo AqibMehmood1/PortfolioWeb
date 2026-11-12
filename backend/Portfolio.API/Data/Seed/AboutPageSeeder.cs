@@ -11,11 +11,11 @@ public static class AboutPageSeeder
         var existing = await context.AboutContents.FirstOrDefaultAsync(a => a.SectionKey == "about-main");
         var about = existing ?? new AboutContent { SectionKey = "about-main" };
 
-        about.Headline = "Senior Architecture & Systems Strategy";
-        about.Subtitle = "Founder-led architecture partner for startups and SMBs building high-scale SaaS products, autonomous AI agents, and resilient cloud systems.";
-        about.VisionHeadline = "Senior-Only Execution. Direct Access to a Principal Architect.";
-        about.VisionLead = "Nexvoys is led by Bilal, a principal solutions architect with 9+ years of delivery across the US, Canada, Singapore, and Cyprus. We partner directly with founders and CTOs to design, modernize, and ship software that scales.";
-        about.VisionDescription = "We believe successful software starts with clean system boundaries, unit economics, and data isolation before writing a single line of code. You work directly with a senior architect who has built and deployed production systems — no account managers, no junior handoffs.";
+        about.Headline = "Enterprise Architecture & Engineering Strategy";
+        about.Subtitle = "Enterprise software engineering and architecture studio for high-growth SaaS platforms, autonomous AI workflows, and mission-critical cloud infrastructure.";
+        about.VisionHeadline = "Senior Architecture Delivery. Zero Bureaucracy, Zero Junior Handoffs.";
+        about.VisionLead = "NEXVOYS is an elite engineering and solutions architecture studio delivering mission-critical systems across North America, Europe, and Asia. We partner directly with engineering leadership to architect, modernize, and ship software that scales.";
+        about.VisionDescription = "We believe successful software starts with clean system boundaries, unit economics, and data isolation before writing a single line of code. Our clients collaborate directly with senior architects who design, test, and ship production systems.";
         about.FocusAreasJson = JsonSerializer.Serialize(new[]
         {
             "Designing multi-tenant SaaS foundations with clean data isolation from day one.",
@@ -32,7 +32,7 @@ public static class AboutPageSeeder
         });
         about.ValueCardsJson = JsonSerializer.Serialize(new[]
         {
-            new { Title = "Direct Architect Access", Description = "You work directly with a principal architect with 9+ years shipping production software — no junior hand-offs." },
+            new { Title = "Direct Senior Engineering", Description = "You collaborate directly with senior enterprise architects and technical leads — zero agency bureaucracy, no account managers, and no junior hand-offs." },
             new { Title = "100% IP & Code Ownership", Description = "You own every line of code, infrastructure script, and architecture diagram from day one." },
             new { Title = "Measurable Cost Discipline", Description = "We design cloud systems to be lean by default, rightsizing compute and eliminating cloud waste." },
             new { Title = "Time-Zone Alignment", Description = "Dedicated overlap hours for US Eastern & Pacific, plus same-day working overlap with Singapore and Europe." }

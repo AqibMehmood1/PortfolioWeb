@@ -72,15 +72,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Hero Data
   heroData = {
-    headline: 'Senior architecture for SaaS and AI products that need to scale.',
-    subtitle: 'Nexvoys is an elite architecture and engineering partner for startups, scale-ups, and enterprises worldwide. You collaborate directly with principal architects with 9+ years shipping .NET, Azure and AI systems — from first blueprint to production.',
+    headline: 'Enterprise software architecture for SaaS and AI systems that scale.',
+    subtitle: 'NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance .NET microservices, and autonomous AI systems.',
     typedStrings: [
-      'Senior Solutions Architecture',
+      'Enterprise Solutions Architecture',
       'Scalable SaaS & Multi-Tenancy',
       'Autonomous AI Agents & GenAI',
       'Azure & AWS Cloud Cost Tuning',
       '.NET 9 & Microservices Modernization',
-      'Fractional Principal Architect'
+      'Fractional Principal Architecture & Advisory'
     ]
   };
 
@@ -211,7 +211,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const cards = this.getSectionCards('proof-strip');
     if (cards && cards.length > 0) return cards;
     return [
-      { badge: '9+ Years', title: 'Shipping Production Systems', description: 'Shipping Production Systems' },
+      { badge: 'Enterprise', title: 'Mission-Critical Delivery', description: 'Audited enterprise platforms shipped globally' },
       { badge: '4 Key Markets', title: 'Clients in US, CA, SG & CY', description: 'Clients in US, CA, SG & CY' },
       { badge: '< 30 Seconds', title: 'CPQ Turnaround (from 3 hrs)', description: 'CPQ Turnaround (from 3 hrs)' },
       { badge: 'Up to 25%', title: 'Cloud Cost Optimization', description: 'Cloud Cost Optimization' }

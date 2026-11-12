@@ -11,18 +11,18 @@ public static class WebsiteSettingsSeeder
         var defaultSettings = new List<WebsiteSetting>
         {
             new() { Key = "CompanyName", Value = "NEXVOYS", Group = "Profile", Description = "Company / Brand Name" },
-            new() { Key = "Tagline", Value = "Founder-led Architecture Partner for Startups & SMBs", Group = "Profile", Description = "Header Tagline" },
-            new() { Key = "Role", Value = "Principal Solutions Architect & Founder", Group = "Profile", Description = "Primary Professional Role" },
+            new() { Key = "Tagline", Value = "Enterprise Software Architecture, Cloud & AI Engineering", Group = "Profile", Description = "Header Tagline" },
+            new() { Key = "Role", Value = "Senior Solutions Architecture & Systems Practice", Group = "Profile", Description = "Primary Professional Role" },
             new() { Key = "Email", Value = "info@nexvoys.com", Group = "Contact", Description = "Primary Email Address" },
             new() { Key = "Phone", Value = "+92 345 6466188", Group = "Contact", Description = "Phone Number (International format)" },
             new() { Key = "DisplayPhone", Value = "+92 345 6466188", Group = "Contact", Description = "Formatted Display Phone" },
             new() { Key = "Location", Value = "Lahore HQ · Serving clients in US, Canada, Singapore & Cyprus", Group = "Contact", Description = "Primary Office Location" },
             new() { Key = "LinkedinUrl", Value = "https://www.linkedin.com/company/nex-voys/posts/?feedView=all", Group = "Social", Description = "LinkedIn Profile / Company URL" },
-            new() { Key = "CvPath", Value = "assets/Bilal_CV.pdf", Group = "Profile", Description = "Downloadable CV / Brochure Path" },
+            new() { Key = "CvPath", Value = "assets/nexvoys/Nexvoys_Capabilities_Deck.pdf", Group = "Profile", Description = "Downloadable Capabilities Brochure Path" },
             new() { Key = "LogoDark", Value = "assets/nexvoys/black-logo.png", Group = "Media", Description = "Dark Header Logo" },
             new() { Key = "LogoLight", Value = "assets/nexvoys/white-logo.png", Group = "Media", Description = "White Footer Logo" },
             new() { Key = "Favicon", Value = "assets/nexvoys/nex-fav.png", Group = "Media", Description = "Favicon URL" },
-            new() { Key = "FooterBio", Value = "Nexvoys is a founder-led architecture and engineering partner for startups and SMBs building SaaS and AI products. Senior-only execution with zero junior handoffs.", Group = "Footer", Description = "Footer Bio Text" },
+            new() { Key = "FooterBio", Value = "NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern .NET microservices, and autonomous AI systems.", Group = "Footer", Description = "Footer Bio Text" },
             new() { Key = "CopyrightText", Value = "© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.", Group = "Footer", Description = "Copyright notice" },
             new() { 
                 Key = "TickerTexts", 
@@ -43,6 +43,10 @@ public static class WebsiteSettingsSeeder
             {
                 if (string.IsNullOrEmpty(existing.Group)) existing.Group = setting.Group;
                 if (string.IsNullOrEmpty(existing.Description)) existing.Description = setting.Description;
+                if (setting.Key == "Tagline" || setting.Key == "Role" || setting.Key == "FooterBio" || setting.Key == "CvPath")
+                {
+                    existing.Value = setting.Value;
+                }
             }
         }
 

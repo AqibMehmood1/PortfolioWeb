@@ -6,7 +6,7 @@ namespace Portfolio.API.Data.Seed;
 public static class SitePagesSeeder
 {
     private static readonly string ValueCardsJson = @"[
-  {""title"":""Direct Architect Access"",""description"":""You work directly with a principal architect with 9+ years shipping production software — no account managers, no junior hand-offs.""},
+  {""title"":""Direct Senior Engineering"",""description"":""Our clients collaborate directly with senior enterprise architects and technical leads — zero agency bureaucracy, no account managers, and no junior hand-offs.""},
   {""title"":""100% Code & IP Ownership"",""description"":""You own every line of code, deployment script, and architecture diagram. Zero proprietary vendor lock-in.""},
   {""title"":""Cloud Cost Discipline"",""description"":""We design cloud systems to be lean by default, rightsizing compute resources and cutting wasteful infrastructure overhead.""},
   {""title"":""Time-Zone Alignment"",""description"":""Dedicated overlap hours for US Eastern and Pacific, plus same-day working overlap with Singapore, Cyprus, and Europe.""}
@@ -20,7 +20,7 @@ public static class SitePagesSeeder
 ]";
 
     private static readonly string ProofStripCardsJson = @"[
-  {""title"":""Shipping Production Systems"",""description"":""Audited enterprise platforms"",""badge"":""9+ Years"",""icon"":""fas fa-history""},
+  {""title"":""Mission-Critical Delivery"",""description"":""Audited enterprise platforms shipped globally"",""badge"":""Enterprise"",""icon"":""fas fa-history""},
   {""title"":""Clients in US, CA, SG & CY"",""description"":""International client footprint"",""badge"":""4 Key Markets"",""icon"":""fas fa-globe""},
   {""title"":""CPQ Turnaround (from 3 hrs)"",""description"":""Automated pricing calculation"",""badge"":""< 30 Seconds"",""icon"":""fas fa-bolt""},
   {""title"":""Cloud Cost Optimization"",""description"":""FinOps Azure & AWS reduction"",""badge"":""Up to 25%"",""icon"":""fas fa-chart-line""}
@@ -61,10 +61,10 @@ public static class SitePagesSeeder
         {
             ("", "Home", "Home", 1, new()
             {
-                ("hero", "Senior architecture for SaaS and AI products that need to scale.", "Founder-Led Solutions Architecture", "Nexvoys is a founder-led technology partner for startups and SMBs in the US, Canada, Singapore and Cyprus. You work directly with a principal architect with 9+ years shipping .NET, Azure and AI systems — from first blueprint to production.", null, 1),
+                ("hero", "Enterprise software architecture for SaaS and AI systems that scale.", "Enterprise Solutions Architecture", "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance .NET microservices, and autonomous AI systems.", null, 1),
                 ("proof-strip", "Verified Production Metrics", "Production Proof", "Audited delivery track record across international production systems.", ProofStripCardsJson, 2),
                 ("problems", "Problems We Solve For Growing Tech Companies", "Architecture Challenges", "We eliminate the engineering bottlenecks that drain revenue, slow release velocity, and put customer data at risk.", ProblemsCardsJson, 3),
-                ("value", "Why Startups & SMBs Partner with Nexvoys", "Our Architecture Discipline", "Senior-only engineering, direct founder access, and predictable technical execution without agency bloat.", ValueCardsJson, 4),
+                ("value", "Why Leading Technology Teams Partner with Nexvoys", "Our Architecture Discipline", "Senior-only engineering, collaborative technical leadership, and predictable execution without agency bloat.", ValueCardsJson, 4),
                 ("services", "Core Architecture Services", "Our Specialist Pillars", "Five focused architectural disciplines across modern SaaS systems, autonomous AI workflows, cloud optimization, and legacy modernization.", null, 5),
                 ("diagnostic-audit", "Architecture & Cloud Cost Audit", "Fixed-Scope Architecture Diagnostic", "A 2-week diagnostic designed for tech founders and engineering leaders. We examine your architecture blueprints, cloud infrastructure spend (Azure/AWS), database performance, and security posture.", AuditCardsJson, 6),
                 ("tech-matrix", "Our Specialist Stack", "Specialized Capabilities", "Deep technical depth across .NET 9, C#, Azure, AWS, Angular, React, Redis, and LangChain/Semantic Kernel AI pipelines.", null, 7),
@@ -72,14 +72,14 @@ public static class SitePagesSeeder
                 ("case-studies", "Featured Production Case Studies", "Delivered Systems", "Production platforms, pricing calculation engines, and cloud infrastructures architected for international clients.", null, 9),
                 ("process", "How We Work Together", "Predictable Execution", "From discovery call to architecture blueprint, hands-on build, and production handover.", ProcessStepsJson, 10),
                 ("testimonials", "Verified Client Endorsements", "Client Endorsements", "Feedback from technology leaders across the US and Europe.", null, 11),
-                ("contact-hub", "Book an Architecture Call", "Book Strategy Call", "Speak directly with the principal architect about your product roadmap, system bottlenecks, or upcoming build.", null, 12)
+                ("contact-hub", "Book an Architecture Consultation", "Book Strategy Call", "Speak directly with our senior solutions architecture team about your product roadmap, system bottlenecks, or upcoming build.", null, 12)
             }),
             ("services", "Services & Pillars", "Services", 2, new()
             {
-                ("services-hero", "Senior Architecture Services & Advisory", "Architecture Offerings", "Boutique, architect-led solutions for SaaS and AI products. Direct founder access with zero junior handoffs.", null, 1),
+                ("services-hero", "Enterprise Architecture Services & Advisory", "Architecture Offerings", "Senior-level solutions architecture for SaaS and AI platforms. Direct collaboration with experienced engineering leadership.", null, 1),
                 ("services-grid", "Core Solutions Architecture Capabilities", "Pillar Offerings", "Deep architectural deep-dives across SaaS multi-tenancy, AI agents, cloud migrations, and modern web portals.", null, 2),
                 ("accordion", "Interactive Capability Pillars", "Deep-Dive Capabilities", "Explore our technical execution approach and deliverables for each primary architectural discipline.", null, 3),
-                ("engagement", "Engagement Models Built For Speed & Scale", "Flexible Partnership", "Choose between Fixed-Fee Architecture Audits, Project-Based Build sprints, or Fractional CTO advisory.", ValueCardsJson, 4),
+                ("engagement", "Engagement Models Built For Speed & Scale", "Flexible Partnership", "Choose between Fixed-Fee Architecture Audits, Project-Based Build sprints, or Fractional Advisory.", ValueCardsJson, 4),
                 ("services-cta", "Need an Architectural Review of Your System?", "Architecture Advisory", "Let's review your codebase, identify scalability bottlenecks, and design a modern roadmap that drives business outcomes.", null, 5)
             }),
             ("expertise", "Technical Radar & Stacks", "Expertise", 3, new()
@@ -98,8 +98,8 @@ public static class SitePagesSeeder
             }),
             ("about", "About NEXVOYS", "About", 5, new()
             {
-                ("about-hero", "Engineering Systems That Power High-Scale Growth", "Company & Leadership", "Nexvoys is an elite engineering and solutions architecture studio. We partner with tech founders, CTOs, and enterprises to architect resilient SaaS platforms, autonomous AI workflows, and mission-critical cloud infrastructure.", null, 1),
-                ("vision", "Architectural Rigor, Direct Access, Zero Delegation Bloat", "Our Operating Model", "Nexvoys operates as a principal-led software engineering and systems architecture firm. We eliminate agency overhead: you collaborate directly with senior architects who design, review, and ship production systems.", null, 2),
+                ("about-hero", "Engineering Systems That Power High-Scale Growth", "Company & Architecture Practice", "Nexvoys is an elite engineering and solutions architecture studio. We partner with technology leaders, enterprises, and scale-ups to architect resilient SaaS platforms, autonomous AI workflows, and mission-critical cloud infrastructure.", null, 1),
+                ("vision", "Architectural Rigor, Direct Access, Zero Delegation Bloat", "Our Operating Model", "Nexvoys operates as an enterprise software engineering and systems architecture firm. We eliminate agency overhead: our clients collaborate directly with senior architects who design, review, and ship production systems.", null, 2),
                 ("focus-areas", "Ready to Architect Your Next Production Platform?", "Let's Collaborate", "Whether you need a full system architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session.", null, 3),
                 ("execution", "How Nexvoys Delivers Lasting Value to Enterprise Teams", "Strategic Value", "Zero vendor lock-in, sub-second performance, health-grade data security, and cost-aware scalability.", ValueCardsJson, 4),
                 ("milestones", "Company Track Record & Engineering Milestones", "Company Evolution", "A history of architecting, scaling, and deploying mission-critical systems for international enterprises and high-growth startups.", CompanyMilestonesJson, 5),
@@ -174,10 +174,15 @@ public static class SitePagesSeeder
                 else
                 {
                     sec.DisplayOrder = sDef.SectionOrder;
-                    if (string.IsNullOrWhiteSpace(sec.Description) || 
-                        sec.Title.EndsWith("Header") || sec.Title.EndsWith("Intro") || sec.Title.EndsWith("Grid") ||
-                        sec.Title == "How Solutions Architecture Delivers Value To Your Business" ||
-                        sec.Title == "Three Steps. That's All It Takes.")
+                    bool isOutdated = string.IsNullOrWhiteSpace(sec.Description) ||
+                        (sec.Description != null && (sec.Description.Contains("founder") || sec.Description.Contains("Founder") || sec.Description.Contains("Bilal"))) ||
+                        (sec.Subtitle != null && (sec.Subtitle.Contains("Founder-Led") || sec.Subtitle.Contains("founder"))) ||
+                        (sec.Title != null && (sec.Title.Contains("Senior architecture for SaaS") || sec.Title.Contains("Startups & SMBs Partner") ||
+                         sec.Title.EndsWith("Header") || sec.Title.EndsWith("Intro") || sec.Title.EndsWith("Grid") ||
+                         sec.Title == "How Solutions Architecture Delivers Value To Your Business" ||
+                         sec.Title == "Three Steps. That's All It Takes."));
+
+                    if (isOutdated)
                     {
                         sec.Title = sDef.Title;
                         sec.Subtitle = sDef.Subtitle;
@@ -187,6 +192,8 @@ public static class SitePagesSeeder
                     if (!string.IsNullOrWhiteSpace(sDef.ContentJson))
                     {
                         if (string.IsNullOrWhiteSpace(sec.ContentJson) || 
+                            sec.ContentJson.Contains("Direct Architect Access") ||
+                            sec.ContentJson.Contains("9+ Years") ||
                             sec.ContentJson.Contains("Task Automation") || 
                             sec.ContentJson.Contains("Tell Us What You Need"))
                         {

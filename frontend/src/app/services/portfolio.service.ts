@@ -29,18 +29,18 @@ export interface ToastNotification {
 export class PortfolioService {
   profile = {
     name: 'NEXVOYS',
-    tagline: 'Founder-led Architecture Partner for Startups & SMBs',
-    role: 'Principal Solutions Architect & Founder',
+    tagline: 'Enterprise Software Architecture, Cloud & AI Engineering',
+    role: 'Senior Solutions Architecture & Systems Practice',
     email: 'info@nexvoys.com',
     phone: '+923456466188',
     displayPhone: '+92 345 6466188',
     location: 'Lahore HQ · Serving Clients Worldwide',
     linkedinUrl: 'https://www.linkedin.com/company/nex-voys/posts/?feedView=all',
-    cvPath: 'assets/Bilal_CV.pdf',
+    cvPath: 'assets/nexvoys/Nexvoys_Capabilities_Deck.pdf',
     logoDark: 'assets/nexvoys/black-logo.png',
     logoLight: 'assets/nexvoys/white-logo.png',
     favicon: 'assets/nexvoys/nex-fav.png',
-    footerBio: 'Nexvoys is a founder-led architecture and engineering partner for startups and SMBs building SaaS and AI products. Senior-only execution with zero junior handoffs.',
+    footerBio: 'NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern .NET microservices, and autonomous AI systems.',
     copyrightText: '© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.',
     tickerTexts: [] as string[]
   };
@@ -164,7 +164,7 @@ export class PortfolioService {
     // Fallback defaults for value / execution
     if (sectionKey === 'value' || sectionKey === 'execution' || sectionKey === 'engagement') {
       return [
-        { title: 'Direct Architect Access', description: 'You work directly with a principal architect with 9+ years shipping production software — no account managers, no junior hand-offs.' },
+        { title: 'Direct Senior Engineering', description: 'Our clients collaborate directly with senior enterprise architects and technical leads — zero agency bureaucracy, no account managers, and no junior hand-offs.' },
         { title: '100% Code & IP Ownership', description: 'You own every line of code, deployment script, and architecture diagram. Zero proprietary vendor lock-in.' },
         { title: 'Cloud Cost Discipline', description: 'We design cloud systems to be lean by default, rightsizing compute resources and cutting wasteful infrastructure overhead.' },
         { title: 'Time-Zone Alignment', description: 'Dedicated working overlap for Americas, EMEA, and APAC time zones ensuring seamless daily collaboration.' }
@@ -209,7 +209,7 @@ export class PortfolioService {
     // Fallback defaults for proof-strip
     if (sectionKey === 'proof-strip') {
       return [
-        { title: 'Shipping Production Systems', description: 'Audited enterprise platforms', badge: '9+ Years', icon: 'fas fa-history' },
+        { title: 'Mission-Critical Delivery', description: 'Audited enterprise platforms', badge: 'Enterprise', icon: 'fas fa-history' },
         { title: 'Global Client Footprint', description: 'Worldwide client delivery footprint', badge: 'Worldwide', icon: 'fas fa-globe' },
         { title: 'CPQ Turnaround (from 3 hrs)', description: 'Automated pricing calculation', badge: '< 30 Seconds', icon: 'fas fa-bolt' },
         { title: 'Cloud Cost Optimization', description: 'FinOps Azure & AWS reduction', badge: 'Up to 25%', icon: 'fas fa-chart-line' }
@@ -466,7 +466,7 @@ export class PortfolioService {
         icon: 'fas fa-cloud',
         title: 'Cloud Migration & Cost Optimization',
         shortDesc: 'Architect zero-downtime Azure and AWS migrations, serverless workflows, and infrastructure tuning that cut costs up to 25%.',
-        fullDesc: 'Eliminate bloated cloud bills and fragile infrastructure. I audit your Azure/AWS setups, rightsize compute/storage, implement distributed caching, and automate CI/CD release pipelines.',
+        fullDesc: 'Eliminate bloated cloud bills and fragile infrastructure. We audit your Azure/AWS setups, rightsize compute/storage, implement distributed caching, and automate CI/CD release pipelines.',
         deliverables: [
           'Zero-downtime database & app migration',
           'Cloud infrastructure audit & 25% cost reduction',
@@ -494,7 +494,7 @@ export class PortfolioService {
         icon: 'fas fa-user-tie',
         title: 'Fractional CTO & Architecture Advisory',
         shortDesc: 'Senior technical leadership on a fractional basis for startups preparing to raise capital, hire developers, or scale.',
-        fullDesc: 'Get executive-level technical leadership without the overhead of a full-time executive. I assist founders with technical due diligence, tech stack selection, code reviews, and agile engineering leadership.',
+        fullDesc: 'Get executive-level technical leadership without the overhead of a full-time executive. We advise technology leaders on technical due diligence, tech stack selection, code reviews, and agile engineering governance.',
         deliverables: [
           'Technical due diligence & architecture roadmap',
           'Engineering team hiring & code review standards',
@@ -674,7 +674,7 @@ export class PortfolioService {
 
     this.testimonialsSubject.next([
       {
-        quote: 'Bilal architected our dynamic CPQ calculation engine from the ground up. His architectural leadership cut our quotation turnaround from 3 hours to under 30 seconds.',
+        quote: 'NEXVOYS architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround from 3 hours to under 30 seconds.',
         author: 'Odyssey Design Leadership',
         role: 'San Antonio, TX · Contract Engagement',
         tag: 'Enterprise .NET & CPQ'
