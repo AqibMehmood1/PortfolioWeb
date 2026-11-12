@@ -5,7 +5,7 @@
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">/</span>
-      <span class="text-dark fw-bold">{{ getSection('contact-hero')?.subtitle || 'Contact & Consultation' }}</span>
+      <span class="text-light fw-bold">{{ getSection('contact-hero')?.subtitle || 'Contact & Consultation' }}</span>
     </div>
     <div class="iz-tag"><i class="fas fa-handshake"></i> {{ getSection('contact-hero')?.subtitle || "Let's Collaborate" }}</div>
     <h1 class="iz-hero-headline">{{ getSection('contact-hero')?.title || 'Schedule an Architectural Consultation' }}</h1>
@@ -29,8 +29,8 @@
 
       <!-- Direct Channels & Trust Side -->
       <div [class]="isSectionVisible('contact-form') ? 'col-lg-4' : 'col-12'" *ngIf="isSectionVisible('contact-channels')">
-        <div class="iz-stats-side h-100 rounded-4 shadow-sm" style="background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 28px !important;">
-          <h4 class="fw-bold mb-3">{{ getSection('contact-channels')?.title || 'Direct Channels' }}</h4>
+        <div class="iz-stats-side h-100">
+          <h4 class="fw-bold mb-3 text-white">{{ getSection('contact-channels')?.title || 'Direct Channels' }}</h4>
           <p class="small text-muted mb-4">{{ getSection('contact-channels')?.description || 'I collaborate with clients across US, Canada, Europe, and worldwide.' }}</p>
 
           <div class="direct-channel-card">

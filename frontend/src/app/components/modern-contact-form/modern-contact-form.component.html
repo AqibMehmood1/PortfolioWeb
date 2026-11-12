@@ -18,7 +18,7 @@
 
   <form (submit)="submitForm(); $event.preventDefault()" novalidate>
     <!-- Row 1: Full Name & Phone with Country Picker -->
-    <div class="row g-3 mb-3">
+    <div class="row g-3 mb-3 iz-form-row-1" [class.dropdown-active]="isCountryDropdownOpen">
       <!-- Full Name -->
       <div class="col-12 col-md-6">
         <div class="iz-field-wrapper">
@@ -35,8 +35,8 @@
       </div>
 
       <!-- Phone Number with Country Flag Selector -->
-      <div class="col-12 col-md-6">
-        <div class="iz-phone-group">
+      <div class="col-12 col-md-6" [class.col-has-dropdown]="isCountryDropdownOpen">
+        <div class="iz-phone-group" [class.dropdown-open]="isCountryDropdownOpen">
           <!-- Country Flag Pill Selector -->
           <div #countrySelectorWrapper class="iz-country-selector" (click)="toggleCountryDropdown($event)">
             <span class="iz-country-flag">{{ selectedCountry.flag }}</span>
@@ -82,7 +82,7 @@
     </div>
 
     <!-- Row 2: Email Address & Choose Your Tech Stack -->
-    <div class="row g-3 mb-3">
+    <div class="row g-3 mb-3 iz-form-row-2" [class.dropdown-active]="isTechDropdownOpen">
       <!-- Email Address -->
       <div class="col-12 col-md-6">
         <div class="iz-field-wrapper">
@@ -99,8 +99,8 @@
       </div>
 
       <!-- Choose Your Tech Stack (Searchable + Manual Add Tag Combobox) -->
-      <div class="col-12 col-md-6">
-        <div #techSelectWrapper class="iz-tech-select-wrapper">
+      <div class="col-12 col-md-6" [class.col-has-dropdown]="isTechDropdownOpen">
+        <div #techSelectWrapper class="iz-tech-select-wrapper" [class.dropdown-open]="isTechDropdownOpen">
           <div class="iz-tech-select-pill" [class.focused]="isTechDropdownOpen" (click)="onPillClick($event)">
             <!-- Selected Tech Chips -->
             <span class="iz-tech-tag-chip" *ngFor="let stack of selectedTechStacks">
@@ -155,7 +155,7 @@
     </div>
 
     <!-- Row 3: Help Us Understand (Project Details & Goals) -->
-    <div class="mb-3">
+    <div class="mb-3 iz-form-row-3">
       <div class="iz-field-wrapper">
         <textarea 
           class="iz-rounded-textarea" 

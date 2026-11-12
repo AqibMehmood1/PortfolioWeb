@@ -1,10 +1,17 @@
+<!-- Ambient Dark Glass Organic Glow Backdrop (Exact Match to User Reference) -->
+<div class="glass-ambient-backdrop" *ngIf="!isAdminRoute" aria-hidden="true">
+  <div class="glass-orb glass-orb-olive"></div>
+  <div class="glass-orb glass-orb-amber"></div>
+  <div class="glass-orb glass-orb-center"></div>
+</div>
+
 <!-- ==================== 1. INVOZONE PURE-WHITE NAVBAR ==================== -->
 <header class="iz-navbar-white" *ngIf="!isAdminRoute">
   <div class="container">
     <div class="iz-navbar-inner">
       <!-- Brand Logo -->
       <a routerLink="/" class="iz-brand-invozone" (click)="closeMobileMenu(); closeMegaMenu()" aria-label="NEXVOYS Home">
-        <img [src]="portfolioService.profile.logoDark || 'assets/nexvoys/black-logo.png'" alt="NEXVOYS" class="iz-header-logo" width="168" height="56">
+        <img [src]="portfolioService.profile.logoLight || 'assets/nexvoys/white-logo.png'" alt="NEXVOYS" class="iz-header-logo" width="168" height="56">
       </a>
 
       <!-- Dynamic Navigation Links -->
@@ -386,8 +393,11 @@
 </div>
 
 <!-- ==================== BACK TO TOP TRIGGER ==================== -->
-<button type="button" class="back-to-top" (click)="scrollToTop()" aria-label="Scroll back to top">
-  <i class="fas fa-arrow-up"></i>
+<button type="button" class="back-to-top" (click)="scrollToTop()" aria-label="Scroll back to top" title="Back to top">
+  <svg class="back-to-top-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="12" y1="19" x2="12" y2="5"></line>
+    <polyline points="5 12 12 5 19 12"></polyline>
+  </svg>
 </button>
 
 <!-- ==================== AI CHATBOT PUBLIC WIDGET ==================== -->

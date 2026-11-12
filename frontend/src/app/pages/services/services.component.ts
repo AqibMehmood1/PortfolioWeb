@@ -36,7 +36,7 @@ export class ServicesComponent {
         'Elastic Cloud Auto-Scaling & CDN Edge',
         'Granular RBAC Security & Audit Logs'
       ],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/assets/img/services/saas-architecture.jpg',
       route: '/services'
     },
     {
@@ -49,7 +49,7 @@ export class ServicesComponent {
         'LangChain & Semantic Kernel Pipelines',
         'Document Parsing & Automated Data Workflows'
       ],
-      image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80',
+      image: '/assets/img/services/ai-agents-automation.jpg',
       route: '/services'
     },
     {
@@ -62,7 +62,7 @@ export class ServicesComponent {
         'Docker Containerization & Kubernetes',
         'Distributed In-Memory Redis Caching'
       ],
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+      image: '/assets/img/services/cloud-optimization.jpg',
       route: '/services'
     },
     {
@@ -75,7 +75,7 @@ export class ServicesComponent {
         'Sub-Second Response Time Optimization',
         'High-Throughput WebAPI & gRPC Contracts'
       ],
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+      image: '/assets/img/services/dotnet-modernization.jpg',
       route: '/services'
     },
     {
@@ -88,7 +88,7 @@ export class ServicesComponent {
         'Tech Stack Evaluation (.NET, Azure, Node)',
         'Executive & Board Technical Advisory'
       ],
-      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+      image: '/assets/img/services/fractional-cto.jpg',
       route: '/services'
     }
   ];

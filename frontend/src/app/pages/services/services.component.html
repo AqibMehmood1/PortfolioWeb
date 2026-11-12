@@ -5,7 +5,7 @@
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">/</span>
-      <span class="text-dark fw-bold">{{ getSection('services-hero')?.subtitle || 'Services & Architecture' }}</span>
+      <span class="text-light fw-bold">{{ getSection('services-hero')?.subtitle || 'Services & Architecture' }}</span>
     </div>
     <div class="iz-tag"><i class="fas fa-cubes"></i> {{ getSection('services-hero')?.subtitle || 'Architectural Capabilities' }}</div>
     <h1 class="iz-hero-headline">{{ getSection('services-hero')?.title || 'Services & Technical Solutions' }}</h1>
@@ -54,7 +54,7 @@
           <div class="row align-items-center g-4">
             <div class="col-lg-5 col-md-5">
               <div class="iz-accordion-media-box">
-                <img [src]="s.image" [alt]="s.title" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'">
+                <img [src]="s.image" [alt]="s.title" onerror="this.src='/assets/img/services/saas-architecture.jpg'">
                 <div class="position-absolute top-0 start-0 p-3" style="z-index: 2;">
                   <span class="badge" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); color: #b8f500; font-family: var(--font-mono); font-weight: 700; border: 1px solid rgba(184, 245, 0, 0.35); font-size: 0.72rem; padding: 6px 12px; border-radius: 999px;">
                     {{ s.index || s.indexTag || ('//0' + (i + 1)) }}
@@ -93,9 +93,9 @@
 </section>
 
 <!-- ==================== PRODUCTISED ENTRY OFFER ==================== -->
-<section class="py-5 iz-entry-offer-section" id="entry-offer" style="background: linear-gradient(135deg, #0b1a10 0%, #152b1b 100%); color: #ffffff;">
+<section class="py-5 iz-entry-offer-section" id="entry-offer" style="background: transparent; color: #ffffff;">
   <div class="container">
-    <div class="row align-items-center g-4 p-4 p-lg-5 rounded-4" style="border: 1px solid rgba(184, 245, 0, 0.2); background: rgba(255, 255, 255, 0.03);">
+    <div class="row align-items-center g-4 p-4 p-lg-5" style="background: var(--glass-bg-card); border: var(--glass-border); border-radius: var(--glass-radius-card); box-shadow: var(--glass-specular); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);">
       <div class="col-lg-8">
         <div class="badge px-3 py-2 mb-3 fw-bold" style="background-color: #b8f500 !important; color: #101828 !important;">
           <i class="fas fa-bolt me-1"></i> Low-Risk Starting Point
@@ -338,7 +338,7 @@
 <section class="iz-section iz-section-sage" *ngIf="isSectionVisible('services-cta')">
   <div *ngIf="getSection('services-cta')?.customHtml" [innerHTML]="getSection('services-cta')?.customHtml"></div>
   <div class="container text-center" *ngIf="!getSection('services-cta')?.customHtml">
-    <div class="iz-stat-card p-4 p-md-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
+    <div class="iz-stat-card p-4 p-md-5 max-w-700 mx-auto">
       <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-calendar-alt"></i> {{ getSection('services-cta')?.subtitle || "Let's Talk" }}</div>
       <h2 class="text-white fw-bold mb-3" style="font-size: clamp(1.6rem, 3.5vw, 2.3rem); word-break: break-word;">{{ getSection('services-cta')?.title || 'Have a Custom Project in Mind?' }}</h2>
       <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">

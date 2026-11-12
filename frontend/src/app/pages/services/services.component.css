@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.iz-stat-card h3 {
+  color: #ffffff;
+}
+
 .iz-btn-discuss {
   white-space: normal !important;
   text-align: left;

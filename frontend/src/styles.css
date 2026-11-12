@@ -1,24 +1,85 @@
-/* Global Styles & InvoZone Design System Root */
+/* Global Styles & Glass UI Design System Root */
 @import "./assets/css/style.css";
 @import "./assets/css/admin.css";
 
-/* Base HTML & Body Settings */
+/* Base HTML & Body Settings - Dark Canvas for Glassmorphism Refraction */
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
+  --bs-body-color: #f1f5f9;
+  --bs-body-color-rgb: 241, 245, 249;
+  --bs-secondary-color: #cbd5e1;
+  --bs-secondary-color-rgb: 203, 213, 225;
+  --bs-tertiary-color: #94a3b8;
+  --bs-emphasis-color: #ffffff;
+  --bs-heading-color: #ffffff;
+  --bs-dark: #f8fafc;
+  --bs-dark-rgb: 248, 250, 252;
+  --bs-light: #f1f5f9;
+  --bs-light-rgb: 241, 245, 249;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--iz-bg-white);
+  background-color: #07090e;
+  color: #f1f5f9;
 }
 
 body {
-  background-color: var(--iz-bg-white);
-  color: var(--iz-text-body);
+  background-color: #07090e;
+  color: #f1f5f9 !important;
   font-family: var(--font-sans);
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ==========================================================================
+   GLOBAL HIGH-CONTRAST TYPOGRAPHY SYSTEM FOR GLASS UI
+   Ensures ALL text is immediately crisp, bright, and 100% legible.
+   ========================================================================== */
+p, span, li, dt, dd, label {
+  color: #e2e8f0;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: #ffffff !important;
+}
+
+/* Force High Contrast on Bootstrap Utilities across entire site */
+.text-muted,
+[class*="text-muted"] {
+  color: #cbd5e1 !important;
+}
+
+.text-secondary {
+  color: #cbd5e1 !important;
+}
+
+.text-body-secondary {
+  color: #cbd5e1 !important;
+}
+
+.text-dark {
+  color: #ffffff !important;
+}
+
+.text-white-50 {
+  color: #e2e8f0 !important;
+}
+
+.text-black-50 {
+  color: #cbd5e1 !important;
+}
+
+.small, small {
+  color: #cbd5e1;
+}
+
+.lead, p.lead {
+  color: #f8fafc !important;
 }
 
 /* Custom Sleek Scrollbar */

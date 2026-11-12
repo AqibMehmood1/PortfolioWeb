@@ -5,7 +5,7 @@
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">/</span>
-      <span class="text-dark fw-bold">{{ getSection('expertise-hero')?.subtitle || 'Industries & Tech Radar' }}</span>
+      <span class="text-light fw-bold">{{ getSection('expertise-hero')?.subtitle || 'Industries & Tech Radar' }}</span>
     </div>
     <div class="iz-tag"><i class="fas fa-layer-group"></i> {{ getSection('expertise-hero')?.subtitle || 'Technical Competencies' }}</div>
     <h1 class="iz-hero-headline">{{ getSection('expertise-hero')?.title || 'Architectural Disciplines & Tech Radar' }}</h1>
@@ -129,18 +129,24 @@
       </p>
 
       <!-- View Switcher -->
-      <div class="d-inline-flex p-1 bg-white rounded-pill shadow-sm border mt-3">
+      <div class="d-inline-flex p-1 rounded-pill shadow-sm border mt-3" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.12) !important; backdrop-filter: blur(12px);">
         <button type="button" 
                 class="btn btn-sm rounded-pill px-4 py-2 fw-bold"
                 [ngClass]="processViewMode === 'lifecycle' ? 'btn-dark text-white' : 'btn-light text-secondary'"
+                style="background: transparent; border: none;"
+                [style.background]="processViewMode === 'lifecycle' ? '#b8f500' : 'transparent'"
+                [style.color]="processViewMode === 'lifecycle' ? '#070a13' : '#cbd5e1'"
                 (click)="processViewMode = 'lifecycle'; activeDomainIndex = 0">
-          <i class="fas fa-sync-alt me-1" [class.text-green]="processViewMode === 'lifecycle'"></i> 4-Phase Process Lifecycle
+          <i class="fas fa-sync-alt me-1"></i> 4-Phase Process Lifecycle
         </button>
         <button type="button" 
                 class="btn btn-sm rounded-pill px-4 py-2 fw-bold"
                 [ngClass]="processViewMode === 'domains' ? 'btn-dark text-white' : 'btn-light text-secondary'"
+                style="background: transparent; border: none;"
+                [style.background]="processViewMode === 'domains' ? '#b8f500' : 'transparent'"
+                [style.color]="processViewMode === 'domains' ? '#070a13' : '#cbd5e1'"
                 (click)="processViewMode = 'domains'; activeDomainIndex = 0">
-          <i class="fas fa-layer-group me-1" [class.text-green]="processViewMode === 'domains'"></i> 6 Specialist Domains
+          <i class="fas fa-layer-group me-1"></i> 6 Specialist Domains
         </button>
       </div>
     </div>
@@ -354,7 +360,7 @@
 <section class="iz-section iz-section-sage" *ngIf="isSectionVisible('expertise-cta')">
   <div *ngIf="getSection('expertise-cta')?.customHtml" [innerHTML]="getSection('expertise-cta')?.customHtml"></div>
   <div class="container text-center" *ngIf="!getSection('expertise-cta')?.customHtml">
-    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
+    <div class="iz-stat-card p-5 max-w-700 mx-auto">
       <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-cogs"></i> {{ getSection('expertise-cta')?.subtitle || 'Technical Architecture' }}</div>
       <h2 class="text-white fw-bold mb-3">{{ getSection('expertise-cta')?.title || 'Need Guidance on Your Tech Stack?' }}</h2>
       <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">

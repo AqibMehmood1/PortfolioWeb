@@ -138,8 +138,8 @@
             <div class="iz-checkbox-row">
               <input type="checkbox" id="agreeTerms" [(ngModel)]="inquiryForm.agreed" name="agreed"
                 [disabled]="isSubmittingInquiry">
-              <label for="agreeTerms">I agree to the <a routerLink="/privacy" class="text-dark fw-bold">Privacy
-                  Policy</a> and <a routerLink="/terms" class="text-dark fw-bold">Terms</a>.</label>
+              <label for="agreeTerms">I agree to the <a routerLink="/privacy" class="text-light fw-bold text-decoration-underline">Privacy
+                  Policy</a> and <a routerLink="/terms" class="text-light fw-bold text-decoration-underline">Terms</a>.</label>
             </div>
 
             <button type="submit" class="iz-submit-lime-btn" [disabled]="isSubmittingInquiry">
@@ -158,7 +158,7 @@
 </section>
 
 <!-- ==================== PROOF STRIP ==================== -->
-<section class="py-4 border-top border-bottom bg-white" style="border-color: #eef2f6 !important;" id="proof-strip"
+<section class="py-4 border-top border-bottom" style="background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.08) !important; backdrop-filter: blur(12px);" id="proof-strip"
   *ngIf="isSectionVisible('proof-strip')">
   <div *ngIf="getSection('proof-strip')?.customHtml" [innerHTML]="getSection('proof-strip')?.customHtml"></div>
   <div class="container" *ngIf="!getSection('proof-strip')?.customHtml">
@@ -193,7 +193,7 @@
           <div class="iz-problem-icon-box" [ngStyle]="getProblemIconStyle(card.badge)">
             <i [class]="card.icon || 'fas fa-chart-line'"></i>
           </div>
-          <h5 class="fw-bold mb-2 text-dark fs-6">{{ card.title }}</h5>
+          <h5 class="fw-bold mb-2 text-white fs-6">{{ card.title }}</h5>
           <p class="text-muted small mb-0">{{ card.description }}</p>
         </div>
       </div>
@@ -264,7 +264,7 @@
             <div class="col-lg-5 col-md-5">
               <div class="iz-accordion-media-box">
                 <img [src]="s.image" [alt]="s.title"
-                  onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'">
+                  onerror="this.src='/assets/img/services/saas-architecture.jpg'">
                 <div class="position-absolute top-0 start-0 p-3" style="z-index: 2;">
                   <span class="badge"
                     style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); color: #b8f500; font-family: var(--font-mono); font-weight: 700; border: 1px solid rgba(184, 245, 0, 0.35); font-size: 0.72rem; padding: 6px 12px; border-radius: 999px;">
@@ -306,13 +306,13 @@
 </section>
 
 <!-- ==================== PRODUCTISED ENTRY OFFER ==================== -->
-<section class="py-5" style="background: linear-gradient(135deg, #0b1a10 0%, #152b1b 100%); color: #ffffff;"
+<section class="py-5" style="background: transparent; color: #ffffff;"
   id="diagnostic-audit" *ngIf="isSectionVisible('diagnostic-audit')">
   <div *ngIf="getSection('diagnostic-audit')?.customHtml" [innerHTML]="getSection('diagnostic-audit')?.customHtml">
   </div>
   <div class="container" *ngIf="!getSection('diagnostic-audit')?.customHtml">
-    <div class="row align-items-center g-4 p-4 p-lg-5 rounded-4"
-      style="border: 1px solid rgba(184, 245, 0, 0.2); background: rgba(255, 255, 255, 0.03);">
+    <div class="row align-items-center g-4 p-4 p-lg-5"
+      style="background: var(--glass-bg-card); border: var(--glass-border); border-radius: var(--glass-radius-card); box-shadow: var(--glass-specular); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);">
       <div class="col-lg-8">
         <div class="badge px-3 py-2 mb-3 fw-bold"
           style="background-color: #b8f500 !important; color: #101828 !important;">
@@ -635,9 +635,8 @@
 
       <!-- Stats & Direct Channels Side -->
       <div class="col-lg-4">
-        <div class="iz-stats-side h-100 rounded-4 shadow-sm"
-          style="background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 28px !important;">
-          <h4 class="fw-bold mb-3">Direct Communication Channels</h4>
+        <div class="iz-stats-side h-100">
+          <h4 class="fw-bold mb-3 text-white">Direct Communication Channels</h4>
           <p class="small text-muted mb-4">Direct access to the NEXVOYS Enterprise Solutions & Advisory Team.</p>
 
           <div class="direct-channel-card">

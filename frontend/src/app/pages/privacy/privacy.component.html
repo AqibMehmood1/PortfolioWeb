@@ -4,7 +4,7 @@
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">/</span>
-      <span class="text-dark fw-bold">Privacy Policy</span>
+      <span class="text-light fw-bold">Privacy Policy</span>
     </div>
     <div class="iz-tag"><i class="fas fa-shield-alt text-green"></i> Legal Compliance &amp; Data Protection</div>
     <h1 class="iz-hero-headline">Privacy Policy</h1>
@@ -83,13 +83,13 @@
         If you have questions regarding this Privacy Policy or wish to exercise your data rights, please contact our
         compliance team directly:
       </p>
-      <div class="p-3 rounded-3 mb-4"
-        style="background: rgba(15, 23, 42, 0.03); border: 1px solid rgba(15, 23, 42, 0.08);">
+      <div class="p-3 mb-4"
+        style="background: var(--glass-nested-bg); border: var(--glass-nested-border); box-shadow: var(--glass-nested-specular); border-radius: 18px;">
         <p class="mb-1"><strong>NEXVOYS Ltd.</strong></p>
         <p class="mb-1">
           <i class="fas fa-envelope text-green me-2"></i>Email:
           <a [href]="'mailto:' + (portfolioService.profile.email || 'info@nexvoys.com')"
-            class="text-decoration-none fw-bold" style="color: #0f172a;">
+            class="text-decoration-none fw-bold" style="color: #b8f500;">
             {{ portfolioService.profile.email || 'info@nexvoys.com' }}
           </a>
         </p>

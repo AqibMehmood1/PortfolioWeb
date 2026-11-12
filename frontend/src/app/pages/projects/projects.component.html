@@ -5,7 +5,7 @@
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">/</span>
-      <span class="text-dark fw-bold">{{ getSection('projects-hero')?.subtitle || 'Portfolio & Case Studies' }}</span>
+      <span class="text-light fw-bold">{{ getSection('projects-hero')?.subtitle || 'Portfolio & Case Studies' }}</span>
     </div>
     <div class="iz-tag"><i class="fas fa-laptop-code"></i> {{ getSection('projects-hero')?.subtitle || 'Portfolio Showcase' }}</div>
     <h1 class="iz-hero-headline">{{ getSection('projects-hero')?.title || 'Case Studies & Delivered Systems' }}</h1>
@@ -237,7 +237,7 @@
 <section class="iz-section iz-section-sage" *ngIf="isSectionVisible('projects-cta')">
   <div *ngIf="getSection('projects-cta')?.customHtml" [innerHTML]="getSection('projects-cta')?.customHtml"></div>
   <div class="container text-center" *ngIf="!getSection('projects-cta')?.customHtml">
-    <div class="iz-stat-card p-5 max-w-700 mx-auto" style="background: var(--iz-dark-hero); color: #ffffff;">
+    <div class="iz-stat-card p-5 max-w-700 mx-auto">
       <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-lightbulb"></i> {{ getSection('projects-cta')?.subtitle || 'Next Steps' }}</div>
       <h2 class="text-white fw-bold mb-3">{{ getSection('projects-cta')?.title || 'Have a Project Requiring High-Scale Architecture?' }}</h2>
       <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
