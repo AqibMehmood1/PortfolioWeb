@@ -602,7 +602,7 @@
 
 .iz-custom-checkbox input:checked ~ .iz-checkbox-checkmark::after {
   content: "✔";
-  color: #070a13;
+  color: #101828;
   font-size: 0.75rem;
   font-weight: 900;
 }
@@ -621,7 +621,7 @@
 /* Lime Green Submit Button */
 .iz-submit-pill-btn {
   background: #b8f500;
-  color: #070a13;
+  color: #101828;
   font-weight: 800;
   font-size: 1.05rem;
   border-radius: 9999px;
@@ -639,7 +639,7 @@
 
 .iz-submit-pill-btn:hover:not(:disabled) {
   background: #ffffff;
-  color: #070a13;
+  color: #101828;
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(255, 255, 255, 0.45);
 }

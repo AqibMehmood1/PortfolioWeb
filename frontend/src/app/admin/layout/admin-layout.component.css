@@ -20,7 +20,7 @@
   height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
-  background-color: var(--admin-bg-base, #080d1a);
+  background-color: var(--admin-bg-base, #101828);
   color: var(--admin-text-body, #e2e8f0);
   font-family: var(--admin-font-sans, 'Plus Jakarta Sans', sans-serif);
   overflow: hidden;
@@ -102,7 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #080d1a;
+  color: #101828;
   font-size: 1.15rem;
   font-weight: 900;
   box-shadow: 0 0 16px rgba(184, 245, 0, 0.35);
@@ -410,7 +410,7 @@
 
 .btn-preview-site:hover {
   background: var(--admin-lime, #B8F500);
-  color: #080d1a;
+  color: #101828;
   border-color: var(--admin-lime, #B8F500);
   box-shadow: 0 4px 14px rgba(184, 245, 0, 0.3);
 }
@@ -549,13 +549,13 @@
 
 .sidebar-collapsed .sidebar-nav a.active {
   background: var(--admin-lime, #B8F500) !important;
-  color: #080d1a !important;
+  color: #101828 !important;
   box-shadow: 0 0 16px rgba(184, 245, 0, 0.4);
   transform: scale(1.05);
 }
 
 .sidebar-collapsed .sidebar-nav a.active i {
-  color: #080d1a !important;
+  color: #101828 !important;
 }
 
 .sidebar-collapsed .sidebar-nav a:hover:not(.active) {
@@ -595,7 +595,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  background-color: var(--admin-bg-base, #080d1a);
+  background-color: var(--admin-bg-base, #101828);
 }
 
 /* Pinned Topbar */

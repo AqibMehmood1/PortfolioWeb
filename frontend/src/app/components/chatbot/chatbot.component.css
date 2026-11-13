@@ -66,7 +66,7 @@
   height: 11px;
   background: #B8F500;
   border-radius: 50%;
-  border: 2px solid #070a13;
+  border: 2px solid #101828;
   box-shadow: 0 0 6px #B8F500;
 }
 
@@ -127,7 +127,7 @@
 .chatbot-fab:hover {
   transform: scale(1.08);
   background: #B8F500;
-  color: #070a13;
+  color: #101828;
   border-color: #ffffff;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 35px rgba(184, 245, 0, 0.6);
 }
@@ -135,7 +135,7 @@
 .chatbot-fab.active {
   background: #B8F500;
   border-color: #B8F500;
-  color: #070a13;
+  color: #101828;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -148,7 +148,7 @@
 }
 
 .chatbot-fab.active .fab-icon-wrapper {
-  color: #070a13;
+  color: #101828;
   transform: rotate(90deg);
 }
 
@@ -160,7 +160,7 @@
   height: 14px;
   background: #B8F500;
   border-radius: 50%;
-  border: 2px solid #070a13;
+  border: 2px solid #101828;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,7 +169,7 @@
 .status-dot-inner {
   width: 6px;
   height: 6px;
-  background: #070a13;
+  background: #101828;
   border-radius: 50%;
   animation: pulseDot 2s infinite;
 }
@@ -235,7 +235,7 @@
   height: 10px;
   background: #B8F500;
   border-radius: 50%;
-  border: 2px solid #070a13;
+  border: 2px solid #101828;
 }
 
 .bot-header-info {
@@ -310,7 +310,7 @@
 
 .header-btn:hover {
   background: #B8F500;
-  color: #070a13;
+  color: #101828;
   border-color: #B8F500;
 }
 
@@ -515,7 +515,7 @@
 
 .btn-inline-inquiry {
   background: #B8F500;
-  color: #070a13;
+  color: #101828;
   border: 1px solid #B8F500;
   font-size: 12.5px;
   font-weight: 700;
@@ -530,7 +530,7 @@
 
 .btn-inline-inquiry:hover {
   background: #ffffff;
-  color: #070a13;
+  color: #101828;
   border-color: #ffffff;
   transform: translateY(-1px);
 }
@@ -669,7 +669,7 @@
 .chat-send-btn {
   background: #B8F500;
   border: 1px solid #B8F500;
-  color: #070a13;
+  color: #101828;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -683,7 +683,7 @@
 
 .chat-send-btn:hover:not(:disabled) {
   background: #ffffff;
-  color: #070a13;
+  color: #101828;
   border-color: #ffffff;
   transform: scale(1.05);
 }
@@ -802,7 +802,7 @@
 }
 
 .inquiry-select option {
-  background: #0d1424;
+  background: #101828;
   color: #ffffff;
 }
 
@@ -840,7 +840,7 @@
 .btn-submit-inquiry {
   background: #B8F500;
   border: 1px solid #B8F500;
-  color: #070a13;
+  color: #101828;
   font-size: 12px;
   font-weight: 700;
   padding: 7px 16px;
@@ -851,7 +851,7 @@
 
 .btn-submit-inquiry:hover:not(:disabled) {
   background: #ffffff;
-  color: #070a13;
+  color: #101828;
   border-color: #ffffff;
   transform: translateY(-1px);
 }

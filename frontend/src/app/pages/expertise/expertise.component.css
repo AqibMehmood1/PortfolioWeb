@@ -69,7 +69,7 @@
     position: relative;
     border: 4px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    background: #070a13;
+    background: #101828;
   }
 
   .iz-circle-photo-img {
@@ -151,7 +151,7 @@
 .iz-circular-step-row.active .iz-circle-node-badge {
   background: #b8f500;
   border-color: #b8f500;
-  color: #070a13;
+  color: #101828;
   transform: scale(1.12);
   box-shadow: 0 0 24px rgba(184, 245, 0, 0.6);
 }
@@ -239,7 +239,7 @@
 
 .iz-circle-chip:hover {
   background: #b8f500 !important;
-  color: #070a13 !important;
+  color: #101828 !important;
   border-color: #b8f500 !important;
 }
 

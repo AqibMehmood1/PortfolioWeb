@@ -115,7 +115,7 @@
 
 .btn-picker-upload:hover:not(:disabled) {
   background: var(--admin-lime, #B8F500);
-  color: #080d1a;
+  color: #101828;
   box-shadow: 0 0 15px rgba(184, 245, 0, 0.35);
   transform: translateY(-1px);
 }
@@ -378,7 +378,7 @@
 
 .media-modal-filter input {
   padding-left: 2.25rem !important;
-  background: #080d1a;
+  background: #101828;
 }
 
 .media-loading, .media-empty {

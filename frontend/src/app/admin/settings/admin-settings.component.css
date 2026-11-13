@@ -45,7 +45,7 @@
 }
 
 .tab-btn.active {
-  color: #080d1a !important;
+  color: #101828 !important;
   background: var(--admin-lime, #B8F500) !important;
   box-shadow: 0 4px 14px rgba(184, 245, 0, 0.25);
 }

@@ -8,36 +8,50 @@
    1. Design Tokens & CSS Custom Properties (Glassmorphism & Neon Palette)
    -------------------------------------------------------------------------- */
 :root {
+  /* ==================== NEXVOYS BRAND TOKENS ==================== */
+  --nv-navy: #101828;
+  --nv-navy-rgb: 16, 24, 40;
+  --nv-lime: #B8F500;
+  --nv-lime-rgb: 184, 245, 0;
+  --nv-white: #FFFFFF;
+  --nv-white-rgb: 255, 255, 255;
+  --nv-cool-gray: #667085;
+  --nv-cool-gray-rgb: 102, 112, 133;
+  --nv-soft-lime: #E8FF9E;
+  --nv-soft-lime-rgb: 232, 255, 158;
+
   /* Signature Brand Accents */
   --iz-green-primary: #B8F500;
   --iz-green-light: #B8F500;
   --iz-green-bright: #B8F500;
-  --iz-green-dark: #b8f500;
+  --iz-green-dark: #9ed400;
   --iz-green-tint: rgba(184, 245, 0, 0.08);
-  --iz-green-sage: rgba(16, 185, 129, 0.12);
+  --iz-green-sage: rgba(184, 245, 0, 0.12);
   --iz-green-badge-bg: rgba(184, 245, 0, 0.12);
+  --iz-soft-lime: #E8FF9E;
+  --iz-soft-lime-tint: rgba(232, 255, 158, 0.14);
 
-  /* Deep Space Canvas & Obsidian Layers (Exact Match to User Reference) */
-  --iz-dark-hero: #07090e;
-  --iz-dark-forest: rgba(14, 17, 24, 0.65);
+  /* Deep Space Canvas & Obsidian Layers (Exact Match to User Reference #101828) */
+  --iz-dark-hero: #101828;
+  --iz-dark-forest: rgba(16, 24, 40, 0.75);
   --iz-dark-button: #B8F500;
-  --iz-dark-charcoal: #07090e;
-  --iz-dark-slate: #0a0d14;
-  --iz-dark-card: rgba(16, 20, 28, 0.46);
+  --iz-dark-charcoal: #101828;
+  --iz-dark-slate: #0c1322;
+  --iz-dark-card: rgba(16, 24, 40, 0.65);
 
-  /* Glass Surface Tokens */
-  --iz-bg-white: rgba(16, 20, 28, 0.46);
-  --iz-bg-offwhite: rgba(13, 16, 23, 0.42);
-  --iz-bg-cream: rgba(18, 22, 32, 0.50);
-  --iz-bg-card: rgba(16, 20, 28, 0.46);
+  /* Glass Surface Tokens - Frosted Navy Refraction */
+  --iz-bg-white: rgba(16, 24, 40, 0.65);
+  --iz-bg-offwhite: rgba(16, 24, 40, 0.55);
+  --iz-bg-cream: rgba(20, 30, 50, 0.60);
+  --iz-bg-card: rgba(16, 24, 40, 0.65);
 
   /* Authentic VisionOS / Smoked Glassmorphism System Tokens */
-  --glass-bg: rgba(16, 20, 28, 0.46);
+  --glass-bg: rgba(16, 24, 40, 0.65);
   --glass-bg-subtle: rgba(255, 255, 255, 0.05);
-  --glass-bg-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(20, 24, 34, 0.52);
-  --glass-bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(16, 20, 28, 0.46);
-  --glass-bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(22, 28, 40, 0.56);
-  --glass-bg-input: rgba(0, 0, 0, 0.52);
+  --glass-bg-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(22, 34, 56, 0.72);
+  --glass-bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(16, 24, 40, 0.68);
+  --glass-bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(24, 38, 64, 0.78);
+  --glass-bg-input: rgba(11, 17, 30, 0.85);
   --glass-blur: blur(36px) saturate(180%);
   --glass-blur-webkit: blur(36px) saturate(180%);
   --glass-blur-heavy: blur(48px) saturate(190%);
@@ -45,6 +59,7 @@
   --glass-border: 1px solid rgba(255, 255, 255, 0.14);
   --glass-border-light: 1px solid rgba(255, 255, 255, 0.24);
   --glass-border-green: 1px solid rgba(184, 245, 0, 0.45);
+  --glass-border-soft-lime: 1px solid rgba(232, 255, 158, 0.4);
   --glass-radius-card: 28px;
   --glass-radius-inner: 20px;
   --glass-radius-pill: 9999px;
@@ -55,8 +70,8 @@
   --glass-specular-soft: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
 
   /* Nested Glass Compartments ("Glass-on-Glass" Wells) */
-  --glass-nested-bg: rgba(0, 0, 0, 0.48);
-  --glass-nested-border: 1px solid rgba(255, 255, 255, 0.07);
+  --glass-nested-bg: rgba(11, 17, 30, 0.65);
+  --glass-nested-border: 1px solid rgba(255, 255, 255, 0.08);
   --glass-nested-specular: inset 0 2px 4px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 
   /* Smoked Glass Buttons ("Continue Learning" / Pills) */
@@ -67,16 +82,19 @@
 
   /* Typography Colors - High Contrast for Dark Glass */
   --iz-text-dark: #ffffff;
-  --iz-text-body: #f1f5f9;
-  --iz-text-muted: #cbd5e1;
+  --iz-text-body: #eaecf0;
+  --iz-text-muted: #98a2b3;
+  --iz-text-cool-gray: #667085;
   --iz-text-light: #ffffff;
-  --iz-text-light-muted: #cbd5e1;
+  --iz-text-light-muted: #d0d5dd;
 
   /* Specular Hairline Borders */
   --iz-border-light: rgba(255, 255, 255, 0.14);
   --iz-border-subtle: rgba(255, 255, 255, 0.08);
   --iz-border-dark: rgba(255, 255, 255, 0.18);
   --iz-border-green: rgba(184, 245, 0, 0.45);
+  --iz-border-soft-lime: rgba(232, 255, 158, 0.35);
+  --iz-border-cool-gray: rgba(102, 112, 133, 0.3);
 
   /* Typography Stacks */
   --font-heading: 'Outfit', 'Product Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -127,7 +145,7 @@
   left: 10%;
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(145, 215, 35, 0.38) 0%, rgba(110, 185, 25, 0.14) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(184, 245, 0, 0.28) 0%, rgba(232, 255, 158, 0.10) 40%, transparent 70%);
   filter: blur(120px);
   -webkit-filter: blur(120px);
   animation-duration: 22s;
@@ -138,7 +156,7 @@
   right: -5%;
   width: 850px;
   height: 850px;
-  background: radial-gradient(circle, rgba(245, 125, 50, 0.34) 0%, rgba(220, 90, 30, 0.12) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(184, 245, 0, 0.18) 0%, rgba(16, 24, 40, 0.6) 45%, transparent 70%);
   filter: blur(130px);
   -webkit-filter: blur(130px);
   animation-duration: 28s;
@@ -150,7 +168,7 @@
   left: 35%;
   width: 750px;
   height: 750px;
-  background: radial-gradient(circle, rgba(20, 185, 160, 0.24) 0%, rgba(20, 185, 160, 0.06) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 255, 158, 0.14) 0%, rgba(16, 24, 40, 0.35) 50%, transparent 70%);
   filter: blur(140px);
   -webkit-filter: blur(140px);
   animation-duration: 26s;
@@ -174,13 +192,13 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #070a13;
+  background-color: #101828;
   overflow-x: hidden;
   width: 100%;
 }
 
 body {
-  background-color: #070a13;
+  background-color: #101828;
   color: var(--iz-text-body);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -428,7 +446,7 @@ p.lead, .lead {
 /* Reusable Glass UI Button Tokens */
 .iz-btn-green {
   background: linear-gradient(135deg, #b8f500 0%, #9bd200 100%);
-  color: #070a13 !important;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 800;
@@ -449,7 +467,7 @@ p.lead, .lead {
 
 .iz-btn-green:hover {
   background: #ffffff;
-  color: #070a13 !important;
+  color: #101828 !important;
   border-color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
@@ -662,7 +680,7 @@ p.lead, .lead {
 
 .iz-trust-badge:hover {
   background: var(--iz-green-primary);
-  color: #070a13 !important;
+  color: #101828 !important;
   border-color: var(--iz-green-primary);
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(184, 245, 0, 0.4);
@@ -673,7 +691,7 @@ p.lead, .lead {
   height: 42px;
   border-radius: 10px;
   background: var(--iz-green-primary);
-  color: #070a13;
+  color: #101828;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -688,7 +706,7 @@ p.lead, .lead {
    -------------------------------------------------------------------------- */
 .iz-top-ticker-bar {
   background: rgba(184, 245, 0, 0.92);
-  color: #070a13;
+  color: #101828;
   padding: 7px 0;
   overflow: hidden;
   position: relative;
@@ -819,7 +837,7 @@ p.lead, .lead {
 
 .iz-mobile-drawer-close:hover {
   background: var(--iz-green-primary);
-  color: #070a13;
+  color: #101828;
   border-color: var(--iz-green-primary);
 }
 
@@ -930,7 +948,7 @@ p.lead, .lead {
 
 .iz-btn-contact-top:hover {
   background: #b8f500;
-  color: #070a13 !important;
+  color: #101828 !important;
   border-color: #b8f500;
   transform: translateY(-2px);
   box-shadow: 0 0 32px rgba(184, 245, 0, 0.6);
@@ -969,7 +987,7 @@ p.lead, .lead {
 .iz-mobile-toggle-dark.active {
   background: #b8f500 !important;
   border-color: #b8f500 !important;
-  color: #070a13 !important;
+  color: #101828 !important;
   box-shadow: 0 0 20px rgba(184, 245, 0, 0.45);
 }
 
@@ -1122,7 +1140,7 @@ p.lead, .lead {
 .iz-mobile-nav-item.active .iz-mobile-nav-icon {
   background: #b8f500 !important;
   border-color: #b8f500 !important;
-  color: #070a13 !important;
+  color: #101828 !important;
 }
 
 .iz-mobile-nav-item.active .iz-mobile-nav-title {
@@ -1300,11 +1318,11 @@ p.lead, .lead {
 .iz-pillar-card:hover .iz-pillar-icon {
   transform: scale(1.1);
   background: var(--iz-green-primary);
-  color: #070a13;
+  color: #101828;
 }
 
 .iz-pillar-card:hover .iz-pillar-icon i {
-  color: #070a13 !important;
+  color: #101828 !important;
 }
 
 .iz-pillar-title {
@@ -1565,7 +1583,7 @@ p.lead, .lead {
 
 .iz-btn-book-call {
   background: #B8F500;
-  color: #070a13 !important;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 0.98rem;
   font-weight: 800;
@@ -1584,7 +1602,7 @@ p.lead, .lead {
 
 .iz-btn-book-call:hover {
   background: #ffffff;
-  color: #070a13 !important;
+  color: #101828 !important;
   transform: translateY(-2px);
   box-shadow: 0 14px 40px -5px rgba(255, 255, 255, 0.5);
   border-color: #ffffff;
@@ -1698,7 +1716,7 @@ p.lead, .lead {
   height: 13px;
   border-radius: 50%;
   background: #22c55e;
-  border: 2.5px solid #0b1220;
+  border: 2.5px solid #101828;
   box-shadow: 0 0 8px #22c55e;
 }
 
@@ -1776,7 +1794,7 @@ p.lead, .lead {
 }
 
 .iz-select-light option {
-  background: #0d1424;
+  background: #101828;
   color: #f8fafc;
 }
 
@@ -1806,7 +1824,7 @@ p.lead, .lead {
 .iz-submit-lime-btn {
   width: 100%;
   background: linear-gradient(135deg, #b8f500 0%, #a2de00 100%);
-  color: #070a13;
+  color: #101828;
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 800;
@@ -1825,7 +1843,7 @@ p.lead, .lead {
 
 .iz-submit-lime-btn:hover:not(:disabled) {
   background: #ffffff;
-  color: #070a13;
+  color: #101828;
   transform: translateY(-2px);
   box-shadow: 0 12px 28px -4px rgba(255, 255, 255, 0.4);
 }
@@ -2077,7 +2095,7 @@ p.lead, .lead {
 
 .iz-btn-view-all:hover {
   background: #b8f500;
-  color: #070a13 !important;
+  color: #101828 !important;
   border-color: #b8f500;
   box-shadow: 0 0 20px rgba(184, 245, 0, 0.4);
 }
@@ -2184,7 +2202,7 @@ p.lead, .lead {
 
 .iz-accordion-row.is-active .iz-accordion-toggle-circle {
   background: #b8f500;
-  color: #070a13;
+  color: #101828;
   border-color: #b8f500;
   box-shadow: 0 0 16px rgba(184, 245, 0, 0.45);
 }
@@ -2199,7 +2217,7 @@ p.lead, .lead {
   border-radius: 16px;
   overflow: hidden;
   height: clamp(190px, 22vw, 240px);
-  background: #070a13;
+  background: #101828;
   width: 100%;
   position: relative;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
@@ -2408,7 +2426,7 @@ p.lead, .lead {
 .iz-stack-tab-pill.active {
   background: #b8f500 !important;
   border-color: #b8f500 !important;
-  color: #070a13 !important;
+  color: #101828 !important;
   font-weight: 800;
   box-shadow: 0 0 20px rgba(184, 245, 0, 0.45);
 }
@@ -2422,7 +2440,7 @@ p.lead, .lead {
 }
 
 .iz-stack-tab-pill.active .iz-status-dot {
-  background: #070a13;
+  background: #101828;
 }
 
 .iz-tech-matrix-grid {
@@ -2548,7 +2566,7 @@ p.lead, .lead {
 
 .iz-service-card:hover .iz-service-icon {
   background: #b8f500;
-  color: #070a13;
+  color: #101828;
   box-shadow: 0 0 18px rgba(184, 245, 0, 0.45);
 }
 
@@ -2768,7 +2786,7 @@ p.lead, .lead {
 .iz-project-media {
   width: 100%;
   height: 200px;
-  background: #070a13;
+  background: #101828;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -2963,7 +2981,7 @@ p.lead, .lead {
 
 .iz-card-btn-primary {
   background: #b8f500;
-  color: #070a13 !important;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 0.78rem;
   font-weight: 800;
@@ -2982,7 +3000,7 @@ p.lead, .lead {
 
 .iz-card-btn-primary:hover {
   background: #ffffff;
-  color: #070a13 !important;
+  color: #101828 !important;
   transform: translateY(-1px);
 }
 
@@ -3122,7 +3140,7 @@ a.filter-pill-btn.active,
 .filter-pill-btn.active {
   background: #b8f500 !important;
   border-color: #b8f500 !important;
-  color: #070a13 !important;
+  color: #101828 !important;
   font-weight: 800;
   box-shadow: 0 0 18px rgba(184, 245, 0, 0.45) !important;
 }
@@ -3188,7 +3206,7 @@ a.filter-pill-btn.active,
   height: 56px;
   border-radius: 50%;
   background: #b8f500;
-  color: #070a13;
+  color: #101828;
   font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 900;
@@ -3229,7 +3247,7 @@ a.filter-pill-btn.active,
 
 .iz-btn-white-pill {
   background: #ffffff;
-  color: #070a13 !important;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 800;
@@ -3247,7 +3265,7 @@ a.filter-pill-btn.active,
 
 .iz-btn-white-pill:hover {
   background: #b8f500;
-  color: #070a13 !important;
+  color: #101828 !important;
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(184, 245, 0, 0.45);
 }
@@ -3402,7 +3420,7 @@ a.filter-pill-btn.active,
 .iz-submit-btn {
   width: 100%;
   background: #b8f500;
-  color: #070a13;
+  color: #101828;
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 800;
@@ -3421,7 +3439,7 @@ a.filter-pill-btn.active,
 
 .iz-submit-btn:hover:not(:disabled) {
   background: #ffffff;
-  color: #070a13;
+  color: #101828;
   box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
@@ -3433,7 +3451,7 @@ a.filter-pill-btn.active,
 }
 
 .iz-submit-btn i {
-  color: #070a13;
+  color: #101828;
 }
 
 /* Interactive Form Feedback Alerts - Glass UI */
@@ -3575,7 +3593,7 @@ a.filter-pill-btn.active,
 
 .channel-copy-btn:hover {
   background: #b8f500;
-  color: #070a13;
+  color: #101828;
   border-color: #b8f500;
 }
 
@@ -3797,7 +3815,7 @@ a.filter-pill-btn.active,
   height: 12px;
   border-radius: 50%;
   background: #b8f500;
-  border: 2px solid #070a13;
+  border: 2px solid #101828;
   box-shadow: 0 0 10px #b8f500;
 }
 
@@ -3883,7 +3901,7 @@ a.filter-pill-btn.active,
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #0b1220;
+  background: #101828;
   border-radius: 14px;
   padding: 12px 18px;
   color: #ffffff;

@@ -5,21 +5,23 @@
    ========================================================================== */
 
 :root {
-  /* Admin Dark Obsidian Palette */
-  --admin-bg-base: #080d1a;
-  --admin-bg-sidebar: #0d1527;
-  --admin-bg-topbar: rgba(13, 21, 39, 0.88);
-  --admin-bg-surface: #111b30;
-  --admin-bg-card: #131f37;
-  --admin-bg-card-hover: #182745;
-  --admin-bg-input: #0a1120;
-  --admin-bg-chip: rgba(255, 255, 255, 0.04);
+  /* Admin Navy & Glass System (Aligned to NEXVOYS Brand Guidelines) */
+  --admin-bg-base: #101828;
+  --admin-bg-sidebar: #0c1322;
+  --admin-bg-topbar: rgba(16, 24, 40, 0.90);
+  --admin-bg-surface: #152033;
+  --admin-bg-card: #18243b;
+  --admin-bg-card-hover: #1e2e4a;
+  --admin-bg-input: #0c1322;
+  --admin-bg-chip: rgba(255, 255, 255, 0.05);
 
   /* Admin Electric Lime & Neon Accents */
   --admin-lime: #B8F500;
   --admin-lime-hover: #a3dc00;
   --admin-lime-dim: rgba(184, 245, 0, 0.12);
   --admin-lime-glow: 0 0 20px rgba(184, 245, 0, 0.3);
+  --admin-soft-lime: #E8FF9E;
+  --admin-soft-lime-dim: rgba(232, 255, 158, 0.15);
   --admin-cyan: #38bdf8;
   --admin-cyan-dim: rgba(56, 189, 248, 0.12);
   --admin-emerald: #10b981;
@@ -32,16 +34,17 @@
   --admin-crimson-dim: rgba(244, 63, 94, 0.15);
 
   /* Admin Borders & Dividers */
-  --admin-border: rgba(255, 255, 255, 0.08);
-  --admin-border-subtle: rgba(255, 255, 255, 0.04);
+  --admin-border: rgba(255, 255, 255, 0.09);
+  --admin-border-subtle: rgba(255, 255, 255, 0.05);
   --admin-border-focus: #B8F500;
-  --admin-border-active: rgba(184, 245, 0, 0.35);
+  --admin-border-active: rgba(184, 245, 0, 0.4);
 
-  /* Admin Text Colors */
+  /* Admin Text Colors - Cool Gray Hierarchy */
+  --admin-cool-gray: #667085;
   --admin-text-title: #ffffff;
-  --admin-text-body: #e2e8f0;
-  --admin-text-muted: #8da2be;
-  --admin-text-dim: #64748b;
+  --admin-text-body: #eaecf0;
+  --admin-text-muted: #98a2b3;
+  --admin-text-dim: #667085;
 
   /* Typography */
   --admin-font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -159,7 +162,7 @@
    ========================================================================== */
 .btn-primary {
   background: var(--admin-lime) !important;
-  color: #080d1a !important;
+  color: #101828 !important;
   border: none !important;
   border-radius: 10px !important;
   padding: 0.65rem 1.25rem !important;
@@ -182,7 +185,7 @@
   background: #ffffff !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 20px rgba(184, 245, 0, 0.4) !important;
-  color: #080d1a !important;
+  color: #101828 !important;
 }
 
 .btn-primary:active:not(:disabled) {
@@ -714,7 +717,7 @@
 .status-tab.active,
 .tab-btn.active {
   background: var(--admin-lime) !important;
-  color: #080d1a !important;
+  color: #101828 !important;
   box-shadow: 0 2px 10px rgba(184, 245, 0, 0.25);
 }
 

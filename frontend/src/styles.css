@@ -5,28 +5,45 @@
 /* Base HTML & Body Settings - Dark Canvas for Glassmorphism Refraction */
 :root {
   color-scheme: dark;
-  --bs-body-color: #f1f5f9;
-  --bs-body-color-rgb: 241, 245, 249;
-  --bs-secondary-color: #cbd5e1;
-  --bs-secondary-color-rgb: 203, 213, 225;
-  --bs-tertiary-color: #94a3b8;
+  /* Brand Theme Tokens based on NEXVOYS Brand Guidelines */
+  --nv-navy: #101828;
+  --nv-navy-rgb: 16, 24, 40;
+  --nv-lime: #b8f500;
+  --nv-lime-rgb: 184, 245, 0;
+  --nv-white: #ffffff;
+  --nv-white-rgb: 255, 255, 255;
+  --nv-cool-gray: #667085;
+  --nv-cool-gray-rgb: 102, 112, 133;
+  --nv-soft-lime: #e8ff9e;
+  --nv-soft-lime-rgb: 232, 255, 158;
+
+  --bs-primary: #101828;
+  --bs-primary-rgb: 16, 24, 40;
+  --bs-success: #b8f500;
+  --bs-success-rgb: 184, 245, 0;
+  --bs-body-bg: #101828;
+  --bs-body-color: #eaecf0;
+  --bs-body-color-rgb: 234, 236, 240;
+  --bs-secondary-color: #98a2b3;
+  --bs-secondary-color-rgb: 152, 162, 179;
+  --bs-tertiary-color: #667085;
   --bs-emphasis-color: #ffffff;
   --bs-heading-color: #ffffff;
-  --bs-dark: #f8fafc;
-  --bs-dark-rgb: 248, 250, 252;
-  --bs-light: #f1f5f9;
-  --bs-light-rgb: 241, 245, 249;
+  --bs-dark: #101828;
+  --bs-dark-rgb: 16, 24, 40;
+  --bs-light: #f8fafc;
+  --bs-light-rgb: 248, 250, 252;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #07090e;
-  color: #f1f5f9;
+  background-color: #101828;
+  color: #eaecf0;
 }
 
 body {
-  background-color: #07090e;
-  color: #f1f5f9 !important;
+  background-color: #101828;
+  color: #eaecf0 !important;
   font-family: var(--font-sans);
   overflow-x: hidden;
   margin: 0;
@@ -40,7 +57,7 @@ body {
    Ensures ALL text is immediately crisp, bright, and 100% legible.
    ========================================================================== */
 p, span, li, dt, dd, label {
-  color: #e2e8f0;
+  color: #eaecf0;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -51,15 +68,15 @@ h1, h2, h3, h4, h5, h6,
 /* Force High Contrast on Bootstrap Utilities across entire site */
 .text-muted,
 [class*="text-muted"] {
-  color: #cbd5e1 !important;
+  color: #98a2b3 !important;
 }
 
 .text-secondary {
-  color: #cbd5e1 !important;
+  color: #98a2b3 !important;
 }
 
 .text-body-secondary {
-  color: #cbd5e1 !important;
+  color: #98a2b3 !important;
 }
 
 .text-dark {
@@ -67,19 +84,19 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .text-white-50 {
-  color: #e2e8f0 !important;
+  color: #d0d5dd !important;
 }
 
 .text-black-50 {
-  color: #cbd5e1 !important;
+  color: #98a2b3 !important;
 }
 
 .small, small {
-  color: #cbd5e1;
+  color: #98a2b3;
 }
 
 .lead, p.lead {
-  color: #f8fafc !important;
+  color: #ffffff !important;
 }
 
 /* Custom Sleek Scrollbar */
@@ -89,13 +106,13 @@ h1, h2, h3, h4, h5, h6,
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #101828;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #344054;
   border-radius: 9999px;
-  border: 2px solid #0f172a;
+  border: 2px solid #101828;
   transition: background 0.2s ease;
 }
 

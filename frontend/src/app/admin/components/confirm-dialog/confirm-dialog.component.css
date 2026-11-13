@@ -220,7 +220,7 @@
 
 .btn-confirm-action.warning {
   background: #f59e0b;
-  color: #080d1a;
+  color: #101828;
   box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
 }
 
@@ -231,7 +231,7 @@
 
 .btn-confirm-action.info {
   background: var(--admin-lime, #B8F500);
-  color: #080d1a;
+  color: #101828;
   box-shadow: 0 4px 18px rgba(184, 245, 0, 0.4);
 }
 

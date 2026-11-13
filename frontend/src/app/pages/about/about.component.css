@@ -97,7 +97,7 @@
   .iz-track-line-progress {
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg, #b8f500 0%, #10b981 40%, #0ea5e9 75%, #ffffff 100%);
+    background: linear-gradient(90deg, #b8f500 0%, #d4fc48 40%, #e8ff9e 75%, #ffffff 100%);
   }
 
   /* 4 Columns Grid */
@@ -149,7 +149,7 @@
   .iz-timeline-col.active .iz-col-node {
     background: #b8f500;
     border-color: #b8f500;
-    color: #070a13;
+    color: #101828;
     transform: scale(1.12);
     box-shadow: 0 0 20px rgba(184, 245, 0, 0.7);
   }
@@ -235,7 +235,7 @@
     bottom: 10px;
     left: 19px;
     width: 2px;
-    background: linear-gradient(180deg, #b8f500 0%, #10b981 40%, #0ea5e9 75%, #ffffff 100%);
+    background: linear-gradient(180deg, #b8f500 0%, #d4fc48 40%, #e8ff9e 75%, #ffffff 100%);
   }
 
   .iz-v-item {
