@@ -61,54 +61,54 @@ public static class SitePagesSeeder
         {
             ("", "Home", "Home", 1, new()
             {
-                ("hero", "Enterprise software architecture for SaaS and AI systems that scale.", "Enterprise Solutions Architecture", "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.", null, 1),
+                ("hero", "Custom software development for SaaS, Cloud & AI systems that scale.", "Custom Software Engineering", "NEXVOYS is an elite software engineering and cloud development studio. We partner with technology teams, scale-ups, and global enterprises to build resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.", null, 1),
                 ("proof-strip", "Verified Production Metrics", "Production Proof", "Audited delivery track record across international production systems.", ProofStripCardsJson, 2),
-                ("problems", "Problems We Solve For Growing Tech Companies", "Architecture Challenges", "We eliminate the engineering bottlenecks that drain revenue, slow release velocity, and put customer data at risk.", ProblemsCardsJson, 3),
-                ("value", "Why Leading Technology Teams Partner with Nexvoys", "Our Architecture Discipline", "Senior-only engineering, collaborative technical leadership, and predictable execution without agency bloat.", ValueCardsJson, 4),
-                ("services", "Core Architecture Services", "Our Specialist Pillars", "Five focused architectural disciplines across modern SaaS systems, autonomous AI workflows, cloud optimization, and legacy modernization.", null, 5),
-                ("diagnostic-audit", "Architecture & Cloud Cost Audit", "Fixed-Scope Architecture Diagnostic", "A 2-week diagnostic designed for tech founders and engineering leaders. We examine your architecture blueprints, cloud infrastructure spend (Azure/AWS), database performance, and security posture.", AuditCardsJson, 6),
+                ("problems", "Problems We Solve For Growing Tech Companies", "Engineering Challenges", "We eliminate the engineering bottlenecks that drain revenue, slow release velocity, and put customer data at risk.", ProblemsCardsJson, 3),
+                ("value", "Why Leading Technology Teams Partner with Nexvoys", "Our Engineering Discipline", "Senior-only engineering, collaborative technical leadership, and predictable execution without agency bloat.", ValueCardsJson, 4),
+                ("services", "Core Software Engineering Services", "Our Specialist Pillars", "Five focused engineering disciplines across modern SaaS systems, autonomous AI workflows, cloud optimization, and legacy modernization.", null, 5),
+                ("diagnostic-audit", "Technical Code & Cloud Cost Audit", "Fixed-Scope Technical Diagnostic", "A 2-week diagnostic designed for tech founders and engineering leaders. We examine your application codebase, cloud infrastructure spend (AWS/Azure), database performance, and security posture.", AuditCardsJson, 6),
                 ("tech-matrix", "Our Specialist Stack", "Specialized Capabilities", "Deep technical depth across multi-cloud ecosystems (AWS/Azure), distributed APIs, reactive frontends, and AI agent pipelines.", null, 7),
-                ("industries", "Proven Solutions Across Core Industries", "Industry Domain Mastery", "Applied architecture for high-stakes domains: FinTech, Multi-Tenant SaaS, CPQ Engines, and HealthTech.", null, 8),
-                ("case-studies", "Featured Production Case Studies", "Delivered Systems", "Production platforms, pricing calculation engines, and cloud infrastructures architected for international clients.", null, 9),
-                ("process", "How We Work Together", "Predictable Execution", "From discovery call to architecture blueprint, hands-on build, and production handover.", ProcessStepsJson, 10),
+                ("industries", "Proven Solutions Across Core Industries", "Industry Domain Mastery", "Applied software engineering for high-stakes domains: FinTech, Multi-Tenant SaaS, CPQ Engines, and HealthTech.", null, 8),
+                ("case-studies", "Featured Production Case Studies", "Delivered Systems", "Production platforms, pricing calculation engines, and cloud infrastructures engineered for international clients.", null, 9),
+                ("process", "How We Work Together", "Predictable Execution", "From discovery call to technical solution design, hands-on build, and production handover.", ProcessStepsJson, 10),
                 ("testimonials", "Verified Client Endorsements", "Client Endorsements", "Feedback from technology leaders across the US and Europe.", null, 11),
-                ("contact-hub", "Book an Architecture Consultation", "Book Strategy Call", "Speak directly with our senior solutions architecture team about your product roadmap, system bottlenecks, or upcoming build.", null, 12)
+                ("contact-hub", "Schedule a Project Consultation", "Book Strategy Call", "Speak directly with our senior software engineering team about your product roadmap, system bottlenecks, or upcoming build.", null, 12)
             }),
             ("services", "Services & Pillars", "Services", 2, new()
             {
-                ("services-hero", "Enterprise Architecture Services & Advisory", "Architecture Offerings", "Senior-level solutions architecture for SaaS and AI platforms. Direct collaboration with experienced engineering leadership.", null, 1),
-                ("services-grid", "Core Solutions Architecture Capabilities", "Pillar Offerings", "Deep architectural deep-dives across SaaS multi-tenancy, AI agents, cloud migrations, and modern web portals.", null, 2),
-                ("accordion", "Interactive Capability Pillars", "Deep-Dive Capabilities", "Explore our technical execution approach and deliverables for each primary architectural discipline.", null, 3),
-                ("engagement", "Engagement Models Built For Speed & Scale", "Flexible Partnership", "Choose between Fixed-Fee Architecture Audits, Project-Based Build sprints, or Fractional Advisory.", ValueCardsJson, 4),
-                ("services-cta", "Need an Architectural Review of Your System?", "Architecture Advisory", "Let's review your codebase, identify scalability bottlenecks, and design a modern roadmap that drives business outcomes.", null, 5)
+                ("services-hero", "Custom Software Development & Cloud Solutions", "Engineering Offerings", "Senior-level software engineering for SaaS and AI platforms. Direct collaboration with experienced engineering leadership.", null, 1),
+                ("services-grid", "Core Software Engineering Capabilities", "Pillar Offerings", "Deep technical deep-dives across SaaS multi-tenancy, AI agents, cloud migrations, and modern web portals.", null, 2),
+                ("accordion", "Interactive Capability Pillars", "Deep-Dive Capabilities", "Explore our technical execution approach and deliverables for each primary engineering discipline.", null, 3),
+                ("engagement", "Engagement Models Built For Speed & Scale", "Flexible Partnership", "Choose between Fixed-Fee Code Audits, Project-Based Build sprints, or Fractional Advisory.", ValueCardsJson, 4),
+                ("services-cta", "Need a Code or Infrastructure Review?", "Engineering Advisory", "Let's review your codebase, identify scalability bottlenecks, and design a modern roadmap that drives business outcomes.", null, 5)
             }),
             ("expertise", "Technical Radar & Stacks", "Expertise", 3, new()
             {
-                ("expertise-hero", "Specialist Architecture Radar & Core Stacks", "Technical Competencies", "Specialist depth in modern backend microservices, multi-cloud platforms, reactive frontends, and AI pipelines.", null, 1),
+                ("expertise-hero", "Technology Radar & Specialist Stacks", "Technical Competencies", "Specialist depth in modern backend microservices, multi-cloud platforms, reactive frontends, and AI pipelines.", null, 1),
                 ("radar", "Categorized Technology Radar & Stack Matrix", "Core Stacks", "Hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines with live proficiency filtering.", null, 2),
-                ("certifications", "Verified Engineering Competencies", "Validated Skills", "Senior architectural competencies across cloud infrastructure, distributed microservices, and resilient systems.", null, 3),
-                ("expertise-cta", "Need Guidance on Your Tech Stack?", "Technical Architecture", "Let's review your product roadmap, compare architectural trade-offs across backend runtimes and cloud platforms, and design the right system.", null, 4)
+                ("certifications", "Verified Engineering Competencies", "Validated Skills", "Senior engineering competencies across cloud infrastructure, distributed microservices, and resilient systems.", null, 3),
+                ("expertise-cta", "Need Guidance on Your Tech Stack?", "Technical Strategy", "Let's review your product roadmap, compare engineering trade-offs across backend runtimes and cloud platforms, and build the right system.", null, 4)
             }),
             ("projects", "Portfolio & Case Studies", "Portfolio", 4, new()
             {
                 ("projects-hero", "Case Studies & Selected Work", "Portfolio Showcase", "Production platforms, automated quotation engines, and cloud infrastructures designed and delivered for international clients.", null, 1),
                 ("filters", "Category Filters Toolbar", "Filter Stacks", "Filter case studies by SaaS & Cloud, Enterprise CPQ & Engines, Web Platforms, and HealthTech.", null, 2),
-                ("projects-grid", "Production Case Studies Grid", "Delivered Platforms", "Explore architectural highlights, problem statements, and technical outcomes for delivered production systems.", null, 3),
-                ("projects-cta", "Have a Project Requiring Senior Architecture?", "Next Steps", "Let's evaluate technical feasibility, blueprint the system architecture, and plan your engineering roadmap.", null, 4)
+                ("projects-grid", "Production Case Studies Grid", "Delivered Platforms", "Explore engineering highlights, problem statements, and technical outcomes for delivered production systems.", null, 3),
+                ("projects-cta", "Have a Project Requiring Senior Engineers?", "Next Steps", "Let's evaluate technical feasibility, blueprint the technical solution, and plan your engineering roadmap.", null, 4)
             }),
             ("about", "About NEXVOYS", "About", 5, new()
             {
-                ("about-hero", "Engineering Systems That Power High-Scale Growth", "Company & Architecture Practice", "Nexvoys is an elite engineering and solutions architecture studio. We partner with technology leaders, enterprises, and scale-ups to architect resilient SaaS platforms, autonomous AI workflows, and mission-critical cloud infrastructure.", null, 1),
-                ("vision", "Architectural Rigor, Direct Access, Zero Delegation Bloat", "Our Operating Model", "Nexvoys operates as an enterprise software engineering and systems architecture firm. We eliminate agency overhead: our clients collaborate directly with senior architects who design, review, and ship production systems.", null, 2),
-                ("focus-areas", "Ready to Architect Your Next Production Platform?", "Let's Collaborate", "Whether you need a full system architecture blueprint, fractional advisory, or system modernization, let's schedule an introductory strategy session.", null, 3),
+                ("about-hero", "Engineering Systems That Power High-Scale Growth", "Software Engineering Studio", "Nexvoys is an elite software engineering and cloud solutions studio. We partner with technology leaders, enterprises, and scale-ups to build resilient SaaS platforms, autonomous AI workflows, and mission-critical cloud infrastructure.", null, 1),
+                ("vision", "Engineering Rigor, Direct Access, Zero Delegation Bloat", "Our Operating Model", "Nexvoys operates as an enterprise software development and engineering firm. We eliminate agency overhead: our clients collaborate directly with senior engineers who design, build, and ship production systems.", null, 2),
+                ("focus-areas", "Ready to Build Your Next Production Platform?", "Let's Collaborate", "Whether you need custom software development, fractional technical advisory, or system modernization, let's schedule an introductory discovery session.", null, 3),
                 ("execution", "How Nexvoys Delivers Lasting Value to Enterprise Teams", "Strategic Value", "Zero vendor lock-in, sub-second performance, health-grade data security, and cost-aware scalability.", ValueCardsJson, 4),
-                ("milestones", "Company Track Record & Engineering Milestones", "Company Evolution", "A history of architecting, scaling, and deploying mission-critical systems for international enterprises and high-growth startups.", CompanyMilestonesJson, 5),
+                ("milestones", "Company Track Record & Engineering Milestones", "Company Evolution", "A history of building, scaling, and deploying mission-critical systems for international enterprises and high-growth startups.", CompanyMilestonesJson, 5),
                 ("credentials", "Institutional Standards & Operating Governance", "Enterprise Commitments", "How we guarantee code quality, legal protection, security compliance, and commercial agility for every client.", CompanyStandardsJson, 6)
             }),
             ("contact", "Consultation & Contact", "Contact Us", 6, new()
             {
-                ("contact-hero", "Book an Architecture Call", "Let's Collaborate", "Whether you are planning a new SaaS product, integrating AI agents, or modernizing legacy systems, let's discuss your technical roadmap.", null, 1),
-                ("contact-form", "Request Architecture Session", "Book Strategy Call", "Select your primary objective so we can prepare relevant architecture options and case studies.", null, 2),
+                ("contact-hero", "Book a Discovery Call", "Let's Collaborate", "Whether you are planning a new SaaS product, integrating AI agents, or modernizing legacy systems, let's discuss your technical roadmap.", null, 1),
+                ("contact-form", "Schedule a Technical Consultation", "Book Strategy Call", "Select your primary objective so we can prepare relevant technical solutions and case studies.", null, 2),
                 ("contact-channels", "Direct Communication Channels", "Global Reach", "Direct email, international phone, WhatsApp, and location details for international collaboration.", null, 3)
             })
         };
@@ -175,9 +175,9 @@ public static class SitePagesSeeder
                 {
                     sec.DisplayOrder = sDef.SectionOrder;
                     bool isOutdated = string.IsNullOrWhiteSpace(sec.Description) ||
-                        (sec.Description != null && (sec.Description.Contains("founder") || sec.Description.Contains("Founder") || sec.Description.Contains("Bilal"))) ||
-                        (sec.Subtitle != null && (sec.Subtitle.Contains("Founder-Led") || sec.Subtitle.Contains("founder"))) ||
-                        (sec.Title != null && (sec.Title.Contains("Senior architecture for SaaS") || sec.Title.Contains("Startups & SMBs Partner") ||
+                        (sec.Description != null && (sec.Description.Contains("founder") || sec.Description.Contains("Founder") || sec.Description.Contains("Bilal") || sec.Description.Contains("architecture") || sec.Description.Contains("Architecture"))) ||
+                        (sec.Subtitle != null && (sec.Subtitle.Contains("Founder-Led") || sec.Subtitle.Contains("founder") || sec.Subtitle.Contains("Architecture") || sec.Subtitle.Contains("architecture"))) ||
+                        (sec.Title != null && (sec.Title.Contains("Architecture") || sec.Title.Contains("Senior architecture for SaaS") || sec.Title.Contains("Startups & SMBs Partner") ||
                          sec.Title.EndsWith("Header") || sec.Title.EndsWith("Intro") || sec.Title.EndsWith("Grid") ||
                          sec.Title == "How Solutions Architecture Delivers Value To Your Business" ||
                          sec.Title == "Three Steps. That's All It Takes."));

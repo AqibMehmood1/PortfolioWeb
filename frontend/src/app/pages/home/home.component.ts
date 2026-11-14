@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.portfolioService.projects;
   }
   allServices: ServiceItem[] = [];
-  selectedHeroFocus: string = 'SaaS Architecture & Scale';
+  selectedHeroFocus: string = 'SaaS Product Engineering';
   activeArchTab: 'saas' | 'ai' | 'cloud' = 'saas';
   private typedInstance: Typed | null = null;
   isSubmittingInquiry: boolean = false;
@@ -72,15 +72,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Hero Data
   heroData = {
-    headline: 'Enterprise software architecture for SaaS and AI systems that scale.',
-    subtitle: 'NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.',
+    headline: 'Custom software development for SaaS, Cloud & AI systems that scale.',
+    subtitle: 'NEXVOYS is an elite software engineering and cloud development studio. We partner with tech companies, scale-ups, and global enterprises to build resilient web platforms, high-performance distributed microservices, and autonomous AI systems.',
     typedStrings: [
-      'Enterprise Solutions Architecture',
-      'Scalable SaaS & Multi-Tenancy',
+      'Custom Software Development',
+      'Multi-Tenant SaaS Engineering',
       'Autonomous AI Agents & GenAI',
-      'Azure & AWS Cloud Cost Tuning',
-      'Microservices & Cloud Modernization',
-      'Fractional Principal Architecture & Advisory'
+      'Cloud Architecture & Cost Tuning',
+      'Microservices & Modernization',
+      'Fractional CTO & Technical Advisory'
     ]
   };
 
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     fullName: '',
     email: '',
     phone: '',
-    techStack: 'Multi-Tenant SaaS Architecture',
+    techStack: 'SaaS Product Engineering',
     message: '',
     agreed: false
   };
@@ -421,7 +421,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             fullName: '',
             email: '',
             phone: '',
-            techStack: 'Multi-Tenant SaaS Architecture',
+            techStack: 'SaaS Product Engineering',
             message: '',
             agreed: false
           };
@@ -482,7 +482,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.api.submitContactInquiry({
       name: this.bottomContactForm.fullName.trim(),
       email: this.bottomContactForm.email.trim(),
-      subject: this.bottomContactForm.subject.trim() || 'General Consultation & Architecture Inquiry',
+      subject: this.bottomContactForm.subject.trim() || 'Software Engineering & Project Consultation Inquiry',
       message: this.bottomContactForm.message.trim()
     })
     .pipe(

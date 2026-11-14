@@ -195,7 +195,7 @@
   background: var(--admin-lime, #B8F500);
   border: none;
   border-radius: 12px;
-  color: #101828;
+  color: #101828 !important;
   font-family: var(--admin-font-heading, 'Outfit', sans-serif);
   font-weight: 900;
   font-size: 1rem;
@@ -208,10 +208,19 @@
   box-shadow: 0 4px 16px rgba(184, 245, 0, 0.3);
 }
 
+.btn-login * {
+  color: #101828 !important;
+}
+
 .btn-login:hover:not(:disabled) {
   background: #ffffff;
+  color: #101828 !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 22px rgba(184, 245, 0, 0.45);
+}
+
+.btn-login:hover:not(:disabled) * {
+  color: #101828 !important;
 }
 
 .btn-login:disabled {

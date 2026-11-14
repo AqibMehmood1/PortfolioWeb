@@ -29,8 +29,8 @@ export interface ToastNotification {
 export class PortfolioService {
   profile = {
     name: 'NEXVOYS',
-    tagline: 'Enterprise Software Architecture, Cloud & AI Engineering',
-    role: 'Senior Solutions Architecture & Systems Practice',
+    tagline: 'Enterprise Software Development, Cloud & AI Engineering',
+    role: 'Senior Software Development & Cloud Solutions Studio',
     email: 'info@nexvoys.com',
     phone: '+923456466188',
     displayPhone: '+92 345 6466188',
@@ -40,8 +40,8 @@ export class PortfolioService {
     logoDark: 'assets/nexvoys/black-logo.png',
     logoLight: 'assets/nexvoys/white-logo.png',
     favicon: 'assets/nexvoys/nex-fav.png',
-    footerBio: 'NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern microservices, and autonomous AI systems.',
-    copyrightText: '© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.',
+    footerBio: 'NEXVOYS is an elite software engineering studio helping high-growth startups and enterprises build scalable web applications, multi-tenant SaaS, modern microservices, and autonomous AI systems.',
+    copyrightText: '© 2026 NEXVOYS Ltd. All rights reserved. Senior Software Engineering & Cloud Solutions.',
     tickerTexts: [] as string[]
   };
 

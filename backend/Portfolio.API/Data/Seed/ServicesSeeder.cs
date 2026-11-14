@@ -14,9 +14,9 @@ public static class ServicesSeeder
             {
                 Slug = "saas",
                 Icon = "fas fa-cubes",
-                Title = "SaaS Architecture & Multi-Tenancy",
+                Title = "SaaS Product Engineering & Multi-Tenancy",
                 ShortDescription = "Design and build scalable multi-tenant SaaS foundations with clean tenant isolation, subscription billing, and 99.9% uptime.",
-                FullDescription = "Architecting end-to-end SaaS solutions that scale efficiently from prototype to millions of users. I design robust data isolation models, automated provisioning, subscription tiers, and elastic cloud scaling.",
+                FullDescription = "Engineering end-to-end SaaS solutions that scale efficiently from prototype to millions of users. We build robust data isolation models, automated provisioning, subscription tiers, and elastic cloud scaling.",
                 DeliverablesJson = JsonSerializer.Serialize(new[]
                 {
                     "Multi-tenant database schema partitioning",
@@ -24,7 +24,7 @@ public static class ServicesSeeder
                     "Zero-downtime auto-scaling infrastructure",
                     "Granular RBAC security & audit logging"
                 }),
-                EngagementTopic = "SaaS Architecture & Scale",
+                EngagementTopic = "SaaS Product Engineering",
                 DisplayOrder = 1,
                 IsPublished = true
             },
@@ -86,17 +86,17 @@ public static class ServicesSeeder
             {
                 Slug = "advisory",
                 Icon = "fas fa-user-tie",
-                Title = "Fractional CTO & Architecture Advisory",
+                Title = "Fractional CTO & Technical Advisory",
                 ShortDescription = "Senior technical leadership on a fractional basis for startups preparing to raise capital, hire developers, or scale.",
                 FullDescription = "Get executive-level technical leadership without the overhead of a full-time executive. We advise technology leaders on technical due diligence, tech stack selection, code reviews, and agile engineering governance.",
                 DeliverablesJson = JsonSerializer.Serialize(new[]
                 {
-                    "Technical due diligence & architecture roadmap",
+                    "Technical due diligence & engineering roadmap",
                     "Engineering team hiring & code review standards",
                     "Vendor evaluation & tech stack selection",
                     "Executive & board technical advisory"
                 }),
-                EngagementTopic = "Fractional Solutions Architect",
+                EngagementTopic = "Fractional CTO & Engineering Lead",
                 DisplayOrder = 5,
                 IsPublished = true
             }
@@ -111,8 +111,12 @@ public static class ServicesSeeder
             }
             else
             {
-                existing.FullDescription = s.FullDescription;
+                existing.Title = s.Title;
                 existing.ShortDescription = s.ShortDescription;
+                existing.FullDescription = s.FullDescription;
+                existing.DeliverablesJson = s.DeliverablesJson;
+                existing.EngagementTopic = s.EngagementTopic;
+                existing.Icon = s.Icon;
             }
         }
 
@@ -121,7 +125,7 @@ public static class ServicesSeeder
             new()
             {
                 IndexTag = "//01",
-                Title = "SaaS Product Architecture",
+                Title = "SaaS Product Engineering",
                 ShortDesc = "Multi-tenant foundations, tenant data isolation, subscription billing, and elastic cloud scaling.",
                 BulletsJson = JsonSerializer.Serialize(new[]
                 {
@@ -193,9 +197,9 @@ public static class ServicesSeeder
                 ShortDesc = "Senior technical leadership for startups and SMBs preparing to raise, scale, or hire engineering teams.",
                 BulletsJson = JsonSerializer.Serialize(new[]
                 {
-                    "Technical Due Diligence & Roadmap",
+                    "Technical Due Diligence & Engineering Roadmap",
                     "Engineering Hiring & Code Review Standards",
-                    "Tech Stack Evaluation (.NET, Azure, Node)",
+                    "Tech Stack Evaluation & Framework Selection",
                     "Executive & Board Technical Advisory"
                 }),
                 Image = "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",

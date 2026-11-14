@@ -23,7 +23,7 @@ export class ModernContactFormComponent {
   @Input() formTitle: string = "Let's Discuss Your Needs";
   @Input() formSubtitle: string = "Tell Us About Your Project. We'll Take It From There";
   @Input() showHeader: boolean = true;
-  @Input() defaultSubject: string = 'General Consultation & Architecture Inquiry';
+  @Input() defaultSubject: string = 'Software Engineering & Project Consultation Inquiry';
 
   @ViewChild('techInput') techInputElement?: ElementRef<HTMLInputElement>;
   @ViewChild('fileInput') fileInputElement?: ElementRef<HTMLInputElement>;
@@ -406,7 +406,7 @@ export class ModernContactFormComponent {
 
     const techStackStr = this.selectedTechStacks.length > 0
       ? this.selectedTechStacks.join(', ')
-      : 'General Tech Architecture';
+      : 'Custom Software Development';
 
     const finalMessage = this.message.trim() + attachmentNote;
 

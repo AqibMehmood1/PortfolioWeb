@@ -37,27 +37,28 @@
   --iz-dark-button: #B8F500;
   --iz-dark-charcoal: #101828;
   --iz-dark-slate: #0c1322;
-  --iz-dark-card: rgba(16, 24, 40, 0.65);
+  --iz-dark-card: rgba(16, 24, 40, 0.50);
 
   /* Glass Surface Tokens - Frosted Navy Refraction */
-  --iz-bg-white: rgba(16, 24, 40, 0.65);
-  --iz-bg-offwhite: rgba(16, 24, 40, 0.55);
-  --iz-bg-cream: rgba(20, 30, 50, 0.60);
-  --iz-bg-card: rgba(16, 24, 40, 0.65);
+  --iz-bg-white: rgba(16, 24, 40, 0.50);
+  --iz-bg-offwhite: rgba(16, 24, 40, 0.45);
+  --iz-bg-cream: rgba(20, 30, 50, 0.48);
+  --iz-bg-card: rgba(16, 24, 40, 0.50);
 
   /* Authentic VisionOS / Smoked Glassmorphism System Tokens */
-  --glass-bg: rgba(16, 24, 40, 0.65);
+  --glass-bg: rgba(16, 24, 40, 0.48);
   --glass-bg-subtle: rgba(255, 255, 255, 0.05);
-  --glass-bg-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(22, 34, 56, 0.72);
-  --glass-bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(16, 24, 40, 0.68);
-  --glass-bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(24, 38, 64, 0.78);
-  --glass-bg-input: rgba(11, 17, 30, 0.85);
-  --glass-blur: blur(36px) saturate(180%);
-  --glass-blur-webkit: blur(36px) saturate(180%);
-  --glass-blur-heavy: blur(48px) saturate(190%);
-  --glass-blur-nav: blur(32px) saturate(180%);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.14);
-  --glass-border-light: 1px solid rgba(255, 255, 255, 0.24);
+  --glass-bg-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(18, 28, 48, 0.55);
+  --glass-bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(16, 24, 40, 0.48);
+  --glass-bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.025) 100%), rgba(22, 34, 58, 0.58);
+  --glass-bg-popup: linear-gradient(145deg, rgba(255, 255, 255, 0.10) 0%, rgba(16, 24, 40, 0.52) 40%, rgba(10, 16, 28, 0.65) 100%);
+  --glass-bg-input: rgba(11, 17, 30, 0.65);
+  --glass-blur: blur(20px) saturate(180%);
+  --glass-blur-webkit: blur(20px) saturate(180%);
+  --glass-blur-heavy: blur(28px) saturate(190%);
+  --glass-blur-nav: blur(24px) saturate(180%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.13);
+  --glass-border-light: 1px solid rgba(255, 255, 255, 0.22);
   --glass-border-green: 1px solid rgba(184, 245, 0, 0.45);
   --glass-border-soft-lime: 1px solid rgba(232, 255, 158, 0.4);
   --glass-radius-card: 28px;
@@ -65,14 +66,14 @@
   --glass-radius-pill: 9999px;
 
   /* Specular Hairline & Crystalline Rim Shadows */
-  --glass-specular: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 24px 60px -12px rgba(0, 0, 0, 0.75);
-  --glass-specular-hover: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.60), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 30px 70px -10px rgba(0, 0, 0, 0.85);
+  --glass-specular: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.38), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(184, 245, 0, 0.05);
+  --glass-specular-hover: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 28px 65px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(184, 245, 0, 0.20);
   --glass-specular-soft: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
 
   /* Nested Glass Compartments ("Glass-on-Glass" Wells) */
-  --glass-nested-bg: rgba(11, 17, 30, 0.65);
-  --glass-nested-border: 1px solid rgba(255, 255, 255, 0.08);
-  --glass-nested-specular: inset 0 2px 4px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+  --glass-nested-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 16, 28, 0.48) 100%);
+  --glass-nested-border: 1px solid rgba(255, 255, 255, 0.10);
+  --glass-nested-specular: inset 0 1.5px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.08);
 
   /* Smoked Glass Buttons ("Continue Learning" / Pills) */
   --glass-btn-bg: rgba(255, 255, 255, 0.07);
@@ -465,12 +466,20 @@ p.lead, .lead {
   min-height: 44px;
 }
 
+.iz-btn-green * {
+  color: #101828 !important;
+}
+
 .iz-btn-green:hover {
   background: #ffffff;
   color: #101828 !important;
   border-color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
+}
+
+.iz-btn-green:hover * {
+  color: #101828 !important;
 }
 
 .iz-btn-dark,
@@ -1824,7 +1833,7 @@ p.lead, .lead {
 .iz-submit-lime-btn {
   width: 100%;
   background: linear-gradient(135deg, #b8f500 0%, #a2de00 100%);
-  color: #101828;
+  color: #101828 !important;
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 800;
@@ -1841,11 +1850,19 @@ p.lead, .lead {
   min-height: 50px;
 }
 
+.iz-submit-lime-btn * {
+  color: #101828 !important;
+}
+
 .iz-submit-lime-btn:hover:not(:disabled) {
   background: #ffffff;
-  color: #101828;
+  color: #101828 !important;
   transform: translateY(-2px);
   box-shadow: 0 12px 28px -4px rgba(255, 255, 255, 0.4);
+}
+
+.iz-submit-lime-btn:hover:not(:disabled) * {
+  color: #101828 !important;
 }
 
 .iz-submit-lime-btn:disabled {
@@ -3749,33 +3766,64 @@ a.filter-pill-btn.active,
 .iz-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 7, 16, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(6, 10, 18, 0.62);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
   z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(10px, 2.5vw, 20px);
+  animation: izModalBackdropFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes izModalBackdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes izModalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .iz-modal-dialog {
-  background: var(--glass-bg-card);
-  border: var(--glass-border);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.10) 0%, rgba(16, 24, 40, 0.52) 40%, rgba(10, 16, 28, 0.65) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 28px;
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur-webkit);
-  max-width: 800px;
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  max-width: 820px;
   width: 100%;
   max-height: 92vh;
   overflow-y: auto;
-  box-shadow: var(--glass-specular), 0 30px 80px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 32px 84px -12px rgba(0, 0, 0, 0.8), 0 0 45px rgba(184, 245, 0, 0.12);
   color: #f8fafc;
+  animation: izModalScaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.iz-modal-dialog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 245, 0, 0.7), transparent);
+  pointer-events: none;
 }
 
 .iz-modal-header {
   padding: clamp(16px, 2.5vw, 24px) clamp(18px, 3vw, 32px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3790,6 +3838,14 @@ a.filter-pill-btn.active,
 
 .iz-modal-body {
   padding: clamp(18px, 3vw, 32px);
+}
+
+.modal-preview-media {
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(10, 16, 28, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .timeline-flow {

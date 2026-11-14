@@ -24,7 +24,7 @@
         </div>
 
         <h1 class="iz-hero-title-main">
-          Enterprise software architecture for <span class="iz-headline-gradient">SaaS & AI systems</span> that scale.
+          Custom software development for <span class="iz-headline-gradient">SaaS, Cloud & AI systems</span> that scale.
         </h1>
 
         <p class="iz-hero-sub-origami">
@@ -34,7 +34,7 @@
         <!-- Dual Action Pill Buttons -->
         <div class="iz-hero-actions-origami mb-3">
           <a routerLink="/contact" class="iz-btn-book-call">
-            Book Architecture Consultation <span class="iz-arrow-up-right">↗</span>
+            Schedule Discovery Call <span class="iz-arrow-up-right">↗</span>
           </a>
           <a routerLink="/projects" class="iz-btn-matched">
             See Selected Work <span class="iz-arrow-up-right">↗</span>
@@ -42,7 +42,7 @@
         </div>
 
         <p class="small text-muted mb-4">
-          <i class="fas fa-shield-alt text-success me-1"></i> No sales intermediaries — you collaborate directly with senior architects who lead and build your platform. Mutual NDA provided.
+          <i class="fas fa-shield-alt text-success me-1"></i> No sales intermediaries — you collaborate directly with senior engineers who build and ship your platform. Mutual NDA provided.
         </p>
 
         <!-- Trust Badges Strip -->
@@ -76,7 +76,7 @@
                 <h4 class="mb-0 fw-bold fs-6 text-white">NEXVOYS Advisory</h4>
                 <span class="badge"
                   style="background: rgba(184, 245, 0, 0.2); color: #b8f500; font-size: 0.7rem; border: 1px solid rgba(184, 245, 0, 0.4);">
-                  Architecture Studio
+                  SOFTWARE STUDIO
                 </span>
               </div>
               <p class="mb-0 small" style="color: #cbd5e1; line-height: 1.35;">
@@ -86,8 +86,8 @@
             </div>
           </div>
 
-          <h3 class="iz-inquiry-title">Book Architecture Consultation</h3>
-          <p class="iz-inquiry-sub">Direct roadmap review with our Senior Solutions Architecture Team.</p>
+          <h3 class="iz-inquiry-title">Schedule a Project Consultation</h3>
+          <p class="iz-inquiry-sub">Direct roadmap review with our Senior Software Engineering Team.</p>
 
           <!-- Success / Error Alert Feedback (5-sec auto-dismiss) -->
           <div class="iz-form-alert iz-form-alert-success" *ngIf="heroSuccessMsg">
@@ -119,19 +119,19 @@
               <div class="col-12 col-sm-6">
                 <select class="iz-select-light" [(ngModel)]="inquiryForm.techStack" name="techStack"
                   [disabled]="isSubmittingInquiry">
-                  <option value="Multi-Tenant SaaS Architecture">SaaS Multi-Tenancy</option>
+                  <option value="SaaS Product Engineering">SaaS Product Engineering</option>
                   <option value="Autonomous AI Agents & GenAI">AI Agents & GenAI</option>
                   <option value="Cloud Cost Tuning (Azure & AWS)">Cloud Cost Tuning</option>
                   <option value="Backend Modernization & Microservices">Backend Modernization & Microservices</option>
-                  <option value="Fractional CTO & Advisory">Fractional Architect</option>
-                  <option value="Architecture & Cloud Cost Audit">Fixed-Fee 2-Wk Audit</option>
+                  <option value="Fractional CTO & Advisory">Fractional CTO / Tech Lead</option>
+                  <option value="Technical Code & Cloud Cost Audit">Fixed-Fee 2-Wk Diagnostic</option>
                 </select>
               </div>
             </div>
 
             <div class="mb-2">
               <textarea class="iz-textarea-light" rows="3" [(ngModel)]="inquiryForm.message" name="message"
-                placeholder="What are you building or looking to re-architect? (e.g. scale bottleneck, cloud costs, AI pipeline) *"
+                placeholder="What are you building or looking to scale? (e.g. new web app, multi-tenant SaaS, cloud migration, AI pipeline) *"
                 required [disabled]="isSubmittingInquiry"></textarea>
             </div>
 
@@ -144,7 +144,7 @@
 
             <button type="submit" class="iz-submit-lime-btn" [disabled]="isSubmittingInquiry">
               <span *ngIf="!isSubmittingInquiry">
-                Book Architecture Call <span class="iz-arrow-up-right">↗</span>
+                Schedule Discovery Call <span class="iz-arrow-up-right">↗</span>
               </span>
               <span *ngIf="isSubmittingInquiry">
                 <i class="fas fa-spinner fa-spin me-2"></i> Submitting Request...
@@ -294,7 +294,7 @@
                   Explore Capabilities <i class="fas fa-arrow-right ms-2"></i>
                 </a>
                 <a routerLink="/contact" class="iz-btn-dark py-2 px-3 fw-bold" style="font-size: 0.88rem;">
-                  Schedule Architecture Review <span class="iz-arrow-up-right">↗</span>
+                  Schedule Discovery Call <span class="iz-arrow-up-right">↗</span>
                 </a>
               </div>
             </div>
@@ -316,15 +316,15 @@
       <div class="col-lg-8">
         <div class="badge px-3 py-2 mb-3 fw-bold"
           style="background-color: #b8f500 !important; color: #101828 !important;">
-          <i class="fas fa-bolt me-1"></i> {{ getSection('diagnostic-audit')?.subtitle || 'Fixed-Scope Architecture
+          <i class="fas fa-bolt me-1"></i> {{ getSection('diagnostic-audit')?.subtitle || 'Fixed-Scope Technical
           Diagnostic' }}
         </div>
         <h2 class="fw-bold text-white mb-2" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
-          {{ getSection('diagnostic-audit')?.title || 'Architecture & Cloud Cost Audit' }}
+          {{ getSection('diagnostic-audit')?.title || 'Technical Code & Cloud Cost Audit' }}
         </h2>
         <p class="text-white-50 lead mb-3 fs-6">
           {{ getSection('diagnostic-audit')?.description || 'A 2-week diagnostic designed for tech founders and
-          engineering leaders. We examine your architecture blueprints, cloud infrastructure spend (Azure/AWS), database
+          engineering leaders. We examine your application codebase, cloud infrastructure spend (AWS/Azure), database
           performance, and security posture.' }}
         </p>
         <div class="d-flex flex-wrap gap-3 text-white small">
@@ -475,12 +475,12 @@
     <div class="iz-projects-grid">
       <div class="iz-project-card" *ngFor="let project of featuredProjects">
         <!-- Media / Thumbnail with hover effect -->
-        <div class="iz-project-media" (click)="openProjectModal(project)" title="Click to view Architecture Blueprint">
+        <div class="iz-project-media" (click)="openProjectModal(project)" title="Click to view Project Details & Demo">
           <img [src]="project.image" [alt]="project.title" loading="lazy">
           <span class="iz-project-cat-tag">{{ project.category }}</span>
           <div class="iz-project-media-overlay">
             <span class="iz-quick-demo-btn">
-              <i class="fas fa-eye me-1"></i> Blueprint Demo
+              <i class="fas fa-eye me-1"></i> Interactive Demo
             </span>
           </div>
         </div>
@@ -491,7 +491,7 @@
             </h4>
             <p class="iz-project-desc">{{ project.description }}</p>
 
-            <!-- Compact Architecture Highlights -->
+            <!-- Compact Technical Highlights -->
             <div class="iz-project-highlights-box" *ngIf="project.highlights.length">
               <div class="iz-highlight-item" *ngFor="let h of project.highlights | slice:0:2" [title]="h">
                 <i class="fas fa-check-circle"></i>
@@ -521,7 +521,7 @@
             </div>
 
             <button type="button" class="iz-card-btn-secondary" (click)="openProjectModal(project)"
-              title="View Architecture Blueprint">
+              title="View Technical Solution & Demo">
               <i class="fas fa-eye text-green"></i> Demo
             </button>
           </div>
@@ -637,7 +637,7 @@
       <div class="col-lg-4">
         <div class="iz-stats-side h-100">
           <h4 class="fw-bold mb-3 text-white">Direct Communication Channels</h4>
-          <p class="small text-muted mb-4">Direct access to the NEXVOYS Enterprise Solutions & Advisory Team.</p>
+          <p class="small text-muted mb-4">Direct access to the NEXVOYS Senior Software Engineering Team.</p>
 
           <div class="direct-channel-card">
             <div class="channel-icon"><i class="fas fa-envelope text-green"></i></div>

@@ -54,9 +54,18 @@ body {
 
 /* ==========================================================================
    GLOBAL HIGH-CONTRAST TYPOGRAPHY SYSTEM FOR GLASS UI
-   Ensures ALL text is immediately crisp, bright, and 100% legible.
+   Ensures ALL text is immediately crisp, bright, and 100% legible,
+   while protecting buttons, links, and badges from accidental text overrides.
    ========================================================================== */
-p, span, li, dt, dd, label {
+p, li, dt, dd {
+  color: #eaecf0;
+}
+
+label:not(button label):not(.btn label) {
+  color: #eaecf0;
+}
+
+span:not(button span):not(.btn span):not([class*="btn"] span):not([class*="badge"] span):not([class*="chip"] span):not([class*="pill"] span):not(a span) {
   color: #eaecf0;
 }
 
@@ -130,4 +139,230 @@ h1, h2, h3, h4, h5, h6,
 :focus-visible {
   outline: 2px solid #b8f500;
   outline-offset: 2px;
+}
+
+/* ==========================================================================
+   GLASS UI DESIGN SYSTEM - ENHANCED TRANSLUCENT GLASSMORPHISM
+   Card Popups, Modals, Floating Wells, and Glass Panels
+   ========================================================================== */
+
+/* Universal Glass Card Popup & Dialog Class */
+.iz-modal-dialog,
+.modal-content,
+.chatbot-window {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.10) 0%, rgba(16, 24, 40, 0.52) 40%, rgba(10, 16, 28, 0.65) 100%) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 32px 84px -12px rgba(0, 0, 0, 0.8), 0 0 45px rgba(184, 245, 0, 0.12) !important;
+}
+
+/* Modal Backdrops with Atmospheric Blur */
+.iz-modal-backdrop,
+.modal-backdrop {
+  background: rgba(6, 10, 18, 0.62) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+}
+
+/* Glass Card Surfaces (Translucent with Refractive Specular Edges) */
+.iz-project-card,
+.iz-inquiry-card,
+.iz-service-card,
+.iz-pillar-card,
+.iz-simplified-card,
+.iz-stat-card,
+.iz-review-card-inner,
+.modern-contact-card,
+.contact-form-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(16, 24, 40, 0.48) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.38), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(184, 245, 0, 0.05) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.iz-project-card:hover,
+.iz-inquiry-card:hover,
+.iz-service-card:hover,
+.iz-pillar-card:hover,
+.iz-simplified-card:hover,
+.iz-stat-card:hover,
+.iz-review-card:hover .iz-review-card-inner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.025) 100%), rgba(22, 34, 58, 0.58) !important;
+  border-color: rgba(184, 245, 0, 0.45) !important;
+  box-shadow: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 28px 65px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(184, 245, 0, 0.20) !important;
+}
+
+/* Card Popup Quick Buttons & Pills */
+.iz-quick-demo-btn,
+.channel-copy-btn,
+.filter-pill-btn {
+  background: rgba(16, 24, 40, 0.60) !important;
+  backdrop-filter: blur(14px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.25s ease !important;
+}
+
+.iz-quick-demo-btn:hover,
+.channel-copy-btn:hover {
+  background: rgba(184, 245, 0, 0.20) !important;
+  border-color: #B8F500 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(184, 245, 0, 0.35) !important;
+}
+
+.filter-pill-btn.active {
+  background: rgba(184, 245, 0, 0.18) !important;
+  border-color: #B8F500 !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 0 18px rgba(184, 245, 0, 0.35) !important;
+}
+
+/* Glass-on-Glass Wells (Founder Card, Stats Pill, Form Inputs) */
+.iz-founder-banner,
+.iz-stat-pill,
+.direct-channel-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 16, 28, 0.48) 100%) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: inset 0 1.5px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Dropdowns & Mega Menus (Frosted Glass Popups) */
+.iz-mega-menu-card,
+.dropdown-menu {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(16, 24, 40, 0.60) 50%, rgba(10, 16, 28, 0.70) 100%) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.35), 0 25px 65px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Glass Form Inputs */
+.contact-form-glass .form-control,
+.contact-form-glass .form-select,
+.modern-contact-card .form-control,
+.modern-contact-card .form-select {
+  background: rgba(11, 17, 30, 0.60) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.contact-form-glass .form-control:focus,
+.contact-form-glass .form-select:focus,
+.modern-contact-card .form-control:focus,
+.modern-contact-card .form-select:focus {
+  background: rgba(14, 22, 38, 0.75) !important;
+  border-color: #B8F500 !important;
+  box-shadow: 0 0 16px rgba(184, 245, 0, 0.3) !important;
+}
+
+/* ==========================================================================
+   BUTTON TYPOGRAPHY & HIGH-CONTRAST ENFORCEMENT
+   Guarantees deep navy (#101828) text on all lime & white buttons,
+   both normal and hover states, across all components and child elements.
+   ========================================================================== */
+
+/* 1. Universal button child inheritance */
+button *,
+.btn *,
+[class*="iz-btn"] *,
+[class*="btn-"] *,
+.iz-submit-pill-btn *,
+.iz-submit-lime-btn * {
+  color: inherit;
+}
+
+/* 2. All Lime & White Brand Buttons: Strict Dark Navy (#101828) Text */
+.iz-submit-pill-btn,
+.iz-submit-lime-btn,
+.iz-btn-green,
+.iz-btn-white,
+.iz-btn-white-pill,
+.btn-submit-inquiry,
+.btn-login,
+.btn-success,
+.btn-light,
+a.iz-btn-green,
+a.iz-btn-white,
+a.iz-btn-white-pill,
+button.iz-submit-pill-btn,
+button.iz-submit-lime-btn {
+  color: #101828 !important;
+  font-weight: 800 !important;
+}
+
+.iz-submit-pill-btn *,
+.iz-submit-lime-btn *,
+.iz-btn-green *,
+.iz-btn-white *,
+.iz-btn-white-pill *,
+.btn-submit-inquiry *,
+.btn-login *,
+.btn-success *,
+.btn-light *,
+a.iz-btn-green *,
+a.iz-btn-white *,
+a.iz-btn-white-pill *,
+button.iz-submit-pill-btn *,
+button.iz-submit-lime-btn * {
+  color: #101828 !important;
+}
+
+/* 3. Hover States on Lime & White Buttons: Always High-Contrast Dark Navy (#101828) */
+.iz-submit-pill-btn:hover,
+.iz-submit-lime-btn:hover,
+.iz-btn-green:hover,
+.iz-btn-white:hover,
+.iz-btn-white-pill:hover,
+.btn-submit-inquiry:hover,
+.btn-login:hover,
+.iz-btn-contact-top:hover,
+a.iz-btn-green:hover,
+button.iz-submit-pill-btn:hover,
+button.iz-submit-lime-btn:hover {
+  color: #101828 !important;
+}
+
+.iz-submit-pill-btn:hover *,
+.iz-submit-lime-btn:hover *,
+.iz-btn-green:hover *,
+.iz-btn-white:hover *,
+.iz-btn-white-pill:hover *,
+.btn-submit-inquiry:hover *,
+.btn-login:hover *,
+.iz-btn-contact-top:hover *,
+a.iz-btn-green:hover *,
+button.iz-submit-pill-btn:hover *,
+button.iz-submit-lime-btn:hover * {
+  color: #101828 !important;
+}
+
+/* 4. Arrow and Icon Contrast Inside Buttons */
+.iz-arrow-icon,
+.iz-arrow-up-right,
+.iz-submit-pill-btn .iz-arrow-icon,
+.iz-submit-lime-btn .iz-arrow-up-right {
+  color: #101828 !important;
+}
+
+/* 5. Dark/Transparent Outline Buttons: High-Contrast Pure White (#ffffff) Text */
+.iz-btn-dark,
+.iz-btn-outline-white,
+.action-pill-btn {
+  color: #ffffff !important;
+}
+
+.iz-btn-dark *,
+.iz-btn-outline-white *,
+.action-pill-btn * {
+  color: #ffffff !important;
 }

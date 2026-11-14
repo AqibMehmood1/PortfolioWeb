@@ -100,7 +100,7 @@ public class ChatbotService : IChatbotService
             Email = dto.Email.Trim().ToLowerInvariant(),
             Phone = dto.Phone?.Trim() ?? string.Empty,
             Company = dto.Company?.Trim() ?? string.Empty,
-            Subject = $"[Chatbot Lead] {dto.Topic ?? "Architecture & Engineering Consultation"}",
+            Subject = $"[Chatbot Lead] {dto.Topic ?? "Software Engineering & Product Consultation"}",
             TechStack = dto.Topic ?? "Chatbot Inbound Lead",
             Message = dto.Message.Trim(),
             Status = "New",
@@ -362,7 +362,7 @@ public class ChatbotService : IChatbotService
                         "See All Case Studies",
                         "Discuss My Project Scope",
                         "Tech Stack & Radar",
-                        "Schedule Architecture Review"
+                        "Schedule Discovery Call"
                     },
                     Links = new List<ChatActionLinkDto>
                     {
@@ -381,7 +381,7 @@ public class ChatbotService : IChatbotService
     private async Task<ChatResponseDto> GetAboutAndExperienceResponseAsync(string query)
     {
         var about = await _context.AboutContents.FirstOrDefaultAsync(a => a.SectionKey == "main" && a.IsActive);
-        var headline = about?.VisionHeadline ?? "Enterprise Software Architecture & Scale";
+        var headline = about?.VisionHeadline ?? "Enterprise Software Development & Scale";
         var lead = about?.VisionLead ?? "9+ Years Designing Resilient Cloud & AI Systems";
 
         return new ChatResponseDto
@@ -390,7 +390,7 @@ public class ChatbotService : IChatbotService
             SuggestedActions = new List<string>
             {
                 "Showcase of Case Studies",
-                "Explore 5 Architecture Pillars",
+                "Explore 5 Engineering Pillars",
                 "Core Technology Radar",
                 "Schedule a Consultation"
             },
@@ -469,17 +469,17 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "### 🏢 SaaS Architecture & Multi-Tenancy\n\nNEXVOYS designs end-to-end SaaS platforms built to scale from early prototype to millions of active users with **99.9% uptime**:\n\n- **Tenant Data Isolation**: Database schema partitioning, row-level security barriers, and tenant connection routing.\n- **Subscription Billing**: Complete Stripe, LemonSqueezy, and paddle recurring subscription automation with webhooks.\n- **Distributed Caching & High Throughput**: Redis cluster caching for sub-second page loads and query acceleration.\n- **Zero-Downtime Resilience**: Blue/green containerized deployments, health-check probes, and auto-scaling policies.\n\nWe architected **Cloudoor Cloud SaaS** and **ODTool CPQ**, both achieving sub-second response times under heavy concurrent tenant workloads.",
+            Reply = "### 🏢 SaaS Product Engineering & Multi-Tenancy\n\nNEXVOYS designs end-to-end SaaS platforms built to scale from early prototype to millions of active users with **99.9% uptime**:\n\n- **Tenant Data Isolation**: Database schema partitioning, row-level security barriers, and tenant connection routing.\n- **Subscription Billing**: Complete Stripe, LemonSqueezy, and paddle recurring subscription automation with webhooks.\n- **Distributed Caching & High Throughput**: Redis cluster caching for sub-second page loads and query acceleration.\n- **Zero-Downtime Resilience**: Blue/green containerized deployments, health-check probes, and auto-scaling policies.\n\nWe architected **Cloudoor Cloud SaaS** and **ODTool CPQ**, both achieving sub-second response times under heavy concurrent tenant workloads.",
             SuggestedActions = new List<string>
             {
                 "See Cloudoor SaaS Case Study",
                 "See ODTool CPQ Case Study",
-                "Schedule SaaS Architecture Audit",
+                "Schedule SaaS Diagnostic",
                 "Explore All Core Services"
             },
             Links = new List<ChatActionLinkDto>
             {
-                new() { Label = "SaaS Architecture Pillar", Url = "/services", Type = "internal", Icon = "fas fa-cubes" },
+                new() { Label = "SaaS Engineering Pillar", Url = "/services", Type = "internal", Icon = "fas fa-cubes" },
                 new() { Label = "Explore Projects", Url = "/projects", Type = "internal", Icon = "fas fa-laptop-code" },
                 new() { Label = "Book Strategy Call", Url = "/contact", Type = "internal", Icon = "fas fa-calendar-check" }
             },
@@ -497,11 +497,11 @@ public class ChatbotService : IChatbotService
                 "Discuss an AI Agent Project",
                 "See Case Studies & Work",
                 "Tech Radar & AI Stack",
-                "Schedule Architecture Call"
+                "Schedule Discovery Call"
             },
             Links = new List<ChatActionLinkDto>
             {
-                new() { Label = "AI Architecture Details", Url = "/services", Type = "internal", Icon = "fas fa-robot" },
+                new() { Label = "AI Engineering Details", Url = "/services", Type = "internal", Icon = "fas fa-robot" },
                 new() { Label = "Book Consultation", Url = "/contact", Type = "internal", Icon = "fas fa-calendar-check" },
                 new() { Label = "Chat on WhatsApp", Url = "https://wa.me/923456466188", Type = "external", Icon = "fab fa-whatsapp" }
             },
@@ -513,13 +513,13 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "### ⚡ Legacy Architecture & Cloud Modernization\n\nTransform legacy technical debt into scalable, high-speed enterprise assets:\n\n- **Monolith to Microservices**: Decoupling complex legacy systems into independently scalable microservices with event-driven architecture.\n- **Modern Backend Architecture**: High-concurrency APIs, event streams, clean architecture, and distributed caching.\n- **40%+ Throughput Increase**: Non-blocking asynchronous query pipelines, query tuning, connection pooling, and Redis caching.\n- **Modern Frontends**: Pairing high-performance backends with reactive Angular or React SPAs.",
+            Reply = "### ⚡ Legacy System Modernization & Cloud Solutions\n\nTransform legacy technical debt into scalable, high-speed enterprise assets:\n\n- **Monolith to Microservices**: Decoupling complex legacy systems into independently scalable microservices with event-driven architecture.\n- **Modern Backend Architecture**: High-concurrency APIs, event streams, clean architecture, and distributed caching.\n- **40%+ Throughput Increase**: Non-blocking asynchronous query pipelines, query tuning, connection pooling, and Redis caching.\n- **Modern Frontends**: Pairing high-performance backends with reactive Angular or React SPAs.",
             SuggestedActions = new List<string>
             {
                 "Discuss Modernization Scope",
                 "Eurobank Banking Study",
                 "ODTool CPQ Engine Study",
-                "Book Architecture Review"
+                "Book Codebase Review"
             },
             Links = new List<ChatActionLinkDto>
             {
@@ -560,7 +560,7 @@ public class ChatbotService : IChatbotService
             .ToListAsync();
 
         var sb = new System.Text.StringBuilder();
-        sb.AppendLine("### 🛠️ Core Technology Radar & Architecture Stacks\n");
+        sb.AppendLine("### 🛠️ Core Technology Radar & Engineering Stacks\n");
         sb.AppendLine("NEXVOYS delivers with a modern, battle-tested technology ecosystem:\n");
 
         if (cats.Count > 0)
@@ -589,8 +589,8 @@ public class ChatbotService : IChatbotService
             SuggestedActions = new List<string>
             {
                 "Explore Delivered Projects",
-                "Discuss an AI or Cloud Architecture Project",
-                "SaaS Multi-Tenancy Architecture",
+                "Discuss an AI or Cloud Software Project",
+                "SaaS Product Engineering",
                 "Schedule Tech Discussion"
             },
             Links = new List<ChatActionLinkDto>
@@ -680,7 +680,7 @@ public class ChatbotService : IChatbotService
             SuggestedActions = new List<string>
             {
                 "View Case Studies",
-                "SaaS Multi-Tenancy Architecture",
+                "SaaS Product Engineering",
                 "Schedule Consultation"
             },
             Links = new List<ChatActionLinkDto>
@@ -752,11 +752,11 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "Hello and welcome to **NEXVOYS**! 🚀\n\nI am your interactive **Solutions Architecture Assistant**. NEXVOYS has over **9+ years of international delivery experience** helping Startups, SMBs, and Enterprises across the US, Canada, and Europe build:\n\n- 🏗️ **Multi-Tenant SaaS Platforms** with scalable data partitioning\n- 🤖 **Autonomous AI Agent Pipelines** & Enterprise RAG\n- ⚡ **High-Performance Distributed Microservices** & Modern SPAs\n- ☁️ **Cloud Cost Optimization** (saving up to 25% on Azure/AWS)\n\nWhat would you like to explore today?",
+            Reply = "Hello and welcome to **NEXVOYS**! 🚀\n\nI am your interactive **Software & Solutions Assistant**. NEXVOYS has over **9+ years of international delivery experience** helping Startups, SMBs, and Enterprises across the US, Canada, and Europe build:\n\n- 🏗️ **Multi-Tenant SaaS Platforms** with scalable data partitioning\n- 🤖 **Autonomous AI Agent Pipelines** & Enterprise RAG\n- ⚡ **High-Performance Distributed Microservices** & Modern SPAs\n- ☁️ **Cloud Cost Optimization** (saving up to 25% on Azure/AWS)\n\nWhat would you like to explore today?",
             SuggestedActions = new List<string>
             {
                 "Showcase of Delivered Case Studies",
-                "SaaS Architecture & Multi-Tenancy",
+                "SaaS Product Engineering",
                 "Autonomous AI Agents & GenAI",
                 "Tech Radar & Stacks",
                 "Schedule Consultation"
@@ -775,11 +775,11 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = $"I'm here to assist you with any questions regarding **\"{rawMsg}\"** or our enterprise capabilities!\n\n**NEXVOYS** is an **Enterprise Technology Partner & Solutions Architect** with 9+ years of experience specialized in designing multi-tenant SaaS products, autonomous AI agent pipelines, cloud cost optimization, and legacy system modernization.\n\nHere are some popular topics you can explore:",
+            Reply = $"I'm here to assist you with any questions regarding **\"{rawMsg}\"** or our enterprise capabilities!\n\n**NEXVOYS** is an **Enterprise Software Development & Engineering Studio** with 9+ years of experience specialized in building multi-tenant SaaS products, autonomous AI agent pipelines, cloud cost optimization, and legacy system modernization.\n\nHere are some popular topics you can explore:",
             SuggestedActions = new List<string>
             {
                 "Show Case Studies & Portfolios",
-                "SaaS Multi-Tenancy Architecture",
+                "SaaS Product Engineering",
                 "Autonomous AI Agents & GenAI",
                 "Legacy System Modernization",
                 "Schedule a Free Consultation"

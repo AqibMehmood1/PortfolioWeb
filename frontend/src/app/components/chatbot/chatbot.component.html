@@ -10,8 +10,8 @@
       <span class="teaser-pulse-dot"></span>
     </div>
     <div class="teaser-content">
-      <span class="teaser-title">Have Architecture Questions?</span>
-      <p class="teaser-text">Ask our AI Assistant about SaaS, GenAI agents, tech stack & pricing!</p>
+      <span class="teaser-title">Have a Project in Mind?</span>
+      <p class="teaser-text">Ask our AI Assistant about custom software, SaaS, AI, and cloud solutions!</p>
     </div>
     <button type="button" class="teaser-close-btn" (click)="dismissTeaser($event)" aria-label="Dismiss">
       <i class="fas fa-times"></i>
@@ -25,7 +25,7 @@
     [class.active]="isOpen" 
     (click)="toggleChat()" 
     aria-label="Toggle AI Chatbot"
-    title="Chat with NEXVOYS AI Architect"
+    title="Chat with NEXVOYS AI Assistant"
   >
     <div class="fab-glow-ring"></div>
     <div class="fab-icon-wrapper">
@@ -48,7 +48,7 @@
         <div class="bot-header-info">
           <div class="bot-header-title-row">
             <h4 class="bot-name">NEXVOYS AI</h4>
-            <span class="bot-badge">Architecture Studio</span>
+            <span class="bot-badge">Software Studio</span>
           </div>
           <div class="bot-status-row">
             <span class="status-indicator"></span>
@@ -169,7 +169,7 @@
           #messageInput
           type="text" 
           class="chat-input" 
-          placeholder="Ask anything about SaaS, AI, Cloud, architecture..." 
+          placeholder="Ask anything about SaaS, AI, Cloud, custom development..." 
           [(ngModel)]="userInput" 
           name="chatQuery"
           [disabled]="isLoading"
@@ -186,7 +186,7 @@
         </button>
       </form>
       <div class="chat-footer-brand">
-        <span>Powered by <strong>NEXVOYS AI Architecture</strong></span>
+        <span>Powered by <strong>NEXVOYS AI Assistant</strong></span>
       </div>
     </div>
 
@@ -196,7 +196,7 @@
         <div class="inquiry-header">
           <div class="d-flex align-items-center gap-2">
             <i class="fas fa-paper-plane text-green"></i>
-            <h5 class="inquiry-title">Request Architecture Advisory</h5>
+            <h5 class="inquiry-title">Request Technical Consultation</h5>
           </div>
           <button type="button" class="inquiry-close" (click)="closeInquiryModal()" aria-label="Close" [disabled]="isSubmittingInquiry">
             <i class="fas fa-times"></i>
@@ -204,7 +204,7 @@
         </div>
 
         <p class="inquiry-subtitle">
-          Directly reach our Lead Solutions Architect. We'll reply within 24 hours.
+          Directly reach our Senior Engineering Team. We'll reply within 24 hours.
         </p>
 
         <!-- Modal Success / Error Feedback (5s auto-dismiss) -->
@@ -272,11 +272,11 @@
           <div class="inquiry-form-group">
             <label>Engagement Focus</label>
             <select class="inquiry-select" [(ngModel)]="inquiryForm.interest" name="inqInterest" [disabled]="isSubmittingInquiry">
-              <option value="SaaS Multi-Tenancy Architecture">SaaS Multi-Tenancy Architecture</option>
+              <option value="SaaS Product Engineering">SaaS Product Engineering</option>
               <option value="Autonomous AI Agents & GenAI">Autonomous AI Agents & GenAI</option>
               <option value="Legacy Modernization & Microservices">Legacy Modernization & Microservices</option>
               <option value="Cloud Cost & Scale Optimization">Cloud Cost & Scale Optimization</option>
-              <option value="Fractional CTO & Architecture Audit">Fractional CTO & Architecture Audit</option>
+              <option value="Fractional CTO & Codebase Audit">Fractional CTO & Codebase Audit</option>
               <option value="Custom Enterprise Development">Custom Enterprise Development</option>
             </select>
           </div>

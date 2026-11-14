@@ -11,8 +11,8 @@ public static class WebsiteSettingsSeeder
         var defaultSettings = new List<WebsiteSetting>
         {
             new() { Key = "CompanyName", Value = "NEXVOYS", Group = "Profile", Description = "Company / Brand Name" },
-            new() { Key = "Tagline", Value = "Enterprise Software Architecture, Cloud & AI Engineering", Group = "Profile", Description = "Header Tagline" },
-            new() { Key = "Role", Value = "Senior Solutions Architecture & Systems Practice", Group = "Profile", Description = "Primary Professional Role" },
+            new() { Key = "Tagline", Value = "Enterprise Software Development, Cloud & AI Engineering", Group = "Profile", Description = "Header Tagline" },
+            new() { Key = "Role", Value = "Senior Software Development & Cloud Solutions Studio", Group = "Profile", Description = "Primary Professional Role" },
             new() { Key = "Email", Value = "info@nexvoys.com", Group = "Contact", Description = "Primary Email Address" },
             new() { Key = "Phone", Value = "+92 345 6466188", Group = "Contact", Description = "Phone Number (International format)" },
             new() { Key = "DisplayPhone", Value = "+92 345 6466188", Group = "Contact", Description = "Formatted Display Phone" },
@@ -22,8 +22,8 @@ public static class WebsiteSettingsSeeder
             new() { Key = "LogoDark", Value = "assets/nexvoys/black-logo.png", Group = "Media", Description = "Dark Header Logo" },
             new() { Key = "LogoLight", Value = "assets/nexvoys/white-logo.png", Group = "Media", Description = "White Footer Logo" },
             new() { Key = "Favicon", Value = "assets/nexvoys/nex-fav.png", Group = "Media", Description = "Favicon URL" },
-            new() { Key = "FooterBio", Value = "NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern microservices, and autonomous AI systems.", Group = "Footer", Description = "Footer Bio Text" },
-            new() { Key = "CopyrightText", Value = "© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.", Group = "Footer", Description = "Copyright notice" },
+            new() { Key = "FooterBio", Value = "NEXVOYS is an elite software engineering studio helping high-growth startups and enterprises build scalable web applications, multi-tenant SaaS, modern microservices, and autonomous AI systems.", Group = "Footer", Description = "Footer Bio Text" },
+            new() { Key = "CopyrightText", Value = "© 2026 NEXVOYS Ltd. All rights reserved. Senior Software Engineering & Cloud Solutions.", Group = "Footer", Description = "Copyright notice" },
             new() { 
                 Key = "TickerTexts", 
                 Value = JsonSerializer.Serialize(new string[] {}), 
@@ -43,7 +43,7 @@ public static class WebsiteSettingsSeeder
             {
                 if (string.IsNullOrEmpty(existing.Group)) existing.Group = setting.Group;
                 if (string.IsNullOrEmpty(existing.Description)) existing.Description = setting.Description;
-                if (setting.Key == "Tagline" || setting.Key == "Role" || setting.Key == "FooterBio" || setting.Key == "CvPath")
+                if (setting.Key == "Tagline" || setting.Key == "Role" || setting.Key == "FooterBio" || setting.Key == "CvPath" || setting.Key == "CopyrightText")
                 {
                     existing.Value = setting.Value;
                 }

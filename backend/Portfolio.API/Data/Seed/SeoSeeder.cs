@@ -67,11 +67,11 @@ public static class SeoSeeder
             new()
             {
                 PageRoute = "/contact",
-                Title = "Book an Architecture Call | Nexvoys",
-                Description = "Book a 30-minute architecture strategy call directly with the principal architect. NDA on request.",
-                Keywords = "Book Architecture Call, Schedule Consultation, Solutions Architect, Architecture Audit",
-                OgTitle = "Book an Architecture Call | Nexvoys",
-                OgDescription = "Connect directly with our principal solutions architect to evaluate your technical roadmap.",
+                Title = "Schedule a Project Consultation | Nexvoys",
+                Description = "Book a 30-minute discovery strategy call directly with our senior software engineering team. NDA on request.",
+                Keywords = "Schedule Discovery Call, Software Development Consultation, Senior Software Engineers, Code Audit",
+                OgTitle = "Schedule a Project Consultation | Nexvoys",
+                OgDescription = "Connect directly with our senior engineering team to evaluate your project scope and technical roadmap.",
                 OgImage = "assets/nexvoys/black-logo.png",
                 Robots = "index, follow"
             }

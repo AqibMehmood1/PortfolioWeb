@@ -11,16 +11,16 @@ public static class HomePageSeeder
         var existing = await context.HomePageContents.FirstOrDefaultAsync(h => h.SectionKey == "hero");
         var hero = existing ?? new HomePageContent { SectionKey = "hero" };
 
-        hero.Headline = "Enterprise software architecture for SaaS and AI systems that scale.";
-        hero.Subtitle = "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.";
+        hero.Headline = "Custom software development for SaaS, Cloud & AI systems that scale.";
+        hero.Subtitle = "NEXVOYS is an elite software engineering and cloud development studio. We partner with startups, scale-ups, and global enterprises to build high-performance web platforms, resilient cloud microservices, and autonomous AI systems.";
         hero.TypedStringsJson = JsonSerializer.Serialize(new[]
         {
-            "Enterprise Solutions Architecture",
-            "Multi-Tenant SaaS Architecture",
+            "Custom Software Development",
+            "Multi-Tenant SaaS Engineering",
             "Autonomous AI Agents & Pipelines",
             "Cloud Cost Optimization (Azure & AWS)",
             "Microservices & Cloud Modernization",
-            "Fractional Principal Architecture & Advisory"
+            "Fractional CTO & Technical Advisory"
         });
         hero.StatsJson = JsonSerializer.Serialize(new[]
         {
@@ -31,10 +31,10 @@ public static class HomePageSeeder
         });
         hero.AdditionalDataJson = JsonSerializer.Serialize(new
         {
-            HeroBadge = "Enterprise Solutions Architecture Studio",
-            CtaPrimaryText = "Book Architecture Consultation",
+            HeroBadge = "Custom Software & Cloud Engineering Studio",
+            CtaPrimaryText = "Book a Discovery Call",
             CtaSecondaryText = "See Selected Work",
-            TrustBadge = "Direct Senior Architect Collaboration · Overlapping Delivery Across US, Europe & Asia"
+            TrustBadge = "Direct Senior Engineer Collaboration · Overlapping Delivery Across US, Europe & Asia"
         });
 
         if (existing == null)

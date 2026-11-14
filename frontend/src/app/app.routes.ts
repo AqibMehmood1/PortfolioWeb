@@ -32,12 +32,12 @@ import { AdminAuditLogsComponent } from './admin/audit-logs-mgmt/admin-audit-log
 
 export const routes: Routes = [
   // Public Portfolio Routes
-  { path: '', component: HomeComponent, title: 'Nexvoys — SaaS & AI Architecture Partner for Startups and SMBs' },
-  { path: 'about', component: AboutComponent, title: 'About Nexvoys | Founder-Led Architecture Partner' },
-  { path: 'expertise', component: ExpertiseComponent, title: 'Technical Radar & Architecture Disciplines | Nexvoys' },
-  { path: 'services', component: ServicesComponent, title: 'Services & Solutions Architecture | Nexvoys' },
+  { path: '', component: HomeComponent, title: 'Nexvoys — Software & Cloud Engineering Partner for High-Scale Systems' },
+  { path: 'about', component: AboutComponent, title: 'About Nexvoys | Elite Software Engineering & Cloud Solutions Studio' },
+  { path: 'expertise', component: ExpertiseComponent, title: 'Technical Radar & Engineering Competencies | Nexvoys' },
+  { path: 'services', component: ServicesComponent, title: 'Services & Software Solutions | Nexvoys' },
   { path: 'projects', component: ProjectsComponent, title: 'Case Studies & Selected Work | Nexvoys' },
-  { path: 'contact', component: ContactComponent, title: 'Book an Architecture Call | Nexvoys' },
+  { path: 'contact', component: ContactComponent, title: 'Schedule a Project Consultation | Nexvoys' },
   { path: 'privacy', component: PrivacyComponent, title: 'Privacy Policy | Nexvoys' },
   { path: 'terms', component: TermsComponent, title: 'Terms of Service | Nexvoys' },
   { path: 'p/:slug', component: DynamicPageComponent, title: 'Nexvoys Platform' },

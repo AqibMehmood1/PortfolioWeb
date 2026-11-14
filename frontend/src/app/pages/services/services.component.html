@@ -5,9 +5,9 @@
     <div class="iz-breadcrumb d-flex justify-content-center mb-3">
       <a routerLink="/">Home</a>
       <span class="sep">/</span>
-      <span class="text-light fw-bold">{{ getSection('services-hero')?.subtitle || 'Services & Architecture' }}</span>
+      <span class="text-light fw-bold">{{ getSection('services-hero')?.subtitle || 'Services & Engineering' }}</span>
     </div>
-    <div class="iz-tag"><i class="fas fa-cubes"></i> {{ getSection('services-hero')?.subtitle || 'Architectural Capabilities' }}</div>
+    <div class="iz-tag"><i class="fas fa-cubes"></i> {{ getSection('services-hero')?.subtitle || 'Engineering Capabilities' }}</div>
     <h1 class="iz-hero-headline">{{ getSection('services-hero')?.title || 'Services & Technical Solutions' }}</h1>
     <p class="iz-hero-sub mx-auto" *ngIf="getSection('services-hero')?.description">
       {{ getSection('services-hero')?.description }}
@@ -62,7 +62,7 @@
                 </div>
                 <div class="position-absolute bottom-0 start-0 end-0 p-3 text-start" style="z-index: 2; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 65%, transparent 100%);">
                   <span class="text-white fw-bold d-block small mb-1">{{ s.title }}</span>
-                  <span style="color: #b8f500; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-shield-alt me-1"></i> Production Architecture</span>
+                  <span style="color: #b8f500; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-shield-alt me-1"></i> Production Engineering</span>
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@
                   Explore Capabilities <i class="fas fa-arrow-right ms-2"></i>
                 </a>
                 <a routerLink="/contact" class="iz-btn-dark py-2 px-3 fw-bold" style="font-size: 0.88rem;">
-                  Schedule Architecture Review <span class="iz-arrow-up-right">↗</span>
+                  Schedule Discovery Call <span class="iz-arrow-up-right">↗</span>
                 </a>
               </div>
             </div>
@@ -175,10 +175,10 @@
               <div class="iz-tag mb-0"><i class="fas fa-search"></i> Advisory & Diagnostic</div>
               <span class="badge bg-dark text-white">From $500</span>
             </div>
-            <h3 class="mb-2 fw-bold">Architecture Audit</h3>
+            <h3 class="mb-2 fw-bold">Technical Code & Cloud Audit</h3>
             <p class="text-muted small mb-4">A 2-week, fixed-fee diagnostic for founders preparing for scale, investor due diligence, or reducing runaway cloud costs.</p>
             <ul class="iz-deliverables-list mb-4">
-              <li><i class="fas fa-check text-green"></i> Deep codebase & Azure/AWS infrastructure review</li>
+              <li><i class="fas fa-check text-green"></i> Deep codebase & cloud infrastructure review</li>
               <li><i class="fas fa-check text-green"></i> Cloud cost breakdown & bottleneck analysis</li>
               <li><i class="fas fa-check text-green"></i> Prioritized 90-day remediation roadmap</li>
             </ul>
@@ -194,13 +194,13 @@
               <div class="iz-tag mb-0" style="background: var(--iz-green-dark); color: #ffffff;"><i class="fas fa-star"></i> Core Delivery</div>
               <span class="badge text-dark fw-bold" style="background: #b8f500;">$2.5k – $10k</span>
             </div>
-            <h3 class="mb-2 fw-bold">Project Architecture & Build</h3>
-            <p class="text-muted small mb-4">End-to-end architecture design and core engineering for a new SaaS product, AI pipeline, or microservices migration.</p>
+            <h3 class="mb-2 fw-bold">Custom Software Development & Build</h3>
+            <p class="text-muted small mb-4">End-to-end technical design and full-stack engineering for a new SaaS product, AI workflow, or microservices platform.</p>
             <ul class="iz-deliverables-list mb-4">
               <li><i class="fas fa-check text-green"></i> Full multi-tenant blueprint & domain data models</li>
               <li><i class="fas fa-check text-green"></i> Resilient core APIs & agent orchestrations built</li>
               <li><i class="fas fa-check text-green"></i> Automated CI/CD & infrastructure-as-code</li>
-              <li><i class="fas fa-check text-green"></i> Architecture runbooks & engineering handover</li>
+              <li><i class="fas fa-check text-green"></i> Technical runbooks & engineering handover</li>
             </ul>
           </div>
           <a routerLink="/contact" class="iz-btn-green w-100 justify-content-center">Start Project Build</a>
@@ -214,10 +214,10 @@
               <div class="iz-tag mb-0"><i class="fas fa-user-tie"></i> Executive Partner</div>
               <span class="badge bg-dark text-white">From $1,500/mo</span>
             </div>
-            <h3 class="mb-2 fw-bold">Fractional Principal Architecture & Advisory</h3>
-            <p class="text-muted small mb-4">High-impact technical leadership and architectural governance on a predictable monthly retainer for growing engineering teams.</p>
+            <h3 class="mb-2 fw-bold">Fractional CTO & Technical Advisory</h3>
+            <p class="text-muted small mb-4">High-impact technical leadership and engineering governance on a predictable monthly retainer for growing software teams.</p>
             <ul class="iz-deliverables-list mb-4">
-              <li><i class="fas fa-check text-green"></i> Weekly architectural reviews & sprint governance</li>
+              <li><i class="fas fa-check text-green"></i> Weekly technical reviews & sprint governance</li>
               <li><i class="fas fa-check text-green"></i> Technical vetting, candidate interviews & mentoring</li>
               <li><i class="fas fa-check text-green"></i> Direct roadmap advisory with executive & technology leadership</li>
             </ul>
@@ -234,7 +234,7 @@
   <div class="container text-center">
     <div class="iz-process-headline-wrap mb-5">
       <h2 class="iz-process-title-white">Three Steps. Serious Results.</h2>
-      <h2 class="iz-process-title-green">Transparent Architecture Delivery</h2>
+      <h2 class="iz-process-title-green">Transparent Engineering Delivery</h2>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
@@ -242,9 +242,9 @@
       <div class="col-12 col-md-4">
         <div class="iz-process-column">
           <div class="iz-process-badge-lime">01</div>
-          <h4 class="iz-process-col-title">Diagnostic & Blueprint</h4>
+          <h4 class="iz-process-col-title">Diagnostic & Technical Blueprint</h4>
           <p class="iz-process-col-desc">
-            We review your codebase, telemetry, and cloud spend. You receive an architectural blueprint, risk register, and timeline before code is written.
+            We review your codebase, telemetry, and cloud spend. You receive an engineering blueprint, risk register, and timeline before code is written.
           </p>
         </div>
       </div>
@@ -255,7 +255,7 @@
           <div class="iz-process-badge-lime">02</div>
           <h4 class="iz-process-col-title">Sprint Delivery & Governance</h4>
           <p class="iz-process-col-desc">
-            Bi-weekly releases with clean architecture, CI/CD pipelines, and pull request reviews. You collaborate directly with our senior architecture team.
+            Bi-weekly releases with clean architecture, CI/CD pipelines, and pull request reviews. You collaborate directly with our senior engineering team.
           </p>
         </div>
       </div>
@@ -342,10 +342,10 @@
       <div class="iz-tag iz-tag-dark mb-3"><i class="fas fa-calendar-alt"></i> {{ getSection('services-cta')?.subtitle || "Let's Talk" }}</div>
       <h2 class="text-white fw-bold mb-3" style="font-size: clamp(1.6rem, 3.5vw, 2.3rem); word-break: break-word;">{{ getSection('services-cta')?.title || 'Have a Custom Project in Mind?' }}</h2>
       <p class="text-muted mx-auto mb-4" style="color: #cbd5e1 !important;">
-        {{ getSection('services-cta')?.description || 'Every system is unique. Let\'s discuss your timeline, technical requirements, and how we can achieve your architectural milestones.' }}
+        {{ getSection('services-cta')?.description || 'Every system is unique. Let\'s discuss your timeline, technical requirements, and how we can achieve your development milestones.' }}
       </p>
       <a routerLink="/contact" class="iz-btn-green py-3 px-4 w-100 w-sm-auto d-inline-flex justify-content-center text-center">
-        Book Architecture Strategy Call <i class="fas fa-arrow-right ms-2"></i>
+        Schedule Discovery Call <i class="fas fa-arrow-right ms-2"></i>
       </a>
     </div>
   </div>
