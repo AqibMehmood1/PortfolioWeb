@@ -19,7 +19,7 @@ public static class AboutPageSeeder
         about.FocusAreasJson = JsonSerializer.Serialize(new[]
         {
             "Designing multi-tenant SaaS foundations with clean data isolation from day one.",
-            "Refactoring monolithic .NET codebases into high-velocity .NET 9 microservices.",
+            "Refactoring monolithic architectures into high-velocity, cloud-native microservices.",
             "Integrating autonomous AI agents and enterprise RAG pipelines that automate complex manual work.",
             "Auditing and optimizing Azure/AWS cloud infrastructures to cut operational spend by up to 25%."
         });
@@ -27,7 +27,7 @@ public static class AboutPageSeeder
         {
             new { Step = "01", Title = "Discovery & Scoping", Description = "Aligning business KPIs, concurrency needs, and cloud unit economics." },
             new { Step = "02", Title = "Architecture Blueprint", Description = "Designing modular domain boundaries, database schemas, and API contracts." },
-            new { Step = "03", Title = "Senior Execution", Description = "Shipping resilient services with .NET 9, Angular/React, and CI/CD pipelines." },
+            new { Step = "03", Title = "Senior Execution", Description = "Shipping resilient microservices, modern frontends, and automated CI/CD pipelines." },
             new { Step = "04", Title = "Handover & Governance", Description = "Comprehensive written documentation, telemetry, and zero vendor lock-in." }
         });
         about.ValueCardsJson = JsonSerializer.Serialize(new[]

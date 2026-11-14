@@ -22,7 +22,7 @@ public static class WebsiteSettingsSeeder
             new() { Key = "LogoDark", Value = "assets/nexvoys/black-logo.png", Group = "Media", Description = "Dark Header Logo" },
             new() { Key = "LogoLight", Value = "assets/nexvoys/white-logo.png", Group = "Media", Description = "White Footer Logo" },
             new() { Key = "Favicon", Value = "assets/nexvoys/nex-fav.png", Group = "Media", Description = "Favicon URL" },
-            new() { Key = "FooterBio", Value = "NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern .NET microservices, and autonomous AI systems.", Group = "Footer", Description = "Footer Bio Text" },
+            new() { Key = "FooterBio", Value = "NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern microservices, and autonomous AI systems.", Group = "Footer", Description = "Footer Bio Text" },
             new() { Key = "CopyrightText", Value = "© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.", Group = "Footer", Description = "Copyright notice" },
             new() { 
                 Key = "TickerTexts", 

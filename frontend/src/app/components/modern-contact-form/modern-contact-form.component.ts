@@ -75,7 +75,7 @@ export class ModernContactFormComponent {
     'Flutter',
     'Frontend',
     'Backend',
-    '.NET 9 / C#',
+    'Cloud Microservices',
     'Angular',
     'React.js',
     'TypeScript',

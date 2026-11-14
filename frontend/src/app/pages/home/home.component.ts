@@ -73,13 +73,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // Hero Data
   heroData = {
     headline: 'Enterprise software architecture for SaaS and AI systems that scale.',
-    subtitle: 'NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance .NET microservices, and autonomous AI systems.',
+    subtitle: 'NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.',
     typedStrings: [
       'Enterprise Solutions Architecture',
       'Scalable SaaS & Multi-Tenancy',
       'Autonomous AI Agents & GenAI',
       'Azure & AWS Cloud Cost Tuning',
-      '.NET 9 & Microservices Modernization',
+      'Microservices & Cloud Modernization',
       'Fractional Principal Architecture & Advisory'
     ]
   };
@@ -132,9 +132,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       { name: 'Progressive Web', icon: 'fas fa-mobile-alt', color: '#ec4899' }
     ],
     backend: [
-      { name: '.NET 9 / C#', icon: 'fab fa-windows', color: '#512bd4' },
-      { name: 'ASP.NET Core', icon: 'fas fa-server', color: '#512bd4' },
-      { name: 'Entity Framework', icon: 'fas fa-database', color: '#68217a' },
+      { name: 'Distributed APIs', icon: 'fas fa-server', color: '#512bd4' },
+      { name: 'Microservices Bus', icon: 'fas fa-project-diagram', color: '#0284c7' },
+      { name: 'Entity ORMs & Data', icon: 'fas fa-database', color: '#68217a' },
       { name: 'Node.js', icon: 'fab fa-node-js', color: '#68a063' },
       { name: 'Python APIs', icon: 'fab fa-python', color: '#3776ab' },
       { name: 'Microservices Bus', icon: 'fas fa-project-diagram', color: '#0284c7' },
@@ -223,7 +223,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (cards && cards.length > 0) return cards;
     return [
       { title: 'Cloud Costs Outpacing Revenue', description: 'Unoptimized Azure and AWS compute eating into margins. We identify waste, right-size infrastructure, and cut cloud spend by up to 25% without sacrificing throughput.', badge: 'amber', icon: 'fas fa-chart-line' },
-      { title: 'Monolithic Bottlenecks', description: 'Legacy .NET codebases holding back release velocity. We re-architect incrementally to clean .NET 9 and event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
+      { title: 'Monolithic Bottlenecks', description: 'Legacy monolithic codebases holding back release velocity. We re-architect incrementally to modern, event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
       { title: 'AI Pipelines Failing in Production', description: 'Prototypes that hit latency and hallucination walls. We build enterprise RAG pipelines with deterministic guardrails and scalable vector search.', badge: 'blue', icon: 'fas fa-robot' },
       { title: 'Missing Senior Tech Lead', description: 'Startups needing strategic architectural governance without the $250k+ full-time CTO overhead. We serve as fractional principal architects guiding your engineers.', badge: 'green', icon: 'fas fa-user-shield' }
     ];

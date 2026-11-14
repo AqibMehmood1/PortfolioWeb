@@ -67,11 +67,11 @@ export class ServicesComponent {
     },
     {
       index: '//04',
-      title: '.NET Modernization',
-      shortDesc: 'Upgrading monolithic legacy .NET Framework applications into high-throughput .NET 9 microservices and reactive SPAs.',
+      title: 'Legacy Modernization & Microservices',
+      shortDesc: 'Upgrading legacy monolithic architectures into high-throughput, cloud-native microservices and reactive SPAs.',
       bullets: [
         'Monolith to Microservices Roadmap',
-        'Legacy .NET Framework to .NET 9 Upgrade',
+        'Legacy Architecture Modernization',
         'Sub-Second Response Time Optimization',
         'High-Throughput WebAPI & gRPC Contracts'
       ],
@@ -85,7 +85,7 @@ export class ServicesComponent {
       bullets: [
         'Technical Due Diligence & Roadmap',
         'Engineering Hiring & Code Review Standards',
-        'Tech Stack Evaluation (.NET, Azure, Node)',
+        'Tech Stack Evaluation & Framework Selection',
         'Executive & Board Technical Advisory'
       ],
       image: '/assets/img/services/fractional-cto.jpg',

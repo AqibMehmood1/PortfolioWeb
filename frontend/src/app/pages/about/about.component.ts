@@ -55,17 +55,17 @@ export class AboutComponent {
       { metric: '0 ➔ 1 Studio Launch', label: 'Architecture Practice Founded' },
       { metric: '< 30s CPQ Turnaround', label: 'Slashing 3-Hour Latency' },
       { metric: '99.99% Audited SLA', label: 'Multi-Market Global Delivery' },
-      { metric: 'GenAI & .NET 9', label: 'Autonomous Agents Deployed' }
+      { metric: 'GenAI & Cloud', label: 'Autonomous Agents Deployed' }
     ];
     return kpis[index] || { metric: 'Verified Delivery', label: 'Milestone Execution' };
   }
 
   getHighlights(index: number): string[] {
     const highlights = [
-      ['Distributed .NET Architecture', 'Multi-Tenant Data Isolation', 'North American & European Delivery'],
+      ['Distributed Backend Architecture', 'Multi-Tenant Data Isolation', 'North American & European Delivery'],
       ['Enterprise CPQ Pricing Engines', 'Sub-Second Calculation Pipelines', 'High-Throughput Redis Caching'],
       ['4 International Delivery Markets', 'Zero-Downtime Blue/Green CI/CD', 'Real-Time Telemetry & Monitoring'],
-      ['Deterministic GenAI Pipelines', 'Pinecone Vector Search & RAG', '.NET 9 Cloud Modernization']
+      ['Deterministic GenAI Pipelines', 'Pinecone Vector Search & RAG', 'Multi-Cloud Modernization']
     ];
     return highlights[index] || ['Verified Production Delivery', 'Enterprise Grade Architecture'];
   }

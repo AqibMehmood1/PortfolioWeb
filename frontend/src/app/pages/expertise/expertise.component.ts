@@ -55,12 +55,12 @@ export class ExpertiseComponent {
     },
     {
       id: 3,
-      title: 'Enterprise .NET & Backend',
-      category: '.NET Core',
+      title: 'Enterprise Backend & Distributed Systems',
+      category: 'Backend Architecture',
       icon: 'fas fa-bolt',
-      iconColor: '#512bd4',
-      desc: 'High-throughput backend architectures using modern C#, ASP.NET WebAPI, asynchronous event buses, and domain-driven design.',
-      chips: ['.NET 9 / .NET Core', 'C# (Async/Await)', 'ASP.NET WebAPI', 'Entity Framework Core', 'Clean Architecture']
+      iconColor: '#B8F500',
+      desc: 'High-throughput backend architectures using modular microservices, high-performance APIs, asynchronous event buses, and domain-driven design.',
+      chips: ['Distributed APIs', 'Microservices', 'Event-Driven Architecture', 'Clean Architecture', 'High Concurrency']
     },
     {
       id: 4,
@@ -119,7 +119,7 @@ export class ExpertiseComponent {
       icon: 'fas fa-laptop-code',
       iconColor: '#10b981',
       desc: 'We create initial mockups of the web design from scratch. Our team ensures optimizing the design and adding content that is fully optimized to rank on different search engines.',
-      chips: ['.NET 9 Web API', 'Angular SPAs', 'Docker CI/CD', 'SEO Optimization']
+      chips: ['Scalable Web APIs', 'Modern Frontends', 'Docker CI/CD', 'Performance Tuning']
     },
     {
       id: 4,
@@ -197,11 +197,11 @@ export class ExpertiseComponent {
     { name: 'Tailwind & CSS', category: 'frontend', icon: 'fab fa-css3-alt', color: '#38bdf8' },
 
     // Back-End
-    { name: '.NET 9 / C#', category: 'backend', icon: 'fab fa-windows', color: '#512bd4' },
-    { name: 'ASP.NET Core', category: 'backend', icon: 'fas fa-server', color: '#512bd4' },
+    { name: 'Distributed APIs', category: 'backend', icon: 'fas fa-server', color: '#10b981' },
+    { name: 'Microservices Bus', category: 'backend', icon: 'fas fa-cubes', color: '#0ea5e9' },
     { name: 'Node.js', category: 'backend', icon: 'fab fa-node-js', color: '#68a063' },
     { name: 'Python FastAPI', category: 'backend', icon: 'fab fa-python', color: '#3776ab' },
-    { name: 'Entity Framework', category: 'backend', icon: 'fas fa-layer-group', color: '#68217a' },
+    { name: 'High-Concurrency ORMs', category: 'backend', icon: 'fas fa-layer-group', color: '#68217a' },
     { name: 'Microservices', category: 'backend', icon: 'fas fa-cubes', color: '#0ea5e9' },
 
     // Low/No Code

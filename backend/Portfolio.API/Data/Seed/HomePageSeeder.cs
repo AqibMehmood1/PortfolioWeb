@@ -12,14 +12,14 @@ public static class HomePageSeeder
         var hero = existing ?? new HomePageContent { SectionKey = "hero" };
 
         hero.Headline = "Enterprise software architecture for SaaS and AI systems that scale.";
-        hero.Subtitle = "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance .NET microservices, and autonomous AI systems.";
+        hero.Subtitle = "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.";
         hero.TypedStringsJson = JsonSerializer.Serialize(new[]
         {
             "Enterprise Solutions Architecture",
             "Multi-Tenant SaaS Architecture",
             "Autonomous AI Agents & Pipelines",
             "Cloud Cost Optimization (Azure & AWS)",
-            ".NET 9 & Microservices Modernization",
+            "Microservices & Cloud Modernization",
             "Fractional Principal Architecture & Advisory"
         });
         hero.StatsJson = JsonSerializer.Serialize(new[]

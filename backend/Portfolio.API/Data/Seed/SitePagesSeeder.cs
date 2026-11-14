@@ -15,7 +15,7 @@ public static class SitePagesSeeder
     private static readonly string ProcessStepsJson = @"[
   {""title"":""Discovery Call"",""description"":""A 30-minute technical session to understand your architecture bottlenecks, timeline, and growth goals."",""badge"":""01""},
   {""title"":""Blueprint or Fixed-Fee Audit"",""description"":""A concrete system blueprint, data isolation schema, or 2-week architecture audit with prioritized roadmap."",""badge"":""02""},
-  {""title"":""Senior Build & Modernize"",""description"":""Principal-led engineering with .NET 9, Azure, Angular/React, and AI agents with rigorous code quality."",""badge"":""03""},
+  {""title"":""Senior Build & Modernize"",""description"":""Principal-led engineering with modern microservices, cloud infrastructure, reactive SPAs, and AI agents with rigorous code quality."",""badge"":""03""},
   {""title"":""Handover & Enablement"",""description"":""Written architecture documentation, test coverage, and complete team handover with zero lock-in."",""badge"":""04""}
 ]";
 
@@ -28,7 +28,7 @@ public static class SitePagesSeeder
 
     private static readonly string ProblemsCardsJson = @"[
   {""title"":""Cloud Costs Outpacing Revenue"",""description"":""Unoptimized Azure and AWS compute eating into margins. We identify waste, right-size infrastructure, and cut cloud spend by up to 25% without sacrificing throughput."",""badge"":""amber"",""icon"":""fas fa-chart-line""},
-  {""title"":""Monolithic Bottlenecks"",""description"":""Legacy .NET codebases holding back release velocity. We re-architect incrementally to clean .NET 9 and event-driven microservices with zero customer downtime."",""badge"":""red"",""icon"":""fas fa-cubes""},
+  {""title"":""Monolithic Bottlenecks"",""description"":""Legacy monolithic codebases holding back release velocity. We re-architect incrementally to modern, event-driven microservices with zero customer downtime."",""badge"":""red"",""icon"":""fas fa-cubes""},
   {""title"":""AI Pipelines Failing in Production"",""description"":""Prototypes that hit latency and hallucination walls. We build enterprise RAG pipelines with deterministic guardrails and scalable vector search."",""badge"":""blue"",""icon"":""fas fa-robot""},
   {""title"":""Missing Senior Tech Lead"",""description"":""Startups needing strategic architectural governance without the $250k+ full-time CTO overhead. We serve as fractional principal architects guiding your engineers."",""badge"":""green"",""icon"":""fas fa-user-shield""}
 ]";
@@ -40,10 +40,10 @@ public static class SitePagesSeeder
 ]";
 
     private static readonly string CompanyMilestonesJson = @"[
-  {""title"":""Launch of Specialized .NET & Cloud Architecture Studio"",""description"":""Founded Nexvoys as an elite engineering practice specializing in distributed .NET architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients."",""badge"":""2021 · Foundation"",""icon"":""fas fa-rocket""},
+  {""title"":""Launch of Specialized Cloud & Software Architecture Studio"",""description"":""Founded Nexvoys as an elite engineering practice specializing in distributed backend architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients."",""badge"":""2021 · Foundation"",""icon"":""fas fa-rocket""},
   {""title"":""Sub-Second CPQ & High-Throughput Engines"",""description"":""Engineered enterprise CPQ (Configure, Price, Quote) engines and payment processing pipelines, slashing calculation latency from 3 hours to under 30 seconds across high-volume transactions."",""badge"":""2022 · Scale"",""icon"":""fas fa-bolt""},
   {""title"":""International Delivery Across US, Canada, France & Singapore"",""description"":""Expanded direct client delivery footprint across 4 international markets. Shipped production platforms maintaining an audited 99.99% uptime SLA with zero-downtime deployment pipelines."",""badge"":""2023 · Expansion"",""icon"":""fas fa-globe""},
-  {""title"":""Autonomous AI Agents & .NET 9 Cloud Modernization"",""description"":""Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization to .NET 9 for next-generation enterprise SaaS systems."",""badge"":""2024–Present · Next-Gen"",""icon"":""fas fa-brain""}
+  {""title"":""Autonomous AI Agents & Multi-Cloud Modernization"",""description"":""Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization for next-generation enterprise SaaS systems."",""badge"":""2024–Present · Next-Gen"",""icon"":""fas fa-brain""}
 ]";
 
     private static readonly string CompanyStandardsJson = @"[
@@ -61,13 +61,13 @@ public static class SitePagesSeeder
         {
             ("", "Home", "Home", 1, new()
             {
-                ("hero", "Enterprise software architecture for SaaS and AI systems that scale.", "Enterprise Solutions Architecture", "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance .NET microservices, and autonomous AI systems.", null, 1),
+                ("hero", "Enterprise software architecture for SaaS and AI systems that scale.", "Enterprise Solutions Architecture", "NEXVOYS is an elite engineering and solutions architecture studio. We partner with technology teams, scale-ups, and global enterprises to design resilient cloud architectures, high-performance distributed microservices, and autonomous AI systems.", null, 1),
                 ("proof-strip", "Verified Production Metrics", "Production Proof", "Audited delivery track record across international production systems.", ProofStripCardsJson, 2),
                 ("problems", "Problems We Solve For Growing Tech Companies", "Architecture Challenges", "We eliminate the engineering bottlenecks that drain revenue, slow release velocity, and put customer data at risk.", ProblemsCardsJson, 3),
                 ("value", "Why Leading Technology Teams Partner with Nexvoys", "Our Architecture Discipline", "Senior-only engineering, collaborative technical leadership, and predictable execution without agency bloat.", ValueCardsJson, 4),
                 ("services", "Core Architecture Services", "Our Specialist Pillars", "Five focused architectural disciplines across modern SaaS systems, autonomous AI workflows, cloud optimization, and legacy modernization.", null, 5),
                 ("diagnostic-audit", "Architecture & Cloud Cost Audit", "Fixed-Scope Architecture Diagnostic", "A 2-week diagnostic designed for tech founders and engineering leaders. We examine your architecture blueprints, cloud infrastructure spend (Azure/AWS), database performance, and security posture.", AuditCardsJson, 6),
-                ("tech-matrix", "Our Specialist Stack", "Specialized Capabilities", "Deep technical depth across .NET 9, C#, Azure, AWS, Angular, React, Redis, and LangChain/Semantic Kernel AI pipelines.", null, 7),
+                ("tech-matrix", "Our Specialist Stack", "Specialized Capabilities", "Deep technical depth across multi-cloud ecosystems (AWS/Azure), distributed APIs, reactive frontends, and AI agent pipelines.", null, 7),
                 ("industries", "Proven Solutions Across Core Industries", "Industry Domain Mastery", "Applied architecture for high-stakes domains: FinTech, Multi-Tenant SaaS, CPQ Engines, and HealthTech.", null, 8),
                 ("case-studies", "Featured Production Case Studies", "Delivered Systems", "Production platforms, pricing calculation engines, and cloud infrastructures architected for international clients.", null, 9),
                 ("process", "How We Work Together", "Predictable Execution", "From discovery call to architecture blueprint, hands-on build, and production handover.", ProcessStepsJson, 10),
@@ -84,15 +84,15 @@ public static class SitePagesSeeder
             }),
             ("expertise", "Technical Radar & Stacks", "Expertise", 3, new()
             {
-                ("expertise-hero", "Specialist Architecture Radar & Core Stacks", "Technical Competencies", "Specialist depth in .NET 9, C#, Microsoft Azure, AWS Cloud, Angular, React, Redis, and modern AI pipelines.", null, 1),
+                ("expertise-hero", "Specialist Architecture Radar & Core Stacks", "Technical Competencies", "Specialist depth in modern backend microservices, multi-cloud platforms, reactive frontends, and AI pipelines.", null, 1),
                 ("radar", "Categorized Technology Radar & Stack Matrix", "Core Stacks", "Hands-on expertise across leading enterprise frameworks, cloud ecosystems & AI pipelines with live proficiency filtering.", null, 2),
-                ("certifications", "Verified Engineering Competencies", "Validated Skills", "Senior architectural competencies across Microsoft Azure, enterprise .NET, and distributed systems.", null, 3),
-                ("expertise-cta", "Need Guidance on Your Tech Stack?", "Technical Architecture", "Let's review your product roadmap, compare architectural trade-offs (.NET vs Node vs Python, Azure vs AWS), and design the right system.", null, 4)
+                ("certifications", "Verified Engineering Competencies", "Validated Skills", "Senior architectural competencies across cloud infrastructure, distributed microservices, and resilient systems.", null, 3),
+                ("expertise-cta", "Need Guidance on Your Tech Stack?", "Technical Architecture", "Let's review your product roadmap, compare architectural trade-offs across backend runtimes and cloud platforms, and design the right system.", null, 4)
             }),
             ("projects", "Portfolio & Case Studies", "Portfolio", 4, new()
             {
                 ("projects-hero", "Case Studies & Selected Work", "Portfolio Showcase", "Production platforms, automated quotation engines, and cloud infrastructures designed and delivered for international clients.", null, 1),
-                ("filters", "Category Filters Toolbar", "Filter Stacks", "Filter case studies by SaaS & Cloud, Enterprise .NET & CPQ, Web Platforms, and HealthTech.", null, 2),
+                ("filters", "Category Filters Toolbar", "Filter Stacks", "Filter case studies by SaaS & Cloud, Enterprise CPQ & Engines, Web Platforms, and HealthTech.", null, 2),
                 ("projects-grid", "Production Case Studies Grid", "Delivered Platforms", "Explore architectural highlights, problem statements, and technical outcomes for delivered production systems.", null, 3),
                 ("projects-cta", "Have a Project Requiring Senior Architecture?", "Next Steps", "Let's evaluate technical feasibility, blueprint the system architecture, and plan your engineering roadmap.", null, 4)
             }),

@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     'SaaS Architecture & Scale',
     'AI Agents & Workflow Automation',
     'Cloud Migration & Cost Optimization',
-    'Legacy .NET & Web Modernization',
+    'Legacy System & Cloud Modernization',
     'Fractional Solutions Architect'
   ];
 

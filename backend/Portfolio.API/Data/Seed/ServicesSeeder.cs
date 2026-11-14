@@ -68,17 +68,17 @@ public static class ServicesSeeder
             {
                 Slug = "legacy",
                 Icon = "fas fa-sync-alt",
-                Title = "Legacy .NET & Web Modernization",
-                ShortDescription = "Refactor monolithic, sluggish legacy .NET applications into high-performance .NET 9 microservices and reactive SPAs.",
-                FullDescription = "Transform legacy technical debt into high-performance assets. We upgrade legacy ASP.NET WebForms/MVC to .NET 9 Core, decouple monolithic codebases into microservices, and build modern Angular/React user experiences.",
+                Title = "Legacy Modernization & Microservices",
+                ShortDescription = "Refactor monolithic, sluggish legacy applications into high-performance cloud microservices and reactive SPAs.",
+                FullDescription = "Transform legacy technical debt into high-performance assets. We modernize outdated monolithic systems, decouple codebases into microservices, and build modern Angular/React user experiences.",
                 DeliverablesJson = JsonSerializer.Serialize(new[]
                 {
                     "Monolith to microservices architectural roadmap",
-                    "Upgrading legacy .NET Framework to .NET 9",
+                    "Modernizing legacy architectures to cloud-native microservices",
                     "40%+ page load & API throughput optimization",
                     "RESTful & gRPC high-speed API design"
                 }),
-                EngagementTopic = "Legacy .NET & Web Modernization",
+                EngagementTopic = "Legacy System & Cloud Modernization",
                 DisplayOrder = 4,
                 IsPublished = true
             },
@@ -172,12 +172,12 @@ public static class ServicesSeeder
             new()
             {
                 IndexTag = "//04",
-                Title = ".NET Modernization",
-                ShortDesc = "Upgrading monolithic legacy .NET Framework applications into high-throughput .NET 9 microservices and reactive SPAs.",
+                Title = "Legacy Modernization & Microservices",
+                ShortDesc = "Upgrading monolithic legacy architectures into high-throughput microservices and reactive SPAs.",
                 BulletsJson = JsonSerializer.Serialize(new[]
                 {
                     "Monolith to Microservices Roadmap",
-                    "Legacy .NET Framework to .NET 9 Upgrade",
+                    "Legacy Architecture Modernization",
                     "Sub-Second Response Time Optimization",
                     "High-Throughput WebAPI & gRPC Contracts"
                 }),

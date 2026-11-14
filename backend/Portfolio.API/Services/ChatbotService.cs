@@ -513,7 +513,7 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "### ⚡ Legacy .NET & Web Modernization\n\nTransform legacy technical debt into scalable, high-speed enterprise assets:\n\n- **Upgrade Legacy ASP.NET**: Transitioning monolithic ASP.NET WebForms/MVC applications to **.NET 9 Core**.\n- **Microservices Refactoring**: Decoupling complex monoliths into independently scalable microservices with event-driven architecture.\n- **40%+ Throughput Increase**: Non-blocking asynchronous query pipelines, EF Core query tuning, connection pooling, and Redis caching.\n- **Modern Frontends**: Pairing high-performance .NET 9 backends with reactive Angular 18 or React SPAs.",
+            Reply = "### ⚡ Legacy Architecture & Cloud Modernization\n\nTransform legacy technical debt into scalable, high-speed enterprise assets:\n\n- **Monolith to Microservices**: Decoupling complex legacy systems into independently scalable microservices with event-driven architecture.\n- **Modern Backend Architecture**: High-concurrency APIs, event streams, clean architecture, and distributed caching.\n- **40%+ Throughput Increase**: Non-blocking asynchronous query pipelines, query tuning, connection pooling, and Redis caching.\n- **Modern Frontends**: Pairing high-performance backends with reactive Angular or React SPAs.",
             SuggestedActions = new List<string>
             {
                 "Discuss Modernization Scope",
@@ -524,7 +524,7 @@ public class ChatbotService : IChatbotService
             Links = new List<ChatActionLinkDto>
             {
                 new() { Label = "Modernization Service", Url = "/services", Type = "internal", Icon = "fas fa-sync-alt" },
-                new() { Label = "View .NET Case Studies", Url = "/projects", Type = "internal", Icon = "fas fa-laptop-code" },
+                new() { Label = "View Case Studies", Url = "/projects", Type = "internal", Icon = "fas fa-laptop-code" },
                 new() { Label = "Contact Engineering Team", Url = "/contact", Type = "internal", Icon = "fas fa-envelope" }
             },
             IsLeadCapturePrompt = false
@@ -576,7 +576,7 @@ public class ChatbotService : IChatbotService
         }
         else
         {
-            sb.AppendLine("- **Backend Core**: .NET 9, C#, ASP.NET WebAPI, Entity Framework Core, Node.js, Python, REST APIs, WebSockets");
+            sb.AppendLine("- **Backend Core**: Distributed APIs, Microservices, Node.js, Python, Go, REST APIs, WebSockets, gRPC");
             sb.AppendLine("- **Frontend SPAs**: Angular 18, React, Next.js, TypeScript, TailwindCSS, Bootstrap 5");
             sb.AppendLine("- **Databases & Caching**: SQL Server, PostgreSQL, Redis, MongoDB, Vector Databases (Qdrant, Pinecone)");
             sb.AppendLine("- **Cloud & DevOps**: Microsoft Azure, AWS, Docker, Kubernetes, CI/CD, Terraform");
@@ -589,7 +589,7 @@ public class ChatbotService : IChatbotService
             SuggestedActions = new List<string>
             {
                 "Explore Delivered Projects",
-                "Discuss an AI or .NET Project",
+                "Discuss an AI or Cloud Architecture Project",
                 "SaaS Multi-Tenancy Architecture",
                 "Schedule Tech Discussion"
             },
@@ -607,7 +607,7 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "### 💼 Engagement Models & Pricing\n\nNEXVOYS offers 3 flexible engagement models designed for startups, scaleups, and enterprises:\n\n1. **Full-Cycle Project Architecture & Build**: Fixed-scope or milestone-based delivery with clear SLAs, architecture blueprints, and CI/CD pipelines.\n2. **Fractional Solutions Architect / CTO Advisory**: Senior technical leadership on a monthly retainer to guide technology choices, conduct code audits, and lead engineering teams.\n3. **Dedicated Engineer Embedding within 24 Hours**: Fast placement of specialized senior .NET, AI, or Angular engineers embedded directly into your agile workflow.\n\nLet us know what you are looking to build, and we can provide a tailored estimate and roadmap!",
+            Reply = "### 💼 Engagement Models & Pricing\n\nNEXVOYS offers 3 flexible engagement models designed for startups, scaleups, and enterprises:\n\n1. **Full-Cycle Project Architecture & Build**: Fixed-scope or milestone-based delivery with clear SLAs, architecture blueprints, and CI/CD pipelines.\n2. **Fractional Solutions Architect / CTO Advisory**: Senior technical leadership on a monthly retainer to guide technology choices, conduct code audits, and lead engineering teams.\n3. **Dedicated Engineer Embedding within 24 Hours**: Fast placement of specialized senior full-stack, AI, or backend engineers embedded directly into your agile workflow.\n\nLet us know what you are looking to build, and we can provide a tailored estimate and roadmap!",
             SuggestedActions = new List<string>
             {
                 "Request a Custom Quote",
@@ -752,7 +752,7 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = "Hello and welcome to **NEXVOYS**! 🚀\n\nI am your interactive **Solutions Architecture Assistant**. NEXVOYS has over **9+ years of international delivery experience** helping Startups, SMBs, and Enterprises across the US, Canada, and Europe build:\n\n- 🏗️ **Multi-Tenant SaaS Platforms** with scalable data partitioning\n- 🤖 **Autonomous AI Agent Pipelines** & Enterprise RAG\n- ⚡ **High-Performance .NET 9 Microservices** & Modern SPAs\n- ☁️ **Cloud Cost Optimization** (saving up to 25% on Azure/AWS)\n\nWhat would you like to explore today?",
+            Reply = "Hello and welcome to **NEXVOYS**! 🚀\n\nI am your interactive **Solutions Architecture Assistant**. NEXVOYS has over **9+ years of international delivery experience** helping Startups, SMBs, and Enterprises across the US, Canada, and Europe build:\n\n- 🏗️ **Multi-Tenant SaaS Platforms** with scalable data partitioning\n- 🤖 **Autonomous AI Agent Pipelines** & Enterprise RAG\n- ⚡ **High-Performance Distributed Microservices** & Modern SPAs\n- ☁️ **Cloud Cost Optimization** (saving up to 25% on Azure/AWS)\n\nWhat would you like to explore today?",
             SuggestedActions = new List<string>
             {
                 "Showcase of Delivered Case Studies",
@@ -775,13 +775,13 @@ public class ChatbotService : IChatbotService
     {
         return new ChatResponseDto
         {
-            Reply = $"I'm here to assist you with any questions regarding **\"{rawMsg}\"** or our enterprise capabilities!\n\n**NEXVOYS** is an **Enterprise Technology Partner & Solutions Architect** with 9+ years of experience specialized in designing multi-tenant SaaS products, autonomous AI agent pipelines, cloud cost optimization, and legacy .NET modernization.\n\nHere are some popular topics you can explore:",
+            Reply = $"I'm here to assist you with any questions regarding **\"{rawMsg}\"** or our enterprise capabilities!\n\n**NEXVOYS** is an **Enterprise Technology Partner & Solutions Architect** with 9+ years of experience specialized in designing multi-tenant SaaS products, autonomous AI agent pipelines, cloud cost optimization, and legacy system modernization.\n\nHere are some popular topics you can explore:",
             SuggestedActions = new List<string>
             {
                 "Show Case Studies & Portfolios",
                 "SaaS Multi-Tenancy Architecture",
                 "Autonomous AI Agents & GenAI",
-                "Legacy .NET 9 Modernization",
+                "Legacy System Modernization",
                 "Schedule a Free Consultation"
             },
             Links = new List<ChatActionLinkDto>

@@ -12,7 +12,7 @@ import { ProjectItem } from '../../models/portfolio.model';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-  activeFilter: 'all' | 'saas' | 'dotnet' | 'web' | 'health' = 'all';
+  activeFilter: 'all' | 'saas' | 'enterprise' | 'dotnet' | 'web' | 'health' = 'all';
 
   constructor(public portfolioService: PortfolioService) {}
 
@@ -35,7 +35,7 @@ export class ProjectsComponent {
     return this.portfolioService.projects.filter(p => p.filterCategory === this.activeFilter);
   }
 
-  setFilter(filter: 'all' | 'saas' | 'dotnet' | 'web' | 'health'): void {
+  setFilter(filter: 'all' | 'saas' | 'enterprise' | 'dotnet' | 'web' | 'health'): void {
     this.activeFilter = filter;
   }
 

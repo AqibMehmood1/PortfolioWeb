@@ -359,10 +359,10 @@ export class AdminPagesComponent implements OnInit {
       ];
     } else if (this.sectionCards.length === 0 && section.sectionKey === 'milestones') {
       this.sectionCards = [
-        { title: 'Launch of Specialized .NET & Cloud Architecture Studio', description: 'Founded Nexvoys as an elite engineering practice specializing in distributed .NET architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients.', badge: '2021 · Foundation', icon: 'fas fa-rocket' },
+        { title: 'Launch of Specialized Cloud & Software Architecture Studio', description: 'Founded Nexvoys as an elite engineering practice specializing in distributed backend architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients.', badge: '2021 · Foundation', icon: 'fas fa-rocket' },
         { title: 'Sub-Second CPQ & High-Throughput Engines', description: 'Engineered enterprise CPQ (Configure, Price, Quote) engines and payment processing pipelines, slashing calculation latency from 3 hours to under 30 seconds across high-volume transactions.', badge: '2022 · Scale', icon: 'fas fa-bolt' },
         { title: 'Global Multi-Market Delivery', description: 'Expanded direct client delivery footprint across international markets worldwide. Shipped production platforms maintaining an audited 99.99% uptime SLA with zero-downtime deployment pipelines.', badge: '2023 · Expansion', icon: 'fas fa-globe' },
-        { title: 'Autonomous AI Agents & .NET 9 Cloud Modernization', description: 'Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization to .NET 9 for next-generation enterprise SaaS systems.', badge: '2024–Present · Next-Gen', icon: 'fas fa-brain' }
+        { title: 'Autonomous AI Agents & Multi-Cloud Modernization', description: 'Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization for next-generation enterprise SaaS systems.', badge: '2024–Present · Next-Gen', icon: 'fas fa-brain' }
       ];
     } else if (this.sectionCards.length === 0 && section.sectionKey === 'credentials' && this.selectedPageForSections?.slug === 'about') {
       this.sectionCards = [
@@ -375,13 +375,13 @@ export class AdminPagesComponent implements OnInit {
       this.sectionCards = [
         { title: 'Discovery Call', description: 'A 30-minute technical session to understand your architecture bottlenecks, timeline, and growth goals.', badge: '01' },
         { title: 'Blueprint or Fixed-Fee Audit', description: 'A concrete system blueprint, data isolation schema, or 2-week architecture audit with prioritized roadmap.', badge: '02' },
-        { title: 'Senior Build & Modernize', description: 'Principal-led engineering with .NET 9, Azure, Angular/React, and AI agents with rigorous code quality.', badge: '03' },
+        { title: 'Senior Build & Modernize', description: 'Principal-led engineering with modern microservices, cloud infrastructure, reactive SPAs, and AI agents with rigorous code quality.', badge: '03' },
         { title: 'Handover & Enablement', description: 'Written architecture documentation, test coverage, and complete team handover with zero lock-in.', badge: '04' }
       ];
     } else if (this.sectionCards.length === 0 && section.sectionKey === 'problems') {
       this.sectionCards = [
         { title: 'Cloud Costs Outpacing Revenue', description: 'Unoptimized Azure and AWS compute eating into margins. We identify waste, right-size infrastructure, and cut cloud spend by up to 25% without sacrificing throughput.', badge: 'amber', icon: 'fas fa-chart-line' },
-        { title: 'Monolithic Bottlenecks', description: 'Legacy .NET codebases holding back release velocity. We re-architect incrementally to clean .NET 9 and event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
+        { title: 'Monolithic Bottlenecks', description: 'Legacy monolithic codebases holding back release velocity. We re-architect incrementally to modern, event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
         { title: 'AI Pipelines Failing in Production', description: 'Prototypes that hit latency and hallucination walls. We build enterprise RAG pipelines with deterministic guardrails and scalable vector search.', badge: 'blue', icon: 'fas fa-robot' },
         { title: 'Missing Senior Tech Lead', description: 'Startups needing strategic architectural governance without the $250k+ full-time CTO overhead. We serve as fractional principal architects guiding your engineers.', badge: 'green', icon: 'fas fa-user-shield' }
       ];

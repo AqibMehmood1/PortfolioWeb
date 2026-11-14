@@ -40,7 +40,7 @@ export class PortfolioService {
     logoDark: 'assets/nexvoys/black-logo.png',
     logoLight: 'assets/nexvoys/white-logo.png',
     favicon: 'assets/nexvoys/nex-fav.png',
-    footerBio: 'NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern .NET microservices, and autonomous AI systems.',
+    footerBio: 'NEXVOYS is an enterprise software architecture and engineering studio helping high-growth startups and enterprises build scalable multi-tenant SaaS, modern microservices, and autonomous AI systems.',
     copyrightText: '© 2026 NEXVOYS Ltd. All rights reserved. Senior Architecture & Advisory.',
     tickerTexts: [] as string[]
   };
@@ -173,10 +173,10 @@ export class PortfolioService {
     // Fallback defaults for about page milestones
     if (sectionKey === 'milestones') {
       return [
-        { title: 'Launch of Specialized .NET & Cloud Architecture Studio', description: 'Founded Nexvoys as an elite engineering practice specializing in distributed .NET architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients.', badge: '2021 · Foundation', icon: 'fas fa-rocket' },
+        { title: 'Launch of Specialized Cloud & Software Architecture Studio', description: 'Founded Nexvoys as an elite engineering practice specializing in distributed backend architecture, high-concurrency cloud systems, and multi-tenant database partitioning for North American and European clients.', badge: '2021 · Foundation', icon: 'fas fa-rocket' },
         { title: 'Sub-Second CPQ & High-Throughput Engines', description: 'Engineered enterprise CPQ (Configure, Price, Quote) engines and payment processing pipelines, slashing calculation latency from 3 hours to under 30 seconds across high-volume transactions.', badge: '2022 · Scale', icon: 'fas fa-bolt' },
         { title: 'Global Multi-Market Delivery', description: 'Expanded direct client delivery footprint across international markets worldwide. Shipped production platforms maintaining an audited 99.99% uptime SLA with zero-downtime deployment pipelines.', badge: '2023 · Expansion', icon: 'fas fa-globe' },
-        { title: 'Autonomous AI Agents & .NET 9 Cloud Modernization', description: 'Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization to .NET 9 for next-generation enterprise SaaS systems.', badge: '2024–Present · Next-Gen', icon: 'fas fa-brain' }
+        { title: 'Autonomous AI Agents & Multi-Cloud Modernization', description: 'Pioneering deterministic enterprise GenAI agent pipelines, vector search platforms, and cloud modernization for next-generation enterprise SaaS systems.', badge: '2024–Present · Next-Gen', icon: 'fas fa-brain' }
       ];
     }
     // Fallback defaults for about page credentials (company standards)
@@ -193,7 +193,7 @@ export class PortfolioService {
       return [
         { title: 'Discovery Call', description: 'A 30-minute technical session to understand your architecture bottlenecks, timeline, and growth goals.', badge: '01' },
         { title: 'Blueprint or Fixed-Fee Audit', description: 'A concrete system blueprint, data isolation schema, or 2-week architecture audit with prioritized roadmap.', badge: '02' },
-        { title: 'Senior Build & Modernize', description: 'Principal-led engineering with .NET 9, Azure, Angular/React, and AI agents with rigorous code quality.', badge: '03' },
+        { title: 'Senior Build & Modernize', description: 'Principal-led engineering with modern microservices, cloud infrastructure, reactive SPAs, and AI agents with rigorous code quality.', badge: '03' },
         { title: 'Handover & Enablement', description: 'Written architecture documentation, test coverage, and complete team handover with zero lock-in.', badge: '04' }
       ];
     }
@@ -201,7 +201,7 @@ export class PortfolioService {
     if (sectionKey === 'problems') {
       return [
         { title: 'Cloud Costs Outpacing Revenue', description: 'Unoptimized Azure and AWS compute eating into margins. We identify waste, right-size infrastructure, and cut cloud spend by up to 25% without sacrificing throughput.', badge: 'amber', icon: 'fas fa-chart-line' },
-        { title: 'Monolithic Bottlenecks', description: 'Legacy .NET codebases holding back release velocity. We re-architect incrementally to clean .NET 9 and event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
+        { title: 'Monolithic Bottlenecks', description: 'Legacy monolithic codebases holding back release velocity. We re-architect incrementally to modern, event-driven microservices with zero customer downtime.', badge: 'red', icon: 'fas fa-cubes' },
         { title: 'AI Pipelines Failing in Production', description: 'Prototypes that hit latency and hallucination walls. We build enterprise RAG pipelines with deterministic guardrails and scalable vector search.', badge: 'blue', icon: 'fas fa-robot' },
         { title: 'Missing Senior Tech Lead', description: 'Startups needing strategic architectural governance without the $250k+ full-time CTO overhead. We serve as fractional principal architects guiding your engineers.', badge: 'green', icon: 'fas fa-user-shield' }
       ];
@@ -369,8 +369,8 @@ export class PortfolioService {
         gif: 'assets/img/OdooTools.gif',
         description: 'Custom quotation calculation engine replacing spreadsheet pricing workflows with an automated system delivering quotes in under 30 seconds.',
         problem: 'Sales and estimation teams spent over 3 hours daily calculating complex custom equipment quotes in spreadsheets with calculation drift and quote turnaround delays.',
-        architecture: 'Developed an automated calculation engine powered by .NET Core, C#, SQL Server, and an Angular frontend with granular role-based permissions.',
-        tech: ['.NET Core', 'C#', 'SQL Server', 'Angular', 'Azure App Services'],
+        architecture: 'Developed an automated calculation engine powered by modular microservices, SQL Server, and an Angular frontend with granular role-based permissions.',
+        tech: ['Distributed APIs', 'SQL Server', 'Angular', 'Azure App Services'],
         liveUrl: '',
         highlights: ['Turnaround: 3 hrs to under 30 seconds', 'Automated pricing formula engine', 'Granular RBAC & audit logging']
       },
@@ -383,8 +383,8 @@ export class PortfolioService {
         gif: 'assets/img/EUROBank.gif',
         description: 'High-security banking customer portal engineered with enterprise authentication, role-based authorization, and resilient account workflows.',
         problem: 'Required a secure digital banking customer portal with high concurrency handling, OAuth2/JWT security boundaries, and reliable audit records.',
-        architecture: 'Built on ASP.NET Core with microservices backend, Entity Framework Core, SQL Server clustering, and encrypted OAuth2/JWT security barriers.',
-        tech: ['ASP.NET Core', 'C#', 'Security / RBAC', 'SQL Server', 'Microservices'],
+        architecture: 'Built on microservices backend, Entity Framework Core, SQL Server clustering, and encrypted OAuth2/JWT security barriers.',
+        tech: ['Microservices', 'Security / RBAC', 'SQL Server', 'API Gateway'],
         liveUrl: '',
         highlights: ['Enterprise OAuth2/JWT Security', 'High Concurrency Resilience', 'Role-Based Access Control']
       },
@@ -398,7 +398,7 @@ export class PortfolioService {
         description: 'Scalable multi-tenant cloud automation platform supporting US-based clients with resource monitoring and automated cloud orchestration.',
         problem: 'Rising cloud overhead and lack of unified multi-tenant automation across Azure resources for fast-growing US technology clients.',
         architecture: 'Architected containerized microservices in Docker on Azure, integrating automated resource rightsizing rules and automated billing pipelines.',
-        tech: ['Azure Cloud', '.NET Core', 'Docker', 'Angular', 'Microservices'],
+        tech: ['Azure Cloud', 'Docker', 'Angular', 'Microservices'],
         liveUrl: '',
         highlights: ['25% Cloud Cost Reduction', 'Multi-Tenant Data Isolation', 'Automated CI/CD Pipelines']
       },
@@ -423,10 +423,10 @@ export class PortfolioService {
         filterCategory: 'web',
         image: 'assets/img/linkcenter2.png',
         gif: 'assets/img/LinksWeb.gif',
-        description: 'High-volume link curation and discovery portal optimized with .NET Core and distributed Redis caching to sustain high concurrency traffic spikes.',
+        description: 'High-volume link curation and discovery portal optimized with high-throughput backend services and distributed Redis caching to sustain high concurrency traffic spikes.',
         problem: 'High concurrency traffic spikes caused slow database queries, impacting SEO rankings and user retention metrics.',
-        architecture: 'Refactored backend data access in .NET Core with Redis distributed caching layer and Cloudflare edge CDN, lowering page loads by 40%.',
-        tech: ['.NET Core', 'SQL Server', 'Redis Caching', 'Bootstrap 5', 'Cloudflare'],
+        architecture: 'Refactored backend data access with Redis distributed caching layer and Cloudflare edge CDN, lowering page loads by 40%.',
+        tech: ['Distributed APIs', 'SQL Server', 'Redis Caching', 'Bootstrap 5', 'Cloudflare'],
         liveUrl: '',
         highlights: ['Distributed Redis caching layer', 'High-concurrency query optimization', '40% response time improvement']
       }
@@ -478,16 +478,16 @@ export class PortfolioService {
       {
         id: 'legacy',
         icon: 'fas fa-sync-alt',
-        title: 'Legacy .NET & Web Modernization',
-        shortDesc: 'Refactor monolithic, sluggish legacy .NET applications into high-performance .NET 9 microservices and reactive SPAs.',
-        fullDesc: 'Transform legacy technical debt into high-performance assets. We upgrade legacy ASP.NET WebForms/MVC to .NET 9 Core, decouple monolithic codebases into microservices, and build modern Angular/React user experiences.',
+        title: 'Legacy System & Cloud Modernization',
+        shortDesc: 'Refactor monolithic, sluggish legacy applications into high-performance cloud microservices and reactive SPAs.',
+        fullDesc: 'Transform legacy technical debt into high-performance assets. We modernize outdated monolithic architectures, decouple codebases into resilient microservices, and build modern Angular/React user experiences.',
         deliverables: [
           'Monolith to microservices architectural roadmap',
-          'Upgrading legacy .NET Framework to .NET 9',
+          'Modernizing legacy architectures to cloud-native microservices',
           '40%+ page load & API throughput optimization',
           'RESTful & gRPC high-speed API design'
         ],
-        engagementTopic: 'Legacy .NET & Web Modernization'
+        engagementTopic: 'Legacy System & Cloud Modernization'
       },
       {
         id: 'advisory',
@@ -532,9 +532,9 @@ export class PortfolioService {
       },
       {
         index: '//04',
-        title: '.NET Modernization',
-        shortDesc: 'Upgrading monolithic legacy .NET Framework applications into high-throughput .NET 9 microservices and reactive SPAs.',
-        bullets: ['Monolith to Microservices Roadmap', 'Legacy .NET Framework to .NET 9 Upgrade', 'Sub-Second Response Time Optimization', 'High-Throughput WebAPI & gRPC Contracts'],
+        title: 'Legacy Modernization & Microservices',
+        shortDesc: 'Upgrading monolithic legacy architectures into high-throughput microservices and reactive SPAs.',
+        bullets: ['Monolith to Microservices Roadmap', 'Legacy Architecture Modernization', 'Sub-Second Response Time Optimization', 'High-Throughput WebAPI & gRPC Contracts'],
         image: '/assets/img/services/dotnet-modernization.jpg',
         route: '/services'
       },
@@ -542,7 +542,7 @@ export class PortfolioService {
         index: '//05',
         title: 'Fractional CTO & Advisory',
         shortDesc: 'Senior technical leadership for startups and SMBs preparing to raise, scale, or hire engineering teams.',
-        bullets: ['Technical Due Diligence & Roadmap', 'Engineering Hiring & Code Review Standards', 'Tech Stack Evaluation (.NET, Azure, Node)', 'Executive & Board Technical Advisory'],
+        bullets: ['Technical Due Diligence & Roadmap', 'Engineering Hiring & Code Review Standards', 'Tech Stack Evaluation & Framework Selection', 'Executive & Board Technical Advisory'],
         image: '/assets/img/services/fractional-cto.jpg',
         route: '/services'
       }
@@ -555,7 +555,7 @@ export class PortfolioService {
         company: 'NEXVOYS',
         location: 'Lahore HQ · Global Remote & Worldwide Delivery',
         description: 'Partnering directly with startups, SMBs, and enterprise leaders worldwide to architect multi-tenant SaaS products, AI Agents, and distributed cloud applications that scale seamlessly.',
-        tags: ['Solutions Architecture', 'AI Agents', 'Multi-Tenant SaaS', 'Azure', '.NET 9']
+        tags: ['Solutions Architecture', 'AI Agents', 'Multi-Tenant SaaS', 'Azure', 'Distributed Systems']
       },
       {
         title: 'Solutions Architect (Contract)',
@@ -571,23 +571,23 @@ export class PortfolioService {
         company: 'Odyssey Design San Antonio',
         location: 'San Antonio, TX, USA · Remote',
         description: 'Led architecture and full-stack development of dynamic quotation engines (ODTool), complex pricing algorithms, and cloud infrastructure for US clients.',
-        tags: ['.NET Core', 'C#', 'Calculation Engines', 'Cloud Deployment', 'Angular']
+        tags: ['Distributed APIs', 'Calculation Engines', 'Cloud Deployment', 'Angular']
       },
       {
-        title: 'Senior Full Stack Developer (.NET & Angular)',
+        title: 'Senior Full Stack Developer (Cloud & Web)',
         period: 'Apr 2018 - Dec 2020 · 2 yrs 9 mos',
         company: 'Cloudoor',
         location: 'San Francisco, CA, USA · Remote',
         description: 'Engineered scalable cloud resource management platforms, high-performance REST microservices, and reactive SPAs for enterprise US clients.',
-        tags: ['.NET Core', 'Angular', 'SQL Server', 'Microservices', 'Azure Cloud']
+        tags: ['Full Stack', 'Angular', 'SQL Server', 'Microservices', 'Azure Cloud']
       },
       {
-        title: '.NET Full Stack Developer',
+        title: 'Full Stack Software Engineer',
         period: 'Jan 2017 - Mar 2018 · 1 yr 3 mos',
         company: 'System Nexgen',
         location: 'Lahore, Pakistan',
         description: 'Developed enterprise web applications, backend APIs, relational database schemas, and unit test suites for client projects.',
-        tags: ['C#', 'ASP.NET MVC', 'Microsoft SQL Server', 'OOP Patterns']
+        tags: ['Web Engineering', 'MVC Architecture', 'Microsoft SQL Server', 'OOP Patterns']
       }
     ]);
 
@@ -608,13 +608,13 @@ export class PortfolioService {
         description: 'Architecture of scalable multi-tenant cloud systems, microservices isolation, containerized workloads, and Azure PaaS services.'
       },
       {
-        title: 'Enterprise C# & .NET 9 Core Architecture',
+        title: 'Distributed Systems & Microservices Architecture',
         level: 'Backend Systems',
-        issuer: 'Microsoft Technology Stack',
-        description: 'Deep mastery in modern C# asynchronous patterns, memory optimization, Dependency Injection, and microservices architecture.'
+        issuer: 'Enterprise Systems Standards',
+        description: 'Deep mastery in asynchronous messaging patterns, memory optimization, Dependency Injection, and microservices architecture.'
       },
       {
-        title: 'ASP.NET Core WebAPI & Distributed Systems',
+        title: 'High-Throughput Web APIs & Distributed Systems',
         level: 'High-Throughput APIs',
         issuer: 'Distributed Web Systems',
         description: 'RESTful API design, database connection pooling, distributed caching with Redis, and OAuth2/JWT security.'
@@ -677,7 +677,7 @@ export class PortfolioService {
         quote: 'NEXVOYS architected our dynamic CPQ calculation engine from the ground up. Their architectural leadership cut our quotation turnaround from 3 hours to under 30 seconds.',
         author: 'Odyssey Design Leadership',
         role: 'San Antonio, TX · Contract Engagement',
-        tag: 'Enterprise .NET & CPQ'
+        tag: 'Enterprise CPQ Engine'
       },
       {
         quote: 'Nexvoys provided principal-level architecture for our AI agent workflows and cloud infrastructure in Paris. Deep technical discipline with zero overhead.',

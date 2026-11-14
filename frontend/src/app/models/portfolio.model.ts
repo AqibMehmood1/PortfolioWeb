@@ -2,7 +2,7 @@ export interface ProjectItem {
   id: string;
   title: string;
   category: string;
-  filterCategory: 'all' | 'saas' | 'dotnet' | 'web' | 'health';
+  filterCategory: 'all' | 'saas' | 'enterprise' | 'dotnet' | 'web' | 'health';
   image: string;
   gif: string;
   description: string;

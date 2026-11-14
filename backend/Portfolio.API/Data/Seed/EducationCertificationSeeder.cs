@@ -55,16 +55,16 @@ public static class EducationCertificationSeeder
             },
             new()
             {
-                Title = "Enterprise C# & .NET 9 Core Architecture",
+                Title = "Distributed Systems & Microservices Architecture",
                 Level = "Backend Systems",
-                Issuer = "Microsoft .NET Stack",
+                Issuer = "Enterprise Systems Standards",
                 Description = "High-throughput asynchronous programming, memory optimization, Dependency Injection, and microservices architecture.",
                 DisplayOrder = 2,
                 IsActive = true
             },
             new()
             {
-                Title = "ASP.NET Core WebAPI & Distributed Systems",
+                Title = "High-Throughput Web APIs & Distributed Systems",
                 Level = "High-Throughput APIs",
                 Issuer = "Distributed Web Systems",
                 Description = "RESTful API design, database connection pooling, distributed caching with Redis, and OAuth2/JWT security.",

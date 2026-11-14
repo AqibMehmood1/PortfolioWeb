@@ -58,9 +58,9 @@ public static class TechnologiesSeeder
             ("frontend", "Progressive Web", "fas fa-mobile-alt", "#ec4899"),
 
             // Backend
-            ("backend", ".NET 9 / C#", "fab fa-windows", "#512bd4"),
-            ("backend", "ASP.NET Core", "fas fa-server", "#512bd4"),
-            ("backend", "Entity Framework", "fas fa-database", "#68217a"),
+            ("backend", "Distributed APIs", "fas fa-server", "#10b981"),
+            ("backend", "Microservices Architecture", "fas fa-cubes", "#0284c7"),
+            ("backend", "High-Concurrency ORMs", "fas fa-database", "#68217a"),
             ("backend", "Node.js", "fab fa-node-js", "#68a063"),
             ("backend", "Python APIs", "fab fa-python", "#3776ab"),
             ("backend", "Microservices Bus", "fas fa-project-diagram", "#0284c7"),

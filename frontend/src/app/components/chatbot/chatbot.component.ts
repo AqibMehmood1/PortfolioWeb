@@ -75,7 +75,7 @@ export class ChatbotComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngOnInit(): void {
     // Initial welcome message
     this.addBotMessage(
-      `👋 **Welcome to NEXVOYS Enterprise AI Assistant!**\n\nI am your interactive architectural advisor. I can help you explore our **SaaS multi-tenancy frameworks**, **Autonomous AI Agents**, **legacy .NET modernization**, **case studies**, and **custom engineering engagements**.\n\nHow can I assist your engineering roadmap today?`,
+      `👋 **Welcome to NEXVOYS Enterprise AI Assistant!**\n\nI am your interactive architectural advisor. I can help you explore our **SaaS multi-tenancy frameworks**, **Autonomous AI Agents**, **legacy system modernization**, **case studies**, and **custom engineering engagements**.\n\nHow can I assist your engineering roadmap today?`,
       [
         { label: '🏛️ Architecture Pillars', url: '/services', isExternal: false, icon: 'fas fa-cubes' },
         { label: '💼 Client Case Studies', url: '/projects', isExternal: false, icon: 'fas fa-briefcase' },
